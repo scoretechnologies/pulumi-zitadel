@@ -23,7 +23,7 @@ import (
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/scoretechnologies/pulumi-zitadel/provider/pkg/version"
-	"github.com/zitadel/terraform-provider-zitadel/zitadel"
+	"github.com/zitadel/terraform-provider-zitadel/v2/zitadel"
 )
 
 // all of the token components used below.
@@ -81,6 +81,8 @@ func Provider() tfbridge.ProviderInfo {
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
 		GitHubOrg: "zitadel",
+		// Specify the module version for the v2 provider
+		TFProviderModuleVersion: "v2",
 		Config:    map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -153,6 +155,10 @@ func Provider() tfbridge.ProviderInfo {
 			"zitadel_org_idp_saml":  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "OrgIdpSaml")},
 			"zitadel_org_metadata":  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "OrgMetadata")},
 			"zitadel_user_metadata": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "UserMetadata")},
+			"zitadel_default_password_age_policy": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DefaultPasswordAgePolicy")},
+			"zitadel_idp_oidc":                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IdpOidc")},
+			"zitadel_password_age_policy":         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "PasswordAgePolicy")},
+			"zitadel_sms_provider_http":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SmsProviderHttp")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"zitadel_org":                        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getOrg")},
@@ -191,6 +197,7 @@ func Provider() tfbridge.ProviderInfo {
 
 			"zitadel_idp_oauth":     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getIdpOauth")},
 			"zitadel_idp_saml":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getIdpSaml")},
+			"zitadel_idp_oidc":      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getIdpOidc")},
 			"zitadel_org_idp_oauth": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getOrgIdpOauth")},
 			"zitadel_org_idp_saml":  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getOrgIdpSaml")},
 		},

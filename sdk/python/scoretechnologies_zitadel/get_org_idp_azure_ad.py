@@ -21,7 +21,10 @@ class GetOrgIdpAzureAdResult:
     """
     A collection of values returned by getOrgIdpAzureAd.
     """
-    def __init__(__self__, client_id=None, client_secret=None, email_verified=None, id=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, name=None, org_id=None, scopes=None, tenant_id=None, tenant_type=None):
+    def __init__(__self__, auto_linking=None, client_id=None, client_secret=None, email_verified=None, id=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, name=None, org_id=None, scopes=None, tenant_id=None, tenant_type=None):
+        if auto_linking and not isinstance(auto_linking, str):
+            raise TypeError("Expected argument 'auto_linking' to be a str")
+        pulumi.set(__self__, "auto_linking", auto_linking)
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -61,6 +64,14 @@ class GetOrgIdpAzureAdResult:
         if tenant_type and not isinstance(tenant_type, str):
             raise TypeError("Expected argument 'tenant_type' to be a str")
         pulumi.set(__self__, "tenant_type", tenant_type)
+
+    @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> str:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
 
     @property
     @pulumi.getter(name="clientId")
@@ -173,6 +184,7 @@ class AwaitableGetOrgIdpAzureAdResult(GetOrgIdpAzureAdResult):
         if False:
             yield self
         return GetOrgIdpAzureAdResult(
+            auto_linking=self.auto_linking,
             client_id=self.client_id,
             client_secret=self.client_secret,
             email_verified=self.email_verified,
@@ -215,6 +227,7 @@ def get_org_idp_azure_ad(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('zitadel:index/getOrgIdpAzureAd:getOrgIdpAzureAd', __args__, opts=opts, typ=GetOrgIdpAzureAdResult).value
 
     return AwaitableGetOrgIdpAzureAdResult(
+        auto_linking=pulumi.get(__ret__, 'auto_linking'),
         client_id=pulumi.get(__ret__, 'client_id'),
         client_secret=pulumi.get(__ret__, 'client_secret'),
         email_verified=pulumi.get(__ret__, 'email_verified'),

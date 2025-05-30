@@ -30,12 +30,17 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly domain!: pulumi.Output<string>;
     /**
-     * Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-     * required
+     * Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+     * 'jwt_profile_json' is required
+     */
+    public readonly jwtFile!: pulumi.Output<string | undefined>;
+    /**
+     * Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+     * 'jwt_profile_json' is required
      */
     public readonly jwtProfileFile!: pulumi.Output<string | undefined>;
     /**
-     * JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+     * JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
      */
     public readonly jwtProfileJson!: pulumi.Output<string | undefined>;
     /**
@@ -63,6 +68,7 @@ export class Provider extends pulumi.ProviderResource {
             }
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["insecure"] = pulumi.output(args ? args.insecure : undefined).apply(JSON.stringify);
+            resourceInputs["jwtFile"] = args ? args.jwtFile : undefined;
             resourceInputs["jwtProfileFile"] = args ? args.jwtProfileFile : undefined;
             resourceInputs["jwtProfileJson"] = args ? args.jwtProfileJson : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
@@ -86,12 +92,17 @@ export interface ProviderArgs {
      */
     insecure?: pulumi.Input<boolean>;
     /**
-     * Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-     * required
+     * Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+     * 'jwt_profile_json' is required
+     */
+    jwtFile?: pulumi.Input<string>;
+    /**
+     * Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+     * 'jwt_profile_json' is required
      */
     jwtProfileFile?: pulumi.Input<string>;
     /**
-     * JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+     * JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
      */
     jwtProfileJson?: pulumi.Input<string>;
     /**

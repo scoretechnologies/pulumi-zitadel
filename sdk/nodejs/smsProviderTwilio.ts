@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * const _default = new zitadel.SmsProviderTwilio("default", {
  *     senderNumber: "019920892",
+ *     setActive: true,
  *     sid: "sid",
  *     token: "twilio_token",
  * });
@@ -61,6 +62,10 @@ export class SmsProviderTwilio extends pulumi.CustomResource {
      */
     public readonly senderNumber!: pulumi.Output<string>;
     /**
+     * Set the SMS provider as active after creating/updating.
+     */
+    public readonly setActive!: pulumi.Output<boolean | undefined>;
+    /**
      * SID used to communicate with Twilio.
      */
     public readonly sid!: pulumi.Output<string>;
@@ -83,6 +88,7 @@ export class SmsProviderTwilio extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SmsProviderTwilioState | undefined;
             resourceInputs["senderNumber"] = state ? state.senderNumber : undefined;
+            resourceInputs["setActive"] = state ? state.setActive : undefined;
             resourceInputs["sid"] = state ? state.sid : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
         } else {
@@ -97,6 +103,7 @@ export class SmsProviderTwilio extends pulumi.CustomResource {
                 throw new Error("Missing required property 'token'");
             }
             resourceInputs["senderNumber"] = args ? args.senderNumber : undefined;
+            resourceInputs["setActive"] = args ? args.setActive : undefined;
             resourceInputs["sid"] = args ? args.sid : undefined;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
         }
@@ -116,6 +123,10 @@ export interface SmsProviderTwilioState {
      */
     senderNumber?: pulumi.Input<string>;
     /**
+     * Set the SMS provider as active after creating/updating.
+     */
+    setActive?: pulumi.Input<boolean>;
+    /**
      * SID used to communicate with Twilio.
      */
     sid?: pulumi.Input<string>;
@@ -133,6 +144,10 @@ export interface SmsProviderTwilioArgs {
      * Sender number which is used to send the SMS.
      */
     senderNumber: pulumi.Input<string>;
+    /**
+     * Set the SMS provider as active after creating/updating.
+     */
+    setActive?: pulumi.Input<boolean>;
     /**
      * SID used to communicate with Twilio.
      */

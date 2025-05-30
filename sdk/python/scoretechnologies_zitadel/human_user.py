@@ -20,7 +20,9 @@ class HumanUserArgs:
                  user_name: pulumi.Input[str],
                  display_name: Optional[pulumi.Input[str]] = None,
                  gender: Optional[pulumi.Input[str]] = None,
+                 initial_hashed_password: Optional[pulumi.Input[str]] = None,
                  initial_password: Optional[pulumi.Input[str]] = None,
+                 initial_skip_password_change: Optional[pulumi.Input[bool]] = None,
                  is_email_verified: Optional[pulumi.Input[bool]] = None,
                  is_phone_verified: Optional[pulumi.Input[bool]] = None,
                  nick_name: Optional[pulumi.Input[str]] = None,
@@ -35,7 +37,9 @@ class HumanUserArgs:
         :param pulumi.Input[str] user_name: Username
         :param pulumi.Input[str] display_name: Display name of the user
         :param pulumi.Input[str] gender: Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
+        :param pulumi.Input[str] initial_hashed_password: Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
         :param pulumi.Input[str] initial_password: Initially set password for the user, not changeable after creation
+        :param pulumi.Input[bool] initial_skip_password_change: Whether the user has to change the password on first login.
         :param pulumi.Input[bool] is_email_verified: Is the email verified of the user, can only be true if password of the user is set
         :param pulumi.Input[bool] is_phone_verified: Is the phone verified of the user
         :param pulumi.Input[str] nick_name: Nick name of the user
@@ -51,7 +55,9 @@ class HumanUserArgs:
             user_name=user_name,
             display_name=display_name,
             gender=gender,
+            initial_hashed_password=initial_hashed_password,
             initial_password=initial_password,
+            initial_skip_password_change=initial_skip_password_change,
             is_email_verified=is_email_verified,
             is_phone_verified=is_phone_verified,
             nick_name=nick_name,
@@ -68,7 +74,9 @@ class HumanUserArgs:
              user_name: pulumi.Input[str],
              display_name: Optional[pulumi.Input[str]] = None,
              gender: Optional[pulumi.Input[str]] = None,
+             initial_hashed_password: Optional[pulumi.Input[str]] = None,
              initial_password: Optional[pulumi.Input[str]] = None,
+             initial_skip_password_change: Optional[pulumi.Input[bool]] = None,
              is_email_verified: Optional[pulumi.Input[bool]] = None,
              is_phone_verified: Optional[pulumi.Input[bool]] = None,
              nick_name: Optional[pulumi.Input[str]] = None,
@@ -85,8 +93,12 @@ class HumanUserArgs:
             user_name = kwargs['userName']
         if 'displayName' in kwargs:
             display_name = kwargs['displayName']
+        if 'initialHashedPassword' in kwargs:
+            initial_hashed_password = kwargs['initialHashedPassword']
         if 'initialPassword' in kwargs:
             initial_password = kwargs['initialPassword']
+        if 'initialSkipPasswordChange' in kwargs:
+            initial_skip_password_change = kwargs['initialSkipPasswordChange']
         if 'isEmailVerified' in kwargs:
             is_email_verified = kwargs['isEmailVerified']
         if 'isPhoneVerified' in kwargs:
@@ -106,8 +118,12 @@ class HumanUserArgs:
             _setter("display_name", display_name)
         if gender is not None:
             _setter("gender", gender)
+        if initial_hashed_password is not None:
+            _setter("initial_hashed_password", initial_hashed_password)
         if initial_password is not None:
             _setter("initial_password", initial_password)
+        if initial_skip_password_change is not None:
+            _setter("initial_skip_password_change", initial_skip_password_change)
         if is_email_verified is not None:
             _setter("is_email_verified", is_email_verified)
         if is_phone_verified is not None:
@@ -194,6 +210,18 @@ class HumanUserArgs:
         pulumi.set(self, "gender", value)
 
     @property
+    @pulumi.getter(name="initialHashedPassword")
+    def initial_hashed_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+        """
+        return pulumi.get(self, "initial_hashed_password")
+
+    @initial_hashed_password.setter
+    def initial_hashed_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "initial_hashed_password", value)
+
+    @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> Optional[pulumi.Input[str]]:
         """
@@ -204,6 +232,18 @@ class HumanUserArgs:
     @initial_password.setter
     def initial_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "initial_password", value)
+
+    @property
+    @pulumi.getter(name="initialSkipPasswordChange")
+    def initial_skip_password_change(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the user has to change the password on first login.
+        """
+        return pulumi.get(self, "initial_skip_password_change")
+
+    @initial_skip_password_change.setter
+    def initial_skip_password_change(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "initial_skip_password_change", value)
 
     @property
     @pulumi.getter(name="isEmailVerified")
@@ -285,7 +325,9 @@ class _HumanUserState:
                  email: Optional[pulumi.Input[str]] = None,
                  first_name: Optional[pulumi.Input[str]] = None,
                  gender: Optional[pulumi.Input[str]] = None,
+                 initial_hashed_password: Optional[pulumi.Input[str]] = None,
                  initial_password: Optional[pulumi.Input[str]] = None,
+                 initial_skip_password_change: Optional[pulumi.Input[bool]] = None,
                  is_email_verified: Optional[pulumi.Input[bool]] = None,
                  is_phone_verified: Optional[pulumi.Input[bool]] = None,
                  last_name: Optional[pulumi.Input[str]] = None,
@@ -303,7 +345,9 @@ class _HumanUserState:
         :param pulumi.Input[str] email: Email of the user
         :param pulumi.Input[str] first_name: First name of the user
         :param pulumi.Input[str] gender: Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
+        :param pulumi.Input[str] initial_hashed_password: Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
         :param pulumi.Input[str] initial_password: Initially set password for the user, not changeable after creation
+        :param pulumi.Input[bool] initial_skip_password_change: Whether the user has to change the password on first login.
         :param pulumi.Input[bool] is_email_verified: Is the email verified of the user, can only be true if password of the user is set
         :param pulumi.Input[bool] is_phone_verified: Is the phone verified of the user
         :param pulumi.Input[str] last_name: Last name of the user
@@ -322,7 +366,9 @@ class _HumanUserState:
             email=email,
             first_name=first_name,
             gender=gender,
+            initial_hashed_password=initial_hashed_password,
             initial_password=initial_password,
+            initial_skip_password_change=initial_skip_password_change,
             is_email_verified=is_email_verified,
             is_phone_verified=is_phone_verified,
             last_name=last_name,
@@ -342,7 +388,9 @@ class _HumanUserState:
              email: Optional[pulumi.Input[str]] = None,
              first_name: Optional[pulumi.Input[str]] = None,
              gender: Optional[pulumi.Input[str]] = None,
+             initial_hashed_password: Optional[pulumi.Input[str]] = None,
              initial_password: Optional[pulumi.Input[str]] = None,
+             initial_skip_password_change: Optional[pulumi.Input[bool]] = None,
              is_email_verified: Optional[pulumi.Input[bool]] = None,
              is_phone_verified: Optional[pulumi.Input[bool]] = None,
              last_name: Optional[pulumi.Input[str]] = None,
@@ -360,8 +408,12 @@ class _HumanUserState:
             display_name = kwargs['displayName']
         if 'firstName' in kwargs:
             first_name = kwargs['firstName']
+        if 'initialHashedPassword' in kwargs:
+            initial_hashed_password = kwargs['initialHashedPassword']
         if 'initialPassword' in kwargs:
             initial_password = kwargs['initialPassword']
+        if 'initialSkipPasswordChange' in kwargs:
+            initial_skip_password_change = kwargs['initialSkipPasswordChange']
         if 'isEmailVerified' in kwargs:
             is_email_verified = kwargs['isEmailVerified']
         if 'isPhoneVerified' in kwargs:
@@ -389,8 +441,12 @@ class _HumanUserState:
             _setter("first_name", first_name)
         if gender is not None:
             _setter("gender", gender)
+        if initial_hashed_password is not None:
+            _setter("initial_hashed_password", initial_hashed_password)
         if initial_password is not None:
             _setter("initial_password", initial_password)
+        if initial_skip_password_change is not None:
+            _setter("initial_skip_password_change", initial_skip_password_change)
         if is_email_verified is not None:
             _setter("is_email_verified", is_email_verified)
         if is_phone_verified is not None:
@@ -463,6 +519,18 @@ class _HumanUserState:
         pulumi.set(self, "gender", value)
 
     @property
+    @pulumi.getter(name="initialHashedPassword")
+    def initial_hashed_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+        """
+        return pulumi.get(self, "initial_hashed_password")
+
+    @initial_hashed_password.setter
+    def initial_hashed_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "initial_hashed_password", value)
+
+    @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> Optional[pulumi.Input[str]]:
         """
@@ -473,6 +541,18 @@ class _HumanUserState:
     @initial_password.setter
     def initial_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "initial_password", value)
+
+    @property
+    @pulumi.getter(name="initialSkipPasswordChange")
+    def initial_skip_password_change(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the user has to change the password on first login.
+        """
+        return pulumi.get(self, "initial_skip_password_change")
+
+    @initial_skip_password_change.setter
+    def initial_skip_password_change(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "initial_skip_password_change", value)
 
     @property
     @pulumi.getter(name="isEmailVerified")
@@ -616,7 +696,9 @@ class HumanUser(pulumi.CustomResource):
                  email: Optional[pulumi.Input[str]] = None,
                  first_name: Optional[pulumi.Input[str]] = None,
                  gender: Optional[pulumi.Input[str]] = None,
+                 initial_hashed_password: Optional[pulumi.Input[str]] = None,
                  initial_password: Optional[pulumi.Input[str]] = None,
+                 initial_skip_password_change: Optional[pulumi.Input[bool]] = None,
                  is_email_verified: Optional[pulumi.Input[bool]] = None,
                  is_phone_verified: Optional[pulumi.Input[bool]] = None,
                  last_name: Optional[pulumi.Input[str]] = None,
@@ -650,7 +732,8 @@ class HumanUser(pulumi.CustomResource):
             is_phone_verified=True,
             email="test@zitadel.com",
             is_email_verified=True,
-            initial_password="Password1!")
+            initial_password="Password1!",
+            initial_skip_password_change=True)
         ```
 
         ## Import
@@ -667,7 +750,9 @@ class HumanUser(pulumi.CustomResource):
         :param pulumi.Input[str] email: Email of the user
         :param pulumi.Input[str] first_name: First name of the user
         :param pulumi.Input[str] gender: Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
+        :param pulumi.Input[str] initial_hashed_password: Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
         :param pulumi.Input[str] initial_password: Initially set password for the user, not changeable after creation
+        :param pulumi.Input[bool] initial_skip_password_change: Whether the user has to change the password on first login.
         :param pulumi.Input[bool] is_email_verified: Is the email verified of the user, can only be true if password of the user is set
         :param pulumi.Input[bool] is_phone_verified: Is the phone verified of the user
         :param pulumi.Input[str] last_name: Last name of the user
@@ -707,7 +792,8 @@ class HumanUser(pulumi.CustomResource):
             is_phone_verified=True,
             email="test@zitadel.com",
             is_email_verified=True,
-            initial_password="Password1!")
+            initial_password="Password1!",
+            initial_skip_password_change=True)
         ```
 
         ## Import
@@ -741,7 +827,9 @@ class HumanUser(pulumi.CustomResource):
                  email: Optional[pulumi.Input[str]] = None,
                  first_name: Optional[pulumi.Input[str]] = None,
                  gender: Optional[pulumi.Input[str]] = None,
+                 initial_hashed_password: Optional[pulumi.Input[str]] = None,
                  initial_password: Optional[pulumi.Input[str]] = None,
+                 initial_skip_password_change: Optional[pulumi.Input[bool]] = None,
                  is_email_verified: Optional[pulumi.Input[bool]] = None,
                  is_phone_verified: Optional[pulumi.Input[bool]] = None,
                  last_name: Optional[pulumi.Input[str]] = None,
@@ -767,7 +855,9 @@ class HumanUser(pulumi.CustomResource):
                 raise TypeError("Missing required property 'first_name'")
             __props__.__dict__["first_name"] = first_name
             __props__.__dict__["gender"] = gender
+            __props__.__dict__["initial_hashed_password"] = None if initial_hashed_password is None else pulumi.Output.secret(initial_hashed_password)
             __props__.__dict__["initial_password"] = None if initial_password is None else pulumi.Output.secret(initial_password)
+            __props__.__dict__["initial_skip_password_change"] = initial_skip_password_change
             __props__.__dict__["is_email_verified"] = is_email_verified
             __props__.__dict__["is_phone_verified"] = is_phone_verified
             if last_name is None and not opts.urn:
@@ -783,7 +873,7 @@ class HumanUser(pulumi.CustomResource):
             __props__.__dict__["login_names"] = None
             __props__.__dict__["preferred_login_name"] = None
             __props__.__dict__["state"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["initialPassword"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["initialHashedPassword", "initialPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(HumanUser, __self__).__init__(
             'zitadel:index/humanUser:HumanUser',
@@ -799,7 +889,9 @@ class HumanUser(pulumi.CustomResource):
             email: Optional[pulumi.Input[str]] = None,
             first_name: Optional[pulumi.Input[str]] = None,
             gender: Optional[pulumi.Input[str]] = None,
+            initial_hashed_password: Optional[pulumi.Input[str]] = None,
             initial_password: Optional[pulumi.Input[str]] = None,
+            initial_skip_password_change: Optional[pulumi.Input[bool]] = None,
             is_email_verified: Optional[pulumi.Input[bool]] = None,
             is_phone_verified: Optional[pulumi.Input[bool]] = None,
             last_name: Optional[pulumi.Input[str]] = None,
@@ -822,7 +914,9 @@ class HumanUser(pulumi.CustomResource):
         :param pulumi.Input[str] email: Email of the user
         :param pulumi.Input[str] first_name: First name of the user
         :param pulumi.Input[str] gender: Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
+        :param pulumi.Input[str] initial_hashed_password: Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
         :param pulumi.Input[str] initial_password: Initially set password for the user, not changeable after creation
+        :param pulumi.Input[bool] initial_skip_password_change: Whether the user has to change the password on first login.
         :param pulumi.Input[bool] is_email_verified: Is the email verified of the user, can only be true if password of the user is set
         :param pulumi.Input[bool] is_phone_verified: Is the phone verified of the user
         :param pulumi.Input[str] last_name: Last name of the user
@@ -843,7 +937,9 @@ class HumanUser(pulumi.CustomResource):
         __props__.__dict__["email"] = email
         __props__.__dict__["first_name"] = first_name
         __props__.__dict__["gender"] = gender
+        __props__.__dict__["initial_hashed_password"] = initial_hashed_password
         __props__.__dict__["initial_password"] = initial_password
+        __props__.__dict__["initial_skip_password_change"] = initial_skip_password_change
         __props__.__dict__["is_email_verified"] = is_email_verified
         __props__.__dict__["is_phone_verified"] = is_phone_verified
         __props__.__dict__["last_name"] = last_name
@@ -890,12 +986,28 @@ class HumanUser(pulumi.CustomResource):
         return pulumi.get(self, "gender")
 
     @property
+    @pulumi.getter(name="initialHashedPassword")
+    def initial_hashed_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+        """
+        return pulumi.get(self, "initial_hashed_password")
+
+    @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> pulumi.Output[Optional[str]]:
         """
         Initially set password for the user, not changeable after creation
         """
         return pulumi.get(self, "initial_password")
+
+    @property
+    @pulumi.getter(name="initialSkipPasswordChange")
+    def initial_skip_password_change(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether the user has to change the password on first login.
+        """
+        return pulumi.get(self, "initial_skip_password_change")
 
     @property
     @pulumi.getter(name="isEmailVerified")

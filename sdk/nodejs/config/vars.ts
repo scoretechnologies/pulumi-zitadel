@@ -30,8 +30,20 @@ Object.defineProperty(exports, "insecure", {
 });
 
 /**
- * Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
- * required
+ * Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+ * 'jwt_profile_json' is required
+ */
+export declare const jwtFile: string | undefined;
+Object.defineProperty(exports, "jwtFile", {
+    get() {
+        return __config.get("jwtFile");
+    },
+    enumerable: true,
+});
+
+/**
+ * Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+ * 'jwt_profile_json' is required
  */
 export declare const jwtProfileFile: string | undefined;
 Object.defineProperty(exports, "jwtProfileFile", {
@@ -42,7 +54,7 @@ Object.defineProperty(exports, "jwtProfileFile", {
 });
 
 /**
- * JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+ * JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
  */
 export declare const jwtProfileJson: string | undefined;
 Object.defineProperty(exports, "jwtProfileJson", {

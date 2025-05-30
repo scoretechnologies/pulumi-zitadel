@@ -17,13 +17,15 @@ class MachineKeyArgs:
                  key_type: pulumi.Input[str],
                  user_id: pulumi.Input[str],
                  expiration_date: Optional[pulumi.Input[str]] = None,
-                 org_id: Optional[pulumi.Input[str]] = None):
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MachineKey resource.
         :param pulumi.Input[str] key_type: Type of the machine key, supported values: KEY*TYPE*UNSPECIFIED, KEY*TYPE*JSON
         :param pulumi.Input[str] user_id: ID of the user
         :param pulumi.Input[str] expiration_date: Expiration date of the machine key in the RFC3339 format
         :param pulumi.Input[str] org_id: ID of the organization
+        :param pulumi.Input[str] public_key: Optionally provide a public key of your own generated RSA private key
         """
         MachineKeyArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -31,6 +33,7 @@ class MachineKeyArgs:
             user_id=user_id,
             expiration_date=expiration_date,
             org_id=org_id,
+            public_key=public_key,
         )
     @staticmethod
     def _configure(
@@ -39,6 +42,7 @@ class MachineKeyArgs:
              user_id: pulumi.Input[str],
              expiration_date: Optional[pulumi.Input[str]] = None,
              org_id: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
              **kwargs):
         if 'keyType' in kwargs:
@@ -49,6 +53,8 @@ class MachineKeyArgs:
             expiration_date = kwargs['expirationDate']
         if 'orgId' in kwargs:
             org_id = kwargs['orgId']
+        if 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
 
         _setter("key_type", key_type)
         _setter("user_id", user_id)
@@ -56,6 +62,8 @@ class MachineKeyArgs:
             _setter("expiration_date", expiration_date)
         if org_id is not None:
             _setter("org_id", org_id)
+        if public_key is not None:
+            _setter("public_key", public_key)
 
     @property
     @pulumi.getter(name="keyType")
@@ -105,6 +113,18 @@ class MachineKeyArgs:
     def org_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_id", value)
 
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optionally provide a public key of your own generated RSA private key
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_key", value)
+
 
 @pulumi.input_type
 class _MachineKeyState:
@@ -113,6 +133,7 @@ class _MachineKeyState:
                  key_details: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MachineKey resources.
@@ -120,6 +141,7 @@ class _MachineKeyState:
         :param pulumi.Input[str] key_details: Value of the machine key
         :param pulumi.Input[str] key_type: Type of the machine key, supported values: KEY*TYPE*UNSPECIFIED, KEY*TYPE*JSON
         :param pulumi.Input[str] org_id: ID of the organization
+        :param pulumi.Input[str] public_key: Optionally provide a public key of your own generated RSA private key
         :param pulumi.Input[str] user_id: ID of the user
         """
         _MachineKeyState._configure(
@@ -128,6 +150,7 @@ class _MachineKeyState:
             key_details=key_details,
             key_type=key_type,
             org_id=org_id,
+            public_key=public_key,
             user_id=user_id,
         )
     @staticmethod
@@ -137,6 +160,7 @@ class _MachineKeyState:
              key_details: Optional[pulumi.Input[str]] = None,
              key_type: Optional[pulumi.Input[str]] = None,
              org_id: Optional[pulumi.Input[str]] = None,
+             public_key: Optional[pulumi.Input[str]] = None,
              user_id: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
              **kwargs):
@@ -148,6 +172,8 @@ class _MachineKeyState:
             key_type = kwargs['keyType']
         if 'orgId' in kwargs:
             org_id = kwargs['orgId']
+        if 'publicKey' in kwargs:
+            public_key = kwargs['publicKey']
         if 'userId' in kwargs:
             user_id = kwargs['userId']
 
@@ -159,6 +185,8 @@ class _MachineKeyState:
             _setter("key_type", key_type)
         if org_id is not None:
             _setter("org_id", org_id)
+        if public_key is not None:
+            _setter("public_key", public_key)
         if user_id is not None:
             _setter("user_id", user_id)
 
@@ -211,6 +239,18 @@ class _MachineKeyState:
         pulumi.set(self, "org_id", value)
 
     @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optionally provide a public key of your own generated RSA private key
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_key", value)
+
+    @property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -231,6 +271,7 @@ class MachineKey(pulumi.CustomResource):
                  expiration_date: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -246,12 +287,26 @@ class MachineKey(pulumi.CustomResource):
             org_id=data["zitadel_org"]["default"]["id"],
             user_id=data["zitadel_machine_user"]["default"]["id"],
             key_type="KEY_TYPE_JSON",
-            expiration_date="2519-04-01T08:45:00Z")
+            expiration_date="2519-04-01T08:45:00Z",
+            public_key=\"\"\"-----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApj7JHjDLo2TwiJznwMrD
+        97ybWoRegSK1rx37+i+Yrmhaee0GuOyj+hWG8/yKazAbZfYB0atO/zHxy1BtFNfX
+        uYZS689TvfZVP6TctonH0VTlDDKOjmkGl472DhJvLvwjPXq1e55jS0kToK5lGRW6
+        Qrgm7m/KiF96Qmp5kUbF1sThVtKBW9GIAuzWEk3O9opftd/NH3BxvUToWLgG/GFx
+        hLeOTrcuPibVHkHbIjt1VHaOD8rKAaRV+KBZUmyS9vdo629wfSx/ylUmwWZ6YUTj
+        khnqTi0s7j/oLGJNk+DSjMzkcgls0gzXAwPfiEnjEB+Xxw3LnR6k17HyYxqQs7kz
+        ZwIDAQAB
+        -----END PUBLIC KEY-----
+        \"\"\")
         ```
 
         ## Import
 
-        bash The resource can be imported using the ID format `<id:user_id[:org_id][:key_details]>`, e.g.
+        bash The resource can be imported using the ID format `<id:user_id[:org_id][:key_details][:public_key]>`, e.g. When importing with a public key, make sure to base64 encode it
+
+        ```sh
+         $ pulumi import zitadel:index/machineKey:MachineKey imported '123456789012345678:123456789012345678:123456789012345678::Ii0tLS0tQkVHSU4gUF...
+        ```
 
         ```sh
          $ pulumi import zitadel:index/machineKey:MachineKey imported '123456789012345678:123456789012345678:123456789012345678:{"type":"serviceaccount","keyId":"123456789012345678","key":"-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ...-----END RSA PRIVATE KEY-----\\n","userId":"123456789012345678"}'
@@ -262,6 +317,7 @@ class MachineKey(pulumi.CustomResource):
         :param pulumi.Input[str] expiration_date: Expiration date of the machine key in the RFC3339 format
         :param pulumi.Input[str] key_type: Type of the machine key, supported values: KEY*TYPE*UNSPECIFIED, KEY*TYPE*JSON
         :param pulumi.Input[str] org_id: ID of the organization
+        :param pulumi.Input[str] public_key: Optionally provide a public key of your own generated RSA private key
         :param pulumi.Input[str] user_id: ID of the user
         """
         ...
@@ -283,12 +339,26 @@ class MachineKey(pulumi.CustomResource):
             org_id=data["zitadel_org"]["default"]["id"],
             user_id=data["zitadel_machine_user"]["default"]["id"],
             key_type="KEY_TYPE_JSON",
-            expiration_date="2519-04-01T08:45:00Z")
+            expiration_date="2519-04-01T08:45:00Z",
+            public_key=\"\"\"-----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApj7JHjDLo2TwiJznwMrD
+        97ybWoRegSK1rx37+i+Yrmhaee0GuOyj+hWG8/yKazAbZfYB0atO/zHxy1BtFNfX
+        uYZS689TvfZVP6TctonH0VTlDDKOjmkGl472DhJvLvwjPXq1e55jS0kToK5lGRW6
+        Qrgm7m/KiF96Qmp5kUbF1sThVtKBW9GIAuzWEk3O9opftd/NH3BxvUToWLgG/GFx
+        hLeOTrcuPibVHkHbIjt1VHaOD8rKAaRV+KBZUmyS9vdo629wfSx/ylUmwWZ6YUTj
+        khnqTi0s7j/oLGJNk+DSjMzkcgls0gzXAwPfiEnjEB+Xxw3LnR6k17HyYxqQs7kz
+        ZwIDAQAB
+        -----END PUBLIC KEY-----
+        \"\"\")
         ```
 
         ## Import
 
-        bash The resource can be imported using the ID format `<id:user_id[:org_id][:key_details]>`, e.g.
+        bash The resource can be imported using the ID format `<id:user_id[:org_id][:key_details][:public_key]>`, e.g. When importing with a public key, make sure to base64 encode it
+
+        ```sh
+         $ pulumi import zitadel:index/machineKey:MachineKey imported '123456789012345678:123456789012345678:123456789012345678::Ii0tLS0tQkVHSU4gUF...
+        ```
 
         ```sh
          $ pulumi import zitadel:index/machineKey:MachineKey imported '123456789012345678:123456789012345678:123456789012345678:{"type":"serviceaccount","keyId":"123456789012345678","key":"-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ...-----END RSA PRIVATE KEY-----\\n","userId":"123456789012345678"}'
@@ -316,6 +386,7 @@ class MachineKey(pulumi.CustomResource):
                  expiration_date: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -331,6 +402,7 @@ class MachineKey(pulumi.CustomResource):
                 raise TypeError("Missing required property 'key_type'")
             __props__.__dict__["key_type"] = key_type
             __props__.__dict__["org_id"] = org_id
+            __props__.__dict__["public_key"] = public_key
             if user_id is None and not opts.urn:
                 raise TypeError("Missing required property 'user_id'")
             __props__.__dict__["user_id"] = user_id
@@ -351,6 +423,7 @@ class MachineKey(pulumi.CustomResource):
             key_details: Optional[pulumi.Input[str]] = None,
             key_type: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
+            public_key: Optional[pulumi.Input[str]] = None,
             user_id: Optional[pulumi.Input[str]] = None) -> 'MachineKey':
         """
         Get an existing MachineKey resource's state with the given name, id, and optional extra
@@ -363,6 +436,7 @@ class MachineKey(pulumi.CustomResource):
         :param pulumi.Input[str] key_details: Value of the machine key
         :param pulumi.Input[str] key_type: Type of the machine key, supported values: KEY*TYPE*UNSPECIFIED, KEY*TYPE*JSON
         :param pulumi.Input[str] org_id: ID of the organization
+        :param pulumi.Input[str] public_key: Optionally provide a public key of your own generated RSA private key
         :param pulumi.Input[str] user_id: ID of the user
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -373,6 +447,7 @@ class MachineKey(pulumi.CustomResource):
         __props__.__dict__["key_details"] = key_details
         __props__.__dict__["key_type"] = key_type
         __props__.__dict__["org_id"] = org_id
+        __props__.__dict__["public_key"] = public_key
         __props__.__dict__["user_id"] = user_id
         return MachineKey(resource_name, opts=opts, __props__=__props__)
 
@@ -407,6 +482,14 @@ class MachineKey(pulumi.CustomResource):
         ID of the organization
         """
         return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        Optionally provide a public key of your own generated RSA private key
+        """
+        return pulumi.get(self, "public_key")
 
     @property
     @pulumi.getter(name="userId")

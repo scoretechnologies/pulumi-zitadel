@@ -76,6 +76,9 @@ export interface GetApplicationOidcResult {
      * Auth method type
      */
     readonly authMethodType: string;
+    /**
+     * Client ID
+     */
     readonly clientId: string;
     /**
      * Clockskew
@@ -125,6 +128,10 @@ export interface GetApplicationOidcResult {
      * Response type
      */
     readonly responseTypes: string[];
+    /**
+     * Skip the successful login page on native apps and directly redirect the user to the callback.
+     */
+    readonly skipNativeAppSuccessPage: boolean;
     /**
      * Version
      */

@@ -41,6 +41,10 @@ export interface GetIdpLdapArgs {
  */
 export interface GetIdpLdapResult {
     /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    readonly autoLinking: string;
+    /**
      * User attribute for the avatar url
      */
     readonly avatarUrlAttribute: string;

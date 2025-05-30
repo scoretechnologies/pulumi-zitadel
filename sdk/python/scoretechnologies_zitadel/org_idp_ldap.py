@@ -27,6 +27,7 @@ class OrgIdpLdapArgs:
                  user_base: pulumi.Input[str],
                  user_filters: pulumi.Input[Sequence[pulumi.Input[str]]],
                  user_object_classes: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 auto_linking: Optional[pulumi.Input[str]] = None,
                  avatar_url_attribute: Optional[pulumi.Input[str]] = None,
                  display_name_attribute: Optional[pulumi.Input[str]] = None,
                  email_attribute: Optional[pulumi.Input[str]] = None,
@@ -57,6 +58,7 @@ class OrgIdpLdapArgs:
         :param pulumi.Input[str] user_base: User base for LDAP connections
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_filters: User filters for LDAP connections
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: User object classes for LDAP connections
+        :param pulumi.Input[str] auto_linking: Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
         :param pulumi.Input[str] avatar_url_attribute: User attribute for the avatar url
         :param pulumi.Input[str] display_name_attribute: User attribute for the display name
         :param pulumi.Input[str] email_attribute: User attribute for the email
@@ -88,6 +90,7 @@ class OrgIdpLdapArgs:
             user_base=user_base,
             user_filters=user_filters,
             user_object_classes=user_object_classes,
+            auto_linking=auto_linking,
             avatar_url_attribute=avatar_url_attribute,
             display_name_attribute=display_name_attribute,
             email_attribute=email_attribute,
@@ -120,6 +123,7 @@ class OrgIdpLdapArgs:
              user_base: pulumi.Input[str],
              user_filters: pulumi.Input[Sequence[pulumi.Input[str]]],
              user_object_classes: pulumi.Input[Sequence[pulumi.Input[str]]],
+             auto_linking: Optional[pulumi.Input[str]] = None,
              avatar_url_attribute: Optional[pulumi.Input[str]] = None,
              display_name_attribute: Optional[pulumi.Input[str]] = None,
              email_attribute: Optional[pulumi.Input[str]] = None,
@@ -159,6 +163,8 @@ class OrgIdpLdapArgs:
             user_filters = kwargs['userFilters']
         if 'userObjectClasses' in kwargs:
             user_object_classes = kwargs['userObjectClasses']
+        if 'autoLinking' in kwargs:
+            auto_linking = kwargs['autoLinking']
         if 'avatarUrlAttribute' in kwargs:
             avatar_url_attribute = kwargs['avatarUrlAttribute']
         if 'displayNameAttribute' in kwargs:
@@ -201,6 +207,8 @@ class OrgIdpLdapArgs:
         _setter("user_base", user_base)
         _setter("user_filters", user_filters)
         _setter("user_object_classes", user_object_classes)
+        if auto_linking is not None:
+            _setter("auto_linking", auto_linking)
         if avatar_url_attribute is not None:
             _setter("avatar_url_attribute", avatar_url_attribute)
         if display_name_attribute is not None:
@@ -389,6 +397,18 @@ class OrgIdpLdapArgs:
         pulumi.set(self, "user_object_classes", value)
 
     @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
+
+    @auto_linking.setter
+    def auto_linking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_linking", value)
+
+    @property
     @pulumi.getter(name="avatarUrlAttribute")
     def avatar_url_attribute(self) -> Optional[pulumi.Input[str]]:
         """
@@ -572,6 +592,7 @@ class OrgIdpLdapArgs:
 @pulumi.input_type
 class _OrgIdpLdapState:
     def __init__(__self__, *,
+                 auto_linking: Optional[pulumi.Input[str]] = None,
                  avatar_url_attribute: Optional[pulumi.Input[str]] = None,
                  base_dn: Optional[pulumi.Input[str]] = None,
                  bind_dn: Optional[pulumi.Input[str]] = None,
@@ -602,6 +623,7 @@ class _OrgIdpLdapState:
                  user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering OrgIdpLdap resources.
+        :param pulumi.Input[str] auto_linking: Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
         :param pulumi.Input[str] avatar_url_attribute: User attribute for the avatar url
         :param pulumi.Input[str] base_dn: Base DN for LDAP connections
         :param pulumi.Input[str] bind_dn: Bind DN for LDAP connections
@@ -633,6 +655,7 @@ class _OrgIdpLdapState:
         """
         _OrgIdpLdapState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            auto_linking=auto_linking,
             avatar_url_attribute=avatar_url_attribute,
             base_dn=base_dn,
             bind_dn=bind_dn,
@@ -665,6 +688,7 @@ class _OrgIdpLdapState:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             auto_linking: Optional[pulumi.Input[str]] = None,
              avatar_url_attribute: Optional[pulumi.Input[str]] = None,
              base_dn: Optional[pulumi.Input[str]] = None,
              bind_dn: Optional[pulumi.Input[str]] = None,
@@ -695,6 +719,8 @@ class _OrgIdpLdapState:
              user_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
              **kwargs):
+        if 'autoLinking' in kwargs:
+            auto_linking = kwargs['autoLinking']
         if 'avatarUrlAttribute' in kwargs:
             avatar_url_attribute = kwargs['avatarUrlAttribute']
         if 'baseDn' in kwargs:
@@ -746,6 +772,8 @@ class _OrgIdpLdapState:
         if 'userObjectClasses' in kwargs:
             user_object_classes = kwargs['userObjectClasses']
 
+        if auto_linking is not None:
+            _setter("auto_linking", auto_linking)
         if avatar_url_attribute is not None:
             _setter("avatar_url_attribute", avatar_url_attribute)
         if base_dn is not None:
@@ -802,6 +830,18 @@ class _OrgIdpLdapState:
             _setter("user_filters", user_filters)
         if user_object_classes is not None:
             _setter("user_object_classes", user_object_classes)
+
+    @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
+
+    @auto_linking.setter
+    def auto_linking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_linking", value)
 
     @property
     @pulumi.getter(name="avatarUrlAttribute")
@@ -1145,6 +1185,7 @@ class OrgIdpLdap(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_linking: Optional[pulumi.Input[str]] = None,
                  avatar_url_attribute: Optional[pulumi.Input[str]] = None,
                  base_dn: Optional[pulumi.Input[str]] = None,
                  bind_dn: Optional[pulumi.Input[str]] = None,
@@ -1206,7 +1247,8 @@ class OrgIdpLdap(pulumi.CustomResource):
             is_linking_allowed=False,
             is_creation_allowed=True,
             is_auto_creation=False,
-            is_auto_update=True)
+            is_auto_update=True,
+            auto_linking="AUTO_LINKING_OPTION_USERNAME")
         ```
 
         ## Import
@@ -1219,6 +1261,7 @@ class OrgIdpLdap(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] auto_linking: Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
         :param pulumi.Input[str] avatar_url_attribute: User attribute for the avatar url
         :param pulumi.Input[str] base_dn: Base DN for LDAP connections
         :param pulumi.Input[str] bind_dn: Bind DN for LDAP connections
@@ -1286,7 +1329,8 @@ class OrgIdpLdap(pulumi.CustomResource):
             is_linking_allowed=False,
             is_creation_allowed=True,
             is_auto_creation=False,
-            is_auto_update=True)
+            is_auto_update=True,
+            auto_linking="AUTO_LINKING_OPTION_USERNAME")
         ```
 
         ## Import
@@ -1316,6 +1360,7 @@ class OrgIdpLdap(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_linking: Optional[pulumi.Input[str]] = None,
                  avatar_url_attribute: Optional[pulumi.Input[str]] = None,
                  base_dn: Optional[pulumi.Input[str]] = None,
                  bind_dn: Optional[pulumi.Input[str]] = None,
@@ -1353,6 +1398,7 @@ class OrgIdpLdap(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = OrgIdpLdapArgs.__new__(OrgIdpLdapArgs)
 
+            __props__.__dict__["auto_linking"] = auto_linking
             __props__.__dict__["avatar_url_attribute"] = avatar_url_attribute
             if base_dn is None and not opts.urn:
                 raise TypeError("Missing required property 'base_dn'")
@@ -1419,6 +1465,7 @@ class OrgIdpLdap(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auto_linking: Optional[pulumi.Input[str]] = None,
             avatar_url_attribute: Optional[pulumi.Input[str]] = None,
             base_dn: Optional[pulumi.Input[str]] = None,
             bind_dn: Optional[pulumi.Input[str]] = None,
@@ -1454,6 +1501,7 @@ class OrgIdpLdap(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] auto_linking: Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
         :param pulumi.Input[str] avatar_url_attribute: User attribute for the avatar url
         :param pulumi.Input[str] base_dn: Base DN for LDAP connections
         :param pulumi.Input[str] bind_dn: Bind DN for LDAP connections
@@ -1487,6 +1535,7 @@ class OrgIdpLdap(pulumi.CustomResource):
 
         __props__ = _OrgIdpLdapState.__new__(_OrgIdpLdapState)
 
+        __props__.__dict__["auto_linking"] = auto_linking
         __props__.__dict__["avatar_url_attribute"] = avatar_url_attribute
         __props__.__dict__["base_dn"] = base_dn
         __props__.__dict__["bind_dn"] = bind_dn
@@ -1516,6 +1565,14 @@ class OrgIdpLdap(pulumi.CustomResource):
         __props__.__dict__["user_filters"] = user_filters
         __props__.__dict__["user_object_classes"] = user_object_classes
         return OrgIdpLdap(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> pulumi.Output[Optional[str]]:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
 
     @property
     @pulumi.getter(name="avatarUrlAttribute")

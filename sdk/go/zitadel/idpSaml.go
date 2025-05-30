@@ -30,6 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := zitadel.NewIdpSaml(ctx, "default", &zitadel.IdpSamlArgs{
+//				AutoLinking:       pulumi.String("AUTO_LINKING_OPTION_USERNAME"),
 //				Binding:           pulumi.String("SAML_BINDING_POST"),
 //				IsAutoCreation:    pulumi.Bool(false),
 //				IsAutoUpdate:      pulumi.Bool(true),
@@ -103,6 +104,8 @@ import (
 type IdpSaml struct {
 	pulumi.CustomResourceState
 
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking pulumi.StringPtrOutput `pulumi:"autoLinking"`
 	// The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
 	Binding pulumi.StringPtrOutput `pulumi:"binding"`
 	// enable if a new account in ZITADEL should be created automatically on login with an external account
@@ -166,6 +169,8 @@ func GetIdpSaml(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IdpSaml resources.
 type idpSamlState struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking *string `pulumi:"autoLinking"`
 	// The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
 	Binding *string `pulumi:"binding"`
 	// enable if a new account in ZITADEL should be created automatically on login with an external account
@@ -185,6 +190,8 @@ type idpSamlState struct {
 }
 
 type IdpSamlState struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking pulumi.StringPtrInput
 	// The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
 	Binding pulumi.StringPtrInput
 	// enable if a new account in ZITADEL should be created automatically on login with an external account
@@ -208,6 +215,8 @@ func (IdpSamlState) ElementType() reflect.Type {
 }
 
 type idpSamlArgs struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking *string `pulumi:"autoLinking"`
 	// The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
 	Binding *string `pulumi:"binding"`
 	// enable if a new account in ZITADEL should be created automatically on login with an external account
@@ -228,6 +237,8 @@ type idpSamlArgs struct {
 
 // The set of arguments for constructing a IdpSaml resource.
 type IdpSamlArgs struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking pulumi.StringPtrInput
 	// The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
 	Binding pulumi.StringPtrInput
 	// enable if a new account in ZITADEL should be created automatically on login with an external account
@@ -355,6 +366,11 @@ func (o IdpSamlOutput) ToOutput(ctx context.Context) pulumix.Output[*IdpSaml] {
 	return pulumix.Output[*IdpSaml]{
 		OutputState: o.OutputState,
 	}
+}
+
+// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+func (o IdpSamlOutput) AutoLinking() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdpSaml) pulumi.StringPtrOutput { return v.AutoLinking }).(pulumi.StringPtrOutput)
 }
 
 // The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT

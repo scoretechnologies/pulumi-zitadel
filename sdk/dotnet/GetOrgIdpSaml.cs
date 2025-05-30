@@ -117,6 +117,10 @@ namespace scoretechnologies.Zitadel
     public sealed class GetOrgIdpSamlResult
     {
         /// <summary>
+        /// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        /// </summary>
+        public readonly string AutoLinking;
+        /// <summary>
         /// The binding
         /// </summary>
         public readonly string Binding;
@@ -159,6 +163,8 @@ namespace scoretechnologies.Zitadel
 
         [OutputConstructor]
         private GetOrgIdpSamlResult(
+            string autoLinking,
+
             string binding,
 
             string id,
@@ -179,6 +185,7 @@ namespace scoretechnologies.Zitadel
 
             string withSignedRequest)
         {
+            AutoLinking = autoLinking;
             Binding = binding;
             Id = id;
             IsAutoCreation = isAutoCreation;

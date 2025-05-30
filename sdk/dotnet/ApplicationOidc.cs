@@ -53,6 +53,7 @@ namespace scoretechnologies.Zitadel
     ///         IdTokenRoleAssertion = false,
     ///         IdTokenUserinfoAssertion = false,
     ///         AdditionalOrigins = new[] {},
+    ///         SkipNativeAppSuccessPage = false,
     ///     });
     /// 
     /// });
@@ -124,7 +125,7 @@ namespace scoretechnologies.Zitadel
         public Output<bool?> DevMode { get; private set; } = null!;
 
         /// <summary>
-        /// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        /// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         /// </summary>
         [Output("grantTypes")]
         public Output<ImmutableArray<string>> GrantTypes { get; private set; } = null!;
@@ -176,6 +177,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Output("responseTypes")]
         public Output<ImmutableArray<string>> ResponseTypes { get; private set; } = null!;
+
+        /// <summary>
+        /// Skip the successful login page on native apps and directly redirect the user to the callback.
+        /// </summary>
+        [Output("skipNativeAppSuccessPage")]
+        public Output<bool?> SkipNativeAppSuccessPage { get; private set; } = null!;
 
         /// <summary>
         /// Version, supported values: OIDC*VERSION*1_0
@@ -287,7 +294,7 @@ namespace scoretechnologies.Zitadel
         private InputList<string>? _grantTypes;
 
         /// <summary>
-        /// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        /// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         /// </summary>
         public InputList<string> GrantTypes
         {
@@ -360,6 +367,12 @@ namespace scoretechnologies.Zitadel
             get => _responseTypes ?? (_responseTypes = new InputList<string>());
             set => _responseTypes = value;
         }
+
+        /// <summary>
+        /// Skip the successful login page on native apps and directly redirect the user to the callback.
+        /// </summary>
+        [Input("skipNativeAppSuccessPage")]
+        public Input<bool>? SkipNativeAppSuccessPage { get; set; }
 
         /// <summary>
         /// Version, supported values: OIDC*VERSION*1_0
@@ -459,7 +472,7 @@ namespace scoretechnologies.Zitadel
         private InputList<string>? _grantTypes;
 
         /// <summary>
-        /// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        /// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         /// </summary>
         public InputList<string> GrantTypes
         {
@@ -532,6 +545,12 @@ namespace scoretechnologies.Zitadel
             get => _responseTypes ?? (_responseTypes = new InputList<string>());
             set => _responseTypes = value;
         }
+
+        /// <summary>
+        /// Skip the successful login page on native apps and directly redirect the user to the callback.
+        /// </summary>
+        [Input("skipNativeAppSuccessPage")]
+        public Input<bool>? SkipNativeAppSuccessPage { get; set; }
 
         /// <summary>
         /// Version, supported values: OIDC*VERSION*1_0

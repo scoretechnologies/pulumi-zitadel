@@ -30,17 +30,25 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_bool('insecure')
 
     @property
+    def jwt_file(self) -> Optional[str]:
+        """
+        Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        'jwt_profile_json' is required
+        """
+        return __config__.get('jwtFile')
+
+    @property
     def jwt_profile_file(self) -> Optional[str]:
         """
-        Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-        required
+        Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        'jwt_profile_json' is required
         """
         return __config__.get('jwtProfileFile')
 
     @property
     def jwt_profile_json(self) -> Optional[str]:
         """
-        JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+        JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
         """
         return __config__.get('jwtProfileJson')
 

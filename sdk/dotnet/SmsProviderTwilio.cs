@@ -26,6 +26,7 @@ namespace scoretechnologies.Zitadel
     ///     var @default = new Zitadel.SmsProviderTwilio("default", new()
     ///     {
     ///         SenderNumber = "019920892",
+    ///         SetActive = true,
     ///         Sid = "sid",
     ///         Token = "twilio_token",
     ///     });
@@ -49,6 +50,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Output("senderNumber")]
         public Output<string> SenderNumber { get; private set; } = null!;
+
+        /// <summary>
+        /// Set the SMS provider as active after creating/updating.
+        /// </summary>
+        [Output("setActive")]
+        public Output<bool?> SetActive { get; private set; } = null!;
 
         /// <summary>
         /// SID used to communicate with Twilio.
@@ -120,6 +127,12 @@ namespace scoretechnologies.Zitadel
         public Input<string> SenderNumber { get; set; } = null!;
 
         /// <summary>
+        /// Set the SMS provider as active after creating/updating.
+        /// </summary>
+        [Input("setActive")]
+        public Input<bool>? SetActive { get; set; }
+
+        /// <summary>
         /// SID used to communicate with Twilio.
         /// </summary>
         [Input("sid", required: true)]
@@ -154,6 +167,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Input("senderNumber")]
         public Input<string>? SenderNumber { get; set; }
+
+        /// <summary>
+        /// Set the SMS provider as active after creating/updating.
+        /// </summary>
+        [Input("setActive")]
+        public Input<bool>? SetActive { get; set; }
 
         /// <summary>
         /// SID used to communicate with Twilio.

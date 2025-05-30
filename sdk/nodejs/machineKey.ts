@@ -18,12 +18,26 @@ import * as utilities from "./utilities";
  *     userId: data.zitadel_machine_user["default"].id,
  *     keyType: "KEY_TYPE_JSON",
  *     expirationDate: "2519-04-01T08:45:00Z",
+ *     publicKey: `-----BEGIN PUBLIC KEY-----
+ * MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApj7JHjDLo2TwiJznwMrD
+ * 97ybWoRegSK1rx37+i+Yrmhaee0GuOyj+hWG8/yKazAbZfYB0atO/zHxy1BtFNfX
+ * uYZS689TvfZVP6TctonH0VTlDDKOjmkGl472DhJvLvwjPXq1e55jS0kToK5lGRW6
+ * Qrgm7m/KiF96Qmp5kUbF1sThVtKBW9GIAuzWEk3O9opftd/NH3BxvUToWLgG/GFx
+ * hLeOTrcuPibVHkHbIjt1VHaOD8rKAaRV+KBZUmyS9vdo629wfSx/ylUmwWZ6YUTj
+ * khnqTi0s7j/oLGJNk+DSjMzkcgls0gzXAwPfiEnjEB+Xxw3LnR6k17HyYxqQs7kz
+ * ZwIDAQAB
+ * -----END PUBLIC KEY-----
+ * `,
  * });
  * ```
  *
  * ## Import
  *
- * bash The resource can be imported using the ID format `<id:user_id[:org_id][:key_details]>`, e.g.
+ * bash The resource can be imported using the ID format `<id:user_id[:org_id][:key_details][:public_key]>`, e.g. When importing with a public key, make sure to base64 encode it
+ *
+ * ```sh
+ *  $ pulumi import zitadel:index/machineKey:MachineKey imported '123456789012345678:123456789012345678:123456789012345678::Ii0tLS0tQkVHSU4gUF...
+ * ```
  *
  * ```sh
  *  $ pulumi import zitadel:index/machineKey:MachineKey imported '123456789012345678:123456789012345678:123456789012345678:{"type":"serviceaccount","keyId":"123456789012345678","key":"-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ...-----END RSA PRIVATE KEY-----\n","userId":"123456789012345678"}'
@@ -74,6 +88,10 @@ export class MachineKey extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string | undefined>;
     /**
+     * Optionally provide a public key of your own generated RSA private key
+     */
+    public readonly publicKey!: pulumi.Output<string | undefined>;
+    /**
      * ID of the user
      */
     public readonly userId!: pulumi.Output<string>;
@@ -95,6 +113,7 @@ export class MachineKey extends pulumi.CustomResource {
             resourceInputs["keyDetails"] = state ? state.keyDetails : undefined;
             resourceInputs["keyType"] = state ? state.keyType : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
             resourceInputs["userId"] = state ? state.userId : undefined;
         } else {
             const args = argsOrState as MachineKeyArgs | undefined;
@@ -107,6 +126,7 @@ export class MachineKey extends pulumi.CustomResource {
             resourceInputs["expirationDate"] = args ? args.expirationDate : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
             resourceInputs["userId"] = args ? args.userId : undefined;
             resourceInputs["keyDetails"] = undefined /*out*/;
         }
@@ -138,6 +158,10 @@ export interface MachineKeyState {
      */
     orgId?: pulumi.Input<string>;
     /**
+     * Optionally provide a public key of your own generated RSA private key
+     */
+    publicKey?: pulumi.Input<string>;
+    /**
      * ID of the user
      */
     userId?: pulumi.Input<string>;
@@ -159,6 +183,10 @@ export interface MachineKeyArgs {
      * ID of the organization
      */
     orgId?: pulumi.Input<string>;
+    /**
+     * Optionally provide a public key of your own generated RSA private key
+     */
+    publicKey?: pulumi.Input<string>;
     /**
      * ID of the user
      */

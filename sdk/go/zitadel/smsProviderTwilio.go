@@ -31,6 +31,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := zitadel.NewSmsProviderTwilio(ctx, "default", &zitadel.SmsProviderTwilioArgs{
 //				SenderNumber: pulumi.String("019920892"),
+//				SetActive:    pulumi.Bool(true),
 //				Sid:          pulumi.String("sid"),
 //				Token:        pulumi.String("twilio_token"),
 //			})
@@ -57,6 +58,8 @@ type SmsProviderTwilio struct {
 
 	// Sender number which is used to send the SMS.
 	SenderNumber pulumi.StringOutput `pulumi:"senderNumber"`
+	// Set the SMS provider as active after creating/updating.
+	SetActive pulumi.BoolPtrOutput `pulumi:"setActive"`
 	// SID used to communicate with Twilio.
 	Sid pulumi.StringOutput `pulumi:"sid"`
 	// Token used to communicate with Twilio.
@@ -111,6 +114,8 @@ func GetSmsProviderTwilio(ctx *pulumi.Context,
 type smsProviderTwilioState struct {
 	// Sender number which is used to send the SMS.
 	SenderNumber *string `pulumi:"senderNumber"`
+	// Set the SMS provider as active after creating/updating.
+	SetActive *bool `pulumi:"setActive"`
 	// SID used to communicate with Twilio.
 	Sid *string `pulumi:"sid"`
 	// Token used to communicate with Twilio.
@@ -120,6 +125,8 @@ type smsProviderTwilioState struct {
 type SmsProviderTwilioState struct {
 	// Sender number which is used to send the SMS.
 	SenderNumber pulumi.StringPtrInput
+	// Set the SMS provider as active after creating/updating.
+	SetActive pulumi.BoolPtrInput
 	// SID used to communicate with Twilio.
 	Sid pulumi.StringPtrInput
 	// Token used to communicate with Twilio.
@@ -133,6 +140,8 @@ func (SmsProviderTwilioState) ElementType() reflect.Type {
 type smsProviderTwilioArgs struct {
 	// Sender number which is used to send the SMS.
 	SenderNumber string `pulumi:"senderNumber"`
+	// Set the SMS provider as active after creating/updating.
+	SetActive *bool `pulumi:"setActive"`
 	// SID used to communicate with Twilio.
 	Sid string `pulumi:"sid"`
 	// Token used to communicate with Twilio.
@@ -143,6 +152,8 @@ type smsProviderTwilioArgs struct {
 type SmsProviderTwilioArgs struct {
 	// Sender number which is used to send the SMS.
 	SenderNumber pulumi.StringInput
+	// Set the SMS provider as active after creating/updating.
+	SetActive pulumi.BoolPtrInput
 	// SID used to communicate with Twilio.
 	Sid pulumi.StringInput
 	// Token used to communicate with Twilio.
@@ -263,6 +274,11 @@ func (o SmsProviderTwilioOutput) ToOutput(ctx context.Context) pulumix.Output[*S
 // Sender number which is used to send the SMS.
 func (o SmsProviderTwilioOutput) SenderNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v *SmsProviderTwilio) pulumi.StringOutput { return v.SenderNumber }).(pulumi.StringOutput)
+}
+
+// Set the SMS provider as active after creating/updating.
+func (o SmsProviderTwilioOutput) SetActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SmsProviderTwilio) pulumi.BoolPtrOutput { return v.SetActive }).(pulumi.BoolPtrOutput)
 }
 
 // SID used to communicate with Twilio.

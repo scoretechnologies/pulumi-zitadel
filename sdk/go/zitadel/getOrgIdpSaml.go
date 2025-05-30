@@ -60,6 +60,8 @@ type LookupOrgIdpSamlArgs struct {
 
 // A collection of values returned by getOrgIdpSaml.
 type LookupOrgIdpSamlResult struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking string `pulumi:"autoLinking"`
 	// The binding
 	Binding string `pulumi:"binding"`
 	// The ID of this resource.
@@ -126,6 +128,11 @@ func (o LookupOrgIdpSamlResultOutput) ToOutput(ctx context.Context) pulumix.Outp
 	return pulumix.Output[LookupOrgIdpSamlResult]{
 		OutputState: o.OutputState,
 	}
+}
+
+// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+func (o LookupOrgIdpSamlResultOutput) AutoLinking() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrgIdpSamlResult) string { return v.AutoLinking }).(pulumi.StringOutput)
 }
 
 // The binding

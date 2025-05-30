@@ -21,7 +21,10 @@ class GetIdpLdapResult:
     """
     A collection of values returned by getIdpLdap.
     """
-    def __init__(__self__, avatar_url_attribute=None, base_dn=None, bind_dn=None, bind_password=None, display_name_attribute=None, email_attribute=None, email_verified_attribute=None, first_name_attribute=None, id=None, id_attribute=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, last_name_attribute=None, name=None, nick_name_attribute=None, phone_attribute=None, phone_verified_attribute=None, preferred_language_attribute=None, preferred_username_attribute=None, profile_attribute=None, servers=None, start_tls=None, timeout=None, user_base=None, user_filters=None, user_object_classes=None):
+    def __init__(__self__, auto_linking=None, avatar_url_attribute=None, base_dn=None, bind_dn=None, bind_password=None, display_name_attribute=None, email_attribute=None, email_verified_attribute=None, first_name_attribute=None, id=None, id_attribute=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, last_name_attribute=None, name=None, nick_name_attribute=None, phone_attribute=None, phone_verified_attribute=None, preferred_language_attribute=None, preferred_username_attribute=None, profile_attribute=None, servers=None, start_tls=None, timeout=None, user_base=None, user_filters=None, user_object_classes=None):
+        if auto_linking and not isinstance(auto_linking, str):
+            raise TypeError("Expected argument 'auto_linking' to be a str")
+        pulumi.set(__self__, "auto_linking", auto_linking)
         if avatar_url_attribute and not isinstance(avatar_url_attribute, str):
             raise TypeError("Expected argument 'avatar_url_attribute' to be a str")
         pulumi.set(__self__, "avatar_url_attribute", avatar_url_attribute)
@@ -106,6 +109,14 @@ class GetIdpLdapResult:
         if user_object_classes and not isinstance(user_object_classes, list):
             raise TypeError("Expected argument 'user_object_classes' to be a list")
         pulumi.set(__self__, "user_object_classes", user_object_classes)
+
+    @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> str:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
 
     @property
     @pulumi.getter(name="avatarUrlAttribute")
@@ -338,6 +349,7 @@ class AwaitableGetIdpLdapResult(GetIdpLdapResult):
         if False:
             yield self
         return GetIdpLdapResult(
+            auto_linking=self.auto_linking,
             avatar_url_attribute=self.avatar_url_attribute,
             base_dn=self.base_dn,
             bind_dn=self.bind_dn,
@@ -391,6 +403,7 @@ def get_idp_ldap(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('zitadel:index/getIdpLdap:getIdpLdap', __args__, opts=opts, typ=GetIdpLdapResult).value
 
     return AwaitableGetIdpLdapResult(
+        auto_linking=pulumi.get(__ret__, 'auto_linking'),
         avatar_url_attribute=pulumi.get(__ret__, 'avatar_url_attribute'),
         base_dn=pulumi.get(__ret__, 'base_dn'),
         bind_dn=pulumi.get(__ret__, 'bind_dn'),

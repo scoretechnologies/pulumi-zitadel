@@ -19,15 +19,21 @@ insecure: Optional[bool]
 Use insecure connection
 """
 
+jwtFile: Optional[str]
+"""
+Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+'jwt_profile_json' is required
+"""
+
 jwtProfileFile: Optional[str]
 """
-Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-required
+Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+'jwt_profile_json' is required
 """
 
 jwtProfileJson: Optional[str]
 """
-JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
 """
 
 port: Optional[str]

@@ -21,7 +21,10 @@ class GetIdpGitlabSelfHostedResult:
     """
     A collection of values returned by getIdpGitlabSelfHosted.
     """
-    def __init__(__self__, client_id=None, client_secret=None, id=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, issuer=None, name=None, scopes=None):
+    def __init__(__self__, auto_linking=None, client_id=None, client_secret=None, id=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, issuer=None, name=None, scopes=None):
+        if auto_linking and not isinstance(auto_linking, str):
+            raise TypeError("Expected argument 'auto_linking' to be a str")
+        pulumi.set(__self__, "auto_linking", auto_linking)
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -52,6 +55,14 @@ class GetIdpGitlabSelfHostedResult:
         if scopes and not isinstance(scopes, list):
             raise TypeError("Expected argument 'scopes' to be a list")
         pulumi.set(__self__, "scopes", scopes)
+
+    @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> str:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
 
     @property
     @pulumi.getter(name="clientId")
@@ -140,6 +151,7 @@ class AwaitableGetIdpGitlabSelfHostedResult(GetIdpGitlabSelfHostedResult):
         if False:
             yield self
         return GetIdpGitlabSelfHostedResult(
+            auto_linking=self.auto_linking,
             client_id=self.client_id,
             client_secret=self.client_secret,
             id=self.id,
@@ -175,6 +187,7 @@ def get_idp_gitlab_self_hosted(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('zitadel:index/getIdpGitlabSelfHosted:getIdpGitlabSelfHosted', __args__, opts=opts, typ=GetIdpGitlabSelfHostedResult).value
 
     return AwaitableGetIdpGitlabSelfHostedResult(
+        auto_linking=pulumi.get(__ret__, 'auto_linking'),
         client_id=pulumi.get(__ret__, 'client_id'),
         client_secret=pulumi.get(__ret__, 'client_secret'),
         id=pulumi.get(__ret__, 'id'),

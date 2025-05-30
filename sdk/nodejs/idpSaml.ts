@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  * import * as zitadel from "@scoretechnologies/zitadel";
  *
  * const _default = new zitadel.IdpSaml("default", {
+ *     autoLinking: "AUTO_LINKING_OPTION_USERNAME",
  *     binding: "SAML_BINDING_POST",
  *     isAutoCreation: false,
  *     isAutoUpdate: true,
@@ -99,6 +100,10 @@ export class IdpSaml extends pulumi.CustomResource {
     }
 
     /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    public readonly autoLinking!: pulumi.Output<string | undefined>;
+    /**
      * The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
      */
     public readonly binding!: pulumi.Output<string | undefined>;
@@ -144,6 +149,7 @@ export class IdpSaml extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IdpSamlState | undefined;
+            resourceInputs["autoLinking"] = state ? state.autoLinking : undefined;
             resourceInputs["binding"] = state ? state.binding : undefined;
             resourceInputs["isAutoCreation"] = state ? state.isAutoCreation : undefined;
             resourceInputs["isAutoUpdate"] = state ? state.isAutoUpdate : undefined;
@@ -169,6 +175,7 @@ export class IdpSaml extends pulumi.CustomResource {
             if ((!args || args.metadataXml === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'metadataXml'");
             }
+            resourceInputs["autoLinking"] = args ? args.autoLinking : undefined;
             resourceInputs["binding"] = args ? args.binding : undefined;
             resourceInputs["isAutoCreation"] = args ? args.isAutoCreation : undefined;
             resourceInputs["isAutoUpdate"] = args ? args.isAutoUpdate : undefined;
@@ -187,6 +194,10 @@ export class IdpSaml extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IdpSaml resources.
  */
 export interface IdpSamlState {
+    /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    autoLinking?: pulumi.Input<string>;
     /**
      * The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
      */
@@ -225,6 +236,10 @@ export interface IdpSamlState {
  * The set of arguments for constructing a IdpSaml resource.
  */
 export interface IdpSamlArgs {
+    /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    autoLinking?: pulumi.Input<string>;
     /**
      * The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
      */

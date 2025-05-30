@@ -54,6 +54,7 @@ import (
 //				IdTokenRoleAssertion:     pulumi.Bool(false),
 //				IdTokenUserinfoAssertion: pulumi.Bool(false),
 //				AdditionalOrigins:        pulumi.StringArray{},
+//				SkipNativeAppSuccessPage: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
@@ -94,7 +95,7 @@ type ApplicationOidc struct {
 	ClockSkew pulumi.StringPtrOutput `pulumi:"clockSkew"`
 	// Dev mode
 	DevMode pulumi.BoolPtrOutput `pulumi:"devMode"`
-	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
 	GrantTypes pulumi.StringArrayOutput `pulumi:"grantTypes"`
 	// ID token role assertion
 	IdTokenRoleAssertion pulumi.BoolPtrOutput `pulumi:"idTokenRoleAssertion"`
@@ -112,6 +113,8 @@ type ApplicationOidc struct {
 	RedirectUris pulumi.StringArrayOutput `pulumi:"redirectUris"`
 	// Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
 	ResponseTypes pulumi.StringArrayOutput `pulumi:"responseTypes"`
+	// Skip the successful login page on native apps and directly redirect the user to the callback.
+	SkipNativeAppSuccessPage pulumi.BoolPtrOutput `pulumi:"skipNativeAppSuccessPage"`
 	// Version, supported values: OIDC*VERSION*1_0
 	Version pulumi.StringPtrOutput `pulumi:"version"`
 }
@@ -181,7 +184,7 @@ type applicationOidcState struct {
 	ClockSkew *string `pulumi:"clockSkew"`
 	// Dev mode
 	DevMode *bool `pulumi:"devMode"`
-	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
 	GrantTypes []string `pulumi:"grantTypes"`
 	// ID token role assertion
 	IdTokenRoleAssertion *bool `pulumi:"idTokenRoleAssertion"`
@@ -199,6 +202,8 @@ type applicationOidcState struct {
 	RedirectUris []string `pulumi:"redirectUris"`
 	// Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
 	ResponseTypes []string `pulumi:"responseTypes"`
+	// Skip the successful login page on native apps and directly redirect the user to the callback.
+	SkipNativeAppSuccessPage *bool `pulumi:"skipNativeAppSuccessPage"`
 	// Version, supported values: OIDC*VERSION*1_0
 	Version *string `pulumi:"version"`
 }
@@ -222,7 +227,7 @@ type ApplicationOidcState struct {
 	ClockSkew pulumi.StringPtrInput
 	// Dev mode
 	DevMode pulumi.BoolPtrInput
-	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
 	GrantTypes pulumi.StringArrayInput
 	// ID token role assertion
 	IdTokenRoleAssertion pulumi.BoolPtrInput
@@ -240,6 +245,8 @@ type ApplicationOidcState struct {
 	RedirectUris pulumi.StringArrayInput
 	// Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
 	ResponseTypes pulumi.StringArrayInput
+	// Skip the successful login page on native apps and directly redirect the user to the callback.
+	SkipNativeAppSuccessPage pulumi.BoolPtrInput
 	// Version, supported values: OIDC*VERSION*1_0
 	Version pulumi.StringPtrInput
 }
@@ -263,7 +270,7 @@ type applicationOidcArgs struct {
 	ClockSkew *string `pulumi:"clockSkew"`
 	// Dev mode
 	DevMode *bool `pulumi:"devMode"`
-	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
 	GrantTypes []string `pulumi:"grantTypes"`
 	// ID token role assertion
 	IdTokenRoleAssertion *bool `pulumi:"idTokenRoleAssertion"`
@@ -281,6 +288,8 @@ type applicationOidcArgs struct {
 	RedirectUris []string `pulumi:"redirectUris"`
 	// Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
 	ResponseTypes []string `pulumi:"responseTypes"`
+	// Skip the successful login page on native apps and directly redirect the user to the callback.
+	SkipNativeAppSuccessPage *bool `pulumi:"skipNativeAppSuccessPage"`
 	// Version, supported values: OIDC*VERSION*1_0
 	Version *string `pulumi:"version"`
 }
@@ -301,7 +310,7 @@ type ApplicationOidcArgs struct {
 	ClockSkew pulumi.StringPtrInput
 	// Dev mode
 	DevMode pulumi.BoolPtrInput
-	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+	// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
 	GrantTypes pulumi.StringArrayInput
 	// ID token role assertion
 	IdTokenRoleAssertion pulumi.BoolPtrInput
@@ -319,6 +328,8 @@ type ApplicationOidcArgs struct {
 	RedirectUris pulumi.StringArrayInput
 	// Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
 	ResponseTypes pulumi.StringArrayInput
+	// Skip the successful login page on native apps and directly redirect the user to the callback.
+	SkipNativeAppSuccessPage pulumi.BoolPtrInput
 	// Version, supported values: OIDC*VERSION*1_0
 	Version pulumi.StringPtrInput
 }
@@ -479,7 +490,7 @@ func (o ApplicationOidcOutput) DevMode() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ApplicationOidc) pulumi.BoolPtrOutput { return v.DevMode }).(pulumi.BoolPtrOutput)
 }
 
-// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+// Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
 func (o ApplicationOidcOutput) GrantTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ApplicationOidc) pulumi.StringArrayOutput { return v.GrantTypes }).(pulumi.StringArrayOutput)
 }
@@ -522,6 +533,11 @@ func (o ApplicationOidcOutput) RedirectUris() pulumi.StringArrayOutput {
 // Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
 func (o ApplicationOidcOutput) ResponseTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ApplicationOidc) pulumi.StringArrayOutput { return v.ResponseTypes }).(pulumi.StringArrayOutput)
+}
+
+// Skip the successful login page on native apps and directly redirect the user to the callback.
+func (o ApplicationOidcOutput) SkipNativeAppSuccessPage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ApplicationOidc) pulumi.BoolPtrOutput { return v.SkipNativeAppSuccessPage }).(pulumi.BoolPtrOutput)
 }
 
 // Version, supported values: OIDC*VERSION*1_0

@@ -138,6 +138,9 @@ namespace scoretechnologies.Zitadel
         /// Auth method type
         /// </summary>
         public readonly string AuthMethodType;
+        /// <summary>
+        /// generated ID for this config
+        /// </summary>
         public readonly string ClientId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

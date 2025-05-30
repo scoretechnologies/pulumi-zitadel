@@ -29,6 +29,7 @@ import * as utilities from "./utilities";
  *     email: "test@zitadel.com",
  *     isEmailVerified: true,
  *     initialPassword: "Password1!",
+ *     initialSkipPasswordChange: true,
  * });
  * ```
  *
@@ -85,9 +86,17 @@ export class HumanUser extends pulumi.CustomResource {
      */
     public readonly gender!: pulumi.Output<string | undefined>;
     /**
+     * Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+     */
+    public readonly initialHashedPassword!: pulumi.Output<string | undefined>;
+    /**
      * Initially set password for the user, not changeable after creation
      */
     public readonly initialPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Whether the user has to change the password on first login.
+     */
+    public readonly initialSkipPasswordChange!: pulumi.Output<boolean | undefined>;
     /**
      * Is the email verified of the user, can only be true if password of the user is set
      */
@@ -150,7 +159,9 @@ export class HumanUser extends pulumi.CustomResource {
             resourceInputs["email"] = state ? state.email : undefined;
             resourceInputs["firstName"] = state ? state.firstName : undefined;
             resourceInputs["gender"] = state ? state.gender : undefined;
+            resourceInputs["initialHashedPassword"] = state ? state.initialHashedPassword : undefined;
             resourceInputs["initialPassword"] = state ? state.initialPassword : undefined;
+            resourceInputs["initialSkipPasswordChange"] = state ? state.initialSkipPasswordChange : undefined;
             resourceInputs["isEmailVerified"] = state ? state.isEmailVerified : undefined;
             resourceInputs["isPhoneVerified"] = state ? state.isPhoneVerified : undefined;
             resourceInputs["lastName"] = state ? state.lastName : undefined;
@@ -180,7 +191,9 @@ export class HumanUser extends pulumi.CustomResource {
             resourceInputs["email"] = args ? args.email : undefined;
             resourceInputs["firstName"] = args ? args.firstName : undefined;
             resourceInputs["gender"] = args ? args.gender : undefined;
+            resourceInputs["initialHashedPassword"] = args?.initialHashedPassword ? pulumi.secret(args.initialHashedPassword) : undefined;
             resourceInputs["initialPassword"] = args?.initialPassword ? pulumi.secret(args.initialPassword) : undefined;
+            resourceInputs["initialSkipPasswordChange"] = args ? args.initialSkipPasswordChange : undefined;
             resourceInputs["isEmailVerified"] = args ? args.isEmailVerified : undefined;
             resourceInputs["isPhoneVerified"] = args ? args.isPhoneVerified : undefined;
             resourceInputs["lastName"] = args ? args.lastName : undefined;
@@ -194,7 +207,7 @@ export class HumanUser extends pulumi.CustomResource {
             resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["initialPassword"] };
+        const secretOpts = { additionalSecretOutputs: ["initialHashedPassword", "initialPassword"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(HumanUser.__pulumiType, name, resourceInputs, opts);
     }
@@ -221,9 +234,17 @@ export interface HumanUserState {
      */
     gender?: pulumi.Input<string>;
     /**
+     * Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+     */
+    initialHashedPassword?: pulumi.Input<string>;
+    /**
      * Initially set password for the user, not changeable after creation
      */
     initialPassword?: pulumi.Input<string>;
+    /**
+     * Whether the user has to change the password on first login.
+     */
+    initialSkipPasswordChange?: pulumi.Input<boolean>;
     /**
      * Is the email verified of the user, can only be true if password of the user is set
      */
@@ -291,9 +312,17 @@ export interface HumanUserArgs {
      */
     gender?: pulumi.Input<string>;
     /**
+     * Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+     */
+    initialHashedPassword?: pulumi.Input<string>;
+    /**
      * Initially set password for the user, not changeable after creation
      */
     initialPassword?: pulumi.Input<string>;
+    /**
+     * Whether the user has to change the password on first login.
+     */
+    initialSkipPasswordChange?: pulumi.Input<boolean>;
     /**
      * Is the email verified of the user, can only be true if password of the user is set
      */

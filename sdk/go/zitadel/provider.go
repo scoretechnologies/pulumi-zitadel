@@ -22,10 +22,13 @@ type Provider struct {
 
 	// Domain used to connect to the ZITADEL instance
 	Domain pulumi.StringOutput `pulumi:"domain"`
-	// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-	// required
+	// Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+	// 'jwt_profile_json' is required
+	JwtFile pulumi.StringPtrOutput `pulumi:"jwtFile"`
+	// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+	// 'jwt_profile_json' is required
 	JwtProfileFile pulumi.StringPtrOutput `pulumi:"jwtProfileFile"`
-	// JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+	// JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
 	JwtProfileJson pulumi.StringPtrOutput `pulumi:"jwtProfileJson"`
 	// Used port if not the default ports 80 or 443 are configured
 	Port pulumi.StringPtrOutput `pulumi:"port"`
@@ -57,10 +60,13 @@ type providerArgs struct {
 	Domain string `pulumi:"domain"`
 	// Use insecure connection
 	Insecure *bool `pulumi:"insecure"`
-	// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-	// required
+	// Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+	// 'jwt_profile_json' is required
+	JwtFile *string `pulumi:"jwtFile"`
+	// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+	// 'jwt_profile_json' is required
 	JwtProfileFile *string `pulumi:"jwtProfileFile"`
-	// JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+	// JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
 	JwtProfileJson *string `pulumi:"jwtProfileJson"`
 	// Used port if not the default ports 80 or 443 are configured
 	Port *string `pulumi:"port"`
@@ -74,10 +80,13 @@ type ProviderArgs struct {
 	Domain pulumi.StringInput
 	// Use insecure connection
 	Insecure pulumi.BoolPtrInput
-	// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-	// required
+	// Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+	// 'jwt_profile_json' is required
+	JwtFile pulumi.StringPtrInput
+	// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+	// 'jwt_profile_json' is required
 	JwtProfileFile pulumi.StringPtrInput
-	// JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+	// JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
 	JwtProfileJson pulumi.StringPtrInput
 	// Used port if not the default ports 80 or 443 are configured
 	Port pulumi.StringPtrInput
@@ -139,13 +148,19 @@ func (o ProviderOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
 }
 
-// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-// required
+// Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+// 'jwt_profile_json' is required
+func (o ProviderOutput) JwtFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.JwtFile }).(pulumi.StringPtrOutput)
+}
+
+// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+// 'jwt_profile_json' is required
 func (o ProviderOutput) JwtProfileFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.JwtProfileFile }).(pulumi.StringPtrOutput)
 }
 
-// JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+// JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
 func (o ProviderOutput) JwtProfileJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.JwtProfileJson }).(pulumi.StringPtrOutput)
 }

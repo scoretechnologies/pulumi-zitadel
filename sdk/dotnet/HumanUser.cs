@@ -40,6 +40,7 @@ namespace scoretechnologies.Zitadel
     ///         Email = "test@zitadel.com",
     ///         IsEmailVerified = true,
     ///         InitialPassword = "Password1!",
+    ///         InitialSkipPasswordChange = true,
     ///     });
     /// 
     /// });
@@ -81,10 +82,22 @@ namespace scoretechnologies.Zitadel
         public Output<string?> Gender { get; private set; } = null!;
 
         /// <summary>
+        /// Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+        /// </summary>
+        [Output("initialHashedPassword")]
+        public Output<string?> InitialHashedPassword { get; private set; } = null!;
+
+        /// <summary>
         /// Initially set password for the user, not changeable after creation
         /// </summary>
         [Output("initialPassword")]
         public Output<string?> InitialPassword { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the user has to change the password on first login.
+        /// </summary>
+        [Output("initialSkipPasswordChange")]
+        public Output<bool?> InitialSkipPasswordChange { get; private set; } = null!;
 
         /// <summary>
         /// Is the email verified of the user, can only be true if password of the user is set
@@ -178,6 +191,7 @@ namespace scoretechnologies.Zitadel
                 PluginDownloadURL = "github://api.github.com/scoretechnologies",
                 AdditionalSecretOutputs =
                 {
+                    "initialHashedPassword",
                     "initialPassword",
                 },
             };
@@ -227,6 +241,22 @@ namespace scoretechnologies.Zitadel
         [Input("gender")]
         public Input<string>? Gender { get; set; }
 
+        [Input("initialHashedPassword")]
+        private Input<string>? _initialHashedPassword;
+
+        /// <summary>
+        /// Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+        /// </summary>
+        public Input<string>? InitialHashedPassword
+        {
+            get => _initialHashedPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _initialHashedPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         [Input("initialPassword")]
         private Input<string>? _initialPassword;
 
@@ -242,6 +272,12 @@ namespace scoretechnologies.Zitadel
                 _initialPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Whether the user has to change the password on first login.
+        /// </summary>
+        [Input("initialSkipPasswordChange")]
+        public Input<bool>? InitialSkipPasswordChange { get; set; }
 
         /// <summary>
         /// Is the email verified of the user, can only be true if password of the user is set
@@ -323,6 +359,22 @@ namespace scoretechnologies.Zitadel
         [Input("gender")]
         public Input<string>? Gender { get; set; }
 
+        [Input("initialHashedPassword")]
+        private Input<string>? _initialHashedPassword;
+
+        /// <summary>
+        /// Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+        /// </summary>
+        public Input<string>? InitialHashedPassword
+        {
+            get => _initialHashedPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _initialHashedPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         [Input("initialPassword")]
         private Input<string>? _initialPassword;
 
@@ -338,6 +390,12 @@ namespace scoretechnologies.Zitadel
                 _initialPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Whether the user has to change the password on first login.
+        /// </summary>
+        [Input("initialSkipPasswordChange")]
+        public Input<bool>? InitialSkipPasswordChange { get; set; }
 
         /// <summary>
         /// Is the email verified of the user, can only be true if password of the user is set

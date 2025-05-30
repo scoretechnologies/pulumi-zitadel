@@ -55,6 +55,7 @@ import (
 //				IsCreationAllowed:  pulumi.Bool(true),
 //				IsAutoCreation:     pulumi.Bool(false),
 //				IsAutoUpdate:       pulumi.Bool(true),
+//				AutoLinking:        pulumi.String("AUTO_LINKING_OPTION_USERNAME"),
 //			})
 //			if err != nil {
 //				return err
@@ -77,6 +78,8 @@ import (
 type OrgIdpLdap struct {
 	pulumi.CustomResourceState
 
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking pulumi.StringPtrOutput `pulumi:"autoLinking"`
 	// User attribute for the avatar url
 	AvatarUrlAttribute pulumi.StringPtrOutput `pulumi:"avatarUrlAttribute"`
 	// Base DN for LDAP connections
@@ -211,6 +214,8 @@ func GetOrgIdpLdap(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OrgIdpLdap resources.
 type orgIdpLdapState struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking *string `pulumi:"autoLinking"`
 	// User attribute for the avatar url
 	AvatarUrlAttribute *string `pulumi:"avatarUrlAttribute"`
 	// Base DN for LDAP connections
@@ -270,6 +275,8 @@ type orgIdpLdapState struct {
 }
 
 type OrgIdpLdapState struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking pulumi.StringPtrInput
 	// User attribute for the avatar url
 	AvatarUrlAttribute pulumi.StringPtrInput
 	// Base DN for LDAP connections
@@ -333,6 +340,8 @@ func (OrgIdpLdapState) ElementType() reflect.Type {
 }
 
 type orgIdpLdapArgs struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking *string `pulumi:"autoLinking"`
 	// User attribute for the avatar url
 	AvatarUrlAttribute *string `pulumi:"avatarUrlAttribute"`
 	// Base DN for LDAP connections
@@ -393,6 +402,8 @@ type orgIdpLdapArgs struct {
 
 // The set of arguments for constructing a OrgIdpLdap resource.
 type OrgIdpLdapArgs struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking pulumi.StringPtrInput
 	// User attribute for the avatar url
 	AvatarUrlAttribute pulumi.StringPtrInput
 	// Base DN for LDAP connections
@@ -560,6 +571,11 @@ func (o OrgIdpLdapOutput) ToOutput(ctx context.Context) pulumix.Output[*OrgIdpLd
 	return pulumix.Output[*OrgIdpLdap]{
 		OutputState: o.OutputState,
 	}
+}
+
+// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+func (o OrgIdpLdapOutput) AutoLinking() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OrgIdpLdap) pulumi.StringPtrOutput { return v.AutoLinking }).(pulumi.StringPtrOutput)
 }
 
 // User attribute for the avatar url

@@ -16,6 +16,7 @@ from .default_lockout_policy import *
 from .default_login_policy import *
 from .default_notification_policy import *
 from .default_oidc_settings import *
+from .default_password_age_policy import *
 from .default_password_complexity_policy import *
 from .default_privacy_policy import *
 from .domain import *
@@ -37,6 +38,7 @@ from .get_idp_gitlab_self_hosted import *
 from .get_idp_google import *
 from .get_idp_ldap import *
 from .get_idp_oauth import *
+from .get_idp_oidc import *
 from .get_idp_saml import *
 from .get_machine_user import *
 from .get_machine_users import *
@@ -66,6 +68,7 @@ from .idp_gitlab_self_hosted import *
 from .idp_google import *
 from .idp_ldap import *
 from .idp_oauth import *
+from .idp_oidc import *
 from .idp_saml import *
 from .instance_member import *
 from .label_policy import *
@@ -88,6 +91,7 @@ from .org_idp_oidc import *
 from .org_idp_saml import *
 from .org_member import *
 from .org_metadata import *
+from .password_age_policy import *
 from .password_complexity_policy import *
 from .personal_access_token import *
 from .privacy_policy import *
@@ -97,6 +101,7 @@ from .project_grant_member import *
 from .project_member import *
 from .project_role import *
 from .provider import *
+from .sms_provider_http import *
 from .sms_provider_twilio import *
 from .smtp_config import *
 from .trigger_actions import *
@@ -203,6 +208,14 @@ _utilities.register(
  },
  {
   "pkg": "zitadel",
+  "mod": "index/defaultPasswordAgePolicy",
+  "fqn": "scoretechnologies_zitadel",
+  "classes": {
+   "zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy": "DefaultPasswordAgePolicy"
+  }
+ },
+ {
+  "pkg": "zitadel",
   "mod": "index/defaultPasswordComplexityPolicy",
   "fqn": "scoretechnologies_zitadel",
   "classes": {
@@ -303,6 +316,14 @@ _utilities.register(
   "fqn": "scoretechnologies_zitadel",
   "classes": {
    "zitadel:index/idpOauth:IdpOauth": "IdpOauth"
+  }
+ },
+ {
+  "pkg": "zitadel",
+  "mod": "index/idpOidc",
+  "fqn": "scoretechnologies_zitadel",
+  "classes": {
+   "zitadel:index/idpOidc:IdpOidc": "IdpOidc"
   }
  },
  {
@@ -483,6 +504,14 @@ _utilities.register(
  },
  {
   "pkg": "zitadel",
+  "mod": "index/passwordAgePolicy",
+  "fqn": "scoretechnologies_zitadel",
+  "classes": {
+   "zitadel:index/passwordAgePolicy:PasswordAgePolicy": "PasswordAgePolicy"
+  }
+ },
+ {
+  "pkg": "zitadel",
   "mod": "index/passwordComplexityPolicy",
   "fqn": "scoretechnologies_zitadel",
   "classes": {
@@ -543,6 +572,14 @@ _utilities.register(
   "fqn": "scoretechnologies_zitadel",
   "classes": {
    "zitadel:index/projectRole:ProjectRole": "ProjectRole"
+  }
+ },
+ {
+  "pkg": "zitadel",
+  "mod": "index/smsProviderHttp",
+  "fqn": "scoretechnologies_zitadel",
+  "classes": {
+   "zitadel:index/smsProviderHttp:SmsProviderHttp": "SmsProviderHttp"
   }
  },
  {

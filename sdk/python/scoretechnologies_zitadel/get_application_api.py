@@ -63,6 +63,9 @@ class GetApplicationApiResult:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> str:
+        """
+        generated ID for this config
+        """
         return pulumi.get(self, "client_id")
 
     @property

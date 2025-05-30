@@ -21,7 +21,10 @@ class GetIdpSamlResult:
     """
     A collection of values returned by getIdpSaml.
     """
-    def __init__(__self__, binding=None, id=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, metadata_xml=None, name=None, with_signed_request=None):
+    def __init__(__self__, auto_linking=None, binding=None, id=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, metadata_xml=None, name=None, with_signed_request=None):
+        if auto_linking and not isinstance(auto_linking, str):
+            raise TypeError("Expected argument 'auto_linking' to be a str")
+        pulumi.set(__self__, "auto_linking", auto_linking)
         if binding and not isinstance(binding, str):
             raise TypeError("Expected argument 'binding' to be a str")
         pulumi.set(__self__, "binding", binding)
@@ -49,6 +52,14 @@ class GetIdpSamlResult:
         if with_signed_request and not isinstance(with_signed_request, str):
             raise TypeError("Expected argument 'with_signed_request' to be a str")
         pulumi.set(__self__, "with_signed_request", with_signed_request)
+
+    @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> str:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
 
     @property
     @pulumi.getter
@@ -129,6 +140,7 @@ class AwaitableGetIdpSamlResult(GetIdpSamlResult):
         if False:
             yield self
         return GetIdpSamlResult(
+            auto_linking=self.auto_linking,
             binding=self.binding,
             id=self.id,
             is_auto_creation=self.is_auto_creation,
@@ -163,6 +175,7 @@ def get_idp_saml(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('zitadel:index/getIdpSaml:getIdpSaml', __args__, opts=opts, typ=GetIdpSamlResult).value
 
     return AwaitableGetIdpSamlResult(
+        auto_linking=pulumi.get(__ret__, 'auto_linking'),
         binding=pulumi.get(__ret__, 'binding'),
         id=pulumi.get(__ret__, 'id'),
         is_auto_creation=pulumi.get(__ret__, 'is_auto_creation'),
