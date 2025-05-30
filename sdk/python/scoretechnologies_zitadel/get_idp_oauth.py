@@ -21,10 +21,13 @@ class GetIdpOauthResult:
     """
     A collection of values returned by getIdpOauth.
     """
-    def __init__(__self__, authorization_endpoint=None, client_id=None, client_secret=None, id=None, id_attribute=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, name=None, scopes=None, token_endpoint=None, user_endpoint=None):
+    def __init__(__self__, authorization_endpoint=None, auto_linking=None, client_id=None, client_secret=None, id=None, id_attribute=None, is_auto_creation=None, is_auto_update=None, is_creation_allowed=None, is_linking_allowed=None, name=None, scopes=None, token_endpoint=None, user_endpoint=None):
         if authorization_endpoint and not isinstance(authorization_endpoint, str):
             raise TypeError("Expected argument 'authorization_endpoint' to be a str")
         pulumi.set(__self__, "authorization_endpoint", authorization_endpoint)
+        if auto_linking and not isinstance(auto_linking, str):
+            raise TypeError("Expected argument 'auto_linking' to be a str")
+        pulumi.set(__self__, "auto_linking", auto_linking)
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -69,6 +72,14 @@ class GetIdpOauthResult:
         The authorization endpoint
         """
         return pulumi.get(self, "authorization_endpoint")
+
+    @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> str:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
 
     @property
     @pulumi.getter(name="clientId")
@@ -174,6 +185,7 @@ class AwaitableGetIdpOauthResult(GetIdpOauthResult):
             yield self
         return GetIdpOauthResult(
             authorization_endpoint=self.authorization_endpoint,
+            auto_linking=self.auto_linking,
             client_id=self.client_id,
             client_secret=self.client_secret,
             id=self.id,
@@ -212,6 +224,7 @@ def get_idp_oauth(id: Optional[str] = None,
 
     return AwaitableGetIdpOauthResult(
         authorization_endpoint=pulumi.get(__ret__, 'authorization_endpoint'),
+        auto_linking=pulumi.get(__ret__, 'auto_linking'),
         client_id=pulumi.get(__ret__, 'client_id'),
         client_secret=pulumi.get(__ret__, 'client_secret'),
         id=pulumi.get(__ret__, 'id'),

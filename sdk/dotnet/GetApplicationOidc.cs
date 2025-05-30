@@ -154,6 +154,9 @@ namespace scoretechnologies.Zitadel
         /// Auth method type
         /// </summary>
         public readonly string AuthMethodType;
+        /// <summary>
+        /// Client ID
+        /// </summary>
         public readonly string ClientId;
         /// <summary>
         /// Clockskew
@@ -204,6 +207,10 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         public readonly ImmutableArray<string> ResponseTypes;
         /// <summary>
+        /// Skip the successful login page on native apps and directly redirect the user to the callback.
+        /// </summary>
+        public readonly bool SkipNativeAppSuccessPage;
+        /// <summary>
         /// Version
         /// </summary>
         public readonly string Version;
@@ -248,6 +255,8 @@ namespace scoretechnologies.Zitadel
 
             ImmutableArray<string> responseTypes,
 
+            bool skipNativeAppSuccessPage,
+
             string version)
         {
             AccessTokenRoleAssertion = accessTokenRoleAssertion;
@@ -269,6 +278,7 @@ namespace scoretechnologies.Zitadel
             ProjectId = projectId;
             RedirectUris = redirectUris;
             ResponseTypes = responseTypes;
+            SkipNativeAppSuccessPage = skipNativeAppSuccessPage;
             Version = version;
         }
     }

@@ -75,7 +75,8 @@ type LookupApplicationOidcResult struct {
 	AppType string `pulumi:"appType"`
 	// Auth method type
 	AuthMethodType string `pulumi:"authMethodType"`
-	ClientId       string `pulumi:"clientId"`
+	// Client ID
+	ClientId string `pulumi:"clientId"`
 	// Clockskew
 	ClockSkew string `pulumi:"clockSkew"`
 	// Dev mode
@@ -100,6 +101,8 @@ type LookupApplicationOidcResult struct {
 	RedirectUris []string `pulumi:"redirectUris"`
 	// Response type
 	ResponseTypes []string `pulumi:"responseTypes"`
+	// Skip the successful login page on native apps and directly redirect the user to the callback.
+	SkipNativeAppSuccessPage bool `pulumi:"skipNativeAppSuccessPage"`
 	// Version
 	Version string `pulumi:"version"`
 }
@@ -182,6 +185,7 @@ func (o LookupApplicationOidcResultOutput) AuthMethodType() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupApplicationOidcResult) string { return v.AuthMethodType }).(pulumi.StringOutput)
 }
 
+// Client ID
 func (o LookupApplicationOidcResultOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApplicationOidcResult) string { return v.ClientId }).(pulumi.StringOutput)
 }
@@ -244,6 +248,11 @@ func (o LookupApplicationOidcResultOutput) RedirectUris() pulumi.StringArrayOutp
 // Response type
 func (o LookupApplicationOidcResultOutput) ResponseTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupApplicationOidcResult) []string { return v.ResponseTypes }).(pulumi.StringArrayOutput)
+}
+
+// Skip the successful login page on native apps and directly redirect the user to the callback.
+func (o LookupApplicationOidcResultOutput) SkipNativeAppSuccessPage() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupApplicationOidcResult) bool { return v.SkipNativeAppSuccessPage }).(pulumi.BoolOutput)
 }
 
 // Version

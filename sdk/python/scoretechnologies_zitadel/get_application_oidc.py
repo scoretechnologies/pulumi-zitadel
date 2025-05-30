@@ -21,7 +21,7 @@ class GetApplicationOidcResult:
     """
     A collection of values returned by getApplicationOidc.
     """
-    def __init__(__self__, access_token_role_assertion=None, access_token_type=None, additional_origins=None, app_id=None, app_type=None, auth_method_type=None, client_id=None, clock_skew=None, dev_mode=None, grant_types=None, id=None, id_token_role_assertion=None, id_token_userinfo_assertion=None, name=None, org_id=None, post_logout_redirect_uris=None, project_id=None, redirect_uris=None, response_types=None, version=None):
+    def __init__(__self__, access_token_role_assertion=None, access_token_type=None, additional_origins=None, app_id=None, app_type=None, auth_method_type=None, client_id=None, clock_skew=None, dev_mode=None, grant_types=None, id=None, id_token_role_assertion=None, id_token_userinfo_assertion=None, name=None, org_id=None, post_logout_redirect_uris=None, project_id=None, redirect_uris=None, response_types=None, skip_native_app_success_page=None, version=None):
         if access_token_role_assertion and not isinstance(access_token_role_assertion, bool):
             raise TypeError("Expected argument 'access_token_role_assertion' to be a bool")
         pulumi.set(__self__, "access_token_role_assertion", access_token_role_assertion)
@@ -79,6 +79,9 @@ class GetApplicationOidcResult:
         if response_types and not isinstance(response_types, list):
             raise TypeError("Expected argument 'response_types' to be a list")
         pulumi.set(__self__, "response_types", response_types)
+        if skip_native_app_success_page and not isinstance(skip_native_app_success_page, bool):
+            raise TypeError("Expected argument 'skip_native_app_success_page' to be a bool")
+        pulumi.set(__self__, "skip_native_app_success_page", skip_native_app_success_page)
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         pulumi.set(__self__, "version", version)
@@ -134,6 +137,9 @@ class GetApplicationOidcResult:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> str:
+        """
+        Client ID
+        """
         return pulumi.get(self, "client_id")
 
     @property
@@ -233,6 +239,14 @@ class GetApplicationOidcResult:
         return pulumi.get(self, "response_types")
 
     @property
+    @pulumi.getter(name="skipNativeAppSuccessPage")
+    def skip_native_app_success_page(self) -> bool:
+        """
+        Skip the successful login page on native apps and directly redirect the user to the callback.
+        """
+        return pulumi.get(self, "skip_native_app_success_page")
+
+    @property
     @pulumi.getter
     def version(self) -> str:
         """
@@ -266,6 +280,7 @@ class AwaitableGetApplicationOidcResult(GetApplicationOidcResult):
             project_id=self.project_id,
             redirect_uris=self.redirect_uris,
             response_types=self.response_types,
+            skip_native_app_success_page=self.skip_native_app_success_page,
             version=self.version)
 
 
@@ -319,6 +334,7 @@ def get_application_oidc(app_id: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         redirect_uris=pulumi.get(__ret__, 'redirect_uris'),
         response_types=pulumi.get(__ret__, 'response_types'),
+        skip_native_app_success_page=pulumi.get(__ret__, 'skip_native_app_success_page'),
         version=pulumi.get(__ret__, 'version'))
 
 

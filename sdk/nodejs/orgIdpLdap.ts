@@ -37,6 +37,7 @@ import * as utilities from "./utilities";
  *     isCreationAllowed: true,
  *     isAutoCreation: false,
  *     isAutoUpdate: true,
+ *     autoLinking: "AUTO_LINKING_OPTION_USERNAME",
  * });
  * ```
  *
@@ -76,6 +77,10 @@ export class OrgIdpLdap extends pulumi.CustomResource {
         return obj['__pulumiType'] === OrgIdpLdap.__pulumiType;
     }
 
+    /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    public readonly autoLinking!: pulumi.Output<string | undefined>;
     /**
      * User attribute for the avatar url
      */
@@ -202,6 +207,7 @@ export class OrgIdpLdap extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OrgIdpLdapState | undefined;
+            resourceInputs["autoLinking"] = state ? state.autoLinking : undefined;
             resourceInputs["avatarUrlAttribute"] = state ? state.avatarUrlAttribute : undefined;
             resourceInputs["baseDn"] = state ? state.baseDn : undefined;
             resourceInputs["bindDn"] = state ? state.bindDn : undefined;
@@ -271,6 +277,7 @@ export class OrgIdpLdap extends pulumi.CustomResource {
             if ((!args || args.userObjectClasses === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userObjectClasses'");
             }
+            resourceInputs["autoLinking"] = args ? args.autoLinking : undefined;
             resourceInputs["avatarUrlAttribute"] = args ? args.avatarUrlAttribute : undefined;
             resourceInputs["baseDn"] = args ? args.baseDn : undefined;
             resourceInputs["bindDn"] = args ? args.bindDn : undefined;
@@ -311,6 +318,10 @@ export class OrgIdpLdap extends pulumi.CustomResource {
  * Input properties used for looking up and filtering OrgIdpLdap resources.
  */
 export interface OrgIdpLdapState {
+    /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    autoLinking?: pulumi.Input<string>;
     /**
      * User attribute for the avatar url
      */
@@ -429,6 +440,10 @@ export interface OrgIdpLdapState {
  * The set of arguments for constructing a OrgIdpLdap resource.
  */
 export interface OrgIdpLdapArgs {
+    /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    autoLinking?: pulumi.Input<string>;
     /**
      * User attribute for the avatar url
      */

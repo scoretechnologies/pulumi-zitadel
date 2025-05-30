@@ -41,6 +41,10 @@ export interface GetIdpSamlArgs {
  */
 export interface GetIdpSamlResult {
     /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    readonly autoLinking: string;
+    /**
      * The binding
      */
     readonly binding: string;

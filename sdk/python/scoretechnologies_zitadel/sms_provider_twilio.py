@@ -16,18 +16,21 @@ class SmsProviderTwilioArgs:
     def __init__(__self__, *,
                  sender_number: pulumi.Input[str],
                  sid: pulumi.Input[str],
-                 token: pulumi.Input[str]):
+                 token: pulumi.Input[str],
+                 set_active: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SmsProviderTwilio resource.
         :param pulumi.Input[str] sender_number: Sender number which is used to send the SMS.
         :param pulumi.Input[str] sid: SID used to communicate with Twilio.
         :param pulumi.Input[str] token: Token used to communicate with Twilio.
+        :param pulumi.Input[bool] set_active: Set the SMS provider as active after creating/updating.
         """
         SmsProviderTwilioArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             sender_number=sender_number,
             sid=sid,
             token=token,
+            set_active=set_active,
         )
     @staticmethod
     def _configure(
@@ -35,14 +38,19 @@ class SmsProviderTwilioArgs:
              sender_number: pulumi.Input[str],
              sid: pulumi.Input[str],
              token: pulumi.Input[str],
+             set_active: Optional[pulumi.Input[bool]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
              **kwargs):
         if 'senderNumber' in kwargs:
             sender_number = kwargs['senderNumber']
+        if 'setActive' in kwargs:
+            set_active = kwargs['setActive']
 
         _setter("sender_number", sender_number)
         _setter("sid", sid)
         _setter("token", token)
+        if set_active is not None:
+            _setter("set_active", set_active)
 
     @property
     @pulumi.getter(name="senderNumber")
@@ -80,22 +88,37 @@ class SmsProviderTwilioArgs:
     def token(self, value: pulumi.Input[str]):
         pulumi.set(self, "token", value)
 
+    @property
+    @pulumi.getter(name="setActive")
+    def set_active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set the SMS provider as active after creating/updating.
+        """
+        return pulumi.get(self, "set_active")
+
+    @set_active.setter
+    def set_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "set_active", value)
+
 
 @pulumi.input_type
 class _SmsProviderTwilioState:
     def __init__(__self__, *,
                  sender_number: Optional[pulumi.Input[str]] = None,
+                 set_active: Optional[pulumi.Input[bool]] = None,
                  sid: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SmsProviderTwilio resources.
         :param pulumi.Input[str] sender_number: Sender number which is used to send the SMS.
+        :param pulumi.Input[bool] set_active: Set the SMS provider as active after creating/updating.
         :param pulumi.Input[str] sid: SID used to communicate with Twilio.
         :param pulumi.Input[str] token: Token used to communicate with Twilio.
         """
         _SmsProviderTwilioState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             sender_number=sender_number,
+            set_active=set_active,
             sid=sid,
             token=token,
         )
@@ -103,15 +126,20 @@ class _SmsProviderTwilioState:
     def _configure(
              _setter: Callable[[Any, Any], None],
              sender_number: Optional[pulumi.Input[str]] = None,
+             set_active: Optional[pulumi.Input[bool]] = None,
              sid: Optional[pulumi.Input[str]] = None,
              token: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
              **kwargs):
         if 'senderNumber' in kwargs:
             sender_number = kwargs['senderNumber']
+        if 'setActive' in kwargs:
+            set_active = kwargs['setActive']
 
         if sender_number is not None:
             _setter("sender_number", sender_number)
+        if set_active is not None:
+            _setter("set_active", set_active)
         if sid is not None:
             _setter("sid", sid)
         if token is not None:
@@ -128,6 +156,18 @@ class _SmsProviderTwilioState:
     @sender_number.setter
     def sender_number(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sender_number", value)
+
+    @property
+    @pulumi.getter(name="setActive")
+    def set_active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set the SMS provider as active after creating/updating.
+        """
+        return pulumi.get(self, "set_active")
+
+    @set_active.setter
+    def set_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "set_active", value)
 
     @property
     @pulumi.getter
@@ -160,6 +200,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  sender_number: Optional[pulumi.Input[str]] = None,
+                 set_active: Optional[pulumi.Input[bool]] = None,
                  sid: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -174,6 +215,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
 
         default = zitadel.SmsProviderTwilio("default",
             sender_number="019920892",
+            set_active=True,
             sid="sid",
             token="twilio_token")
         ```
@@ -189,6 +231,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] sender_number: Sender number which is used to send the SMS.
+        :param pulumi.Input[bool] set_active: Set the SMS provider as active after creating/updating.
         :param pulumi.Input[str] sid: SID used to communicate with Twilio.
         :param pulumi.Input[str] token: Token used to communicate with Twilio.
         """
@@ -209,6 +252,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
 
         default = zitadel.SmsProviderTwilio("default",
             sender_number="019920892",
+            set_active=True,
             sid="sid",
             token="twilio_token")
         ```
@@ -241,6 +285,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  sender_number: Optional[pulumi.Input[str]] = None,
+                 set_active: Optional[pulumi.Input[bool]] = None,
                  sid: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -255,6 +300,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
             if sender_number is None and not opts.urn:
                 raise TypeError("Missing required property 'sender_number'")
             __props__.__dict__["sender_number"] = sender_number
+            __props__.__dict__["set_active"] = set_active
             if sid is None and not opts.urn:
                 raise TypeError("Missing required property 'sid'")
             __props__.__dict__["sid"] = sid
@@ -274,6 +320,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             sender_number: Optional[pulumi.Input[str]] = None,
+            set_active: Optional[pulumi.Input[bool]] = None,
             sid: Optional[pulumi.Input[str]] = None,
             token: Optional[pulumi.Input[str]] = None) -> 'SmsProviderTwilio':
         """
@@ -284,6 +331,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] sender_number: Sender number which is used to send the SMS.
+        :param pulumi.Input[bool] set_active: Set the SMS provider as active after creating/updating.
         :param pulumi.Input[str] sid: SID used to communicate with Twilio.
         :param pulumi.Input[str] token: Token used to communicate with Twilio.
         """
@@ -292,6 +340,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
         __props__ = _SmsProviderTwilioState.__new__(_SmsProviderTwilioState)
 
         __props__.__dict__["sender_number"] = sender_number
+        __props__.__dict__["set_active"] = set_active
         __props__.__dict__["sid"] = sid
         __props__.__dict__["token"] = token
         return SmsProviderTwilio(resource_name, opts=opts, __props__=__props__)
@@ -303,6 +352,14 @@ class SmsProviderTwilio(pulumi.CustomResource):
         Sender number which is used to send the SMS.
         """
         return pulumi.get(self, "sender_number")
+
+    @property
+    @pulumi.getter(name="setActive")
+    def set_active(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Set the SMS provider as active after creating/updating.
+        """
+        return pulumi.get(self, "set_active")
 
     @property
     @pulumi.getter

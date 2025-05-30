@@ -26,14 +26,21 @@ namespace scoretechnologies.Zitadel
         public Output<string> Domain { get; private set; } = null!;
 
         /// <summary>
-        /// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-        /// required
+        /// Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        /// 'jwt_profile_json' is required
+        /// </summary>
+        [Output("jwtFile")]
+        public Output<string?> JwtFile { get; private set; } = null!;
+
+        /// <summary>
+        /// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        /// 'jwt_profile_json' is required
         /// </summary>
         [Output("jwtProfileFile")]
         public Output<string?> JwtProfileFile { get; private set; } = null!;
 
         /// <summary>
-        /// JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+        /// JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
         /// </summary>
         [Output("jwtProfileJson")]
         public Output<string?> JwtProfileJson { get; private set; } = null!;
@@ -92,14 +99,21 @@ namespace scoretechnologies.Zitadel
         public Input<bool>? Insecure { get; set; }
 
         /// <summary>
-        /// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-        /// required
+        /// Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        /// 'jwt_profile_json' is required
+        /// </summary>
+        [Input("jwtFile")]
+        public Input<string>? JwtFile { get; set; }
+
+        /// <summary>
+        /// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        /// 'jwt_profile_json' is required
         /// </summary>
         [Input("jwtProfileFile")]
         public Input<string>? JwtProfileFile { get; set; }
 
         /// <summary>
-        /// JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+        /// JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
         /// </summary>
         [Input("jwtProfileJson")]
         public Input<string>? JwtProfileJson { get; set; }

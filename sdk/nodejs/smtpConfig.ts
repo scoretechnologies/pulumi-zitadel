@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Resource representing the SMTP configuration of an instance.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -26,10 +24,10 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * bash The resource can be imported using the ID format `<[password]>`, e.g.
+ * bash The resource can be imported using the ID format `<id[:password]>`, e.g.
  *
  * ```sh
- *  $ pulumi import zitadel:index/smtpConfig:SmtpConfig imported 'p4ssw0rd'
+ *  $ pulumi import zitadel:index/smtpConfig:SmtpConfig imported '123456789012345678:p4ssw0rd'
  * ```
  */
 export class SmtpConfig extends pulumi.CustomResource {
@@ -81,6 +79,10 @@ export class SmtpConfig extends pulumi.CustomResource {
      */
     public readonly senderName!: pulumi.Output<string>;
     /**
+     * Set the SMTP configuration active after creating/updating.
+     */
+    public readonly setActive!: pulumi.Output<boolean | undefined>;
+    /**
      * TLS used to communicate with your SMTP server.
      */
     public readonly tls!: pulumi.Output<boolean | undefined>;
@@ -107,6 +109,7 @@ export class SmtpConfig extends pulumi.CustomResource {
             resourceInputs["replyToAddress"] = state ? state.replyToAddress : undefined;
             resourceInputs["senderAddress"] = state ? state.senderAddress : undefined;
             resourceInputs["senderName"] = state ? state.senderName : undefined;
+            resourceInputs["setActive"] = state ? state.setActive : undefined;
             resourceInputs["tls"] = state ? state.tls : undefined;
             resourceInputs["user"] = state ? state.user : undefined;
         } else {
@@ -125,6 +128,7 @@ export class SmtpConfig extends pulumi.CustomResource {
             resourceInputs["replyToAddress"] = args ? args.replyToAddress : undefined;
             resourceInputs["senderAddress"] = args ? args.senderAddress : undefined;
             resourceInputs["senderName"] = args ? args.senderName : undefined;
+            resourceInputs["setActive"] = args ? args.setActive : undefined;
             resourceInputs["tls"] = args ? args.tls : undefined;
             resourceInputs["user"] = args ? args.user : undefined;
         }
@@ -160,6 +164,10 @@ export interface SmtpConfigState {
      */
     senderName?: pulumi.Input<string>;
     /**
+     * Set the SMTP configuration active after creating/updating.
+     */
+    setActive?: pulumi.Input<boolean>;
+    /**
      * TLS used to communicate with your SMTP server.
      */
     tls?: pulumi.Input<boolean>;
@@ -193,6 +201,10 @@ export interface SmtpConfigArgs {
      * Sender name used to send emails.
      */
     senderName: pulumi.Input<string>;
+    /**
+     * Set the SMTP configuration active after creating/updating.
+     */
+    setActive?: pulumi.Input<boolean>;
     /**
      * TLS used to communicate with your SMTP server.
      */

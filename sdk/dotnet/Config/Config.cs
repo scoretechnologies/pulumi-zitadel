@@ -52,10 +52,21 @@ namespace scoretechnologies.Zitadel
             set => _insecure.Set(value);
         }
 
+        private static readonly __Value<string?> _jwtFile = new __Value<string?>(() => __config.Get("jwtFile"));
+        /// <summary>
+        /// Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        /// 'jwt_profile_json' is required
+        /// </summary>
+        public static string? JwtFile
+        {
+            get => _jwtFile.Get();
+            set => _jwtFile.Set(value);
+        }
+
         private static readonly __Value<string?> _jwtProfileFile = new __Value<string?>(() => __config.Get("jwtProfileFile"));
         /// <summary>
-        /// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-        /// required
+        /// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        /// 'jwt_profile_json' is required
         /// </summary>
         public static string? JwtProfileFile
         {
@@ -65,7 +76,7 @@ namespace scoretechnologies.Zitadel
 
         private static readonly __Value<string?> _jwtProfileJson = new __Value<string?>(() => __config.Get("jwtProfileJson"));
         /// <summary>
-        /// JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+        /// JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
         /// </summary>
         public static string? JwtProfileJson
         {

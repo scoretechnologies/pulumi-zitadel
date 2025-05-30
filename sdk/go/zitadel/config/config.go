@@ -21,13 +21,19 @@ func GetInsecure(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "zitadel:insecure")
 }
 
-// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-// required
+// Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+// 'jwt_profile_json' is required
+func GetJwtFile(ctx *pulumi.Context) string {
+	return config.Get(ctx, "zitadel:jwtFile")
+}
+
+// Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+// 'jwt_profile_json' is required
 func GetJwtProfileFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "zitadel:jwtProfileFile")
 }
 
-// JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+// JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
 func GetJwtProfileJson(ctx *pulumi.Context) string {
 	return config.Get(ctx, "zitadel:jwtProfileJson")
 }

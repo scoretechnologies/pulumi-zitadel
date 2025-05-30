@@ -32,19 +32,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := zitadel.NewHumanUser(ctx, "default", &zitadel.HumanUserArgs{
-//				OrgId:             pulumi.Any(data.Zitadel_org.Default.Id),
-//				UserName:          pulumi.String("humanfull@localhost.com"),
-//				FirstName:         pulumi.String("firstname"),
-//				LastName:          pulumi.String("lastname"),
-//				NickName:          pulumi.String("nickname"),
-//				DisplayName:       pulumi.String("displayname"),
-//				PreferredLanguage: pulumi.String("de"),
-//				Gender:            pulumi.String("GENDER_MALE"),
-//				Phone:             pulumi.String("+41799999999"),
-//				IsPhoneVerified:   pulumi.Bool(true),
-//				Email:             pulumi.String("test@zitadel.com"),
-//				IsEmailVerified:   pulumi.Bool(true),
-//				InitialPassword:   pulumi.String("Password1!"),
+//				OrgId:                     pulumi.Any(data.Zitadel_org.Default.Id),
+//				UserName:                  pulumi.String("humanfull@localhost.com"),
+//				FirstName:                 pulumi.String("firstname"),
+//				LastName:                  pulumi.String("lastname"),
+//				NickName:                  pulumi.String("nickname"),
+//				DisplayName:               pulumi.String("displayname"),
+//				PreferredLanguage:         pulumi.String("de"),
+//				Gender:                    pulumi.String("GENDER_MALE"),
+//				Phone:                     pulumi.String("+41799999999"),
+//				IsPhoneVerified:           pulumi.Bool(true),
+//				Email:                     pulumi.String("test@zitadel.com"),
+//				IsEmailVerified:           pulumi.Bool(true),
+//				InitialPassword:           pulumi.String("Password1!"),
+//				InitialSkipPasswordChange: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -75,8 +76,12 @@ type HumanUser struct {
 	FirstName pulumi.StringOutput `pulumi:"firstName"`
 	// Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
 	Gender pulumi.StringPtrOutput `pulumi:"gender"`
+	// Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+	InitialHashedPassword pulumi.StringPtrOutput `pulumi:"initialHashedPassword"`
 	// Initially set password for the user, not changeable after creation
 	InitialPassword pulumi.StringPtrOutput `pulumi:"initialPassword"`
+	// Whether the user has to change the password on first login.
+	InitialSkipPasswordChange pulumi.BoolPtrOutput `pulumi:"initialSkipPasswordChange"`
 	// Is the email verified of the user, can only be true if password of the user is set
 	IsEmailVerified pulumi.BoolPtrOutput `pulumi:"isEmailVerified"`
 	// Is the phone verified of the user
@@ -120,10 +125,14 @@ func NewHumanUser(ctx *pulumi.Context,
 	if args.UserName == nil {
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
+	if args.InitialHashedPassword != nil {
+		args.InitialHashedPassword = pulumi.ToSecret(args.InitialHashedPassword).(pulumi.StringPtrInput)
+	}
 	if args.InitialPassword != nil {
 		args.InitialPassword = pulumi.ToSecret(args.InitialPassword).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"initialHashedPassword",
 		"initialPassword",
 	})
 	opts = append(opts, secrets)
@@ -158,8 +167,12 @@ type humanUserState struct {
 	FirstName *string `pulumi:"firstName"`
 	// Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
 	Gender *string `pulumi:"gender"`
+	// Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+	InitialHashedPassword *string `pulumi:"initialHashedPassword"`
 	// Initially set password for the user, not changeable after creation
 	InitialPassword *string `pulumi:"initialPassword"`
+	// Whether the user has to change the password on first login.
+	InitialSkipPasswordChange *bool `pulumi:"initialSkipPasswordChange"`
 	// Is the email verified of the user, can only be true if password of the user is set
 	IsEmailVerified *bool `pulumi:"isEmailVerified"`
 	// Is the phone verified of the user
@@ -193,8 +206,12 @@ type HumanUserState struct {
 	FirstName pulumi.StringPtrInput
 	// Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
 	Gender pulumi.StringPtrInput
+	// Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+	InitialHashedPassword pulumi.StringPtrInput
 	// Initially set password for the user, not changeable after creation
 	InitialPassword pulumi.StringPtrInput
+	// Whether the user has to change the password on first login.
+	InitialSkipPasswordChange pulumi.BoolPtrInput
 	// Is the email verified of the user, can only be true if password of the user is set
 	IsEmailVerified pulumi.BoolPtrInput
 	// Is the phone verified of the user
@@ -232,8 +249,12 @@ type humanUserArgs struct {
 	FirstName string `pulumi:"firstName"`
 	// Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
 	Gender *string `pulumi:"gender"`
+	// Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+	InitialHashedPassword *string `pulumi:"initialHashedPassword"`
 	// Initially set password for the user, not changeable after creation
 	InitialPassword *string `pulumi:"initialPassword"`
+	// Whether the user has to change the password on first login.
+	InitialSkipPasswordChange *bool `pulumi:"initialSkipPasswordChange"`
 	// Is the email verified of the user, can only be true if password of the user is set
 	IsEmailVerified *bool `pulumi:"isEmailVerified"`
 	// Is the phone verified of the user
@@ -262,8 +283,12 @@ type HumanUserArgs struct {
 	FirstName pulumi.StringInput
 	// Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
 	Gender pulumi.StringPtrInput
+	// Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+	InitialHashedPassword pulumi.StringPtrInput
 	// Initially set password for the user, not changeable after creation
 	InitialPassword pulumi.StringPtrInput
+	// Whether the user has to change the password on first login.
+	InitialSkipPasswordChange pulumi.BoolPtrInput
 	// Is the email verified of the user, can only be true if password of the user is set
 	IsEmailVerified pulumi.BoolPtrInput
 	// Is the phone verified of the user
@@ -413,9 +438,19 @@ func (o HumanUserOutput) Gender() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HumanUser) pulumi.StringPtrOutput { return v.Gender }).(pulumi.StringPtrOutput)
 }
 
+// Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios.
+func (o HumanUserOutput) InitialHashedPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HumanUser) pulumi.StringPtrOutput { return v.InitialHashedPassword }).(pulumi.StringPtrOutput)
+}
+
 // Initially set password for the user, not changeable after creation
 func (o HumanUserOutput) InitialPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HumanUser) pulumi.StringPtrOutput { return v.InitialPassword }).(pulumi.StringPtrOutput)
+}
+
+// Whether the user has to change the password on first login.
+func (o HumanUserOutput) InitialSkipPasswordChange() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *HumanUser) pulumi.BoolPtrOutput { return v.InitialSkipPasswordChange }).(pulumi.BoolPtrOutput)
 }
 
 // Is the email verified of the user, can only be true if password of the user is set

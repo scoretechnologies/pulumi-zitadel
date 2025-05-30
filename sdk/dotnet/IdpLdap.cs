@@ -25,6 +25,7 @@ namespace scoretechnologies.Zitadel
     /// {
     ///     var @default = new Zitadel.IdpLdap("default", new()
     ///     {
+    ///         AutoLinking = "AUTO_LINKING_OPTION_USERNAME",
     ///         BaseDn = "dc=example,dc=com",
     ///         BindDn = "cn=admin,dc=example,dc=com",
     ///         BindPassword = "Password1!",
@@ -68,6 +69,12 @@ namespace scoretechnologies.Zitadel
     [ZitadelResourceType("zitadel:index/idpLdap:IdpLdap")]
     public partial class IdpLdap : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        /// </summary>
+        [Output("autoLinking")]
+        public Output<string?> AutoLinking { get; private set; } = null!;
+
         /// <summary>
         /// User attribute for the avatar url
         /// </summary>
@@ -282,6 +289,12 @@ namespace scoretechnologies.Zitadel
     public sealed class IdpLdapArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        /// </summary>
+        [Input("autoLinking")]
+        public Input<string>? AutoLinking { get; set; }
+
+        /// <summary>
         /// User attribute for the avatar url
         /// </summary>
         [Input("avatarUrlAttribute")]
@@ -479,6 +492,12 @@ namespace scoretechnologies.Zitadel
 
     public sealed class IdpLdapState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        /// </summary>
+        [Input("autoLinking")]
+        public Input<string>? AutoLinking { get; set; }
+
         /// <summary>
         /// User attribute for the avatar url
         /// </summary>

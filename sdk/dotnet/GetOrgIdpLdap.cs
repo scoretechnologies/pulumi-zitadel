@@ -117,6 +117,10 @@ namespace scoretechnologies.Zitadel
     public sealed class GetOrgIdpLdapResult
     {
         /// <summary>
+        /// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        /// </summary>
+        public readonly string AutoLinking;
+        /// <summary>
         /// User attribute for the avatar url
         /// </summary>
         public readonly string AvatarUrlAttribute;
@@ -235,6 +239,8 @@ namespace scoretechnologies.Zitadel
 
         [OutputConstructor]
         private GetOrgIdpLdapResult(
+            string autoLinking,
+
             string avatarUrlAttribute,
 
             string baseDn,
@@ -293,6 +299,7 @@ namespace scoretechnologies.Zitadel
 
             ImmutableArray<string> userObjectClasses)
         {
+            AutoLinking = autoLinking;
             AvatarUrlAttribute = avatarUrlAttribute;
             BaseDn = baseDn;
             BindDn = bindDn;

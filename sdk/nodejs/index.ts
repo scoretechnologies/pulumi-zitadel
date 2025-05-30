@@ -60,6 +60,11 @@ export type DefaultOidcSettings = import("./defaultOidcSettings").DefaultOidcSet
 export const DefaultOidcSettings: typeof import("./defaultOidcSettings").DefaultOidcSettings = null as any;
 utilities.lazyLoad(exports, ["DefaultOidcSettings"], () => require("./defaultOidcSettings"));
 
+export { DefaultPasswordAgePolicyArgs, DefaultPasswordAgePolicyState } from "./defaultPasswordAgePolicy";
+export type DefaultPasswordAgePolicy = import("./defaultPasswordAgePolicy").DefaultPasswordAgePolicy;
+export const DefaultPasswordAgePolicy: typeof import("./defaultPasswordAgePolicy").DefaultPasswordAgePolicy = null as any;
+utilities.lazyLoad(exports, ["DefaultPasswordAgePolicy"], () => require("./defaultPasswordAgePolicy"));
+
 export { DefaultPasswordComplexityPolicyArgs, DefaultPasswordComplexityPolicyState } from "./defaultPasswordComplexityPolicy";
 export type DefaultPasswordComplexityPolicy = import("./defaultPasswordComplexityPolicy").DefaultPasswordComplexityPolicy;
 export const DefaultPasswordComplexityPolicy: typeof import("./defaultPasswordComplexityPolicy").DefaultPasswordComplexityPolicy = null as any;
@@ -164,6 +169,11 @@ export { GetIdpOauthArgs, GetIdpOauthResult, GetIdpOauthOutputArgs } from "./get
 export const getIdpOauth: typeof import("./getIdpOauth").getIdpOauth = null as any;
 export const getIdpOauthOutput: typeof import("./getIdpOauth").getIdpOauthOutput = null as any;
 utilities.lazyLoad(exports, ["getIdpOauth","getIdpOauthOutput"], () => require("./getIdpOauth"));
+
+export { GetIdpOidcArgs, GetIdpOidcResult, GetIdpOidcOutputArgs } from "./getIdpOidc";
+export const getIdpOidc: typeof import("./getIdpOidc").getIdpOidc = null as any;
+export const getIdpOidcOutput: typeof import("./getIdpOidc").getIdpOidcOutput = null as any;
+utilities.lazyLoad(exports, ["getIdpOidc","getIdpOidcOutput"], () => require("./getIdpOidc"));
 
 export { GetIdpSamlArgs, GetIdpSamlResult, GetIdpSamlOutputArgs } from "./getIdpSaml";
 export const getIdpSaml: typeof import("./getIdpSaml").getIdpSaml = null as any;
@@ -310,6 +320,11 @@ export type IdpOauth = import("./idpOauth").IdpOauth;
 export const IdpOauth: typeof import("./idpOauth").IdpOauth = null as any;
 utilities.lazyLoad(exports, ["IdpOauth"], () => require("./idpOauth"));
 
+export { IdpOidcArgs, IdpOidcState } from "./idpOidc";
+export type IdpOidc = import("./idpOidc").IdpOidc;
+export const IdpOidc: typeof import("./idpOidc").IdpOidc = null as any;
+utilities.lazyLoad(exports, ["IdpOidc"], () => require("./idpOidc"));
+
 export { IdpSamlArgs, IdpSamlState } from "./idpSaml";
 export type IdpSaml = import("./idpSaml").IdpSaml;
 export const IdpSaml: typeof import("./idpSaml").IdpSaml = null as any;
@@ -420,6 +435,11 @@ export type OrgMetadata = import("./orgMetadata").OrgMetadata;
 export const OrgMetadata: typeof import("./orgMetadata").OrgMetadata = null as any;
 utilities.lazyLoad(exports, ["OrgMetadata"], () => require("./orgMetadata"));
 
+export { PasswordAgePolicyArgs, PasswordAgePolicyState } from "./passwordAgePolicy";
+export type PasswordAgePolicy = import("./passwordAgePolicy").PasswordAgePolicy;
+export const PasswordAgePolicy: typeof import("./passwordAgePolicy").PasswordAgePolicy = null as any;
+utilities.lazyLoad(exports, ["PasswordAgePolicy"], () => require("./passwordAgePolicy"));
+
 export { PasswordComplexityPolicyArgs, PasswordComplexityPolicyState } from "./passwordComplexityPolicy";
 export type PasswordComplexityPolicy = import("./passwordComplexityPolicy").PasswordComplexityPolicy;
 export const PasswordComplexityPolicy: typeof import("./passwordComplexityPolicy").PasswordComplexityPolicy = null as any;
@@ -464,6 +484,11 @@ export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { SmsProviderHttpArgs, SmsProviderHttpState } from "./smsProviderHttp";
+export type SmsProviderHttp = import("./smsProviderHttp").SmsProviderHttp;
+export const SmsProviderHttp: typeof import("./smsProviderHttp").SmsProviderHttp = null as any;
+utilities.lazyLoad(exports, ["SmsProviderHttp"], () => require("./smsProviderHttp"));
 
 export { SmsProviderTwilioArgs, SmsProviderTwilioState } from "./smsProviderTwilio";
 export type SmsProviderTwilio = import("./smsProviderTwilio").SmsProviderTwilio;
@@ -524,6 +549,8 @@ const _module = {
                 return new DefaultNotificationPolicy(name, <any>undefined, { urn })
             case "zitadel:index/defaultOidcSettings:DefaultOidcSettings":
                 return new DefaultOidcSettings(name, <any>undefined, { urn })
+            case "zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy":
+                return new DefaultPasswordAgePolicy(name, <any>undefined, { urn })
             case "zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy":
                 return new DefaultPasswordComplexityPolicy(name, <any>undefined, { urn })
             case "zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy":
@@ -550,6 +577,8 @@ const _module = {
                 return new IdpLdap(name, <any>undefined, { urn })
             case "zitadel:index/idpOauth:IdpOauth":
                 return new IdpOauth(name, <any>undefined, { urn })
+            case "zitadel:index/idpOidc:IdpOidc":
+                return new IdpOidc(name, <any>undefined, { urn })
             case "zitadel:index/idpSaml:IdpSaml":
                 return new IdpSaml(name, <any>undefined, { urn })
             case "zitadel:index/instanceMember:InstanceMember":
@@ -594,6 +623,8 @@ const _module = {
                 return new OrgMember(name, <any>undefined, { urn })
             case "zitadel:index/orgMetadata:OrgMetadata":
                 return new OrgMetadata(name, <any>undefined, { urn })
+            case "zitadel:index/passwordAgePolicy:PasswordAgePolicy":
+                return new PasswordAgePolicy(name, <any>undefined, { urn })
             case "zitadel:index/passwordComplexityPolicy:PasswordComplexityPolicy":
                 return new PasswordComplexityPolicy(name, <any>undefined, { urn })
             case "zitadel:index/personalAccessToken:PersonalAccessToken":
@@ -610,6 +641,8 @@ const _module = {
                 return new ProjectMember(name, <any>undefined, { urn })
             case "zitadel:index/projectRole:ProjectRole":
                 return new ProjectRole(name, <any>undefined, { urn })
+            case "zitadel:index/smsProviderHttp:SmsProviderHttp":
+                return new SmsProviderHttp(name, <any>undefined, { urn })
             case "zitadel:index/smsProviderTwilio:SmsProviderTwilio":
                 return new SmsProviderTwilio(name, <any>undefined, { urn })
             case "zitadel:index/smtpConfig:SmtpConfig":
@@ -636,6 +669,7 @@ pulumi.runtime.registerResourceModule("zitadel", "index/defaultLockoutPolicy", _
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultLoginPolicy", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultNotificationPolicy", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultOidcSettings", _module)
+pulumi.runtime.registerResourceModule("zitadel", "index/defaultPasswordAgePolicy", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultPasswordComplexityPolicy", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultPrivacyPolicy", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/domain", _module)
@@ -649,6 +683,7 @@ pulumi.runtime.registerResourceModule("zitadel", "index/idpGitlabSelfHosted", _m
 pulumi.runtime.registerResourceModule("zitadel", "index/idpGoogle", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/idpLdap", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/idpOauth", _module)
+pulumi.runtime.registerResourceModule("zitadel", "index/idpOidc", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/idpSaml", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/instanceMember", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/labelPolicy", _module)
@@ -671,6 +706,7 @@ pulumi.runtime.registerResourceModule("zitadel", "index/orgIdpOidc", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/orgIdpSaml", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/orgMember", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/orgMetadata", _module)
+pulumi.runtime.registerResourceModule("zitadel", "index/passwordAgePolicy", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/passwordComplexityPolicy", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/personalAccessToken", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/privacyPolicy", _module)
@@ -679,6 +715,7 @@ pulumi.runtime.registerResourceModule("zitadel", "index/projectGrant", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/projectGrantMember", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/projectMember", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/projectRole", _module)
+pulumi.runtime.registerResourceModule("zitadel", "index/smsProviderHttp", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/smsProviderTwilio", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/smtpConfig", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/triggerActions", _module)

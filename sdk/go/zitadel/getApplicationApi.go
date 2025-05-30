@@ -67,7 +67,8 @@ type LookupApplicationApiResult struct {
 	AppId string `pulumi:"appId"`
 	// Auth method type
 	AuthMethodType string `pulumi:"authMethodType"`
-	ClientId       string `pulumi:"clientId"`
+	// generated ID for this config
+	ClientId string `pulumi:"clientId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Name of the application
@@ -136,6 +137,7 @@ func (o LookupApplicationApiResultOutput) AuthMethodType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApplicationApiResult) string { return v.AuthMethodType }).(pulumi.StringOutput)
 }
 
+// generated ID for this config
 func (o LookupApplicationApiResultOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApplicationApiResult) string { return v.ClientId }).(pulumi.StringOutput)
 }

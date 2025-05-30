@@ -30,10 +30,11 @@ class ApplicationOidcArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 skip_native_app_success_page: Optional[pulumi.Input[bool]] = None,
                  version: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ApplicationOidc resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         :param pulumi.Input[str] project_id: ID of the project
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: RedirectURIs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] response_types: Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
@@ -49,6 +50,7 @@ class ApplicationOidcArgs:
         :param pulumi.Input[str] name: Name of the application
         :param pulumi.Input[str] org_id: ID of the organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] post_logout_redirect_uris: Post logout redirect URIs
+        :param pulumi.Input[bool] skip_native_app_success_page: Skip the successful login page on native apps and directly redirect the user to the callback.
         :param pulumi.Input[str] version: Version, supported values: OIDC*VERSION*1_0
         """
         ApplicationOidcArgs._configure(
@@ -69,6 +71,7 @@ class ApplicationOidcArgs:
             name=name,
             org_id=org_id,
             post_logout_redirect_uris=post_logout_redirect_uris,
+            skip_native_app_success_page=skip_native_app_success_page,
             version=version,
         )
     @staticmethod
@@ -90,6 +93,7 @@ class ApplicationOidcArgs:
              name: Optional[pulumi.Input[str]] = None,
              org_id: Optional[pulumi.Input[str]] = None,
              post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             skip_native_app_success_page: Optional[pulumi.Input[bool]] = None,
              version: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
              **kwargs):
@@ -123,6 +127,8 @@ class ApplicationOidcArgs:
             org_id = kwargs['orgId']
         if 'postLogoutRedirectUris' in kwargs:
             post_logout_redirect_uris = kwargs['postLogoutRedirectUris']
+        if 'skipNativeAppSuccessPage' in kwargs:
+            skip_native_app_success_page = kwargs['skipNativeAppSuccessPage']
 
         _setter("grant_types", grant_types)
         _setter("project_id", project_id)
@@ -152,6 +158,8 @@ class ApplicationOidcArgs:
             _setter("org_id", org_id)
         if post_logout_redirect_uris is not None:
             _setter("post_logout_redirect_uris", post_logout_redirect_uris)
+        if skip_native_app_success_page is not None:
+            _setter("skip_native_app_success_page", skip_native_app_success_page)
         if version is not None:
             _setter("version", version)
 
@@ -159,7 +167,7 @@ class ApplicationOidcArgs:
     @pulumi.getter(name="grantTypes")
     def grant_types(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         """
         return pulumi.get(self, "grant_types")
 
@@ -348,6 +356,18 @@ class ApplicationOidcArgs:
         pulumi.set(self, "post_logout_redirect_uris", value)
 
     @property
+    @pulumi.getter(name="skipNativeAppSuccessPage")
+    def skip_native_app_success_page(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Skip the successful login page on native apps and directly redirect the user to the callback.
+        """
+        return pulumi.get(self, "skip_native_app_success_page")
+
+    @skip_native_app_success_page.setter
+    def skip_native_app_success_page(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_native_app_success_page", value)
+
+    @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
@@ -381,6 +401,7 @@ class _ApplicationOidcState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 skip_native_app_success_page: Optional[pulumi.Input[bool]] = None,
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ApplicationOidc resources.
@@ -393,7 +414,7 @@ class _ApplicationOidcState:
         :param pulumi.Input[str] client_secret: generated secret for this config
         :param pulumi.Input[str] clock_skew: Clockskew
         :param pulumi.Input[bool] dev_mode: Dev mode
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         :param pulumi.Input[bool] id_token_role_assertion: ID token role assertion
         :param pulumi.Input[bool] id_token_userinfo_assertion: Token userinfo assertion
         :param pulumi.Input[str] name: Name of the application
@@ -402,6 +423,7 @@ class _ApplicationOidcState:
         :param pulumi.Input[str] project_id: ID of the project
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: RedirectURIs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] response_types: Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
+        :param pulumi.Input[bool] skip_native_app_success_page: Skip the successful login page on native apps and directly redirect the user to the callback.
         :param pulumi.Input[str] version: Version, supported values: OIDC*VERSION*1_0
         """
         _ApplicationOidcState._configure(
@@ -424,6 +446,7 @@ class _ApplicationOidcState:
             project_id=project_id,
             redirect_uris=redirect_uris,
             response_types=response_types,
+            skip_native_app_success_page=skip_native_app_success_page,
             version=version,
         )
     @staticmethod
@@ -447,6 +470,7 @@ class _ApplicationOidcState:
              project_id: Optional[pulumi.Input[str]] = None,
              redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             skip_native_app_success_page: Optional[pulumi.Input[bool]] = None,
              version: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
              **kwargs):
@@ -484,6 +508,8 @@ class _ApplicationOidcState:
             redirect_uris = kwargs['redirectUris']
         if 'responseTypes' in kwargs:
             response_types = kwargs['responseTypes']
+        if 'skipNativeAppSuccessPage' in kwargs:
+            skip_native_app_success_page = kwargs['skipNativeAppSuccessPage']
 
         if access_token_role_assertion is not None:
             _setter("access_token_role_assertion", access_token_role_assertion)
@@ -521,6 +547,8 @@ class _ApplicationOidcState:
             _setter("redirect_uris", redirect_uris)
         if response_types is not None:
             _setter("response_types", response_types)
+        if skip_native_app_success_page is not None:
+            _setter("skip_native_app_success_page", skip_native_app_success_page)
         if version is not None:
             _setter("version", version)
 
@@ -636,7 +664,7 @@ class _ApplicationOidcState:
     @pulumi.getter(name="grantTypes")
     def grant_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         """
         return pulumi.get(self, "grant_types")
 
@@ -741,6 +769,18 @@ class _ApplicationOidcState:
         pulumi.set(self, "response_types", value)
 
     @property
+    @pulumi.getter(name="skipNativeAppSuccessPage")
+    def skip_native_app_success_page(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Skip the successful login page on native apps and directly redirect the user to the callback.
+        """
+        return pulumi.get(self, "skip_native_app_success_page")
+
+    @skip_native_app_success_page.setter
+    def skip_native_app_success_page(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_native_app_success_page", value)
+
+    @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
@@ -774,6 +814,7 @@ class ApplicationOidc(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 skip_native_app_success_page: Optional[pulumi.Input[bool]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -801,7 +842,8 @@ class ApplicationOidc(pulumi.CustomResource):
             access_token_role_assertion=False,
             id_token_role_assertion=False,
             id_token_userinfo_assertion=False,
-            additional_origins=[])
+            additional_origins=[],
+            skip_native_app_success_page=False)
         ```
 
         ## Import
@@ -821,7 +863,7 @@ class ApplicationOidc(pulumi.CustomResource):
         :param pulumi.Input[str] auth_method_type: Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
         :param pulumi.Input[str] clock_skew: Clockskew
         :param pulumi.Input[bool] dev_mode: Dev mode
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         :param pulumi.Input[bool] id_token_role_assertion: ID token role assertion
         :param pulumi.Input[bool] id_token_userinfo_assertion: Token userinfo assertion
         :param pulumi.Input[str] name: Name of the application
@@ -830,6 +872,7 @@ class ApplicationOidc(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: ID of the project
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: RedirectURIs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] response_types: Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
+        :param pulumi.Input[bool] skip_native_app_success_page: Skip the successful login page on native apps and directly redirect the user to the callback.
         :param pulumi.Input[str] version: Version, supported values: OIDC*VERSION*1_0
         """
         ...
@@ -863,7 +906,8 @@ class ApplicationOidc(pulumi.CustomResource):
             access_token_role_assertion=False,
             id_token_role_assertion=False,
             id_token_userinfo_assertion=False,
-            additional_origins=[])
+            additional_origins=[],
+            skip_native_app_success_page=False)
         ```
 
         ## Import
@@ -909,6 +953,7 @@ class ApplicationOidc(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 skip_native_app_success_page: Optional[pulumi.Input[bool]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -943,6 +988,7 @@ class ApplicationOidc(pulumi.CustomResource):
             if response_types is None and not opts.urn:
                 raise TypeError("Missing required property 'response_types'")
             __props__.__dict__["response_types"] = response_types
+            __props__.__dict__["skip_native_app_success_page"] = skip_native_app_success_page
             __props__.__dict__["version"] = version
             __props__.__dict__["client_id"] = None
             __props__.__dict__["client_secret"] = None
@@ -976,6 +1022,7 @@ class ApplicationOidc(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            skip_native_app_success_page: Optional[pulumi.Input[bool]] = None,
             version: Optional[pulumi.Input[str]] = None) -> 'ApplicationOidc':
         """
         Get an existing ApplicationOidc resource's state with the given name, id, and optional extra
@@ -993,7 +1040,7 @@ class ApplicationOidc(pulumi.CustomResource):
         :param pulumi.Input[str] client_secret: generated secret for this config
         :param pulumi.Input[str] clock_skew: Clockskew
         :param pulumi.Input[bool] dev_mode: Dev mode
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         :param pulumi.Input[bool] id_token_role_assertion: ID token role assertion
         :param pulumi.Input[bool] id_token_userinfo_assertion: Token userinfo assertion
         :param pulumi.Input[str] name: Name of the application
@@ -1002,6 +1049,7 @@ class ApplicationOidc(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: ID of the project
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: RedirectURIs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] response_types: Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
+        :param pulumi.Input[bool] skip_native_app_success_page: Skip the successful login page on native apps and directly redirect the user to the callback.
         :param pulumi.Input[str] version: Version, supported values: OIDC*VERSION*1_0
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1026,6 +1074,7 @@ class ApplicationOidc(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["redirect_uris"] = redirect_uris
         __props__.__dict__["response_types"] = response_types
+        __props__.__dict__["skip_native_app_success_page"] = skip_native_app_success_page
         __props__.__dict__["version"] = version
         return ApplicationOidc(resource_name, opts=opts, __props__=__props__)
 
@@ -1105,7 +1154,7 @@ class ApplicationOidc(pulumi.CustomResource):
     @pulumi.getter(name="grantTypes")
     def grant_types(self) -> pulumi.Output[Sequence[str]]:
         """
-        Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+        Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         """
         return pulumi.get(self, "grant_types")
 
@@ -1172,6 +1221,14 @@ class ApplicationOidc(pulumi.CustomResource):
         Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
         """
         return pulumi.get(self, "response_types")
+
+    @property
+    @pulumi.getter(name="skipNativeAppSuccessPage")
+    def skip_native_app_success_page(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Skip the successful login page on native apps and directly redirect the user to the callback.
+        """
+        return pulumi.get(self, "skip_native_app_success_page")
 
     @property
     @pulumi.getter

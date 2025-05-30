@@ -16,6 +16,7 @@ class ProviderArgs:
     def __init__(__self__, *,
                  domain: pulumi.Input[str],
                  insecure: Optional[pulumi.Input[bool]] = None,
+                 jwt_file: Optional[pulumi.Input[str]] = None,
                  jwt_profile_file: Optional[pulumi.Input[str]] = None,
                  jwt_profile_json: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None,
@@ -24,9 +25,11 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] domain: Domain used to connect to the ZITADEL instance
         :param pulumi.Input[bool] insecure: Use insecure connection
-        :param pulumi.Input[str] jwt_profile_file: Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-               required
-        :param pulumi.Input[str] jwt_profile_json: JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+        :param pulumi.Input[str] jwt_file: Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+               'jwt_profile_json' is required
+        :param pulumi.Input[str] jwt_profile_file: Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+               'jwt_profile_json' is required
+        :param pulumi.Input[str] jwt_profile_json: JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
         :param pulumi.Input[str] port: Used port if not the default ports 80 or 443 are configured
         :param pulumi.Input[str] token: Path to the file containing credentials to connect to ZITADEL
         """
@@ -34,6 +37,7 @@ class ProviderArgs:
             lambda key, value: pulumi.set(__self__, key, value),
             domain=domain,
             insecure=insecure,
+            jwt_file=jwt_file,
             jwt_profile_file=jwt_profile_file,
             jwt_profile_json=jwt_profile_json,
             port=port,
@@ -44,12 +48,15 @@ class ProviderArgs:
              _setter: Callable[[Any, Any], None],
              domain: pulumi.Input[str],
              insecure: Optional[pulumi.Input[bool]] = None,
+             jwt_file: Optional[pulumi.Input[str]] = None,
              jwt_profile_file: Optional[pulumi.Input[str]] = None,
              jwt_profile_json: Optional[pulumi.Input[str]] = None,
              port: Optional[pulumi.Input[str]] = None,
              token: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
              **kwargs):
+        if 'jwtFile' in kwargs:
+            jwt_file = kwargs['jwtFile']
         if 'jwtProfileFile' in kwargs:
             jwt_profile_file = kwargs['jwtProfileFile']
         if 'jwtProfileJson' in kwargs:
@@ -58,6 +65,8 @@ class ProviderArgs:
         _setter("domain", domain)
         if insecure is not None:
             _setter("insecure", insecure)
+        if jwt_file is not None:
+            _setter("jwt_file", jwt_file)
         if jwt_profile_file is not None:
             _setter("jwt_profile_file", jwt_profile_file)
         if jwt_profile_json is not None:
@@ -92,11 +101,24 @@ class ProviderArgs:
         pulumi.set(self, "insecure", value)
 
     @property
+    @pulumi.getter(name="jwtFile")
+    def jwt_file(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        'jwt_profile_json' is required
+        """
+        return pulumi.get(self, "jwt_file")
+
+    @jwt_file.setter
+    def jwt_file(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jwt_file", value)
+
+    @property
     @pulumi.getter(name="jwtProfileFile")
     def jwt_profile_file(self) -> Optional[pulumi.Input[str]]:
         """
-        Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-        required
+        Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        'jwt_profile_json' is required
         """
         return pulumi.get(self, "jwt_profile_file")
 
@@ -108,7 +130,7 @@ class ProviderArgs:
     @pulumi.getter(name="jwtProfileJson")
     def jwt_profile_json(self) -> Optional[pulumi.Input[str]]:
         """
-        JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+        JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
         """
         return pulumi.get(self, "jwt_profile_json")
 
@@ -148,6 +170,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  insecure: Optional[pulumi.Input[bool]] = None,
+                 jwt_file: Optional[pulumi.Input[str]] = None,
                  jwt_profile_file: Optional[pulumi.Input[str]] = None,
                  jwt_profile_json: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None,
@@ -163,9 +186,11 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] domain: Domain used to connect to the ZITADEL instance
         :param pulumi.Input[bool] insecure: Use insecure connection
-        :param pulumi.Input[str] jwt_profile_file: Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-               required
-        :param pulumi.Input[str] jwt_profile_json: JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+        :param pulumi.Input[str] jwt_file: Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+               'jwt_profile_json' is required
+        :param pulumi.Input[str] jwt_profile_file: Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+               'jwt_profile_json' is required
+        :param pulumi.Input[str] jwt_profile_json: JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
         :param pulumi.Input[str] port: Used port if not the default ports 80 or 443 are configured
         :param pulumi.Input[str] token: Path to the file containing credentials to connect to ZITADEL
         """
@@ -202,6 +227,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  insecure: Optional[pulumi.Input[bool]] = None,
+                 jwt_file: Optional[pulumi.Input[str]] = None,
                  jwt_profile_file: Optional[pulumi.Input[str]] = None,
                  jwt_profile_json: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None,
@@ -219,6 +245,7 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError("Missing required property 'domain'")
             __props__.__dict__["domain"] = domain
             __props__.__dict__["insecure"] = pulumi.Output.from_input(insecure).apply(pulumi.runtime.to_json) if insecure is not None else None
+            __props__.__dict__["jwt_file"] = jwt_file
             __props__.__dict__["jwt_profile_file"] = jwt_profile_file
             __props__.__dict__["jwt_profile_json"] = jwt_profile_json
             __props__.__dict__["port"] = port
@@ -238,11 +265,20 @@ class Provider(pulumi.ProviderResource):
         return pulumi.get(self, "domain")
 
     @property
+    @pulumi.getter(name="jwtFile")
+    def jwt_file(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path to the file containing presigned JWT to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        'jwt_profile_json' is required
+        """
+        return pulumi.get(self, "jwt_file")
+
+    @property
     @pulumi.getter(name="jwtProfileFile")
     def jwt_profile_file(self) -> pulumi.Output[Optional[str]]:
         """
-        Path to the file containing credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is
-        required
+        Path to the file containing credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or
+        'jwt_profile_json' is required
         """
         return pulumi.get(self, "jwt_profile_file")
 
@@ -250,7 +286,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="jwtProfileJson")
     def jwt_profile_json(self) -> pulumi.Output[Optional[str]]:
         """
-        JSON value of credentials to connect to ZITADEL. Either 'jwt_profile_file' or 'jwt_profile_json' is required
+        JSON value of credentials to connect to ZITADEL. Either 'jwt_file', 'jwt_profile_file' or 'jwt_profile_json' is required
         """
         return pulumi.get(self, "jwt_profile_json")
 

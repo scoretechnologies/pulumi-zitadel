@@ -43,6 +43,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DefaultNotificationPolicy{}
 	case "zitadel:index/defaultOidcSettings:DefaultOidcSettings":
 		r = &DefaultOidcSettings{}
+	case "zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy":
+		r = &DefaultPasswordAgePolicy{}
 	case "zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy":
 		r = &DefaultPasswordComplexityPolicy{}
 	case "zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy":
@@ -69,6 +71,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IdpLdap{}
 	case "zitadel:index/idpOauth:IdpOauth":
 		r = &IdpOauth{}
+	case "zitadel:index/idpOidc:IdpOidc":
+		r = &IdpOidc{}
 	case "zitadel:index/idpSaml:IdpSaml":
 		r = &IdpSaml{}
 	case "zitadel:index/instanceMember:InstanceMember":
@@ -113,6 +117,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OrgMember{}
 	case "zitadel:index/orgMetadata:OrgMetadata":
 		r = &OrgMetadata{}
+	case "zitadel:index/passwordAgePolicy:PasswordAgePolicy":
+		r = &PasswordAgePolicy{}
 	case "zitadel:index/passwordComplexityPolicy:PasswordComplexityPolicy":
 		r = &PasswordComplexityPolicy{}
 	case "zitadel:index/personalAccessToken:PersonalAccessToken":
@@ -129,6 +135,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ProjectMember{}
 	case "zitadel:index/projectRole:ProjectRole":
 		r = &ProjectRole{}
+	case "zitadel:index/smsProviderHttp:SmsProviderHttp":
+		r = &SmsProviderHttp{}
 	case "zitadel:index/smsProviderTwilio:SmsProviderTwilio":
 		r = &SmsProviderTwilio{}
 	case "zitadel:index/smtpConfig:SmtpConfig":
@@ -227,6 +235,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"zitadel",
+		"index/defaultPasswordAgePolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"zitadel",
 		"index/defaultPasswordComplexityPolicy",
 		&module{version},
 	)
@@ -288,6 +301,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"zitadel",
 		"index/idpOauth",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"zitadel",
+		"index/idpOidc",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -402,6 +420,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"zitadel",
+		"index/passwordAgePolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"zitadel",
 		"index/passwordComplexityPolicy",
 		&module{version},
 	)
@@ -438,6 +461,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"zitadel",
 		"index/projectRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"zitadel",
+		"index/smsProviderHttp",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

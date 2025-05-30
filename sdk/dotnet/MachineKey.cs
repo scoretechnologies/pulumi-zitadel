@@ -29,6 +29,16 @@ namespace scoretechnologies.Zitadel
     ///         UserId = data.Zitadel_machine_user.Default.Id,
     ///         KeyType = "KEY_TYPE_JSON",
     ///         ExpirationDate = "2519-04-01T08:45:00Z",
+    ///         PublicKey = @"-----BEGIN PUBLIC KEY-----
+    /// MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApj7JHjDLo2TwiJznwMrD
+    /// 97ybWoRegSK1rx37+i+Yrmhaee0GuOyj+hWG8/yKazAbZfYB0atO/zHxy1BtFNfX
+    /// uYZS689TvfZVP6TctonH0VTlDDKOjmkGl472DhJvLvwjPXq1e55jS0kToK5lGRW6
+    /// Qrgm7m/KiF96Qmp5kUbF1sThVtKBW9GIAuzWEk3O9opftd/NH3BxvUToWLgG/GFx
+    /// hLeOTrcuPibVHkHbIjt1VHaOD8rKAaRV+KBZUmyS9vdo629wfSx/ylUmwWZ6YUTj
+    /// khnqTi0s7j/oLGJNk+DSjMzkcgls0gzXAwPfiEnjEB+Xxw3LnR6k17HyYxqQs7kz
+    /// ZwIDAQAB
+    /// -----END PUBLIC KEY-----
+    /// ",
     ///     });
     /// 
     /// });
@@ -36,7 +46,11 @@ namespace scoretechnologies.Zitadel
     /// 
     /// ## Import
     /// 
-    /// bash The resource can be imported using the ID format `&lt;id:user_id[:org_id][:key_details]&gt;`, e.g.
+    /// bash The resource can be imported using the ID format `&lt;id:user_id[:org_id][:key_details][:public_key]&gt;`, e.g. When importing with a public key, make sure to base64 encode it
+    /// 
+    /// ```sh
+    ///  $ pulumi import zitadel:index/machineKey:MachineKey imported '123456789012345678:123456789012345678:123456789012345678::Ii0tLS0tQkVHSU4gUF...
+    /// ```
     /// 
     /// ```sh
     ///  $ pulumi import zitadel:index/machineKey:MachineKey imported '123456789012345678:123456789012345678:123456789012345678:{"type":"serviceaccount","keyId":"123456789012345678","key":"-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ...-----END RSA PRIVATE KEY-----\n","userId":"123456789012345678"}'
@@ -68,6 +82,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Output("orgId")]
         public Output<string?> OrgId { get; private set; } = null!;
+
+        /// <summary>
+        /// Optionally provide a public key of your own generated RSA private key
+        /// </summary>
+        [Output("publicKey")]
+        public Output<string?> PublicKey { get; private set; } = null!;
 
         /// <summary>
         /// ID of the user
@@ -145,6 +165,12 @@ namespace scoretechnologies.Zitadel
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
+        /// Optionally provide a public key of your own generated RSA private key
+        /// </summary>
+        [Input("publicKey")]
+        public Input<string>? PublicKey { get; set; }
+
+        /// <summary>
         /// ID of the user
         /// </summary>
         [Input("userId", required: true)]
@@ -191,6 +217,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
+
+        /// <summary>
+        /// Optionally provide a public key of your own generated RSA private key
+        /// </summary>
+        [Input("publicKey")]
+        public Input<string>? PublicKey { get; set; }
 
         /// <summary>
         /// ID of the user

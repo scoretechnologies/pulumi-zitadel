@@ -60,6 +60,9 @@ export interface GetApplicationApiResult {
      * Auth method type
      */
     readonly authMethodType: string;
+    /**
+     * generated ID for this config
+     */
     readonly clientId: string;
     /**
      * The provider-assigned unique ID for this managed resource.

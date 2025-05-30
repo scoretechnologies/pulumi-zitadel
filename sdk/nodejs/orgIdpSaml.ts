@@ -21,6 +21,7 @@ import * as utilities from "./utilities";
  *     isCreationAllowed: true,
  *     isAutoCreation: false,
  *     isAutoUpdate: true,
+ *     autoLinking: "AUTO_LINKING_OPTION_USERNAME",
  *     metadataXml: `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
  * <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://saml.example.com/entityid" validUntil="2034-05-15T14:21:58.979Z">
  *   <md:IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -99,6 +100,10 @@ export class OrgIdpSaml extends pulumi.CustomResource {
     }
 
     /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    public readonly autoLinking!: pulumi.Output<string | undefined>;
+    /**
      * The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
      */
     public readonly binding!: pulumi.Output<string | undefined>;
@@ -148,6 +153,7 @@ export class OrgIdpSaml extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OrgIdpSamlState | undefined;
+            resourceInputs["autoLinking"] = state ? state.autoLinking : undefined;
             resourceInputs["binding"] = state ? state.binding : undefined;
             resourceInputs["isAutoCreation"] = state ? state.isAutoCreation : undefined;
             resourceInputs["isAutoUpdate"] = state ? state.isAutoUpdate : undefined;
@@ -174,6 +180,7 @@ export class OrgIdpSaml extends pulumi.CustomResource {
             if ((!args || args.metadataXml === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'metadataXml'");
             }
+            resourceInputs["autoLinking"] = args ? args.autoLinking : undefined;
             resourceInputs["binding"] = args ? args.binding : undefined;
             resourceInputs["isAutoCreation"] = args ? args.isAutoCreation : undefined;
             resourceInputs["isAutoUpdate"] = args ? args.isAutoUpdate : undefined;
@@ -193,6 +200,10 @@ export class OrgIdpSaml extends pulumi.CustomResource {
  * Input properties used for looking up and filtering OrgIdpSaml resources.
  */
 export interface OrgIdpSamlState {
+    /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    autoLinking?: pulumi.Input<string>;
     /**
      * The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
      */
@@ -235,6 +246,10 @@ export interface OrgIdpSamlState {
  * The set of arguments for constructing a OrgIdpSaml resource.
  */
 export interface OrgIdpSamlArgs {
+    /**
+     * Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+     */
+    autoLinking?: pulumi.Input<string>;
     /**
      * The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
      */

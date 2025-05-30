@@ -11,8 +11,6 @@ using Pulumi;
 namespace scoretechnologies.Zitadel
 {
     /// <summary>
-    /// Resource representing the SMTP configuration of an instance.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -39,10 +37,10 @@ namespace scoretechnologies.Zitadel
     /// 
     /// ## Import
     /// 
-    /// bash The resource can be imported using the ID format `&lt;[password]&gt;`, e.g.
+    /// bash The resource can be imported using the ID format `&lt;id[:password]&gt;`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import zitadel:index/smtpConfig:SmtpConfig imported 'p4ssw0rd'
+    ///  $ pulumi import zitadel:index/smtpConfig:SmtpConfig imported '123456789012345678:p4ssw0rd'
     /// ```
     /// </summary>
     [ZitadelResourceType("zitadel:index/smtpConfig:SmtpConfig")]
@@ -77,6 +75,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Output("senderName")]
         public Output<string> SenderName { get; private set; } = null!;
+
+        /// <summary>
+        /// Set the SMTP configuration active after creating/updating.
+        /// </summary>
+        [Output("setActive")]
+        public Output<bool?> SetActive { get; private set; } = null!;
 
         /// <summary>
         /// TLS used to communicate with your SMTP server.
@@ -182,6 +186,12 @@ namespace scoretechnologies.Zitadel
         public Input<string> SenderName { get; set; } = null!;
 
         /// <summary>
+        /// Set the SMTP configuration active after creating/updating.
+        /// </summary>
+        [Input("setActive")]
+        public Input<bool>? SetActive { get; set; }
+
+        /// <summary>
         /// TLS used to communicate with your SMTP server.
         /// </summary>
         [Input("tls")]
@@ -240,6 +250,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Input("senderName")]
         public Input<string>? SenderName { get; set; }
+
+        /// <summary>
+        /// Set the SMTP configuration active after creating/updating.
+        /// </summary>
+        [Input("setActive")]
+        public Input<bool>? SetActive { get; set; }
 
         /// <summary>
         /// TLS used to communicate with your SMTP server.

@@ -53,6 +53,7 @@ namespace scoretechnologies.Zitadel
     ///         IsCreationAllowed = true,
     ///         IsAutoCreation = false,
     ///         IsAutoUpdate = true,
+    ///         AutoLinking = "AUTO_LINKING_OPTION_USERNAME",
     ///     });
     /// 
     /// });
@@ -69,6 +70,12 @@ namespace scoretechnologies.Zitadel
     [ZitadelResourceType("zitadel:index/orgIdpLdap:OrgIdpLdap")]
     public partial class OrgIdpLdap : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        /// </summary>
+        [Output("autoLinking")]
+        public Output<string?> AutoLinking { get; private set; } = null!;
+
         /// <summary>
         /// User attribute for the avatar url
         /// </summary>
@@ -289,6 +296,12 @@ namespace scoretechnologies.Zitadel
     public sealed class OrgIdpLdapArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        /// </summary>
+        [Input("autoLinking")]
+        public Input<string>? AutoLinking { get; set; }
+
+        /// <summary>
         /// User attribute for the avatar url
         /// </summary>
         [Input("avatarUrlAttribute")]
@@ -492,6 +505,12 @@ namespace scoretechnologies.Zitadel
 
     public sealed class OrgIdpLdapState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        /// </summary>
+        [Input("autoLinking")]
+        public Input<string>? AutoLinking { get; set; }
+
         /// <summary>
         /// User attribute for the avatar url
         /// </summary>

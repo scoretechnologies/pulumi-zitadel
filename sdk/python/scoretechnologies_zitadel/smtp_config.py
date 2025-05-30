@@ -19,6 +19,7 @@ class SmtpConfigArgs:
                  sender_name: pulumi.Input[str],
                  password: Optional[pulumi.Input[str]] = None,
                  reply_to_address: Optional[pulumi.Input[str]] = None,
+                 set_active: Optional[pulumi.Input[bool]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
@@ -28,6 +29,7 @@ class SmtpConfigArgs:
         :param pulumi.Input[str] sender_name: Sender name used to send emails.
         :param pulumi.Input[str] password: Password used to communicate with your SMTP server.
         :param pulumi.Input[str] reply_to_address: Address to reply to.
+        :param pulumi.Input[bool] set_active: Set the SMTP configuration active after creating/updating.
         :param pulumi.Input[bool] tls: TLS used to communicate with your SMTP server.
         :param pulumi.Input[str] user: User used to communicate with your SMTP server.
         """
@@ -38,6 +40,7 @@ class SmtpConfigArgs:
             sender_name=sender_name,
             password=password,
             reply_to_address=reply_to_address,
+            set_active=set_active,
             tls=tls,
             user=user,
         )
@@ -49,6 +52,7 @@ class SmtpConfigArgs:
              sender_name: pulumi.Input[str],
              password: Optional[pulumi.Input[str]] = None,
              reply_to_address: Optional[pulumi.Input[str]] = None,
+             set_active: Optional[pulumi.Input[bool]] = None,
              tls: Optional[pulumi.Input[bool]] = None,
              user: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
@@ -59,6 +63,8 @@ class SmtpConfigArgs:
             sender_name = kwargs['senderName']
         if 'replyToAddress' in kwargs:
             reply_to_address = kwargs['replyToAddress']
+        if 'setActive' in kwargs:
+            set_active = kwargs['setActive']
 
         _setter("host", host)
         _setter("sender_address", sender_address)
@@ -67,6 +73,8 @@ class SmtpConfigArgs:
             _setter("password", password)
         if reply_to_address is not None:
             _setter("reply_to_address", reply_to_address)
+        if set_active is not None:
+            _setter("set_active", set_active)
         if tls is not None:
             _setter("tls", tls)
         if user is not None:
@@ -133,6 +141,18 @@ class SmtpConfigArgs:
         pulumi.set(self, "reply_to_address", value)
 
     @property
+    @pulumi.getter(name="setActive")
+    def set_active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set the SMTP configuration active after creating/updating.
+        """
+        return pulumi.get(self, "set_active")
+
+    @set_active.setter
+    def set_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "set_active", value)
+
+    @property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -165,6 +185,7 @@ class _SmtpConfigState:
                  reply_to_address: Optional[pulumi.Input[str]] = None,
                  sender_address: Optional[pulumi.Input[str]] = None,
                  sender_name: Optional[pulumi.Input[str]] = None,
+                 set_active: Optional[pulumi.Input[bool]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
@@ -174,6 +195,7 @@ class _SmtpConfigState:
         :param pulumi.Input[str] reply_to_address: Address to reply to.
         :param pulumi.Input[str] sender_address: Address used to send emails.
         :param pulumi.Input[str] sender_name: Sender name used to send emails.
+        :param pulumi.Input[bool] set_active: Set the SMTP configuration active after creating/updating.
         :param pulumi.Input[bool] tls: TLS used to communicate with your SMTP server.
         :param pulumi.Input[str] user: User used to communicate with your SMTP server.
         """
@@ -184,6 +206,7 @@ class _SmtpConfigState:
             reply_to_address=reply_to_address,
             sender_address=sender_address,
             sender_name=sender_name,
+            set_active=set_active,
             tls=tls,
             user=user,
         )
@@ -195,6 +218,7 @@ class _SmtpConfigState:
              reply_to_address: Optional[pulumi.Input[str]] = None,
              sender_address: Optional[pulumi.Input[str]] = None,
              sender_name: Optional[pulumi.Input[str]] = None,
+             set_active: Optional[pulumi.Input[bool]] = None,
              tls: Optional[pulumi.Input[bool]] = None,
              user: Optional[pulumi.Input[str]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
@@ -205,6 +229,8 @@ class _SmtpConfigState:
             sender_address = kwargs['senderAddress']
         if 'senderName' in kwargs:
             sender_name = kwargs['senderName']
+        if 'setActive' in kwargs:
+            set_active = kwargs['setActive']
 
         if host is not None:
             _setter("host", host)
@@ -216,6 +242,8 @@ class _SmtpConfigState:
             _setter("sender_address", sender_address)
         if sender_name is not None:
             _setter("sender_name", sender_name)
+        if set_active is not None:
+            _setter("set_active", set_active)
         if tls is not None:
             _setter("tls", tls)
         if user is not None:
@@ -282,6 +310,18 @@ class _SmtpConfigState:
         pulumi.set(self, "sender_name", value)
 
     @property
+    @pulumi.getter(name="setActive")
+    def set_active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set the SMTP configuration active after creating/updating.
+        """
+        return pulumi.get(self, "set_active")
+
+    @set_active.setter
+    def set_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "set_active", value)
+
+    @property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -316,12 +356,11 @@ class SmtpConfig(pulumi.CustomResource):
                  reply_to_address: Optional[pulumi.Input[str]] = None,
                  sender_address: Optional[pulumi.Input[str]] = None,
                  sender_name: Optional[pulumi.Input[str]] = None,
+                 set_active: Optional[pulumi.Input[bool]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Resource representing the SMTP configuration of an instance.
-
         ## Example Usage
 
         ```python
@@ -340,10 +379,10 @@ class SmtpConfig(pulumi.CustomResource):
 
         ## Import
 
-        bash The resource can be imported using the ID format `<[password]>`, e.g.
+        bash The resource can be imported using the ID format `<id[:password]>`, e.g.
 
         ```sh
-         $ pulumi import zitadel:index/smtpConfig:SmtpConfig imported 'p4ssw0rd'
+         $ pulumi import zitadel:index/smtpConfig:SmtpConfig imported '123456789012345678:p4ssw0rd'
         ```
 
         :param str resource_name: The name of the resource.
@@ -353,6 +392,7 @@ class SmtpConfig(pulumi.CustomResource):
         :param pulumi.Input[str] reply_to_address: Address to reply to.
         :param pulumi.Input[str] sender_address: Address used to send emails.
         :param pulumi.Input[str] sender_name: Sender name used to send emails.
+        :param pulumi.Input[bool] set_active: Set the SMTP configuration active after creating/updating.
         :param pulumi.Input[bool] tls: TLS used to communicate with your SMTP server.
         :param pulumi.Input[str] user: User used to communicate with your SMTP server.
         """
@@ -363,8 +403,6 @@ class SmtpConfig(pulumi.CustomResource):
                  args: SmtpConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Resource representing the SMTP configuration of an instance.
-
         ## Example Usage
 
         ```python
@@ -383,10 +421,10 @@ class SmtpConfig(pulumi.CustomResource):
 
         ## Import
 
-        bash The resource can be imported using the ID format `<[password]>`, e.g.
+        bash The resource can be imported using the ID format `<id[:password]>`, e.g.
 
         ```sh
-         $ pulumi import zitadel:index/smtpConfig:SmtpConfig imported 'p4ssw0rd'
+         $ pulumi import zitadel:index/smtpConfig:SmtpConfig imported '123456789012345678:p4ssw0rd'
         ```
 
         :param str resource_name: The name of the resource.
@@ -413,6 +451,7 @@ class SmtpConfig(pulumi.CustomResource):
                  reply_to_address: Optional[pulumi.Input[str]] = None,
                  sender_address: Optional[pulumi.Input[str]] = None,
                  sender_name: Optional[pulumi.Input[str]] = None,
+                 set_active: Optional[pulumi.Input[bool]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -435,6 +474,7 @@ class SmtpConfig(pulumi.CustomResource):
             if sender_name is None and not opts.urn:
                 raise TypeError("Missing required property 'sender_name'")
             __props__.__dict__["sender_name"] = sender_name
+            __props__.__dict__["set_active"] = set_active
             __props__.__dict__["tls"] = tls
             __props__.__dict__["user"] = user
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
@@ -454,6 +494,7 @@ class SmtpConfig(pulumi.CustomResource):
             reply_to_address: Optional[pulumi.Input[str]] = None,
             sender_address: Optional[pulumi.Input[str]] = None,
             sender_name: Optional[pulumi.Input[str]] = None,
+            set_active: Optional[pulumi.Input[bool]] = None,
             tls: Optional[pulumi.Input[bool]] = None,
             user: Optional[pulumi.Input[str]] = None) -> 'SmtpConfig':
         """
@@ -468,6 +509,7 @@ class SmtpConfig(pulumi.CustomResource):
         :param pulumi.Input[str] reply_to_address: Address to reply to.
         :param pulumi.Input[str] sender_address: Address used to send emails.
         :param pulumi.Input[str] sender_name: Sender name used to send emails.
+        :param pulumi.Input[bool] set_active: Set the SMTP configuration active after creating/updating.
         :param pulumi.Input[bool] tls: TLS used to communicate with your SMTP server.
         :param pulumi.Input[str] user: User used to communicate with your SMTP server.
         """
@@ -480,6 +522,7 @@ class SmtpConfig(pulumi.CustomResource):
         __props__.__dict__["reply_to_address"] = reply_to_address
         __props__.__dict__["sender_address"] = sender_address
         __props__.__dict__["sender_name"] = sender_name
+        __props__.__dict__["set_active"] = set_active
         __props__.__dict__["tls"] = tls
         __props__.__dict__["user"] = user
         return SmtpConfig(resource_name, opts=opts, __props__=__props__)
@@ -523,6 +566,14 @@ class SmtpConfig(pulumi.CustomResource):
         Sender name used to send emails.
         """
         return pulumi.get(self, "sender_name")
+
+    @property
+    @pulumi.getter(name="setActive")
+    def set_active(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Set the SMTP configuration active after creating/updating.
+        """
+        return pulumi.get(self, "set_active")
 
     @property
     @pulumi.getter

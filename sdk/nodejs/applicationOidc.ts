@@ -30,6 +30,7 @@ import * as utilities from "./utilities";
  *     idTokenRoleAssertion: false,
  *     idTokenUserinfoAssertion: false,
  *     additionalOrigins: [],
+ *     skipNativeAppSuccessPage: false,
  * });
  * ```
  *
@@ -106,7 +107,7 @@ export class ApplicationOidc extends pulumi.CustomResource {
      */
     public readonly devMode!: pulumi.Output<boolean | undefined>;
     /**
-     * Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+     * Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
      */
     public readonly grantTypes!: pulumi.Output<string[]>;
     /**
@@ -141,6 +142,10 @@ export class ApplicationOidc extends pulumi.CustomResource {
      * Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
      */
     public readonly responseTypes!: pulumi.Output<string[]>;
+    /**
+     * Skip the successful login page on native apps and directly redirect the user to the callback.
+     */
+    public readonly skipNativeAppSuccessPage!: pulumi.Output<boolean | undefined>;
     /**
      * Version, supported values: OIDC*VERSION*1_0
      */
@@ -177,6 +182,7 @@ export class ApplicationOidc extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["redirectUris"] = state ? state.redirectUris : undefined;
             resourceInputs["responseTypes"] = state ? state.responseTypes : undefined;
+            resourceInputs["skipNativeAppSuccessPage"] = state ? state.skipNativeAppSuccessPage : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ApplicationOidcArgs | undefined;
@@ -208,6 +214,7 @@ export class ApplicationOidc extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["redirectUris"] = args ? args.redirectUris : undefined;
             resourceInputs["responseTypes"] = args ? args.responseTypes : undefined;
+            resourceInputs["skipNativeAppSuccessPage"] = args ? args.skipNativeAppSuccessPage : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
             resourceInputs["clientId"] = undefined /*out*/;
             resourceInputs["clientSecret"] = undefined /*out*/;
@@ -260,7 +267,7 @@ export interface ApplicationOidcState {
      */
     devMode?: pulumi.Input<boolean>;
     /**
-     * Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+     * Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
      */
     grantTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -295,6 +302,10 @@ export interface ApplicationOidcState {
      * Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
      */
     responseTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Skip the successful login page on native apps and directly redirect the user to the callback.
+     */
+    skipNativeAppSuccessPage?: pulumi.Input<boolean>;
     /**
      * Version, supported values: OIDC*VERSION*1_0
      */
@@ -334,7 +345,7 @@ export interface ApplicationOidcArgs {
      */
     devMode?: pulumi.Input<boolean>;
     /**
-     * Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE_CODE
+     * Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
      */
     grantTypes: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -369,6 +380,10 @@ export interface ApplicationOidcArgs {
      * Response type, supported values: OIDC*RESPONSE*TYPE*CODE, OIDC*RESPONSE*TYPE*ID*TOKEN, OIDC*RESPONSE*TYPE*ID*TOKEN*TOKEN
      */
     responseTypes: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Skip the successful login page on native apps and directly redirect the user to the callback.
+     */
+    skipNativeAppSuccessPage?: pulumi.Input<boolean>;
     /**
      * Version, supported values: OIDC*VERSION*1_0
      */

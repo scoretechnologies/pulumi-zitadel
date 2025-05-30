@@ -34,6 +34,18 @@ import (
 //				UserId:         pulumi.Any(data.Zitadel_machine_user.Default.Id),
 //				KeyType:        pulumi.String("KEY_TYPE_JSON"),
 //				ExpirationDate: pulumi.String("2519-04-01T08:45:00Z"),
+//				PublicKey: pulumi.String(`-----BEGIN PUBLIC KEY-----
+//
+// MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApj7JHjDLo2TwiJznwMrD
+// 97ybWoRegSK1rx37+i+Yrmhaee0GuOyj+hWG8/yKazAbZfYB0atO/zHxy1BtFNfX
+// uYZS689TvfZVP6TctonH0VTlDDKOjmkGl472DhJvLvwjPXq1e55jS0kToK5lGRW6
+// Qrgm7m/KiF96Qmp5kUbF1sThVtKBW9GIAuzWEk3O9opftd/NH3BxvUToWLgG/GFx
+// hLeOTrcuPibVHkHbIjt1VHaOD8rKAaRV+KBZUmyS9vdo629wfSx/ylUmwWZ6YUTj
+// khnqTi0s7j/oLGJNk+DSjMzkcgls0gzXAwPfiEnjEB+Xxw3LnR6k17HyYxqQs7kz
+// ZwIDAQAB
+// -----END PUBLIC KEY-----
+// `),
+//
 //			})
 //			if err != nil {
 //				return err
@@ -46,7 +58,13 @@ import (
 //
 // ## Import
 //
-// bash The resource can be imported using the ID format `<id:user_id[:org_id][:key_details]>`, e.g.
+// bash The resource can be imported using the ID format `<id:user_id[:org_id][:key_details][:public_key]>`, e.g. When importing with a public key, make sure to base64 encode it
+//
+// ```sh
+//
+//	$ pulumi import zitadel:index/machineKey:MachineKey imported '123456789012345678:123456789012345678:123456789012345678::Ii0tLS0tQkVHSU4gUF...
+//
+// ```
 //
 // ```sh
 //
@@ -64,6 +82,8 @@ type MachineKey struct {
 	KeyType pulumi.StringOutput `pulumi:"keyType"`
 	// ID of the organization
 	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	// Optionally provide a public key of your own generated RSA private key
+	PublicKey pulumi.StringPtrOutput `pulumi:"publicKey"`
 	// ID of the user
 	UserId pulumi.StringOutput `pulumi:"userId"`
 }
@@ -116,6 +136,8 @@ type machineKeyState struct {
 	KeyType *string `pulumi:"keyType"`
 	// ID of the organization
 	OrgId *string `pulumi:"orgId"`
+	// Optionally provide a public key of your own generated RSA private key
+	PublicKey *string `pulumi:"publicKey"`
 	// ID of the user
 	UserId *string `pulumi:"userId"`
 }
@@ -129,6 +151,8 @@ type MachineKeyState struct {
 	KeyType pulumi.StringPtrInput
 	// ID of the organization
 	OrgId pulumi.StringPtrInput
+	// Optionally provide a public key of your own generated RSA private key
+	PublicKey pulumi.StringPtrInput
 	// ID of the user
 	UserId pulumi.StringPtrInput
 }
@@ -144,6 +168,8 @@ type machineKeyArgs struct {
 	KeyType string `pulumi:"keyType"`
 	// ID of the organization
 	OrgId *string `pulumi:"orgId"`
+	// Optionally provide a public key of your own generated RSA private key
+	PublicKey *string `pulumi:"publicKey"`
 	// ID of the user
 	UserId string `pulumi:"userId"`
 }
@@ -156,6 +182,8 @@ type MachineKeyArgs struct {
 	KeyType pulumi.StringInput
 	// ID of the organization
 	OrgId pulumi.StringPtrInput
+	// Optionally provide a public key of your own generated RSA private key
+	PublicKey pulumi.StringPtrInput
 	// ID of the user
 	UserId pulumi.StringInput
 }
@@ -289,6 +317,11 @@ func (o MachineKeyOutput) KeyType() pulumi.StringOutput {
 // ID of the organization
 func (o MachineKeyOutput) OrgId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MachineKey) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+}
+
+// Optionally provide a public key of your own generated RSA private key
+func (o MachineKeyOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MachineKey) pulumi.StringPtrOutput { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
 // ID of the user

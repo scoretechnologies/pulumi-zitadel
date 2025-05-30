@@ -60,6 +60,8 @@ type LookupOrgIdpLdapArgs struct {
 
 // A collection of values returned by getOrgIdpLdap.
 type LookupOrgIdpLdapResult struct {
+	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+	AutoLinking string `pulumi:"autoLinking"`
 	// User attribute for the avatar url
 	AvatarUrlAttribute string `pulumi:"avatarUrlAttribute"`
 	// Base DN for LDAP connections
@@ -164,6 +166,11 @@ func (o LookupOrgIdpLdapResultOutput) ToOutput(ctx context.Context) pulumix.Outp
 	return pulumix.Output[LookupOrgIdpLdapResult]{
 		OutputState: o.OutputState,
 	}
+}
+
+// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+func (o LookupOrgIdpLdapResultOutput) AutoLinking() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrgIdpLdapResult) string { return v.AutoLinking }).(pulumi.StringOutput)
 }
 
 // User attribute for the avatar url

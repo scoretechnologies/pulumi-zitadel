@@ -19,6 +19,7 @@ class IdpSamlArgs:
                  is_creation_allowed: pulumi.Input[bool],
                  is_linking_allowed: pulumi.Input[bool],
                  metadata_xml: pulumi.Input[str],
+                 auto_linking: Optional[pulumi.Input[str]] = None,
                  binding: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  with_signed_request: Optional[pulumi.Input[bool]] = None):
@@ -29,6 +30,7 @@ class IdpSamlArgs:
         :param pulumi.Input[bool] is_creation_allowed: enable if users should be able to create a new account in ZITADEL when using an external account
         :param pulumi.Input[bool] is_linking_allowed: enable if users should be able to link an existing ZITADEL user with an external account
         :param pulumi.Input[str] metadata_xml: The metadata XML as plain string
+        :param pulumi.Input[str] auto_linking: Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
         :param pulumi.Input[str] binding: The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
         :param pulumi.Input[str] name: Name of the IDP
         :param pulumi.Input[bool] with_signed_request: Whether the SAML IDP requires signed requests
@@ -40,6 +42,7 @@ class IdpSamlArgs:
             is_creation_allowed=is_creation_allowed,
             is_linking_allowed=is_linking_allowed,
             metadata_xml=metadata_xml,
+            auto_linking=auto_linking,
             binding=binding,
             name=name,
             with_signed_request=with_signed_request,
@@ -52,6 +55,7 @@ class IdpSamlArgs:
              is_creation_allowed: pulumi.Input[bool],
              is_linking_allowed: pulumi.Input[bool],
              metadata_xml: pulumi.Input[str],
+             auto_linking: Optional[pulumi.Input[str]] = None,
              binding: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              with_signed_request: Optional[pulumi.Input[bool]] = None,
@@ -67,6 +71,8 @@ class IdpSamlArgs:
             is_linking_allowed = kwargs['isLinkingAllowed']
         if 'metadataXml' in kwargs:
             metadata_xml = kwargs['metadataXml']
+        if 'autoLinking' in kwargs:
+            auto_linking = kwargs['autoLinking']
         if 'withSignedRequest' in kwargs:
             with_signed_request = kwargs['withSignedRequest']
 
@@ -75,6 +81,8 @@ class IdpSamlArgs:
         _setter("is_creation_allowed", is_creation_allowed)
         _setter("is_linking_allowed", is_linking_allowed)
         _setter("metadata_xml", metadata_xml)
+        if auto_linking is not None:
+            _setter("auto_linking", auto_linking)
         if binding is not None:
             _setter("binding", binding)
         if name is not None:
@@ -143,6 +151,18 @@ class IdpSamlArgs:
         pulumi.set(self, "metadata_xml", value)
 
     @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
+
+    @auto_linking.setter
+    def auto_linking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_linking", value)
+
+    @property
     @pulumi.getter
     def binding(self) -> Optional[pulumi.Input[str]]:
         """
@@ -182,6 +202,7 @@ class IdpSamlArgs:
 @pulumi.input_type
 class _IdpSamlState:
     def __init__(__self__, *,
+                 auto_linking: Optional[pulumi.Input[str]] = None,
                  binding: Optional[pulumi.Input[str]] = None,
                  is_auto_creation: Optional[pulumi.Input[bool]] = None,
                  is_auto_update: Optional[pulumi.Input[bool]] = None,
@@ -192,6 +213,7 @@ class _IdpSamlState:
                  with_signed_request: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering IdpSaml resources.
+        :param pulumi.Input[str] auto_linking: Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
         :param pulumi.Input[str] binding: The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
         :param pulumi.Input[bool] is_auto_creation: enable if a new account in ZITADEL should be created automatically on login with an external account
         :param pulumi.Input[bool] is_auto_update: enable if a the ZITADEL account fields should be updated automatically on each login
@@ -203,6 +225,7 @@ class _IdpSamlState:
         """
         _IdpSamlState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
+            auto_linking=auto_linking,
             binding=binding,
             is_auto_creation=is_auto_creation,
             is_auto_update=is_auto_update,
@@ -215,6 +238,7 @@ class _IdpSamlState:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
+             auto_linking: Optional[pulumi.Input[str]] = None,
              binding: Optional[pulumi.Input[str]] = None,
              is_auto_creation: Optional[pulumi.Input[bool]] = None,
              is_auto_update: Optional[pulumi.Input[bool]] = None,
@@ -225,6 +249,8 @@ class _IdpSamlState:
              with_signed_request: Optional[pulumi.Input[bool]] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
              **kwargs):
+        if 'autoLinking' in kwargs:
+            auto_linking = kwargs['autoLinking']
         if 'isAutoCreation' in kwargs:
             is_auto_creation = kwargs['isAutoCreation']
         if 'isAutoUpdate' in kwargs:
@@ -238,6 +264,8 @@ class _IdpSamlState:
         if 'withSignedRequest' in kwargs:
             with_signed_request = kwargs['withSignedRequest']
 
+        if auto_linking is not None:
+            _setter("auto_linking", auto_linking)
         if binding is not None:
             _setter("binding", binding)
         if is_auto_creation is not None:
@@ -254,6 +282,18 @@ class _IdpSamlState:
             _setter("name", name)
         if with_signed_request is not None:
             _setter("with_signed_request", with_signed_request)
+
+    @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
+
+    @auto_linking.setter
+    def auto_linking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_linking", value)
 
     @property
     @pulumi.getter
@@ -357,6 +397,7 @@ class IdpSaml(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_linking: Optional[pulumi.Input[str]] = None,
                  binding: Optional[pulumi.Input[str]] = None,
                  is_auto_creation: Optional[pulumi.Input[bool]] = None,
                  is_auto_update: Optional[pulumi.Input[bool]] = None,
@@ -376,6 +417,7 @@ class IdpSaml(pulumi.CustomResource):
         import scoretechnologies_zitadel as zitadel
 
         default = zitadel.IdpSaml("default",
+            auto_linking="AUTO_LINKING_OPTION_USERNAME",
             binding="SAML_BINDING_POST",
             is_auto_creation=False,
             is_auto_update=True,
@@ -433,6 +475,7 @@ class IdpSaml(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] auto_linking: Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
         :param pulumi.Input[str] binding: The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
         :param pulumi.Input[bool] is_auto_creation: enable if a new account in ZITADEL should be created automatically on login with an external account
         :param pulumi.Input[bool] is_auto_update: enable if a the ZITADEL account fields should be updated automatically on each login
@@ -458,6 +501,7 @@ class IdpSaml(pulumi.CustomResource):
         import scoretechnologies_zitadel as zitadel
 
         default = zitadel.IdpSaml("default",
+            auto_linking="AUTO_LINKING_OPTION_USERNAME",
             binding="SAML_BINDING_POST",
             is_auto_creation=False,
             is_auto_update=True,
@@ -532,6 +576,7 @@ class IdpSaml(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_linking: Optional[pulumi.Input[str]] = None,
                  binding: Optional[pulumi.Input[str]] = None,
                  is_auto_creation: Optional[pulumi.Input[bool]] = None,
                  is_auto_update: Optional[pulumi.Input[bool]] = None,
@@ -549,6 +594,7 @@ class IdpSaml(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IdpSamlArgs.__new__(IdpSamlArgs)
 
+            __props__.__dict__["auto_linking"] = auto_linking
             __props__.__dict__["binding"] = binding
             if is_auto_creation is None and not opts.urn:
                 raise TypeError("Missing required property 'is_auto_creation'")
@@ -577,6 +623,7 @@ class IdpSaml(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auto_linking: Optional[pulumi.Input[str]] = None,
             binding: Optional[pulumi.Input[str]] = None,
             is_auto_creation: Optional[pulumi.Input[bool]] = None,
             is_auto_update: Optional[pulumi.Input[bool]] = None,
@@ -592,6 +639,7 @@ class IdpSaml(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] auto_linking: Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
         :param pulumi.Input[str] binding: The binding, supported values: SAML*BINDING*UNSPECIFIED, SAML*BINDING*POST, SAML*BINDING*REDIRECT, SAML*BINDING*ARTIFACT
         :param pulumi.Input[bool] is_auto_creation: enable if a new account in ZITADEL should be created automatically on login with an external account
         :param pulumi.Input[bool] is_auto_update: enable if a the ZITADEL account fields should be updated automatically on each login
@@ -605,6 +653,7 @@ class IdpSaml(pulumi.CustomResource):
 
         __props__ = _IdpSamlState.__new__(_IdpSamlState)
 
+        __props__.__dict__["auto_linking"] = auto_linking
         __props__.__dict__["binding"] = binding
         __props__.__dict__["is_auto_creation"] = is_auto_creation
         __props__.__dict__["is_auto_update"] = is_auto_update
@@ -614,6 +663,14 @@ class IdpSaml(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["with_signed_request"] = with_signed_request
         return IdpSaml(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="autoLinking")
+    def auto_linking(self) -> pulumi.Output[Optional[str]]:
+        """
+        Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
+        """
+        return pulumi.get(self, "auto_linking")
 
     @property
     @pulumi.getter
