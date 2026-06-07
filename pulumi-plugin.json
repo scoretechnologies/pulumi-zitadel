@@ -1,0 +1,6 @@
+{
+  "resource": true,
+  "name": "zitadel",
+  "version": "v0.1.14",
+  "server": "github://api.github.com/scoretechnologies"
+}
