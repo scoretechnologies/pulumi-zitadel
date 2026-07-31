@@ -22,17 +22,17 @@ jobs:
       issues: write
     steps:
       - name: Install Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v6
         with:
           go-version: 1.25.x
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        uses: jaxxstorm/action-install-gh-release@v3.0.0
         with:
           repo: pulumi/pulumictl
       - name: Install Pulumi CLI
-        uses: pulumi/actions@v4
+        uses: pulumi/actions@v7
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.ref_name }}
 
@@ -42,10 +42,6 @@ jobs:
       - name: Install upgrade-provider
         run: go install github.com/pulumi/upgrade-provider@176a45cf2471d5fccd6235c385ba1ec17b74a37f
         shell: bash
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: "7.6"
       - name: "Set up git identity: name"
         run: git config --global user.name 'eliobischof'
         shell: bash

@@ -35,7 +35,7 @@ jobs:
       contents: write
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v5
     - name: Bump version
       id: version
       uses: mapped/action-vtl@latest
@@ -47,17 +47,17 @@ jobs:
     - name: Unshallow clone for tags
       run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v6
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.5.0
+      uses: jaxxstorm/action-install-gh-release@v3.0.0
       with:
         repo: pulumi/pulumictl
     - name: Set PreRelease Version
       run: echo "GORELEASER_CURRENT_TAG=${{ steps.version.outputs.release_tag }}" >> $GITHUB_ENV
     - name: Run GoReleaser
-      uses: goreleaser/goreleaser-action@v4
+      uses: goreleaser/goreleaser-action@v7
       with:
         args: -p 3 release --clean
         version: latest
@@ -74,35 +74,35 @@ jobs:
       id-token: write
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
       - name: Install Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v6
         with:
           go-version: ${{ matrix.goversion }}
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.5.0
+        uses: jaxxstorm/action-install-gh-release@v3.0.0
         with:
           repo: pulumi/pulumictl
       - name: Install Pulumi CLI
-        uses: pulumi/action-install-pulumi-cli@v2.0.0
+        uses: pulumi/actions@v7
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v5
         with:
           node-version: ${{matrix.nodeversion}}
           registry-url: ${{env.NPM_REGISTRY_URL}}
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         name: Install pnpm
         with:
           run_install: false
           version: latest
       - name: Setup DotNet
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{matrix.dotnetversion}}
       - name: Setup Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v6
         with:
           python-version: ${{matrix.pythonversion}}
       - name: Build SDK
@@ -124,7 +124,7 @@ jobs:
           password: ${{ env.PYPI_PASSWORD }}
           packages_dir: ${{github.workspace}}/sdk/python/bin/dist
       - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v4
         with:
           access: "public"
           token: ${{ env.NPM_TOKEN }}
@@ -149,5 +149,5 @@ jobs:
         nodeversion:
           - 20.x
         pythonversion:
-          - "3.9"
+          - "3.11"
 

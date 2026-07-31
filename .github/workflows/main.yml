@@ -20,4 +20,4 @@ jobs:
       goversion: 1.25.x
       dotnetversion: 6.0.300
       nodeversion: 20.x
-      pythonversion: 3.9
+      pythonversion: "3.11"
