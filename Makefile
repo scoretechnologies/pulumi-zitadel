@@ -105,7 +105,9 @@ clean::
 
 install_plugins::
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource random 4.3.1
+	# tfgen converts the upstream HCL examples into each target language, which
+	# needs the Terraform converter plugin.
+	pulumi plugin install converter terraform
 
 install_dotnet_sdk::
 	mkdir -p $(WORKING_DIR)/nuget
