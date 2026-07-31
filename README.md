@@ -48,12 +48,20 @@ dotnet add package scoretechnologies.Zitadel
 
 The following configuration points are available for the `zitadel` provider:
 
-- `zitadel:domain` - domain used to connect to the ZITADEL instance
-- `zitadel:insecure` - use insecure connection
-- `zitadel:jwtProfileFile` - path to the file containing credentials to connect to ZITADEL. Either `jwtProfileFile` or `jwtProfileJson`
-- `zitadel:jwtProfileJson` - JSON value of credentials to connect to ZITADEL. Either `jwtProfileFile` or `jwtProfileJson` is required
+- `zitadel:domain` - domain used to connect to the ZITADEL instance (required)
 - `zitadel:port` - used port if not the default ports 80 or 443 are configured
-- `zitadel:token` - path to the file containing credentials to connect to ZITADEL
+- `zitadel:insecure` - use insecure connection
+- `zitadel:insecureSkipVerifyTls` - disable TLS certificate verification. Only use in development or testing environments with self-signed certificates
+- `zitadel:transportHeaders` - custom headers added to both the HTTP authentication and gRPC API requests, for example a `Proxy-Authorization` header when fronted by GCP IAP
+
+Exactly one of the following credentials is required:
+
+- `zitadel:accessToken` - Personal Access Token to connect to ZITADEL
+- `zitadel:jwtProfileFile` - path to the file containing JWT Profile credentials
+- `zitadel:jwtProfileJson` - JSON value of the JWT Profile credentials
+- `zitadel:jwtFile` - path to a file containing a presigned JWT
+- `zitadel:systemApi` - configuration block for authenticating against the ZITADEL System API with a PEM encoded key
+- `zitadel:token` - **deprecated**, use `accessToken` for Personal Access Tokens or `jwtProfileFile` for JWT Profile credentials instead
 
 ## Reference
 

@@ -15,12 +15,12 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+	pftfgen "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
 	zitadel "github.com/scoretechnologies/pulumi-zitadel/provider"
-	"github.com/scoretechnologies/pulumi-zitadel/provider/pkg/version"
 )
 
 func main() {
-	// Modify the path to point to the new provider
-	tfgen.Main("zitadel", version.Version, zitadel.Provider())
+	// The muxer variant also writes the SDKv2/Plugin Framework dispatch table into
+	// bridge-metadata.json, which the provider binary needs at runtime.
+	pftfgen.MainWithMuxer("zitadel", zitadel.Provider())
 }

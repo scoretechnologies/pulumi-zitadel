@@ -17,17 +17,16 @@
 package main
 
 import (
+	"context"
 	_ "embed"
 
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	pftfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	zitadel "github.com/scoretechnologies/pulumi-zitadel/provider"
-	"github.com/scoretechnologies/pulumi-zitadel/provider/pkg/version"
 )
 
 //go:embed schema-embed.json
 var pulumiSchema []byte
 
 func main() {
-	// Modify the path to point to the new provider
-	tfbridge.Main("zitadel", version.Version, zitadel.Provider(), pulumiSchema)
+	pftfbridge.MainWithMuxer(context.Background(), "zitadel", zitadel.Provider(), pulumiSchema)
 }
