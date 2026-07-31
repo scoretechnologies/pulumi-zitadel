@@ -59,9 +59,13 @@ build_sdks:: install_plugins provider build_nodejs build_python build_go build_d
 
 build_nodejs:: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:: install_plugins tfgen # build the node sdk
+	# pnpm 10+ blocks dependency lifecycle scripts, and pnpm 11 turns the resulting
+	# "ignored build scripts" notice into a hard error. The only such script here is
+	# protobufjs, whose postinstall builds its CLI, which generating and compiling the
+	# SDK does not use. --ignore-scripts makes skipping it explicit instead of fatal.
 	$(WORKING_DIR)/bin/$(TFGEN) nodejs --overlays provider/overlays/nodejs --out sdk/nodejs/
 	cd sdk/nodejs/ && \
-        pnpm install && \
+        pnpm install --ignore-scripts && \
         pnpm run build && \
         cp ../../README.md ../../LICENSE package.json pnpm-lock.yaml ./bin/ && \
 		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
