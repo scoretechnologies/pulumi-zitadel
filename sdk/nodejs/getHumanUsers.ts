@@ -19,13 +19,15 @@ import * as utilities from "./utilities";
  *     userName: "example-name",
  *     userNameMethod: "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
  * });
- * const defaultGetHumanUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getHumanUser({
+ * const defaultGetHumanUser = _default.then(_default => std.toset({
+ *     input: _default.userIds,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getHumanUser({
  *     orgId: defaultZitadelOrg.id,
  *     userId: __value,
- * }) }), {});
- * export const userNames = std.toset({
+ * }) }), {}));
+ * export const userNames = defaultGetHumanUser.apply(defaultGetHumanUser => std.toset({
  *     input: Object.values(defaultGetHumanUser).map(user => (user.userName)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getHumanUsers(args?: GetHumanUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetHumanUsersResult> {
@@ -204,13 +206,15 @@ export interface GetHumanUsersResult {
  *     userName: "example-name",
  *     userNameMethod: "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
  * });
- * const defaultGetHumanUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getHumanUser({
+ * const defaultGetHumanUser = _default.then(_default => std.toset({
+ *     input: _default.userIds,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getHumanUser({
  *     orgId: defaultZitadelOrg.id,
  *     userId: __value,
- * }) }), {});
- * export const userNames = std.toset({
+ * }) }), {}));
+ * export const userNames = defaultGetHumanUser.apply(defaultGetHumanUser => std.toset({
  *     input: Object.values(defaultGetHumanUser).map(user => (user.userName)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getHumanUsersOutput(args?: GetHumanUsersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetHumanUsersResult> {

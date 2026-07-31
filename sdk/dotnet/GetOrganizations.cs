@@ -40,26 +40,20 @@ namespace scoretechnologies.Zitadel
         ///         IsDefault = true,
         ///     });
         /// 
-        ///     var defaultGetOrganization = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetOrganization.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetOrganization = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getOrganizationsResult =&gt; getOrganizationsResult.Ids),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["organizationNames"] = Std.Toset.Invoke(new()
+        ///         ["organizationNames"] = defaultGetOrganization.Apply(defaultGetOrganization =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetOrganization).Values.Select(org =&gt; 
         ///             {
         ///                 return org.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -95,26 +89,20 @@ namespace scoretechnologies.Zitadel
         ///         IsDefault = true,
         ///     });
         /// 
-        ///     var defaultGetOrganization = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetOrganization.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetOrganization = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getOrganizationsResult =&gt; getOrganizationsResult.Ids),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["organizationNames"] = Std.Toset.Invoke(new()
+        ///         ["organizationNames"] = defaultGetOrganization.Apply(defaultGetOrganization =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetOrganization).Values.Select(org =&gt; 
         ///             {
         ///                 return org.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -150,26 +138,20 @@ namespace scoretechnologies.Zitadel
         ///         IsDefault = true,
         ///     });
         /// 
-        ///     var defaultGetOrganization = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetOrganization.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetOrganization = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getOrganizationsResult =&gt; getOrganizationsResult.Ids),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["organizationNames"] = Std.Toset.Invoke(new()
+        ///         ["organizationNames"] = defaultGetOrganization.Apply(defaultGetOrganization =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetOrganization).Values.Select(org =&gt; 
         ///             {
         ///                 return org.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```

@@ -35,26 +35,20 @@ namespace scoretechnologies.Zitadel
         ///         State = "ORG_STATE_ACTIVE",
         ///     });
         /// 
-        ///     var defaultGetOrg = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetOrg.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetOrg = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getOrgsResult =&gt; getOrgsResult.Ids),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["orgNames"] = Std.Toset.Invoke(new()
+        ///         ["orgNames"] = defaultGetOrg.Apply(defaultGetOrg =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetOrg).Values.Select(org =&gt; 
         ///             {
         ///                 return org.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -85,26 +79,20 @@ namespace scoretechnologies.Zitadel
         ///         State = "ORG_STATE_ACTIVE",
         ///     });
         /// 
-        ///     var defaultGetOrg = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetOrg.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetOrg = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getOrgsResult =&gt; getOrgsResult.Ids),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["orgNames"] = Std.Toset.Invoke(new()
+        ///         ["orgNames"] = defaultGetOrg.Apply(defaultGetOrg =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetOrg).Values.Select(org =&gt; 
         ///             {
         ///                 return org.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -135,26 +123,20 @@ namespace scoretechnologies.Zitadel
         ///         State = "ORG_STATE_ACTIVE",
         ///     });
         /// 
-        ///     var defaultGetOrg = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetOrg.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetOrg = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getOrgsResult =&gt; getOrgsResult.Ids),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["orgNames"] = Std.Toset.Invoke(new()
+        ///         ["orgNames"] = defaultGetOrg.Apply(defaultGetOrg =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetOrg).Values.Select(org =&gt; 
         ///             {
         ///                 return org.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```

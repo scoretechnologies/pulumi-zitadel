@@ -19,12 +19,14 @@ import * as utilities from "./utilities";
  *     name: "example-name",
  *     nameMethod: "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
  * });
- * const defaultGetProjectV2 = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getProjectV2({
+ * const defaultGetProjectV2 = _default.then(_default => std.toset({
+ *     input: _default.projectIds,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getProjectV2({
  *     projectId: __value,
- * }) }), {});
- * export const projectV2Names = std.toset({
+ * }) }), {}));
+ * export const projectV2Names = defaultGetProjectV2.apply(defaultGetProjectV2 => std.toset({
  *     input: Object.values(defaultGetProjectV2).map(project => (project.name)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getProjectsV2(args: GetProjectsV2Args, opts?: pulumi.InvokeOptions): Promise<GetProjectsV2Result> {
@@ -94,12 +96,14 @@ export interface GetProjectsV2Result {
  *     name: "example-name",
  *     nameMethod: "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
  * });
- * const defaultGetProjectV2 = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getProjectV2({
+ * const defaultGetProjectV2 = _default.then(_default => std.toset({
+ *     input: _default.projectIds,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getProjectV2({
  *     projectId: __value,
- * }) }), {});
- * export const projectV2Names = std.toset({
+ * }) }), {}));
+ * export const projectV2Names = defaultGetProjectV2.apply(defaultGetProjectV2 => std.toset({
  *     input: Object.values(defaultGetProjectV2).map(project => (project.name)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getProjectsV2Output(args: GetProjectsV2OutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectsV2Result> {

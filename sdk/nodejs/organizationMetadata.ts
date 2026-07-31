@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *     key: "binary_data",
  *     value: std.base64encode({
  *         input: "binary data here",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  * });
  * ```
  *

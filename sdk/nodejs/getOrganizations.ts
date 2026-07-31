@@ -24,12 +24,14 @@ import * as utilities from "./utilities";
  * const defaultOrg = zitadel.getOrganizations({
  *     isDefault: true,
  * });
- * const defaultGetOrganization = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getOrganization({
+ * const defaultGetOrganization = _default.then(_default => std.toset({
+ *     input: _default.ids,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getOrganization({
  *     id: __value,
- * }) }), {});
- * export const organizationNames = std.toset({
+ * }) }), {}));
+ * export const organizationNames = defaultGetOrganization.apply(defaultGetOrganization => std.toset({
  *     input: Object.values(defaultGetOrganization).map(org => (org.name)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getOrganizations(args?: GetOrganizationsArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationsResult> {
@@ -136,12 +138,14 @@ export interface GetOrganizationsResult {
  * const defaultOrg = zitadel.getOrganizations({
  *     isDefault: true,
  * });
- * const defaultGetOrganization = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getOrganization({
+ * const defaultGetOrganization = _default.then(_default => std.toset({
+ *     input: _default.ids,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getOrganization({
  *     id: __value,
- * }) }), {});
- * export const organizationNames = std.toset({
+ * }) }), {}));
+ * export const organizationNames = defaultGetOrganization.apply(defaultGetOrganization => std.toset({
  *     input: Object.values(defaultGetOrganization).map(org => (org.name)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getOrganizationsOutput(args?: GetOrganizationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOrganizationsResult> {

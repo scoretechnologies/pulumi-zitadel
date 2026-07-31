@@ -33,26 +33,20 @@ namespace scoretechnologies.Zitadel
         ///         NameMethod = "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         ///     });
         /// 
-        ///     var defaultGetProjectV2 = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetProjectV2.Invoke(new()
-        ///         {
-        ///             ProjectId = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetProjectV2 = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getProjectsV2Result =&gt; getProjectsV2Result.ProjectIds),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["projectV2Names"] = Std.Toset.Invoke(new()
+        ///         ["projectV2Names"] = defaultGetProjectV2.Apply(defaultGetProjectV2 =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetProjectV2).Values.Select(project =&gt; 
         ///             {
         ///                 return project.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -81,26 +75,20 @@ namespace scoretechnologies.Zitadel
         ///         NameMethod = "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         ///     });
         /// 
-        ///     var defaultGetProjectV2 = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetProjectV2.Invoke(new()
-        ///         {
-        ///             ProjectId = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetProjectV2 = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getProjectsV2Result =&gt; getProjectsV2Result.ProjectIds),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["projectV2Names"] = Std.Toset.Invoke(new()
+        ///         ["projectV2Names"] = defaultGetProjectV2.Apply(defaultGetProjectV2 =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetProjectV2).Values.Select(project =&gt; 
         ///             {
         ///                 return project.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -129,26 +117,20 @@ namespace scoretechnologies.Zitadel
         ///         NameMethod = "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         ///     });
         /// 
-        ///     var defaultGetProjectV2 = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetProjectV2.Invoke(new()
-        ///         {
-        ///             ProjectId = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetProjectV2 = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getProjectsV2Result =&gt; getProjectsV2Result.ProjectIds),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["projectV2Names"] = Std.Toset.Invoke(new()
+        ///         ["projectV2Names"] = defaultGetProjectV2.Apply(defaultGetProjectV2 =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetProjectV2).Values.Select(project =&gt; 
         ///             {
         ///                 return project.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```

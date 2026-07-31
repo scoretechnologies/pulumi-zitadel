@@ -114,8 +114,8 @@ def get_projects_v2(name: Optional[_builtins.str] = None,
     default = zitadel.get_projects_v2(org_id=default_zitadel_org["id"],
         name="example-name",
         name_method="TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE")
-    default_get_project_v2 = {str(__key): zitadel.get_project_v2(project_id=__value) for __key, __value in enumerate(std.toset(input=default.project_ids)["result"])}
-    pulumi.export("projectV2Names", std.toset(input=[project.name for project in default_get_project_v2.values()])["result"])
+    default_get_project_v2 = {str(__key): zitadel.get_project_v2(project_id=__value) for __key, __value in enumerate(std.toset(input=default.project_ids).result)}
+    pulumi.export("projectV2Names", std.toset(input=[project.name for project in default_get_project_v2.values()]).result)
     ```
 
 
@@ -153,8 +153,8 @@ def get_projects_v2_output(name: pulumi.Input[Optional[_builtins.str]] = None,
     default = zitadel.get_projects_v2(org_id=default_zitadel_org["id"],
         name="example-name",
         name_method="TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE")
-    default_get_project_v2 = {str(__key): zitadel.get_project_v2(project_id=__value) for __key, __value in enumerate(std.toset(input=default.project_ids)["result"])}
-    pulumi.export("projectV2Names", std.toset(input=[project.name for project in default_get_project_v2.values()])["result"])
+    default_get_project_v2 = {str(__key): zitadel.get_project_v2(project_id=__value) for __key, __value in enumerate(std.toset(input=default.project_ids).result)}
+    pulumi.export("projectV2Names", std.toset(input=[project.name for project in default_get_project_v2.values()]).result)
     ```
 
 

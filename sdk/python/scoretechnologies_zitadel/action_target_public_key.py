@@ -231,7 +231,7 @@ class ActionTargetPublicKey(pulumi.CustomResource):
 
         default = zitadel.ActionTargetPublicKey("default",
             target_id=default_zitadel_action_target["id"],
-            public_key=std.file(input="path/to/public_key.pem")["result"])
+            public_key=std.file(input="path/to/public_key.pem").result)
         ```
 
         ## Import
@@ -268,7 +268,7 @@ class ActionTargetPublicKey(pulumi.CustomResource):
 
         default = zitadel.ActionTargetPublicKey("default",
             target_id=default_zitadel_action_target["id"],
-            public_key=std.file(input="path/to/public_key.pem")["result"])
+            public_key=std.file(input="path/to/public_key.pem").result)
         ```
 
         ## Import

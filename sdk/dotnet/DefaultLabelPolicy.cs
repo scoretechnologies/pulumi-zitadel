@@ -40,27 +40,27 @@ namespace scoretechnologies.Zitadel
     ///         LogoHash = Std.Filemd5.Invoke(new()
     ///         {
     ///             Input = "/path/to/logo.jpg",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         LogoPath = "/path/to/logo.jpg",
     ///         LogoDarkHash = Std.Filemd5.Invoke(new()
     ///         {
     ///             Input = "/path/to/logo_dark.jpg",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         LogoDarkPath = "/path/to/logo_dark.jpg",
     ///         IconHash = Std.Filemd5.Invoke(new()
     ///         {
     ///             Input = "/path/to/icon.jpg",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         IconPath = "/path/to/icon.jpg",
     ///         IconDarkHash = Std.Filemd5.Invoke(new()
     ///         {
     ///             Input = "/path/to/icon_dark.jpg",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         IconDarkPath = "/path/to/icon_dark.jpg",
     ///         FontHash = Std.Filemd5.Invoke(new()
     ///         {
     ///             Input = "/path/to/font.tff",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         FontPath = "/path/to/font.tff",
     ///         ThemeMode = "THEME_MODE_DARK",
     ///     });
