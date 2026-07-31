@@ -21,12 +21,14 @@ import * as utilities from "./utilities";
  *     domainMethod: "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
  *     state: "ORG_STATE_ACTIVE",
  * });
- * const defaultGetOrg = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getOrg({
+ * const defaultGetOrg = _default.then(_default => std.toset({
+ *     input: _default.ids,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getOrg({
  *     id: __value,
- * }) }), {});
- * export const orgNames = std.toset({
+ * }) }), {}));
+ * export const orgNames = defaultGetOrg.apply(defaultGetOrg => std.toset({
  *     input: Object.values(defaultGetOrg).map(org => (org.name)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getOrgs(args?: GetOrgsArgs, opts?: pulumi.InvokeOptions): Promise<GetOrgsResult> {
@@ -121,12 +123,14 @@ export interface GetOrgsResult {
  *     domainMethod: "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
  *     state: "ORG_STATE_ACTIVE",
  * });
- * const defaultGetOrg = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getOrg({
+ * const defaultGetOrg = _default.then(_default => std.toset({
+ *     input: _default.ids,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getOrg({
  *     id: __value,
- * }) }), {});
- * export const orgNames = std.toset({
+ * }) }), {}));
+ * export const orgNames = defaultGetOrg.apply(defaultGetOrg => std.toset({
  *     input: Object.values(defaultGetOrg).map(org => (org.name)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getOrgsOutput(args?: GetOrgsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOrgsResult> {

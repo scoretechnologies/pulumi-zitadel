@@ -15,6 +15,10 @@ VERSION         := $(shell pulumictl get version)
 
 TESTPARALLELISM := 4
 
+# Pinned so `make tfgen` produces the same schema and SDKs on every machine.
+STD_VERSION       := 2.3.2
+CONVERTER_VERSION := 1.3.0
+
 WORKING_DIR     := $(shell pwd)
 
 OS := $(shell uname)
@@ -111,7 +115,12 @@ install_plugins::
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
 	# tfgen converts the upstream HCL examples into each target language, which
 	# needs the Terraform converter plugin.
-	pulumi plugin install converter terraform
+	pulumi plugin install converter terraform $(CONVERTER_VERSION)
+	# Upstream examples call Terraform builtins such as file(), filemd5() and
+	# base64encode(), which convert into the std provider. Its version changes the
+	# generated example code, so it is pinned: resolving "latest" instead makes
+	# tfgen output depend on when it ran, which breaks the worktree-clean check.
+	pulumi plugin install resource std $(STD_VERSION)
 
 install_dotnet_sdk::
 	mkdir -p $(WORKING_DIR)/nuget

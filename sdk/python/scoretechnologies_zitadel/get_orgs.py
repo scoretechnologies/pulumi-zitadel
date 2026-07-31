@@ -154,8 +154,8 @@ def get_orgs(domain: Optional[_builtins.str] = None,
         domain="example.com",
         domain_method="TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         state="ORG_STATE_ACTIVE")
-    default_get_org = {str(__key): zitadel.get_org(id=__value) for __key, __value in enumerate(std.toset(input=default.ids)["result"])}
-    pulumi.export("orgNames", std.toset(input=[org.name for org in default_get_org.values()])["result"])
+    default_get_org = {str(__key): zitadel.get_org(id=__value) for __key, __value in enumerate(std.toset(input=default.ids).result)}
+    pulumi.export("orgNames", std.toset(input=[org.name for org in default_get_org.values()]).result)
     ```
 
 
@@ -204,8 +204,8 @@ def get_orgs_output(domain: pulumi.Input[Optional[Optional[_builtins.str]]] = No
         domain="example.com",
         domain_method="TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         state="ORG_STATE_ACTIVE")
-    default_get_org = {str(__key): zitadel.get_org(id=__value) for __key, __value in enumerate(std.toset(input=default.ids)["result"])}
-    pulumi.export("orgNames", std.toset(input=[org.name for org in default_get_org.values()])["result"])
+    default_get_org = {str(__key): zitadel.get_org(id=__value) for __key, __value in enumerate(std.toset(input=default.ids).result)}
+    pulumi.export("orgNames", std.toset(input=[org.name for org in default_get_org.values()]).result)
     ```
 
 

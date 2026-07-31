@@ -271,8 +271,8 @@ def get_human_users(display_name: Optional[_builtins.str] = None,
         user_name="example-name",
         user_name_method="TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE")
     default_get_human_user = {str(__key): zitadel.get_human_user(org_id=default_zitadel_org["id"],
-        user_id=__value) for __key, __value in enumerate(std.toset(input=default.user_ids)["result"])}
-    pulumi.export("userNames", std.toset(input=[user.user_name for user in default_get_human_user.values()])["result"])
+        user_id=__value) for __key, __value in enumerate(std.toset(input=default.user_ids).result)}
+    pulumi.export("userNames", std.toset(input=[user.user_name for user in default_get_human_user.values()]).result)
     ```
 
 
@@ -359,8 +359,8 @@ def get_human_users_output(display_name: pulumi.Input[Optional[Optional[_builtin
         user_name="example-name",
         user_name_method="TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE")
     default_get_human_user = {str(__key): zitadel.get_human_user(org_id=default_zitadel_org["id"],
-        user_id=__value) for __key, __value in enumerate(std.toset(input=default.user_ids)["result"])}
-    pulumi.export("userNames", std.toset(input=[user.user_name for user in default_get_human_user.values()])["result"])
+        user_id=__value) for __key, __value in enumerate(std.toset(input=default.user_ids).result)}
+    pulumi.export("userNames", std.toset(input=[user.user_name for user in default_get_human_user.values()]).result)
     ```
 
 

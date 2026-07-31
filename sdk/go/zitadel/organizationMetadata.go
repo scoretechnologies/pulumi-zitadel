@@ -21,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-std/sdk/v2/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/scoretechnologies/pulumi-zitadel/sdk/go/zitadel"
 //
@@ -37,8 +37,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeBase64encode, err := std.Base64encode(ctx, map[string]interface{}{
-//				"input": "binary data here",
+//			invokeBase64encode, err := std.Base64encode(ctx, &std.Base64encodeArgs{
+//				Input: "binary data here",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -46,7 +46,7 @@ import (
 //			_, err = zitadel.NewOrganizationMetadata(ctx, "binary", &zitadel.OrganizationMetadataArgs{
 //				OrganizationId: pulumi.Any(defaultZitadelOrganization.Id),
 //				Key:            pulumi.String("binary_data"),
-//				Value:          invokeBase64encode.Result,
+//				Value:          pulumi.String(invokeBase64encode.Result),
 //			})
 //			if err != nil {
 //				return err

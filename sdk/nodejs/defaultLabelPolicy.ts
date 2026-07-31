@@ -28,23 +28,23 @@ import * as utilities from "./utilities";
  *     setActive: true,
  *     logoHash: std.filemd5({
  *         input: "/path/to/logo.jpg",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     logoPath: "/path/to/logo.jpg",
  *     logoDarkHash: std.filemd5({
  *         input: "/path/to/logo_dark.jpg",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     logoDarkPath: "/path/to/logo_dark.jpg",
  *     iconHash: std.filemd5({
  *         input: "/path/to/icon.jpg",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     iconPath: "/path/to/icon.jpg",
  *     iconDarkHash: std.filemd5({
  *         input: "/path/to/icon_dark.jpg",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     iconDarkPath: "/path/to/icon_dark.jpg",
  *     fontHash: std.filemd5({
  *         input: "/path/to/font.tff",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     fontPath: "/path/to/font.tff",
  *     themeMode: "THEME_MODE_DARK",
  * });

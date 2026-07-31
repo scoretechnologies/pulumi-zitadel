@@ -33,27 +33,20 @@ namespace scoretechnologies.Zitadel
         ///         Name = "example-name",
         ///     });
         /// 
-        ///     var defaultGetApplicationV2 = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetApplicationV2.Invoke(new()
-        ///         {
-        ///             ProjectId = defaultZitadelProject.Id,
-        ///             AppId = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetApplicationV2 = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getApplicationsV2Result =&gt; getApplicationsV2Result.AppIds),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["applicationV2Names"] = Std.Toset.Invoke(new()
+        ///         ["applicationV2Names"] = defaultGetApplicationV2.Apply(defaultGetApplicationV2 =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetApplicationV2).Values.Select(app =&gt; 
         ///             {
         ///                 return app.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -82,27 +75,20 @@ namespace scoretechnologies.Zitadel
         ///         Name = "example-name",
         ///     });
         /// 
-        ///     var defaultGetApplicationV2 = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetApplicationV2.Invoke(new()
-        ///         {
-        ///             ProjectId = defaultZitadelProject.Id,
-        ///             AppId = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetApplicationV2 = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getApplicationsV2Result =&gt; getApplicationsV2Result.AppIds),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["applicationV2Names"] = Std.Toset.Invoke(new()
+        ///         ["applicationV2Names"] = defaultGetApplicationV2.Apply(defaultGetApplicationV2 =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetApplicationV2).Values.Select(app =&gt; 
         ///             {
         ///                 return app.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -131,27 +117,20 @@ namespace scoretechnologies.Zitadel
         ///         Name = "example-name",
         ///     });
         /// 
-        ///     var defaultGetApplicationV2 = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetApplicationV2.Invoke(new()
-        ///         {
-        ///             ProjectId = defaultZitadelProject.Id,
-        ///             AppId = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetApplicationV2 = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getApplicationsV2Result =&gt; getApplicationsV2Result.AppIds),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["applicationV2Names"] = Std.Toset.Invoke(new()
+        ///         ["applicationV2Names"] = defaultGetApplicationV2.Apply(defaultGetApplicationV2 =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetApplicationV2).Values.Select(app =&gt; 
         ///             {
         ///                 return app.Name;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```

@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  *     targetId: defaultZitadelActionTarget.id,
  *     publicKey: std.file({
  *         input: "path/to/public_key.pem",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  * });
  * ```
  *

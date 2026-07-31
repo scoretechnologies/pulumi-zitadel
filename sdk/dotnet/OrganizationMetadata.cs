@@ -38,7 +38,7 @@ namespace scoretechnologies.Zitadel
     ///         Value = Std.Base64encode.Invoke(new()
     ///         {
     ///             Input = "binary data here",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     /// });

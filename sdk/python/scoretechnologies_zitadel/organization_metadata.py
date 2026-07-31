@@ -154,7 +154,7 @@ class OrganizationMetadata(pulumi.CustomResource):
         binary = zitadel.OrganizationMetadata("binary",
             organization_id=default_zitadel_organization["id"],
             key="binary_data",
-            value=std.base64encode(input="binary data here")["result"])
+            value=std.base64encode(input="binary data here").result)
         ```
 
         ## Import
@@ -193,7 +193,7 @@ class OrganizationMetadata(pulumi.CustomResource):
         binary = zitadel.OrganizationMetadata("binary",
             organization_id=default_zitadel_organization["id"],
             key="binary_data",
-            value=std.base64encode(input="binary data here")["result"])
+            value=std.base64encode(input="binary data here").result)
         ```
 
         ## Import

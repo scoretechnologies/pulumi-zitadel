@@ -33,27 +33,20 @@ namespace scoretechnologies.Zitadel
         ///         UserNameMethod = "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         ///     });
         /// 
-        ///     var defaultGetHumanUser = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetHumanUser.Invoke(new()
-        ///         {
-        ///             OrgId = defaultZitadelOrg.Id,
-        ///             UserId = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetHumanUser = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getHumanUsersResult =&gt; getHumanUsersResult.UserIds),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["userNames"] = Std.Toset.Invoke(new()
+        ///         ["userNames"] = defaultGetHumanUser.Apply(defaultGetHumanUser =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetHumanUser).Values.Select(user =&gt; 
         ///             {
         ///                 return user.UserName;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -82,27 +75,20 @@ namespace scoretechnologies.Zitadel
         ///         UserNameMethod = "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         ///     });
         /// 
-        ///     var defaultGetHumanUser = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetHumanUser.Invoke(new()
-        ///         {
-        ///             OrgId = defaultZitadelOrg.Id,
-        ///             UserId = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetHumanUser = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getHumanUsersResult =&gt; getHumanUsersResult.UserIds),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["userNames"] = Std.Toset.Invoke(new()
+        ///         ["userNames"] = defaultGetHumanUser.Apply(defaultGetHumanUser =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetHumanUser).Values.Select(user =&gt; 
         ///             {
         ///                 return user.UserName;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```
@@ -131,27 +117,20 @@ namespace scoretechnologies.Zitadel
         ///         UserNameMethod = "TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         ///     });
         /// 
-        ///     var defaultGetHumanUser = .ToDictionary(item =&gt; {
-        ///         var __key = item.Key;
-        ///         return __key;
-        ///     }, item =&gt; {
-        ///         var __value = item.Value;
-        ///         return Zitadel.GetHumanUser.Invoke(new()
-        ///         {
-        ///             OrgId = defaultZitadelOrg.Id,
-        ///             UserId = __value,
-        ///         });
-        ///     });
+        ///     var defaultGetHumanUser = @default.Apply(@default =&gt; Std.Toset.Invoke(new()
+        ///     {
+        ///         Input = @default.Apply(getHumanUsersResult =&gt; getHumanUsersResult.UserIds),
+        ///     })).Apply(invoke =&gt; );
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["userNames"] = Std.Toset.Invoke(new()
+        ///         ["userNames"] = defaultGetHumanUser.Apply(defaultGetHumanUser =&gt; Std.Toset.Invoke(new()
         ///         {
         ///             Input = (defaultGetHumanUser).Values.Select(user =&gt; 
         ///             {
         ///                 return user.UserName;
         ///             }).ToList(),
-        ///         }).Result,
+        ///         })).Apply(invoke =&gt; invoke.Result),
         ///     };
         /// });
         /// ```

@@ -115,8 +115,8 @@ def get_applications_v2(name: Optional[_builtins.str] = None,
         project_id=default_zitadel_project["id"],
         name="example-name")
     default_get_application_v2 = {str(__key): zitadel.get_application_v2(project_id=default_zitadel_project["id"],
-        app_id=__value) for __key, __value in enumerate(std.toset(input=default.app_ids)["result"])}
-    pulumi.export("applicationV2Names", std.toset(input=[app.name for app in default_get_application_v2.values()])["result"])
+        app_id=__value) for __key, __value in enumerate(std.toset(input=default.app_ids).result)}
+    pulumi.export("applicationV2Names", std.toset(input=[app.name for app in default_get_application_v2.values()]).result)
     ```
 
 
@@ -155,8 +155,8 @@ def get_applications_v2_output(name: pulumi.Input[Optional[Optional[_builtins.st
         project_id=default_zitadel_project["id"],
         name="example-name")
     default_get_application_v2 = {str(__key): zitadel.get_application_v2(project_id=default_zitadel_project["id"],
-        app_id=__value) for __key, __value in enumerate(std.toset(input=default.app_ids)["result"])}
-    pulumi.export("applicationV2Names", std.toset(input=[app.name for app in default_get_application_v2.values()])["result"])
+        app_id=__value) for __key, __value in enumerate(std.toset(input=default.app_ids).result)}
+    pulumi.export("applicationV2Names", std.toset(input=[app.name for app in default_get_application_v2.values()]).result)
     ```
 
 

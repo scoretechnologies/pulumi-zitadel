@@ -168,8 +168,8 @@ def get_organizations(domain: Optional[_builtins.str] = None,
         domain_method="TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         state="ORGANIZATION_STATE_ACTIVE")
     default_org = zitadel.get_organizations(is_default=True)
-    default_get_organization = {str(__key): zitadel.get_organization(id=__value) for __key, __value in enumerate(std.toset(input=default.ids)["result"])}
-    pulumi.export("organizationNames", std.toset(input=[org.name for org in default_get_organization.values()])["result"])
+    default_get_organization = {str(__key): zitadel.get_organization(id=__value) for __key, __value in enumerate(std.toset(input=default.ids).result)}
+    pulumi.export("organizationNames", std.toset(input=[org.name for org in default_get_organization.values()]).result)
     ```
 
 
@@ -223,8 +223,8 @@ def get_organizations_output(domain: pulumi.Input[Optional[Optional[_builtins.st
         domain_method="TEXT_QUERY_METHOD_CONTAINS_IGNORE_CASE",
         state="ORGANIZATION_STATE_ACTIVE")
     default_org = zitadel.get_organizations(is_default=True)
-    default_get_organization = {str(__key): zitadel.get_organization(id=__value) for __key, __value in enumerate(std.toset(input=default.ids)["result"])}
-    pulumi.export("organizationNames", std.toset(input=[org.name for org in default_get_organization.values()])["result"])
+    default_get_organization = {str(__key): zitadel.get_organization(id=__value) for __key, __value in enumerate(std.toset(input=default.ids).result)}
+    pulumi.export("organizationNames", std.toset(input=[org.name for org in default_get_organization.values()]).result)
     ```
 
 

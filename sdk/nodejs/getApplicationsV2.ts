@@ -19,13 +19,15 @@ import * as utilities from "./utilities";
  *     projectId: defaultZitadelProject.id,
  *     name: "example-name",
  * });
- * const defaultGetApplicationV2 = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getApplicationV2({
+ * const defaultGetApplicationV2 = _default.then(_default => std.toset({
+ *     input: _default.appIds,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getApplicationV2({
  *     projectId: defaultZitadelProject.id,
  *     appId: __value,
- * }) }), {});
- * export const applicationV2Names = std.toset({
+ * }) }), {}));
+ * export const applicationV2Names = defaultGetApplicationV2.apply(defaultGetApplicationV2 => std.toset({
  *     input: Object.values(defaultGetApplicationV2).map(app => (app.name)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getApplicationsV2(args: GetApplicationsV2Args, opts?: pulumi.InvokeOptions): Promise<GetApplicationsV2Result> {
@@ -95,13 +97,15 @@ export interface GetApplicationsV2Result {
  *     projectId: defaultZitadelProject.id,
  *     name: "example-name",
  * });
- * const defaultGetApplicationV2 = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getApplicationV2({
+ * const defaultGetApplicationV2 = _default.then(_default => std.toset({
+ *     input: _default.appIds,
+ * })).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: zitadel.getApplicationV2({
  *     projectId: defaultZitadelProject.id,
  *     appId: __value,
- * }) }), {});
- * export const applicationV2Names = std.toset({
+ * }) }), {}));
+ * export const applicationV2Names = defaultGetApplicationV2.apply(defaultGetApplicationV2 => std.toset({
  *     input: Object.values(defaultGetApplicationV2).map(app => (app.name)),
- * }).result;
+ * })).apply(invoke => invoke.result);
  * ```
  */
 export function getApplicationsV2Output(args: GetApplicationsV2OutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApplicationsV2Result> {

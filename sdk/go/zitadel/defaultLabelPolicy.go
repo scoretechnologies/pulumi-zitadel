@@ -21,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-std/sdk/v2/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/scoretechnologies/pulumi-zitadel/sdk/go/zitadel"
 //
@@ -29,32 +29,32 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			invokeFilemd5, err := std.Filemd5(ctx, map[string]interface{}{
-//				"input": "/path/to/logo.jpg",
+//			invokeFilemd5, err := std.Filemd5(ctx, &std.Filemd5Args{
+//				Input: "/path/to/logo.jpg",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			invokeFilemd51, err := std.Filemd5(ctx, map[string]interface{}{
-//				"input": "/path/to/logo_dark.jpg",
+//			invokeFilemd51, err := std.Filemd5(ctx, &std.Filemd5Args{
+//				Input: "/path/to/logo_dark.jpg",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			invokeFilemd52, err := std.Filemd5(ctx, map[string]interface{}{
-//				"input": "/path/to/icon.jpg",
+//			invokeFilemd52, err := std.Filemd5(ctx, &std.Filemd5Args{
+//				Input: "/path/to/icon.jpg",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			invokeFilemd53, err := std.Filemd5(ctx, map[string]interface{}{
-//				"input": "/path/to/icon_dark.jpg",
+//			invokeFilemd53, err := std.Filemd5(ctx, &std.Filemd5Args{
+//				Input: "/path/to/icon_dark.jpg",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			invokeFilemd54, err := std.Filemd5(ctx, map[string]interface{}{
-//				"input": "/path/to/font.tff",
+//			invokeFilemd54, err := std.Filemd5(ctx, &std.Filemd5Args{
+//				Input: "/path/to/font.tff",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -71,15 +71,15 @@ import (
 //				FontColorDark:       pulumi.String("#ffffff"),
 //				DisableWatermark:    pulumi.Bool(false),
 //				SetActive:           pulumi.Bool(true),
-//				LogoHash:            invokeFilemd5.Result,
+//				LogoHash:            pulumi.String(invokeFilemd5.Result),
 //				LogoPath:            pulumi.String("/path/to/logo.jpg"),
-//				LogoDarkHash:        invokeFilemd51.Result,
+//				LogoDarkHash:        pulumi.String(invokeFilemd51.Result),
 //				LogoDarkPath:        pulumi.String("/path/to/logo_dark.jpg"),
-//				IconHash:            invokeFilemd52.Result,
+//				IconHash:            pulumi.String(invokeFilemd52.Result),
 //				IconPath:            pulumi.String("/path/to/icon.jpg"),
-//				IconDarkHash:        invokeFilemd53.Result,
+//				IconDarkHash:        pulumi.String(invokeFilemd53.Result),
 //				IconDarkPath:        pulumi.String("/path/to/icon_dark.jpg"),
-//				FontHash:            invokeFilemd54.Result,
+//				FontHash:            pulumi.String(invokeFilemd54.Result),
 //				FontPath:            pulumi.String("/path/to/font.tff"),
 //				ThemeMode:           pulumi.String("THEME_MODE_DARK"),
 //			})

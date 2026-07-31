@@ -30,7 +30,7 @@ namespace scoretechnologies.Zitadel
     ///         PublicKey = Std.File.Invoke(new()
     ///         {
     ///             Input = "path/to/public_key.pem",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     /// });

@@ -21,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-std/sdk/v2/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/scoretechnologies/pulumi-zitadel/sdk/go/zitadel"
 //
@@ -29,15 +29,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			invokeFile, err := std.File(ctx, map[string]interface{}{
-//				"input": "path/to/public_key.pem",
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "path/to/public_key.pem",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = zitadel.NewActionTargetPublicKey(ctx, "default", &zitadel.ActionTargetPublicKeyArgs{
 //				TargetId:  pulumi.Any(defaultZitadelActionTarget.Id),
-//				PublicKey: invokeFile.Result,
+//				PublicKey: pulumi.String(invokeFile.Result),
 //			})
 //			if err != nil {
 //				return err
