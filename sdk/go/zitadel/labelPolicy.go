@@ -131,7 +131,7 @@ type LabelPolicy struct {
 	LogoUrl             pulumi.StringOutput    `pulumi:"logoUrl"`
 	LogoUrlDark         pulumi.StringOutput    `pulumi:"logoUrlDark"`
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// hex value for primary color
 	PrimaryColor pulumi.StringOutput `pulumi:"primaryColor"`
 	// hex value for primary color dark theme
@@ -554,8 +554,8 @@ func (o LabelPolicyOutput) LogoUrlDark() pulumi.StringOutput {
 }
 
 // ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-func (o LabelPolicyOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LabelPolicy) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o LabelPolicyOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LabelPolicy) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // hex value for primary color

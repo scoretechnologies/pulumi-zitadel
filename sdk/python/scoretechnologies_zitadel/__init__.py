@@ -21,6 +21,7 @@ from .application_saml import *
 from .application_v2 import *
 from .default_domain_claimed_message_text import *
 from .default_domain_policy import *
+from .default_hosted_login_translation import *
 from .default_init_message_text import *
 from .default_invite_user_message_text import *
 from .default_label_policy import *
@@ -74,6 +75,7 @@ from .get_idp_ldap import *
 from .get_idp_oauth import *
 from .get_idp_oidc import *
 from .get_idp_saml import *
+from .get_idps import *
 from .get_instance import *
 from .get_instance_custom_domains import *
 from .get_instance_features import *
@@ -95,6 +97,7 @@ from .get_org_idp_ldap import *
 from .get_org_idp_oauth import *
 from .get_org_idp_oidc import *
 from .get_org_idp_saml import *
+from .get_org_idps import *
 from .get_org_jwt_idp import *
 from .get_org_oidc_idp import *
 from .get_organization import *
@@ -112,10 +115,13 @@ from .get_projects import *
 from .get_projects_v2 import *
 from .get_system_features import *
 from .get_trigger_actions import *
+from .get_user_grant import *
+from .get_user_grants import *
 from .get_user_metadata import *
 from .get_user_metadatas import *
 from .get_webkey import *
 from .get_zitadel import *
+from .hosted_login_translation import *
 from .human_user import *
 from .idp_apple import *
 from .idp_azure_ad import *
@@ -321,6 +327,14 @@ _utilities.register(
  },
  {
   "pkg": "zitadel",
+  "mod": "index/defaultHostedLoginTranslation",
+  "fqn": "scoretechnologies_zitadel",
+  "classes": {
+   "zitadel:index/defaultHostedLoginTranslation:DefaultHostedLoginTranslation": "DefaultHostedLoginTranslation"
+  }
+ },
+ {
+  "pkg": "zitadel",
   "mod": "index/defaultInitMessageText",
   "fqn": "scoretechnologies_zitadel",
   "classes": {
@@ -509,6 +523,14 @@ _utilities.register(
   "fqn": "scoretechnologies_zitadel",
   "classes": {
    "zitadel:index/emailProviderSmtp:EmailProviderSmtp": "EmailProviderSmtp"
+  }
+ },
+ {
+  "pkg": "zitadel",
+  "mod": "index/hostedLoginTranslation",
+  "fqn": "scoretechnologies_zitadel",
+  "classes": {
+   "zitadel:index/hostedLoginTranslation:HostedLoginTranslation": "HostedLoginTranslation"
   }
  },
  {

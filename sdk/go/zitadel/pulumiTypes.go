@@ -13,6 +13,162 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type ApplicationOidcAndroid struct {
+	// Android package name (applicationId) from the app manifest, e.g. com.example.app.
+	PackageName string `pulumi:"packageName"`
+	// SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+	Sha256CertFingerprints []string `pulumi:"sha256CertFingerprints"`
+}
+
+// ApplicationOidcAndroidInput is an input type that accepts ApplicationOidcAndroidArgs and ApplicationOidcAndroidOutput values.
+// You can construct a concrete instance of `ApplicationOidcAndroidInput` via:
+//
+//	ApplicationOidcAndroidArgs{...}
+type ApplicationOidcAndroidInput interface {
+	pulumi.Input
+
+	ToApplicationOidcAndroidOutput() ApplicationOidcAndroidOutput
+	ToApplicationOidcAndroidOutputWithContext(context.Context) ApplicationOidcAndroidOutput
+}
+
+type ApplicationOidcAndroidArgs struct {
+	// Android package name (applicationId) from the app manifest, e.g. com.example.app.
+	PackageName pulumi.StringInput `pulumi:"packageName"`
+	// SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+	Sha256CertFingerprints pulumi.StringArrayInput `pulumi:"sha256CertFingerprints"`
+}
+
+func (ApplicationOidcAndroidArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationOidcAndroid)(nil)).Elem()
+}
+
+func (i ApplicationOidcAndroidArgs) ToApplicationOidcAndroidOutput() ApplicationOidcAndroidOutput {
+	return i.ToApplicationOidcAndroidOutputWithContext(context.Background())
+}
+
+func (i ApplicationOidcAndroidArgs) ToApplicationOidcAndroidOutputWithContext(ctx context.Context) ApplicationOidcAndroidOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationOidcAndroidOutput)
+}
+
+func (i ApplicationOidcAndroidArgs) ToApplicationOidcAndroidPtrOutput() ApplicationOidcAndroidPtrOutput {
+	return i.ToApplicationOidcAndroidPtrOutputWithContext(context.Background())
+}
+
+func (i ApplicationOidcAndroidArgs) ToApplicationOidcAndroidPtrOutputWithContext(ctx context.Context) ApplicationOidcAndroidPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationOidcAndroidOutput).ToApplicationOidcAndroidPtrOutputWithContext(ctx)
+}
+
+// ApplicationOidcAndroidPtrInput is an input type that accepts ApplicationOidcAndroidArgs, ApplicationOidcAndroidPtr and ApplicationOidcAndroidPtrOutput values.
+// You can construct a concrete instance of `ApplicationOidcAndroidPtrInput` via:
+//
+//	        ApplicationOidcAndroidArgs{...}
+//
+//	or:
+//
+//	        nil
+type ApplicationOidcAndroidPtrInput interface {
+	pulumi.Input
+
+	ToApplicationOidcAndroidPtrOutput() ApplicationOidcAndroidPtrOutput
+	ToApplicationOidcAndroidPtrOutputWithContext(context.Context) ApplicationOidcAndroidPtrOutput
+}
+
+type applicationOidcAndroidPtrType ApplicationOidcAndroidArgs
+
+func ApplicationOidcAndroidPtr(v *ApplicationOidcAndroidArgs) ApplicationOidcAndroidPtrInput {
+	return (*applicationOidcAndroidPtrType)(v)
+}
+
+func (*applicationOidcAndroidPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApplicationOidcAndroid)(nil)).Elem()
+}
+
+func (i *applicationOidcAndroidPtrType) ToApplicationOidcAndroidPtrOutput() ApplicationOidcAndroidPtrOutput {
+	return i.ToApplicationOidcAndroidPtrOutputWithContext(context.Background())
+}
+
+func (i *applicationOidcAndroidPtrType) ToApplicationOidcAndroidPtrOutputWithContext(ctx context.Context) ApplicationOidcAndroidPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationOidcAndroidPtrOutput)
+}
+
+type ApplicationOidcAndroidOutput struct{ *pulumi.OutputState }
+
+func (ApplicationOidcAndroidOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationOidcAndroid)(nil)).Elem()
+}
+
+func (o ApplicationOidcAndroidOutput) ToApplicationOidcAndroidOutput() ApplicationOidcAndroidOutput {
+	return o
+}
+
+func (o ApplicationOidcAndroidOutput) ToApplicationOidcAndroidOutputWithContext(ctx context.Context) ApplicationOidcAndroidOutput {
+	return o
+}
+
+func (o ApplicationOidcAndroidOutput) ToApplicationOidcAndroidPtrOutput() ApplicationOidcAndroidPtrOutput {
+	return o.ToApplicationOidcAndroidPtrOutputWithContext(context.Background())
+}
+
+func (o ApplicationOidcAndroidOutput) ToApplicationOidcAndroidPtrOutputWithContext(ctx context.Context) ApplicationOidcAndroidPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ApplicationOidcAndroid) *ApplicationOidcAndroid {
+		return &v
+	}).(ApplicationOidcAndroidPtrOutput)
+}
+
+// Android package name (applicationId) from the app manifest, e.g. com.example.app.
+func (o ApplicationOidcAndroidOutput) PackageName() pulumi.StringOutput {
+	return o.ApplyT(func(v ApplicationOidcAndroid) string { return v.PackageName }).(pulumi.StringOutput)
+}
+
+// SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+func (o ApplicationOidcAndroidOutput) Sha256CertFingerprints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ApplicationOidcAndroid) []string { return v.Sha256CertFingerprints }).(pulumi.StringArrayOutput)
+}
+
+type ApplicationOidcAndroidPtrOutput struct{ *pulumi.OutputState }
+
+func (ApplicationOidcAndroidPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApplicationOidcAndroid)(nil)).Elem()
+}
+
+func (o ApplicationOidcAndroidPtrOutput) ToApplicationOidcAndroidPtrOutput() ApplicationOidcAndroidPtrOutput {
+	return o
+}
+
+func (o ApplicationOidcAndroidPtrOutput) ToApplicationOidcAndroidPtrOutputWithContext(ctx context.Context) ApplicationOidcAndroidPtrOutput {
+	return o
+}
+
+func (o ApplicationOidcAndroidPtrOutput) Elem() ApplicationOidcAndroidOutput {
+	return o.ApplyT(func(v *ApplicationOidcAndroid) ApplicationOidcAndroid {
+		if v != nil {
+			return *v
+		}
+		var ret ApplicationOidcAndroid
+		return ret
+	}).(ApplicationOidcAndroidOutput)
+}
+
+// Android package name (applicationId) from the app manifest, e.g. com.example.app.
+func (o ApplicationOidcAndroidPtrOutput) PackageName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationOidcAndroid) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PackageName
+	}).(pulumi.StringPtrOutput)
+}
+
+// SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+func (o ApplicationOidcAndroidPtrOutput) Sha256CertFingerprints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ApplicationOidcAndroid) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Sha256CertFingerprints
+	}).(pulumi.StringArrayOutput)
+}
+
 type ApplicationOidcComplianceProblem struct {
 	// Machine-readable identifier for the compliance problem
 	Key *string `pulumi:"key"`
@@ -117,6 +273,162 @@ func (o ApplicationOidcComplianceProblemArrayOutput) Index(i pulumi.IntInput) Ap
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApplicationOidcComplianceProblem {
 		return vs[0].([]ApplicationOidcComplianceProblem)[vs[1].(int)]
 	}).(ApplicationOidcComplianceProblemOutput)
+}
+
+type ApplicationOidcIos struct {
+	// iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+	BundleId string `pulumi:"bundleId"`
+	// Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+	TeamId string `pulumi:"teamId"`
+}
+
+// ApplicationOidcIosInput is an input type that accepts ApplicationOidcIosArgs and ApplicationOidcIosOutput values.
+// You can construct a concrete instance of `ApplicationOidcIosInput` via:
+//
+//	ApplicationOidcIosArgs{...}
+type ApplicationOidcIosInput interface {
+	pulumi.Input
+
+	ToApplicationOidcIosOutput() ApplicationOidcIosOutput
+	ToApplicationOidcIosOutputWithContext(context.Context) ApplicationOidcIosOutput
+}
+
+type ApplicationOidcIosArgs struct {
+	// iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+	BundleId pulumi.StringInput `pulumi:"bundleId"`
+	// Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+	TeamId pulumi.StringInput `pulumi:"teamId"`
+}
+
+func (ApplicationOidcIosArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationOidcIos)(nil)).Elem()
+}
+
+func (i ApplicationOidcIosArgs) ToApplicationOidcIosOutput() ApplicationOidcIosOutput {
+	return i.ToApplicationOidcIosOutputWithContext(context.Background())
+}
+
+func (i ApplicationOidcIosArgs) ToApplicationOidcIosOutputWithContext(ctx context.Context) ApplicationOidcIosOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationOidcIosOutput)
+}
+
+func (i ApplicationOidcIosArgs) ToApplicationOidcIosPtrOutput() ApplicationOidcIosPtrOutput {
+	return i.ToApplicationOidcIosPtrOutputWithContext(context.Background())
+}
+
+func (i ApplicationOidcIosArgs) ToApplicationOidcIosPtrOutputWithContext(ctx context.Context) ApplicationOidcIosPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationOidcIosOutput).ToApplicationOidcIosPtrOutputWithContext(ctx)
+}
+
+// ApplicationOidcIosPtrInput is an input type that accepts ApplicationOidcIosArgs, ApplicationOidcIosPtr and ApplicationOidcIosPtrOutput values.
+// You can construct a concrete instance of `ApplicationOidcIosPtrInput` via:
+//
+//	        ApplicationOidcIosArgs{...}
+//
+//	or:
+//
+//	        nil
+type ApplicationOidcIosPtrInput interface {
+	pulumi.Input
+
+	ToApplicationOidcIosPtrOutput() ApplicationOidcIosPtrOutput
+	ToApplicationOidcIosPtrOutputWithContext(context.Context) ApplicationOidcIosPtrOutput
+}
+
+type applicationOidcIosPtrType ApplicationOidcIosArgs
+
+func ApplicationOidcIosPtr(v *ApplicationOidcIosArgs) ApplicationOidcIosPtrInput {
+	return (*applicationOidcIosPtrType)(v)
+}
+
+func (*applicationOidcIosPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApplicationOidcIos)(nil)).Elem()
+}
+
+func (i *applicationOidcIosPtrType) ToApplicationOidcIosPtrOutput() ApplicationOidcIosPtrOutput {
+	return i.ToApplicationOidcIosPtrOutputWithContext(context.Background())
+}
+
+func (i *applicationOidcIosPtrType) ToApplicationOidcIosPtrOutputWithContext(ctx context.Context) ApplicationOidcIosPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApplicationOidcIosPtrOutput)
+}
+
+type ApplicationOidcIosOutput struct{ *pulumi.OutputState }
+
+func (ApplicationOidcIosOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApplicationOidcIos)(nil)).Elem()
+}
+
+func (o ApplicationOidcIosOutput) ToApplicationOidcIosOutput() ApplicationOidcIosOutput {
+	return o
+}
+
+func (o ApplicationOidcIosOutput) ToApplicationOidcIosOutputWithContext(ctx context.Context) ApplicationOidcIosOutput {
+	return o
+}
+
+func (o ApplicationOidcIosOutput) ToApplicationOidcIosPtrOutput() ApplicationOidcIosPtrOutput {
+	return o.ToApplicationOidcIosPtrOutputWithContext(context.Background())
+}
+
+func (o ApplicationOidcIosOutput) ToApplicationOidcIosPtrOutputWithContext(ctx context.Context) ApplicationOidcIosPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ApplicationOidcIos) *ApplicationOidcIos {
+		return &v
+	}).(ApplicationOidcIosPtrOutput)
+}
+
+// iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+func (o ApplicationOidcIosOutput) BundleId() pulumi.StringOutput {
+	return o.ApplyT(func(v ApplicationOidcIos) string { return v.BundleId }).(pulumi.StringOutput)
+}
+
+// Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+func (o ApplicationOidcIosOutput) TeamId() pulumi.StringOutput {
+	return o.ApplyT(func(v ApplicationOidcIos) string { return v.TeamId }).(pulumi.StringOutput)
+}
+
+type ApplicationOidcIosPtrOutput struct{ *pulumi.OutputState }
+
+func (ApplicationOidcIosPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApplicationOidcIos)(nil)).Elem()
+}
+
+func (o ApplicationOidcIosPtrOutput) ToApplicationOidcIosPtrOutput() ApplicationOidcIosPtrOutput {
+	return o
+}
+
+func (o ApplicationOidcIosPtrOutput) ToApplicationOidcIosPtrOutputWithContext(ctx context.Context) ApplicationOidcIosPtrOutput {
+	return o
+}
+
+func (o ApplicationOidcIosPtrOutput) Elem() ApplicationOidcIosOutput {
+	return o.ApplyT(func(v *ApplicationOidcIos) ApplicationOidcIos {
+		if v != nil {
+			return *v
+		}
+		var ret ApplicationOidcIos
+		return ret
+	}).(ApplicationOidcIosOutput)
+}
+
+// iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+func (o ApplicationOidcIosPtrOutput) BundleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationOidcIos) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BundleId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+func (o ApplicationOidcIosPtrOutput) TeamId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationOidcIos) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TeamId
+	}).(pulumi.StringPtrOutput)
 }
 
 type ApplicationOidcLoginVersion struct {
@@ -18662,6 +18974,112 @@ func (o WebkeyRsaPtrOutput) Hasher() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetApplicationOidcAndroid struct {
+	// Android package name (applicationId).
+	PackageName string `pulumi:"packageName"`
+	// SHA-256 signing certificate fingerprints.
+	Sha256CertFingerprints []string `pulumi:"sha256CertFingerprints"`
+}
+
+// GetApplicationOidcAndroidInput is an input type that accepts GetApplicationOidcAndroidArgs and GetApplicationOidcAndroidOutput values.
+// You can construct a concrete instance of `GetApplicationOidcAndroidInput` via:
+//
+//	GetApplicationOidcAndroidArgs{...}
+type GetApplicationOidcAndroidInput interface {
+	pulumi.Input
+
+	ToGetApplicationOidcAndroidOutput() GetApplicationOidcAndroidOutput
+	ToGetApplicationOidcAndroidOutputWithContext(context.Context) GetApplicationOidcAndroidOutput
+}
+
+type GetApplicationOidcAndroidArgs struct {
+	// Android package name (applicationId).
+	PackageName pulumi.StringInput `pulumi:"packageName"`
+	// SHA-256 signing certificate fingerprints.
+	Sha256CertFingerprints pulumi.StringArrayInput `pulumi:"sha256CertFingerprints"`
+}
+
+func (GetApplicationOidcAndroidArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApplicationOidcAndroid)(nil)).Elem()
+}
+
+func (i GetApplicationOidcAndroidArgs) ToGetApplicationOidcAndroidOutput() GetApplicationOidcAndroidOutput {
+	return i.ToGetApplicationOidcAndroidOutputWithContext(context.Background())
+}
+
+func (i GetApplicationOidcAndroidArgs) ToGetApplicationOidcAndroidOutputWithContext(ctx context.Context) GetApplicationOidcAndroidOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationOidcAndroidOutput)
+}
+
+// GetApplicationOidcAndroidArrayInput is an input type that accepts GetApplicationOidcAndroidArray and GetApplicationOidcAndroidArrayOutput values.
+// You can construct a concrete instance of `GetApplicationOidcAndroidArrayInput` via:
+//
+//	GetApplicationOidcAndroidArray{ GetApplicationOidcAndroidArgs{...} }
+type GetApplicationOidcAndroidArrayInput interface {
+	pulumi.Input
+
+	ToGetApplicationOidcAndroidArrayOutput() GetApplicationOidcAndroidArrayOutput
+	ToGetApplicationOidcAndroidArrayOutputWithContext(context.Context) GetApplicationOidcAndroidArrayOutput
+}
+
+type GetApplicationOidcAndroidArray []GetApplicationOidcAndroidInput
+
+func (GetApplicationOidcAndroidArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApplicationOidcAndroid)(nil)).Elem()
+}
+
+func (i GetApplicationOidcAndroidArray) ToGetApplicationOidcAndroidArrayOutput() GetApplicationOidcAndroidArrayOutput {
+	return i.ToGetApplicationOidcAndroidArrayOutputWithContext(context.Background())
+}
+
+func (i GetApplicationOidcAndroidArray) ToGetApplicationOidcAndroidArrayOutputWithContext(ctx context.Context) GetApplicationOidcAndroidArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationOidcAndroidArrayOutput)
+}
+
+type GetApplicationOidcAndroidOutput struct{ *pulumi.OutputState }
+
+func (GetApplicationOidcAndroidOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApplicationOidcAndroid)(nil)).Elem()
+}
+
+func (o GetApplicationOidcAndroidOutput) ToGetApplicationOidcAndroidOutput() GetApplicationOidcAndroidOutput {
+	return o
+}
+
+func (o GetApplicationOidcAndroidOutput) ToGetApplicationOidcAndroidOutputWithContext(ctx context.Context) GetApplicationOidcAndroidOutput {
+	return o
+}
+
+// Android package name (applicationId).
+func (o GetApplicationOidcAndroidOutput) PackageName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApplicationOidcAndroid) string { return v.PackageName }).(pulumi.StringOutput)
+}
+
+// SHA-256 signing certificate fingerprints.
+func (o GetApplicationOidcAndroidOutput) Sha256CertFingerprints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetApplicationOidcAndroid) []string { return v.Sha256CertFingerprints }).(pulumi.StringArrayOutput)
+}
+
+type GetApplicationOidcAndroidArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApplicationOidcAndroidArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApplicationOidcAndroid)(nil)).Elem()
+}
+
+func (o GetApplicationOidcAndroidArrayOutput) ToGetApplicationOidcAndroidArrayOutput() GetApplicationOidcAndroidArrayOutput {
+	return o
+}
+
+func (o GetApplicationOidcAndroidArrayOutput) ToGetApplicationOidcAndroidArrayOutputWithContext(ctx context.Context) GetApplicationOidcAndroidArrayOutput {
+	return o
+}
+
+func (o GetApplicationOidcAndroidArrayOutput) Index(i pulumi.IntInput) GetApplicationOidcAndroidOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApplicationOidcAndroid {
+		return vs[0].([]GetApplicationOidcAndroid)[vs[1].(int)]
+	}).(GetApplicationOidcAndroidOutput)
+}
+
 type GetApplicationOidcComplianceProblem struct {
 	// Machine-readable identifier for the compliance problem
 	Key string `pulumi:"key"`
@@ -18766,6 +19184,112 @@ func (o GetApplicationOidcComplianceProblemArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApplicationOidcComplianceProblem {
 		return vs[0].([]GetApplicationOidcComplianceProblem)[vs[1].(int)]
 	}).(GetApplicationOidcComplianceProblemOutput)
+}
+
+type GetApplicationOidcIo struct {
+	// iOS Bundle ID (CFBundleIdentifier).
+	BundleId string `pulumi:"bundleId"`
+	// Apple Team ID (App ID prefix).
+	TeamId string `pulumi:"teamId"`
+}
+
+// GetApplicationOidcIoInput is an input type that accepts GetApplicationOidcIoArgs and GetApplicationOidcIoOutput values.
+// You can construct a concrete instance of `GetApplicationOidcIoInput` via:
+//
+//	GetApplicationOidcIoArgs{...}
+type GetApplicationOidcIoInput interface {
+	pulumi.Input
+
+	ToGetApplicationOidcIoOutput() GetApplicationOidcIoOutput
+	ToGetApplicationOidcIoOutputWithContext(context.Context) GetApplicationOidcIoOutput
+}
+
+type GetApplicationOidcIoArgs struct {
+	// iOS Bundle ID (CFBundleIdentifier).
+	BundleId pulumi.StringInput `pulumi:"bundleId"`
+	// Apple Team ID (App ID prefix).
+	TeamId pulumi.StringInput `pulumi:"teamId"`
+}
+
+func (GetApplicationOidcIoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApplicationOidcIo)(nil)).Elem()
+}
+
+func (i GetApplicationOidcIoArgs) ToGetApplicationOidcIoOutput() GetApplicationOidcIoOutput {
+	return i.ToGetApplicationOidcIoOutputWithContext(context.Background())
+}
+
+func (i GetApplicationOidcIoArgs) ToGetApplicationOidcIoOutputWithContext(ctx context.Context) GetApplicationOidcIoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationOidcIoOutput)
+}
+
+// GetApplicationOidcIoArrayInput is an input type that accepts GetApplicationOidcIoArray and GetApplicationOidcIoArrayOutput values.
+// You can construct a concrete instance of `GetApplicationOidcIoArrayInput` via:
+//
+//	GetApplicationOidcIoArray{ GetApplicationOidcIoArgs{...} }
+type GetApplicationOidcIoArrayInput interface {
+	pulumi.Input
+
+	ToGetApplicationOidcIoArrayOutput() GetApplicationOidcIoArrayOutput
+	ToGetApplicationOidcIoArrayOutputWithContext(context.Context) GetApplicationOidcIoArrayOutput
+}
+
+type GetApplicationOidcIoArray []GetApplicationOidcIoInput
+
+func (GetApplicationOidcIoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApplicationOidcIo)(nil)).Elem()
+}
+
+func (i GetApplicationOidcIoArray) ToGetApplicationOidcIoArrayOutput() GetApplicationOidcIoArrayOutput {
+	return i.ToGetApplicationOidcIoArrayOutputWithContext(context.Background())
+}
+
+func (i GetApplicationOidcIoArray) ToGetApplicationOidcIoArrayOutputWithContext(ctx context.Context) GetApplicationOidcIoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationOidcIoArrayOutput)
+}
+
+type GetApplicationOidcIoOutput struct{ *pulumi.OutputState }
+
+func (GetApplicationOidcIoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApplicationOidcIo)(nil)).Elem()
+}
+
+func (o GetApplicationOidcIoOutput) ToGetApplicationOidcIoOutput() GetApplicationOidcIoOutput {
+	return o
+}
+
+func (o GetApplicationOidcIoOutput) ToGetApplicationOidcIoOutputWithContext(ctx context.Context) GetApplicationOidcIoOutput {
+	return o
+}
+
+// iOS Bundle ID (CFBundleIdentifier).
+func (o GetApplicationOidcIoOutput) BundleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApplicationOidcIo) string { return v.BundleId }).(pulumi.StringOutput)
+}
+
+// Apple Team ID (App ID prefix).
+func (o GetApplicationOidcIoOutput) TeamId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApplicationOidcIo) string { return v.TeamId }).(pulumi.StringOutput)
+}
+
+type GetApplicationOidcIoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApplicationOidcIoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApplicationOidcIo)(nil)).Elem()
+}
+
+func (o GetApplicationOidcIoArrayOutput) ToGetApplicationOidcIoArrayOutput() GetApplicationOidcIoArrayOutput {
+	return o
+}
+
+func (o GetApplicationOidcIoArrayOutput) ToGetApplicationOidcIoArrayOutputWithContext(ctx context.Context) GetApplicationOidcIoArrayOutput {
+	return o
+}
+
+func (o GetApplicationOidcIoArrayOutput) Index(i pulumi.IntInput) GetApplicationOidcIoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApplicationOidcIo {
+		return vs[0].([]GetApplicationOidcIo)[vs[1].(int)]
+	}).(GetApplicationOidcIoOutput)
 }
 
 type GetApplicationOidcLoginVersion struct {
@@ -20836,8 +21360,12 @@ func (o GetUserMetadatasMetadataArrayOutput) Index(i pulumi.IntInput) GetUserMet
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationOidcAndroidInput)(nil)).Elem(), ApplicationOidcAndroidArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationOidcAndroidPtrInput)(nil)).Elem(), ApplicationOidcAndroidArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationOidcComplianceProblemInput)(nil)).Elem(), ApplicationOidcComplianceProblemArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationOidcComplianceProblemArrayInput)(nil)).Elem(), ApplicationOidcComplianceProblemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationOidcIosInput)(nil)).Elem(), ApplicationOidcIosArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationOidcIosPtrInput)(nil)).Elem(), ApplicationOidcIosArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationOidcLoginVersionInput)(nil)).Elem(), ApplicationOidcLoginVersionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationOidcLoginVersionPtrInput)(nil)).Elem(), ApplicationOidcLoginVersionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationOidcLoginVersionLoginV2Input)(nil)).Elem(), ApplicationOidcLoginVersionLoginV2Args{})
@@ -21022,8 +21550,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebkeyEd25519PtrInput)(nil)).Elem(), WebkeyEd25519Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebkeyRsaInput)(nil)).Elem(), WebkeyRsaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebkeyRsaPtrInput)(nil)).Elem(), WebkeyRsaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationOidcAndroidInput)(nil)).Elem(), GetApplicationOidcAndroidArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationOidcAndroidArrayInput)(nil)).Elem(), GetApplicationOidcAndroidArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationOidcComplianceProblemInput)(nil)).Elem(), GetApplicationOidcComplianceProblemArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationOidcComplianceProblemArrayInput)(nil)).Elem(), GetApplicationOidcComplianceProblemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationOidcIoInput)(nil)).Elem(), GetApplicationOidcIoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationOidcIoArrayInput)(nil)).Elem(), GetApplicationOidcIoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationOidcLoginVersionInput)(nil)).Elem(), GetApplicationOidcLoginVersionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationOidcLoginVersionArrayInput)(nil)).Elem(), GetApplicationOidcLoginVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationOidcLoginVersionLoginV2Input)(nil)).Elem(), GetApplicationOidcLoginVersionLoginV2Args{})
@@ -21060,8 +21592,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSystemFeaturesLoginV2ArrayInput)(nil)).Elem(), GetSystemFeaturesLoginV2Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserMetadatasMetadataInput)(nil)).Elem(), GetUserMetadatasMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserMetadatasMetadataArrayInput)(nil)).Elem(), GetUserMetadatasMetadataArray{})
+	pulumi.RegisterOutputType(ApplicationOidcAndroidOutput{})
+	pulumi.RegisterOutputType(ApplicationOidcAndroidPtrOutput{})
 	pulumi.RegisterOutputType(ApplicationOidcComplianceProblemOutput{})
 	pulumi.RegisterOutputType(ApplicationOidcComplianceProblemArrayOutput{})
+	pulumi.RegisterOutputType(ApplicationOidcIosOutput{})
+	pulumi.RegisterOutputType(ApplicationOidcIosPtrOutput{})
 	pulumi.RegisterOutputType(ApplicationOidcLoginVersionOutput{})
 	pulumi.RegisterOutputType(ApplicationOidcLoginVersionPtrOutput{})
 	pulumi.RegisterOutputType(ApplicationOidcLoginVersionLoginV2Output{})
@@ -21246,8 +21782,12 @@ func init() {
 	pulumi.RegisterOutputType(WebkeyEd25519PtrOutput{})
 	pulumi.RegisterOutputType(WebkeyRsaOutput{})
 	pulumi.RegisterOutputType(WebkeyRsaPtrOutput{})
+	pulumi.RegisterOutputType(GetApplicationOidcAndroidOutput{})
+	pulumi.RegisterOutputType(GetApplicationOidcAndroidArrayOutput{})
 	pulumi.RegisterOutputType(GetApplicationOidcComplianceProblemOutput{})
 	pulumi.RegisterOutputType(GetApplicationOidcComplianceProblemArrayOutput{})
+	pulumi.RegisterOutputType(GetApplicationOidcIoOutput{})
+	pulumi.RegisterOutputType(GetApplicationOidcIoArrayOutput{})
 	pulumi.RegisterOutputType(GetApplicationOidcLoginVersionOutput{})
 	pulumi.RegisterOutputType(GetApplicationOidcLoginVersionArrayOutput{})
 	pulumi.RegisterOutputType(GetApplicationOidcLoginVersionLoginV2Output{})

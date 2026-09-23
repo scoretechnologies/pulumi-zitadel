@@ -21,19 +21,20 @@ class OrganizationDomainArgs:
     def __init__(__self__, *,
                  domain: pulumi.Input[_builtins.str],
                  organization_id: pulumi.Input[_builtins.str],
-                 validation_type: pulumi.Input[_builtins.str],
+                 validation_type: pulumi.Input[Optional[_builtins.str]] = None,
                  verify: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a OrganizationDomain resource.
 
         :param pulumi.Input[_builtins.str] domain: Domain name to be added to the organization
         :param pulumi.Input[_builtins.str] organization_id: ID of the organization
-        :param pulumi.Input[_builtins.str] validation_type: Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        :param pulumi.Input[_builtins.str] validation_type: Type of domain validation. Leave unset when the organization's domain policy has `validate_org_domains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         :param pulumi.Input[_builtins.bool] verify: Trigger domain verification. Set to true after adding DNS/HTTP validation.
         """
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "organization_id", organization_id)
-        pulumi.set(__self__, "validation_type", validation_type)
+        if validation_type is not None:
+            pulumi.set(__self__, "validation_type", validation_type)
         if verify is not None:
             pulumi.set(__self__, "verify", verify)
 
@@ -63,14 +64,14 @@ class OrganizationDomainArgs:
 
     @_builtins.property
     @pulumi.getter(name="validationType")
-    def validation_type(self) -> pulumi.Input[_builtins.str]:
+    def validation_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        Type of domain validation. Leave unset when the organization's domain policy has `validate_org_domains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         """
         return pulumi.get(self, "validation_type")
 
     @validation_type.setter
-    def validation_type(self, value: pulumi.Input[_builtins.str]):
+    def validation_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "validation_type", value)
 
     @_builtins.property
@@ -105,7 +106,7 @@ class _OrganizationDomainState:
         :param pulumi.Input[_builtins.bool] is_verified: Whether the domain has been verified
         :param pulumi.Input[_builtins.str] organization_id: ID of the organization
         :param pulumi.Input[_builtins.str] validation_token: Validation token for domain verification
-        :param pulumi.Input[_builtins.str] validation_type: Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        :param pulumi.Input[_builtins.str] validation_type: Type of domain validation. Leave unset when the organization's domain policy has `validate_org_domains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         :param pulumi.Input[_builtins.str] validation_url: URL where validation file should be hosted for HTTP verification
         :param pulumi.Input[_builtins.bool] verify: Trigger domain verification. Set to true after adding DNS/HTTP validation.
         """
@@ -190,7 +191,7 @@ class _OrganizationDomainState:
     @pulumi.getter(name="validationType")
     def validation_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        Type of domain validation. Leave unset when the organization's domain policy has `validate_org_domains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         """
         return pulumi.get(self, "validation_type")
 
@@ -245,9 +246,12 @@ class OrganizationDomain(pulumi.CustomResource):
 
         default = zitadel.OrganizationDomain("default",
             organization_id=default_zitadel_organization["id"],
-            domain="example.com",
+            domain="example.com")
+        validated = zitadel.OrganizationDomain("validated",
+            organization_id=default_zitadel_organization["id"],
+            domain="validated.example.com",
             validation_type="DOMAIN_VALIDATION_TYPE_DNS")
-        pulumi.export("dnsValidationToken", default.validation_token)
+        pulumi.export("dnsValidationToken", validated.validation_token)
         verified = zitadel.OrganizationDomain("verified",
             organization_id=default_zitadel_organization["id"],
             domain="verified.example.com",
@@ -256,6 +260,8 @@ class OrganizationDomain(pulumi.CustomResource):
         ```
 
         ## Import
+
+        The resource can be imported using the ID format `<organization_id:domain>`, e.g.
 
         ```sh
         $ pulumi import zitadel:index/organizationDomain:OrganizationDomain imported '123456789012345678:example.com'
@@ -266,7 +272,7 @@ class OrganizationDomain(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain: Domain name to be added to the organization
         :param pulumi.Input[_builtins.str] organization_id: ID of the organization
-        :param pulumi.Input[_builtins.str] validation_type: Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        :param pulumi.Input[_builtins.str] validation_type: Type of domain validation. Leave unset when the organization's domain policy has `validate_org_domains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         :param pulumi.Input[_builtins.bool] verify: Trigger domain verification. Set to true after adding DNS/HTTP validation.
         """
         ...
@@ -286,9 +292,12 @@ class OrganizationDomain(pulumi.CustomResource):
 
         default = zitadel.OrganizationDomain("default",
             organization_id=default_zitadel_organization["id"],
-            domain="example.com",
+            domain="example.com")
+        validated = zitadel.OrganizationDomain("validated",
+            organization_id=default_zitadel_organization["id"],
+            domain="validated.example.com",
             validation_type="DOMAIN_VALIDATION_TYPE_DNS")
-        pulumi.export("dnsValidationToken", default.validation_token)
+        pulumi.export("dnsValidationToken", validated.validation_token)
         verified = zitadel.OrganizationDomain("verified",
             organization_id=default_zitadel_organization["id"],
             domain="verified.example.com",
@@ -297,6 +306,8 @@ class OrganizationDomain(pulumi.CustomResource):
         ```
 
         ## Import
+
+        The resource can be imported using the ID format `<organization_id:domain>`, e.g.
 
         ```sh
         $ pulumi import zitadel:index/organizationDomain:OrganizationDomain imported '123456789012345678:example.com'
@@ -337,8 +348,6 @@ class OrganizationDomain(pulumi.CustomResource):
             if organization_id is None and not opts.urn:
                 raise TypeError("Missing required property 'organization_id'")
             __props__.__dict__["organization_id"] = organization_id
-            if validation_type is None and not opts.urn:
-                raise TypeError("Missing required property 'validation_type'")
             __props__.__dict__["validation_type"] = validation_type
             __props__.__dict__["verify"] = verify
             __props__.__dict__["is_primary"] = None
@@ -377,7 +386,7 @@ class OrganizationDomain(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_verified: Whether the domain has been verified
         :param pulumi.Input[_builtins.str] organization_id: ID of the organization
         :param pulumi.Input[_builtins.str] validation_token: Validation token for domain verification
-        :param pulumi.Input[_builtins.str] validation_type: Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        :param pulumi.Input[_builtins.str] validation_type: Type of domain validation. Leave unset when the organization's domain policy has `validate_org_domains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         :param pulumi.Input[_builtins.str] validation_url: URL where validation file should be hosted for HTTP verification
         :param pulumi.Input[_builtins.bool] verify: Trigger domain verification. Set to true after adding DNS/HTTP validation.
         """
@@ -437,9 +446,9 @@ class OrganizationDomain(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="validationType")
-    def validation_type(self) -> pulumi.Output[_builtins.str]:
+    def validation_type(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        Type of domain validation. Leave unset when the organization's domain policy has `validate_org_domains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         """
         return pulumi.get(self, "validation_type")
 

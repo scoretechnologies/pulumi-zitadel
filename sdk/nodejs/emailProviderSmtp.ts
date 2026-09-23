@@ -92,9 +92,9 @@ export class EmailProviderSmtp extends pulumi.CustomResource {
      */
     declare public readonly senderName: pulumi.Output<string>;
     /**
-     * Set the email provider as active after creating/updating.
+     * Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
-    declare public readonly setActive: pulumi.Output<boolean | undefined>;
+    declare public readonly setActive: pulumi.Output<boolean>;
     /**
      * TLS used to communicate with your SMTP server.
      */
@@ -190,7 +190,7 @@ export interface EmailProviderSmtpState {
      */
     senderName?: pulumi.Input<string | undefined>;
     /**
-     * Set the email provider as active after creating/updating.
+     * Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
     setActive?: pulumi.Input<boolean | undefined>;
     /**
@@ -233,7 +233,7 @@ export interface EmailProviderSmtpArgs {
      */
     senderName: pulumi.Input<string>;
     /**
-     * Set the email provider as active after creating/updating.
+     * Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
     setActive?: pulumi.Input<boolean | undefined>;
     /**

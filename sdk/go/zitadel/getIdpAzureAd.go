@@ -83,12 +83,8 @@ type LookupIdpAzureAdResult struct {
 }
 
 func LookupIdpAzureAdOutput(ctx *pulumi.Context, args LookupIdpAzureAdOutputArgs, opts ...pulumi.InvokeOption) LookupIdpAzureAdResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIdpAzureAdResultOutput, error) {
-			args := v.(LookupIdpAzureAdArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getIdpAzureAd:getIdpAzureAd", args, LookupIdpAzureAdResultOutput{}, options).(LookupIdpAzureAdResultOutput), nil
-		}).(LookupIdpAzureAdResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getIdpAzureAd:getIdpAzureAd", args, LookupIdpAzureAdResultOutput{}, options).(LookupIdpAzureAdResultOutput)
 }
 
 // A collection of arguments for invoking getIdpAzureAd.

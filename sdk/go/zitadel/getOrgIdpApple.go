@@ -86,12 +86,8 @@ type LookupOrgIdpAppleResult struct {
 }
 
 func LookupOrgIdpAppleOutput(ctx *pulumi.Context, args LookupOrgIdpAppleOutputArgs, opts ...pulumi.InvokeOption) LookupOrgIdpAppleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrgIdpAppleResultOutput, error) {
-			args := v.(LookupOrgIdpAppleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrgIdpApple:getOrgIdpApple", args, LookupOrgIdpAppleResultOutput{}, options).(LookupOrgIdpAppleResultOutput), nil
-		}).(LookupOrgIdpAppleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrgIdpApple:getOrgIdpApple", args, LookupOrgIdpAppleResultOutput{}, options).(LookupOrgIdpAppleResultOutput)
 }
 
 // A collection of arguments for invoking getOrgIdpApple.

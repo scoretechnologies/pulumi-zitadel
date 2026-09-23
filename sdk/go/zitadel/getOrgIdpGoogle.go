@@ -82,12 +82,8 @@ type LookupOrgIdpGoogleResult struct {
 }
 
 func LookupOrgIdpGoogleOutput(ctx *pulumi.Context, args LookupOrgIdpGoogleOutputArgs, opts ...pulumi.InvokeOption) LookupOrgIdpGoogleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrgIdpGoogleResultOutput, error) {
-			args := v.(LookupOrgIdpGoogleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrgIdpGoogle:getOrgIdpGoogle", args, LookupOrgIdpGoogleResultOutput{}, options).(LookupOrgIdpGoogleResultOutput), nil
-		}).(LookupOrgIdpGoogleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrgIdpGoogle:getOrgIdpGoogle", args, LookupOrgIdpGoogleResultOutput{}, options).(LookupOrgIdpGoogleResultOutput)
 }
 
 // A collection of arguments for invoking getOrgIdpGoogle.

@@ -5,6 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ApplicationOidcAndroid {
+    /**
+     * Android package name (applicationId) from the app manifest, e.g. com.example.app.
+     */
+    packageName: string;
+    /**
+     * SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+     */
+    sha256CertFingerprints?: string[];
+}
+
 export interface ApplicationOidcComplianceProblem {
     /**
      * Machine-readable identifier for the compliance problem
@@ -14,6 +25,17 @@ export interface ApplicationOidcComplianceProblem {
      * Human-readable localized message
      */
     message: string;
+}
+
+export interface ApplicationOidcIos {
+    /**
+     * iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+     */
+    bundleId: string;
+    /**
+     * Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+     */
+    teamId: string;
 }
 
 export interface ApplicationOidcLoginVersion {
@@ -540,6 +562,17 @@ export interface DefaultLoginTextsVerifyMfaU2fText {
     validateTokenText?: string;
 }
 
+export interface GetApplicationOidcAndroid {
+    /**
+     * Android package name (applicationId).
+     */
+    packageName: string;
+    /**
+     * SHA-256 signing certificate fingerprints.
+     */
+    sha256CertFingerprints: string[];
+}
+
 export interface GetApplicationOidcComplianceProblem {
     /**
      * Machine-readable identifier for the compliance problem
@@ -549,6 +582,17 @@ export interface GetApplicationOidcComplianceProblem {
      * Human-readable localized message
      */
     message: string;
+}
+
+export interface GetApplicationOidcIo {
+    /**
+     * iOS Bundle ID (CFBundleIdentifier).
+     */
+    bundleId: string;
+    /**
+     * Apple Team ID (App ID prefix).
+     */
+    teamId: string;
 }
 
 export interface GetApplicationOidcLoginVersion {

@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := zitadel.NewEmailProviderHttp(ctx, "default", &zitadel.EmailProviderHttpArgs{
-//				Endpoint:    pulumi.String("https://relay.example.com/provider"),
+//				Endpoint:    pulumi.String("https://example.com/provider"),
 //				Description: pulumi.String("provider description"),
 //				SetActive:   pulumi.Bool(false),
 //			})
@@ -58,8 +58,8 @@ type EmailProviderHttp struct {
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey pulumi.StringPtrOutput `pulumi:"expirationSigningKey"`
-	// Set the email provider as active after creating/updating.
-	SetActive pulumi.BoolPtrOutput `pulumi:"setActive"`
+	// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
+	SetActive pulumi.BoolOutput `pulumi:"setActive"`
 	// Key used to sign and check payload sent to the HTTP provider.
 	SigningKey pulumi.StringOutput `pulumi:"signingKey"`
 }
@@ -107,7 +107,7 @@ type emailProviderHttpState struct {
 	Endpoint *string `pulumi:"endpoint"`
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey *string `pulumi:"expirationSigningKey"`
-	// Set the email provider as active after creating/updating.
+	// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive *bool `pulumi:"setActive"`
 	// Key used to sign and check payload sent to the HTTP provider.
 	SigningKey *string `pulumi:"signingKey"`
@@ -120,7 +120,7 @@ type EmailProviderHttpState struct {
 	Endpoint pulumi.StringPtrInput
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey pulumi.StringPtrInput
-	// Set the email provider as active after creating/updating.
+	// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive pulumi.BoolPtrInput
 	// Key used to sign and check payload sent to the HTTP provider.
 	SigningKey pulumi.StringPtrInput
@@ -137,7 +137,7 @@ type emailProviderHttpArgs struct {
 	Endpoint string `pulumi:"endpoint"`
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey *string `pulumi:"expirationSigningKey"`
-	// Set the email provider as active after creating/updating.
+	// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive *bool `pulumi:"setActive"`
 }
 
@@ -149,7 +149,7 @@ type EmailProviderHttpArgs struct {
 	Endpoint pulumi.StringInput
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey pulumi.StringPtrInput
-	// Set the email provider as active after creating/updating.
+	// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive pulumi.BoolPtrInput
 }
 
@@ -255,9 +255,9 @@ func (o EmailProviderHttpOutput) ExpirationSigningKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EmailProviderHttp) pulumi.StringPtrOutput { return v.ExpirationSigningKey }).(pulumi.StringPtrOutput)
 }
 
-// Set the email provider as active after creating/updating.
-func (o EmailProviderHttpOutput) SetActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *EmailProviderHttp) pulumi.BoolPtrOutput { return v.SetActive }).(pulumi.BoolPtrOutput)
+// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
+func (o EmailProviderHttpOutput) SetActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v *EmailProviderHttp) pulumi.BoolOutput { return v.SetActive }).(pulumi.BoolOutput)
 }
 
 // Key used to sign and check payload sent to the HTTP provider.

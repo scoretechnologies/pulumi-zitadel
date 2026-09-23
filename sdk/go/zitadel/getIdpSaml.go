@@ -87,12 +87,8 @@ type LookupIdpSamlResult struct {
 }
 
 func LookupIdpSamlOutput(ctx *pulumi.Context, args LookupIdpSamlOutputArgs, opts ...pulumi.InvokeOption) LookupIdpSamlResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIdpSamlResultOutput, error) {
-			args := v.(LookupIdpSamlArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getIdpSaml:getIdpSaml", args, LookupIdpSamlResultOutput{}, options).(LookupIdpSamlResultOutput), nil
-		}).(LookupIdpSamlResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getIdpSaml:getIdpSaml", args, LookupIdpSamlResultOutput{}, options).(LookupIdpSamlResultOutput)
 }
 
 // A collection of arguments for invoking getIdpSaml.

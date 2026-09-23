@@ -88,12 +88,8 @@ type LookupOrgIdpGithubEsResult struct {
 }
 
 func LookupOrgIdpGithubEsOutput(ctx *pulumi.Context, args LookupOrgIdpGithubEsOutputArgs, opts ...pulumi.InvokeOption) LookupOrgIdpGithubEsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrgIdpGithubEsResultOutput, error) {
-			args := v.(LookupOrgIdpGithubEsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrgIdpGithubEs:getOrgIdpGithubEs", args, LookupOrgIdpGithubEsResultOutput{}, options).(LookupOrgIdpGithubEsResultOutput), nil
-		}).(LookupOrgIdpGithubEsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrgIdpGithubEs:getOrgIdpGithubEs", args, LookupOrgIdpGithubEsResultOutput{}, options).(LookupOrgIdpGithubEsResultOutput)
 }
 
 // A collection of arguments for invoking getOrgIdpGithubEs.

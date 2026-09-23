@@ -59,8 +59,8 @@ type SmsProviderTwilio struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Sender number which is used to send the SMS.
 	SenderNumber pulumi.StringOutput `pulumi:"senderNumber"`
-	// Set the SMS provider as active after creating/updating.
-	SetActive pulumi.BoolPtrOutput `pulumi:"setActive"`
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
+	SetActive pulumi.BoolOutput `pulumi:"setActive"`
 	// SID used to communicate with Twilio.
 	Sid pulumi.StringOutput `pulumi:"sid"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -123,7 +123,7 @@ type smsProviderTwilioState struct {
 	Description *string `pulumi:"description"`
 	// Sender number which is used to send the SMS.
 	SenderNumber *string `pulumi:"senderNumber"`
-	// Set the SMS provider as active after creating/updating.
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive *bool `pulumi:"setActive"`
 	// SID used to communicate with Twilio.
 	Sid *string `pulumi:"sid"`
@@ -141,7 +141,7 @@ type SmsProviderTwilioState struct {
 	Description pulumi.StringPtrInput
 	// Sender number which is used to send the SMS.
 	SenderNumber pulumi.StringPtrInput
-	// Set the SMS provider as active after creating/updating.
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive pulumi.BoolPtrInput
 	// SID used to communicate with Twilio.
 	Sid pulumi.StringPtrInput
@@ -163,7 +163,7 @@ type smsProviderTwilioArgs struct {
 	Description *string `pulumi:"description"`
 	// Sender number which is used to send the SMS.
 	SenderNumber string `pulumi:"senderNumber"`
-	// Set the SMS provider as active after creating/updating.
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive *bool `pulumi:"setActive"`
 	// SID used to communicate with Twilio.
 	Sid string `pulumi:"sid"`
@@ -180,7 +180,7 @@ type SmsProviderTwilioArgs struct {
 	Description pulumi.StringPtrInput
 	// Sender number which is used to send the SMS.
 	SenderNumber pulumi.StringInput
-	// Set the SMS provider as active after creating/updating.
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive pulumi.BoolPtrInput
 	// SID used to communicate with Twilio.
 	Sid pulumi.StringInput
@@ -288,9 +288,9 @@ func (o SmsProviderTwilioOutput) SenderNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v *SmsProviderTwilio) pulumi.StringOutput { return v.SenderNumber }).(pulumi.StringOutput)
 }
 
-// Set the SMS provider as active after creating/updating.
-func (o SmsProviderTwilioOutput) SetActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *SmsProviderTwilio) pulumi.BoolPtrOutput { return v.SetActive }).(pulumi.BoolPtrOutput)
+// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
+func (o SmsProviderTwilioOutput) SetActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SmsProviderTwilio) pulumi.BoolOutput { return v.SetActive }).(pulumi.BoolOutput)
 }
 
 // SID used to communicate with Twilio.

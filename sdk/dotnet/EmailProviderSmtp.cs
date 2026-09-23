@@ -94,10 +94,10 @@ namespace scoretechnologies.Zitadel
         public Output<string> SenderName { get; private set; } = null!;
 
         /// <summary>
-        /// Set the email provider as active after creating/updating.
+        /// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         /// </summary>
         [Output("setActive")]
-        public Output<bool?> SetActive { get; private set; } = null!;
+        public Output<bool> SetActive { get; private set; } = null!;
 
         /// <summary>
         /// TLS used to communicate with your SMTP server.
@@ -211,7 +211,7 @@ namespace scoretechnologies.Zitadel
         public Input<string> SenderName { get; set; } = null!;
 
         /// <summary>
-        /// Set the email provider as active after creating/updating.
+        /// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         /// </summary>
         [Input("setActive")]
         public Input<bool>? SetActive { get; set; }
@@ -300,7 +300,7 @@ namespace scoretechnologies.Zitadel
         public Input<string>? SenderName { get; set; }
 
         /// <summary>
-        /// Set the email provider as active after creating/updating.
+        /// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         /// </summary>
         [Input("setActive")]
         public Input<bool>? SetActive { get; set; }

@@ -84,12 +84,8 @@ type LookupOrgIdpGitlabSelfHostedResult struct {
 }
 
 func LookupOrgIdpGitlabSelfHostedOutput(ctx *pulumi.Context, args LookupOrgIdpGitlabSelfHostedOutputArgs, opts ...pulumi.InvokeOption) LookupOrgIdpGitlabSelfHostedResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrgIdpGitlabSelfHostedResultOutput, error) {
-			args := v.(LookupOrgIdpGitlabSelfHostedArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrgIdpGitlabSelfHosted:getOrgIdpGitlabSelfHosted", args, LookupOrgIdpGitlabSelfHostedResultOutput{}, options).(LookupOrgIdpGitlabSelfHostedResultOutput), nil
-		}).(LookupOrgIdpGitlabSelfHostedResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrgIdpGitlabSelfHosted:getOrgIdpGitlabSelfHosted", args, LookupOrgIdpGitlabSelfHostedResultOutput{}, options).(LookupOrgIdpGitlabSelfHostedResultOutput)
 }
 
 // A collection of arguments for invoking getOrgIdpGitlabSelfHosted.

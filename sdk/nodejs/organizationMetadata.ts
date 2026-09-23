@@ -30,6 +30,8 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
+ * The resource can be imported using the ID format `<organization_id:key>`, e.g.
+ *
  * ```sh
  * $ pulumi import zitadel:index/organizationMetadata:OrganizationMetadata imported '123456789012345678:example_key'
  * ```

@@ -76,6 +76,10 @@ export class ProjectV2 extends pulumi.CustomResource {
      */
     declare public readonly privateLabelingSetting: pulumi.Output<string | undefined>;
     /**
+     * The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+     */
+    declare public readonly projectId: pulumi.Output<string>;
+    /**
      * Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
      */
     declare public readonly projectRoleAssertion: pulumi.Output<boolean | undefined>;
@@ -105,6 +109,7 @@ export class ProjectV2 extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["orgId"] = state?.orgId;
             resourceInputs["privateLabelingSetting"] = state?.privateLabelingSetting;
+            resourceInputs["projectId"] = state?.projectId;
             resourceInputs["projectRoleAssertion"] = state?.projectRoleAssertion;
             resourceInputs["projectRoleCheck"] = state?.projectRoleCheck;
             resourceInputs["state"] = state?.state;
@@ -120,6 +125,7 @@ export class ProjectV2 extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["orgId"] = args?.orgId;
             resourceInputs["privateLabelingSetting"] = args?.privateLabelingSetting;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["projectRoleAssertion"] = args?.projectRoleAssertion;
             resourceInputs["projectRoleCheck"] = args?.projectRoleCheck;
             resourceInputs["state"] = undefined /*out*/;
@@ -149,6 +155,10 @@ export interface ProjectV2State {
      * Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
      */
     privateLabelingSetting?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+     */
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
      */
@@ -183,6 +193,10 @@ export interface ProjectV2Args {
      * Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
      */
     privateLabelingSetting?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+     */
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
      */

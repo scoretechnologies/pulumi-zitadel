@@ -72,6 +72,12 @@ namespace scoretechnologies.Zitadel
         public Output<string?> PrivateLabelingSetting { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
         /// Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
         /// </summary>
         [Output("projectRoleAssertion")]
@@ -161,6 +167,12 @@ namespace scoretechnologies.Zitadel
         public Input<string>? PrivateLabelingSetting { get; set; }
 
         /// <summary>
+        /// The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
         /// </summary>
         [Input("projectRoleAssertion")]
@@ -203,6 +215,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Input("privateLabelingSetting")]
         public Input<string>? PrivateLabelingSetting { get; set; }
+
+        /// <summary>
+        /// The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.

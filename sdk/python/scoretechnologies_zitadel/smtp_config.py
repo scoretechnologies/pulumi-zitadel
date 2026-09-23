@@ -38,7 +38,7 @@ class SmtpConfigArgs:
         :param pulumi.Input[_builtins.str] password: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password used to communicate with your SMTP server. This value is write-only and is never stored in Terraform state; it cannot be read back.
         :param pulumi.Input[_builtins.str] reply_to_address: Address to reply to.
-        :param pulumi.Input[_builtins.bool] set_active: Set the SMTP configuration active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.bool] tls: TLS used to communicate with your SMTP server.
         :param pulumi.Input[_builtins.str] user: User used to communicate with your SMTP server.
         """
@@ -135,7 +135,7 @@ class SmtpConfigArgs:
     @pulumi.getter(name="setActive")
     def set_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Set the SMTP configuration active after creating/updating.
+        Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         return pulumi.get(self, "set_active")
 
@@ -192,7 +192,7 @@ class _SmtpConfigState:
         :param pulumi.Input[_builtins.str] reply_to_address: Address to reply to.
         :param pulumi.Input[_builtins.str] sender_address: Address used to send emails.
         :param pulumi.Input[_builtins.str] sender_name: Sender name used to send emails.
-        :param pulumi.Input[_builtins.bool] set_active: Set the SMTP configuration active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.bool] tls: TLS used to communicate with your SMTP server.
         :param pulumi.Input[_builtins.str] user: User used to communicate with your SMTP server.
         """
@@ -306,7 +306,7 @@ class _SmtpConfigState:
     @pulumi.getter(name="setActive")
     def set_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Set the SMTP configuration active after creating/updating.
+        Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         return pulumi.get(self, "set_active")
 
@@ -392,7 +392,7 @@ class SmtpConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] reply_to_address: Address to reply to.
         :param pulumi.Input[_builtins.str] sender_address: Address used to send emails.
         :param pulumi.Input[_builtins.str] sender_name: Sender name used to send emails.
-        :param pulumi.Input[_builtins.bool] set_active: Set the SMTP configuration active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.bool] tls: TLS used to communicate with your SMTP server.
         :param pulumi.Input[_builtins.str] user: User used to communicate with your SMTP server.
         """
@@ -516,7 +516,7 @@ class SmtpConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] reply_to_address: Address to reply to.
         :param pulumi.Input[_builtins.str] sender_address: Address used to send emails.
         :param pulumi.Input[_builtins.str] sender_name: Sender name used to send emails.
-        :param pulumi.Input[_builtins.bool] set_active: Set the SMTP configuration active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.bool] tls: TLS used to communicate with your SMTP server.
         :param pulumi.Input[_builtins.str] user: User used to communicate with your SMTP server.
         """
@@ -595,9 +595,9 @@ class SmtpConfig(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="setActive")
-    def set_active(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def set_active(self) -> pulumi.Output[_builtins.bool]:
         """
-        Set the SMTP configuration active after creating/updating.
+        Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         return pulumi.get(self, "set_active")
 

@@ -186,10 +186,10 @@ class Webkey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ecdsa: pulumi.Input[Optional[Union['WebkeyEcdsaArgs', 'WebkeyEcdsaArgsDict']]] = None,
-                 ed25519: pulumi.Input[Optional[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict']]] = None,
+                 ecdsa: pulumi.Input[Optional[Union['WebkeyEcdsaArgs', 'WebkeyEcdsaArgsDict', 'outputs.WebkeyEcdsa']]] = None,
+                 ed25519: pulumi.Input[Optional[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict', 'outputs.WebkeyEd25519']]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 rsa: pulumi.Input[Optional[Union['WebkeyRsaArgs', 'WebkeyRsaArgsDict']]] = None,
+                 rsa: pulumi.Input[Optional[Union['WebkeyRsaArgs', 'WebkeyRsaArgsDict', 'outputs.WebkeyRsa']]] = None,
                  __props__=None):
         """
         Resource representing a web key.
@@ -218,7 +218,7 @@ class Webkey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict']] ed25519: Create a ED25519 key pair.
+        :param pulumi.Input[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict', 'outputs.WebkeyEd25519']] ed25519: Create a ED25519 key pair.
         :param pulumi.Input[_builtins.str] org_id: ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         """
         ...
@@ -267,10 +267,10 @@ class Webkey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ecdsa: pulumi.Input[Optional[Union['WebkeyEcdsaArgs', 'WebkeyEcdsaArgsDict']]] = None,
-                 ed25519: pulumi.Input[Optional[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict']]] = None,
+                 ecdsa: pulumi.Input[Optional[Union['WebkeyEcdsaArgs', 'WebkeyEcdsaArgsDict', 'outputs.WebkeyEcdsa']]] = None,
+                 ed25519: pulumi.Input[Optional[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict', 'outputs.WebkeyEd25519']]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 rsa: pulumi.Input[Optional[Union['WebkeyRsaArgs', 'WebkeyRsaArgsDict']]] = None,
+                 rsa: pulumi.Input[Optional[Union['WebkeyRsaArgs', 'WebkeyRsaArgsDict', 'outputs.WebkeyRsa']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -296,11 +296,11 @@ class Webkey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ecdsa: pulumi.Input[Optional[Union['WebkeyEcdsaArgs', 'WebkeyEcdsaArgsDict']]] = None,
-            ed25519: pulumi.Input[Optional[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict']]] = None,
+            ecdsa: pulumi.Input[Optional[Union['WebkeyEcdsaArgs', 'WebkeyEcdsaArgsDict', 'outputs.WebkeyEcdsa']]] = None,
+            ed25519: pulumi.Input[Optional[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict', 'outputs.WebkeyEd25519']]] = None,
             key_type: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
-            rsa: pulumi.Input[Optional[Union['WebkeyRsaArgs', 'WebkeyRsaArgsDict']]] = None,
+            rsa: pulumi.Input[Optional[Union['WebkeyRsaArgs', 'WebkeyRsaArgsDict', 'outputs.WebkeyRsa']]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None) -> 'Webkey':
         """
         Get an existing Webkey resource's state with the given name, id, and optional extra
@@ -309,7 +309,7 @@ class Webkey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict']] ed25519: Create a ED25519 key pair.
+        :param pulumi.Input[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict', 'outputs.WebkeyEd25519']] ed25519: Create a ED25519 key pair.
         :param pulumi.Input[_builtins.str] key_type: Type of the key.
         :param pulumi.Input[_builtins.str] org_id: ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         :param pulumi.Input[_builtins.str] state: State of the key.

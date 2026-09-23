@@ -82,12 +82,8 @@ type LookupMachineUserResult struct {
 }
 
 func LookupMachineUserOutput(ctx *pulumi.Context, args LookupMachineUserOutputArgs, opts ...pulumi.InvokeOption) LookupMachineUserResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupMachineUserResultOutput, error) {
-			args := v.(LookupMachineUserArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getMachineUser:getMachineUser", args, LookupMachineUserResultOutput{}, options).(LookupMachineUserResultOutput), nil
-		}).(LookupMachineUserResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getMachineUser:getMachineUser", args, LookupMachineUserResultOutput{}, options).(LookupMachineUserResultOutput)
 }
 
 // A collection of arguments for invoking getMachineUser.

@@ -83,12 +83,8 @@ type LookupIdpOidcResult struct {
 }
 
 func LookupIdpOidcOutput(ctx *pulumi.Context, args LookupIdpOidcOutputArgs, opts ...pulumi.InvokeOption) LookupIdpOidcResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIdpOidcResultOutput, error) {
-			args := v.(LookupIdpOidcArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getIdpOidc:getIdpOidc", args, LookupIdpOidcResultOutput{}, options).(LookupIdpOidcResultOutput), nil
-		}).(LookupIdpOidcResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getIdpOidc:getIdpOidc", args, LookupIdpOidcResultOutput{}, options).(LookupIdpOidcResultOutput)
 }
 
 // A collection of arguments for invoking getIdpOidc.

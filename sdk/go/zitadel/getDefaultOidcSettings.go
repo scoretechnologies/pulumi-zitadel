@@ -62,10 +62,8 @@ type LookupDefaultOidcSettingsResult struct {
 }
 
 func LookupDefaultOidcSettingsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) LookupDefaultOidcSettingsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (LookupDefaultOidcSettingsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("zitadel:index/getDefaultOidcSettings:getDefaultOidcSettings", nil, LookupDefaultOidcSettingsResultOutput{}, options).(LookupDefaultOidcSettingsResultOutput), nil
-	}).(LookupDefaultOidcSettingsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getDefaultOidcSettings:getDefaultOidcSettings", nil, LookupDefaultOidcSettingsResultOutput{}, options).(LookupDefaultOidcSettingsResultOutput)
 }
 
 // A collection of values returned by getDefaultOidcSettings.

@@ -78,12 +78,8 @@ type LookupActionTargetPublicKeyResult struct {
 }
 
 func LookupActionTargetPublicKeyOutput(ctx *pulumi.Context, args LookupActionTargetPublicKeyOutputArgs, opts ...pulumi.InvokeOption) LookupActionTargetPublicKeyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupActionTargetPublicKeyResultOutput, error) {
-			args := v.(LookupActionTargetPublicKeyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getActionTargetPublicKey:getActionTargetPublicKey", args, LookupActionTargetPublicKeyResultOutput{}, options).(LookupActionTargetPublicKeyResultOutput), nil
-		}).(LookupActionTargetPublicKeyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getActionTargetPublicKey:getActionTargetPublicKey", args, LookupActionTargetPublicKeyResultOutput{}, options).(LookupActionTargetPublicKeyResultOutput)
 }
 
 // A collection of arguments for invoking getActionTargetPublicKey.

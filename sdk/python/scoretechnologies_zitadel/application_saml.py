@@ -232,7 +232,7 @@ class ApplicationSaml(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 login_version: pulumi.Input[Optional[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict']]] = None,
+                 login_version: pulumi.Input[Optional[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict', 'outputs.ApplicationSamlLoginVersion']]] = None,
                  metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata_xml: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -278,7 +278,7 @@ class ApplicationSaml(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict']] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
+        :param pulumi.Input[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict', 'outputs.ApplicationSamlLoginVersion']] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
         :param pulumi.Input[_builtins.str] metadata_url: Metadata URL to fetch the SAML metadata from
         :param pulumi.Input[_builtins.str] metadata_xml: Metadata as XML file
         :param pulumi.Input[_builtins.str] name: Name of the application
@@ -343,7 +343,7 @@ class ApplicationSaml(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 login_version: pulumi.Input[Optional[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict']]] = None,
+                 login_version: pulumi.Input[Optional[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict', 'outputs.ApplicationSamlLoginVersion']]] = None,
                  metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata_xml: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -380,7 +380,7 @@ class ApplicationSaml(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            login_version: pulumi.Input[Optional[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict']]] = None,
+            login_version: pulumi.Input[Optional[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict', 'outputs.ApplicationSamlLoginVersion']]] = None,
             metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
             metadata_xml: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -393,7 +393,7 @@ class ApplicationSaml(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict']] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
+        :param pulumi.Input[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict', 'outputs.ApplicationSamlLoginVersion']] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
         :param pulumi.Input[_builtins.str] metadata_url: Metadata URL to fetch the SAML metadata from
         :param pulumi.Input[_builtins.str] metadata_xml: Metadata as XML file
         :param pulumi.Input[_builtins.str] name: Name of the application

@@ -90,6 +90,12 @@ namespace scoretechnologies.Zitadel
         public Output<ImmutableArray<string>> AdditionalOrigins { get; private set; } = null!;
 
         /// <summary>
+        /// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+        /// </summary>
+        [Output("android")]
+        public Output<Outputs.ApplicationOidcAndroid?> Android { get; private set; } = null!;
+
+        /// <summary>
         /// App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
         /// </summary>
         [Output("appType")]
@@ -154,6 +160,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Output("idTokenUserinfoAssertion")]
         public Output<bool?> IdTokenUserinfoAssertion { get; private set; } = null!;
+
+        /// <summary>
+        /// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+        /// </summary>
+        [Output("ios")]
+        public Output<Outputs.ApplicationOidcIos?> Ios { get; private set; } = null!;
 
         /// <summary>
         /// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
@@ -292,6 +304,12 @@ namespace scoretechnologies.Zitadel
         }
 
         /// <summary>
+        /// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+        /// </summary>
+        [Input("android")]
+        public Input<Inputs.ApplicationOidcAndroidArgs>? Android { get; set; }
+
+        /// <summary>
         /// App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
         /// </summary>
         [Input("appType")]
@@ -344,6 +362,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Input("idTokenUserinfoAssertion")]
         public Input<bool>? IdTokenUserinfoAssertion { get; set; }
+
+        /// <summary>
+        /// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+        /// </summary>
+        [Input("ios")]
+        public Input<Inputs.ApplicationOidcIosArgs>? Ios { get; set; }
 
         /// <summary>
         /// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
@@ -450,6 +474,12 @@ namespace scoretechnologies.Zitadel
         }
 
         /// <summary>
+        /// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+        /// </summary>
+        [Input("android")]
+        public Input<Inputs.ApplicationOidcAndroidGetArgs>? Android { get; set; }
+
+        /// <summary>
         /// App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
         /// </summary>
         [Input("appType")]
@@ -546,6 +576,12 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         [Input("idTokenUserinfoAssertion")]
         public Input<bool>? IdTokenUserinfoAssertion { get; set; }
+
+        /// <summary>
+        /// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+        /// </summary>
+        [Input("ios")]
+        public Input<Inputs.ApplicationOidcIosGetArgs>? Ios { get; set; }
 
         /// <summary>
         /// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.

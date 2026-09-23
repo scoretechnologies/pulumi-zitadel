@@ -77,7 +77,7 @@ export class PrivacyPolicy extends pulumi.CustomResource {
     /**
      * ID of the organization. If not provided, the organization of the authenticated user/service account is used.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * Link to the Privacy Policy.
      */

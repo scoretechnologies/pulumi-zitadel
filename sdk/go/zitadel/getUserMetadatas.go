@@ -83,12 +83,8 @@ type GetUserMetadatasResult struct {
 }
 
 func GetUserMetadatasOutput(ctx *pulumi.Context, args GetUserMetadatasOutputArgs, opts ...pulumi.InvokeOption) GetUserMetadatasResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetUserMetadatasResultOutput, error) {
-			args := v.(GetUserMetadatasArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getUserMetadatas:getUserMetadatas", args, GetUserMetadatasResultOutput{}, options).(GetUserMetadatasResultOutput), nil
-		}).(GetUserMetadatasResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getUserMetadatas:getUserMetadatas", args, GetUserMetadatasResultOutput{}, options).(GetUserMetadatasResultOutput)
 }
 
 // A collection of arguments for invoking getUserMetadatas.

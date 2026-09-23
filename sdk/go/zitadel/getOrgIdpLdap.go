@@ -122,12 +122,8 @@ type LookupOrgIdpLdapResult struct {
 }
 
 func LookupOrgIdpLdapOutput(ctx *pulumi.Context, args LookupOrgIdpLdapOutputArgs, opts ...pulumi.InvokeOption) LookupOrgIdpLdapResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrgIdpLdapResultOutput, error) {
-			args := v.(LookupOrgIdpLdapArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrgIdpLdap:getOrgIdpLdap", args, LookupOrgIdpLdapResultOutput{}, options).(LookupOrgIdpLdapResultOutput), nil
-		}).(LookupOrgIdpLdapResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrgIdpLdap:getOrgIdpLdap", args, LookupOrgIdpLdapResultOutput{}, options).(LookupOrgIdpLdapResultOutput)
 }
 
 // A collection of arguments for invoking getOrgIdpLdap.

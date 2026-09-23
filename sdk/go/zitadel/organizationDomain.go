@@ -28,15 +28,22 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_default, err := zitadel.NewOrganizationDomain(ctx, "default", &zitadel.OrganizationDomainArgs{
+//			_, err := zitadel.NewOrganizationDomain(ctx, "default", &zitadel.OrganizationDomainArgs{
 //				OrganizationId: pulumi.Any(defaultZitadelOrganization.Id),
 //				Domain:         pulumi.String("example.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			validated, err := zitadel.NewOrganizationDomain(ctx, "validated", &zitadel.OrganizationDomainArgs{
+//				OrganizationId: pulumi.Any(defaultZitadelOrganization.Id),
+//				Domain:         pulumi.String("validated.example.com"),
 //				ValidationType: pulumi.String("DOMAIN_VALIDATION_TYPE_DNS"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("dnsValidationToken", _default.ValidationToken)
+//			ctx.Export("dnsValidationToken", validated.ValidationToken)
 //			_, err = zitadel.NewOrganizationDomain(ctx, "verified", &zitadel.OrganizationDomainArgs{
 //				OrganizationId: pulumi.Any(defaultZitadelOrganization.Id),
 //				Domain:         pulumi.String("verified.example.com"),
@@ -54,6 +61,8 @@ import (
 //
 // ## Import
 //
+// The resource can be imported using the ID format `<organization_id:domain>`, e.g.
+//
 // ```sh
 // $ pulumi import zitadel:index/organizationDomain:OrganizationDomain imported '123456789012345678:example.com'
 // ```
@@ -70,8 +79,8 @@ type OrganizationDomain struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// Validation token for domain verification
 	ValidationToken pulumi.StringOutput `pulumi:"validationToken"`
-	// Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
-	ValidationType pulumi.StringOutput `pulumi:"validationType"`
+	// Type of domain validation. Leave unset when the organization's domain policy has `validateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+	ValidationType pulumi.StringPtrOutput `pulumi:"validationType"`
 	// URL where validation file should be hosted for HTTP verification
 	ValidationUrl pulumi.StringOutput `pulumi:"validationUrl"`
 	// Trigger domain verification. Set to true after adding DNS/HTTP validation.
@@ -90,9 +99,6 @@ func NewOrganizationDomain(ctx *pulumi.Context,
 	}
 	if args.OrganizationId == nil {
 		return nil, errors.New("invalid value for required argument 'OrganizationId'")
-	}
-	if args.ValidationType == nil {
-		return nil, errors.New("invalid value for required argument 'ValidationType'")
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"validationToken",
@@ -131,7 +137,7 @@ type organizationDomainState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// Validation token for domain verification
 	ValidationToken *string `pulumi:"validationToken"`
-	// Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+	// Type of domain validation. Leave unset when the organization's domain policy has `validateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
 	ValidationType *string `pulumi:"validationType"`
 	// URL where validation file should be hosted for HTTP verification
 	ValidationUrl *string `pulumi:"validationUrl"`
@@ -150,7 +156,7 @@ type OrganizationDomainState struct {
 	OrganizationId pulumi.StringPtrInput
 	// Validation token for domain verification
 	ValidationToken pulumi.StringPtrInput
-	// Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+	// Type of domain validation. Leave unset when the organization's domain policy has `validateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
 	ValidationType pulumi.StringPtrInput
 	// URL where validation file should be hosted for HTTP verification
 	ValidationUrl pulumi.StringPtrInput
@@ -167,8 +173,8 @@ type organizationDomainArgs struct {
 	Domain string `pulumi:"domain"`
 	// ID of the organization
 	OrganizationId string `pulumi:"organizationId"`
-	// Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
-	ValidationType string `pulumi:"validationType"`
+	// Type of domain validation. Leave unset when the organization's domain policy has `validateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+	ValidationType *string `pulumi:"validationType"`
 	// Trigger domain verification. Set to true after adding DNS/HTTP validation.
 	Verify *bool `pulumi:"verify"`
 }
@@ -179,8 +185,8 @@ type OrganizationDomainArgs struct {
 	Domain pulumi.StringInput
 	// ID of the organization
 	OrganizationId pulumi.StringInput
-	// Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
-	ValidationType pulumi.StringInput
+	// Type of domain validation. Leave unset when the organization's domain policy has `validateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+	ValidationType pulumi.StringPtrInput
 	// Trigger domain verification. Set to true after adding DNS/HTTP validation.
 	Verify pulumi.BoolPtrInput
 }
@@ -297,9 +303,9 @@ func (o OrganizationDomainOutput) ValidationToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationDomain) pulumi.StringOutput { return v.ValidationToken }).(pulumi.StringOutput)
 }
 
-// Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
-func (o OrganizationDomainOutput) ValidationType() pulumi.StringOutput {
-	return o.ApplyT(func(v *OrganizationDomain) pulumi.StringOutput { return v.ValidationType }).(pulumi.StringOutput)
+// Type of domain validation. Leave unset when the organization's domain policy has `validateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+func (o OrganizationDomainOutput) ValidationType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OrganizationDomain) pulumi.StringPtrOutput { return v.ValidationType }).(pulumi.StringPtrOutput)
 }
 
 // URL where validation file should be hosted for HTTP verification

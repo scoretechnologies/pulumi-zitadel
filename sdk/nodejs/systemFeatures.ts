@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Resource representing the feature flags configuration for the system.
+ * Resource representing the feature flags configuration for the system. This resource requires system-level permissions. These cannot be granted to regular machine users or through instance/org memberships such as `IAM_OWNER`; they are only available to System API users defined in ZITADEL's runtime configuration (SystemAPIUsers). Configure the provider with the `systemApi` block to authenticate as such a user. See https://zitadel.com/docs/guides/integrate/zitadel-apis/access-zitadel-system-api for details.
  *
  * ## Example Usage
  *

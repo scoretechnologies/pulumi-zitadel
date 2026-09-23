@@ -79,12 +79,8 @@ type LookupApplicationApiResult struct {
 }
 
 func LookupApplicationApiOutput(ctx *pulumi.Context, args LookupApplicationApiOutputArgs, opts ...pulumi.InvokeOption) LookupApplicationApiResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupApplicationApiResultOutput, error) {
-			args := v.(LookupApplicationApiArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getApplicationApi:getApplicationApi", args, LookupApplicationApiResultOutput{}, options).(LookupApplicationApiResultOutput), nil
-		}).(LookupApplicationApiResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getApplicationApi:getApplicationApi", args, LookupApplicationApiResultOutput{}, options).(LookupApplicationApiResultOutput)
 }
 
 // A collection of arguments for invoking getApplicationApi.

@@ -64,12 +64,8 @@ type GetInstanceCustomDomainsResult struct {
 }
 
 func GetInstanceCustomDomainsOutput(ctx *pulumi.Context, args GetInstanceCustomDomainsOutputArgs, opts ...pulumi.InvokeOption) GetInstanceCustomDomainsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetInstanceCustomDomainsResultOutput, error) {
-			args := v.(GetInstanceCustomDomainsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getInstanceCustomDomains:getInstanceCustomDomains", args, GetInstanceCustomDomainsResultOutput{}, options).(GetInstanceCustomDomainsResultOutput), nil
-		}).(GetInstanceCustomDomainsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getInstanceCustomDomains:getInstanceCustomDomains", args, GetInstanceCustomDomainsResultOutput{}, options).(GetInstanceCustomDomainsResultOutput)
 }
 
 // A collection of arguments for invoking getInstanceCustomDomains.

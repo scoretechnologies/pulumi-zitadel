@@ -201,7 +201,7 @@ class Org(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 admins: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict']]]]] = None,
+                 admins: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict', 'outputs.OrgAdmin']]]]] = None,
                  is_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -229,7 +229,7 @@ class Org(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict']]]] admins: Admin users for the organization
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict', 'outputs.OrgAdmin']]]] admins: Admin users for the organization
         :param pulumi.Input[_builtins.bool] is_default: True sets the org as default org for the instance. Only one org can be default org. Nothing happens if you set it to false until you set another org as default org.
         :param pulumi.Input[_builtins.str] name: Name of the org
         :param pulumi.Input[_builtins.str] org_id: Optionally set a custom unique ID for the organization. If omitted, ZITADEL will generate one.
@@ -276,7 +276,7 @@ class Org(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 admins: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict']]]]] = None,
+                 admins: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict', 'outputs.OrgAdmin']]]]] = None,
                  is_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -307,7 +307,7 @@ class Org(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            admins: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict']]]]] = None,
+            admins: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict', 'outputs.OrgAdmin']]]]] = None,
             is_default: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -320,7 +320,7 @@ class Org(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict']]]] admins: Admin users for the organization
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OrgAdminArgs', 'OrgAdminArgsDict', 'outputs.OrgAdmin']]]] admins: Admin users for the organization
         :param pulumi.Input[_builtins.bool] is_default: True sets the org as default org for the instance. Only one org can be default org. Nothing happens if you set it to false until you set another org as default org.
         :param pulumi.Input[_builtins.str] name: Name of the org
         :param pulumi.Input[_builtins.str] org_id: Optionally set a custom unique ID for the organization. If omitted, ZITADEL will generate one.

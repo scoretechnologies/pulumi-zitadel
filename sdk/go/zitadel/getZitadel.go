@@ -31,10 +31,8 @@ type GetZitadelResult struct {
 }
 
 func GetZitadelOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetZitadelResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetZitadelResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("zitadel:index/getZitadel:getZitadel", nil, GetZitadelResultOutput{}, options).(GetZitadelResultOutput), nil
-	}).(GetZitadelResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getZitadel:getZitadel", nil, GetZitadelResultOutput{}, options).(GetZitadelResultOutput)
 }
 
 // A collection of values returned by getZitadel.

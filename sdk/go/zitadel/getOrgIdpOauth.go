@@ -92,12 +92,8 @@ type LookupOrgIdpOauthResult struct {
 }
 
 func LookupOrgIdpOauthOutput(ctx *pulumi.Context, args LookupOrgIdpOauthOutputArgs, opts ...pulumi.InvokeOption) LookupOrgIdpOauthResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrgIdpOauthResultOutput, error) {
-			args := v.(LookupOrgIdpOauthArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrgIdpOauth:getOrgIdpOauth", args, LookupOrgIdpOauthResultOutput{}, options).(LookupOrgIdpOauthResultOutput), nil
-		}).(LookupOrgIdpOauthResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrgIdpOauth:getOrgIdpOauth", args, LookupOrgIdpOauthResultOutput{}, options).(LookupOrgIdpOauthResultOutput)
 }
 
 // A collection of arguments for invoking getOrgIdpOauth.

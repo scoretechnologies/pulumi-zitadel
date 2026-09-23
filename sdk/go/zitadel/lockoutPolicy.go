@@ -56,7 +56,7 @@ type LockoutPolicy struct {
 	// Maximum password check attempts before the account gets locked. Attempts are reset as soon as the password is entered correct or the password is reset.
 	MaxPasswordAttempts pulumi.IntOutput `pulumi:"maxPasswordAttempts"`
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 }
 
 // NewLockoutPolicy registers a new resource with the given unique name, arguments, and options.
@@ -230,8 +230,8 @@ func (o LockoutPolicyOutput) MaxPasswordAttempts() pulumi.IntOutput {
 }
 
 // ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-func (o LockoutPolicyOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LockoutPolicy) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o LockoutPolicyOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LockoutPolicy) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 type LockoutPolicyArrayOutput struct{ *pulumi.OutputState }

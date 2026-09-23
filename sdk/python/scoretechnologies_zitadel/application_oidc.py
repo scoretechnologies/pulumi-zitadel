@@ -29,6 +29,7 @@ class ApplicationOidcArgs:
                  access_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  access_token_type: pulumi.Input[Optional[_builtins.str]] = None,
                  additional_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 android: pulumi.Input[Optional['ApplicationOidcAndroidArgs']] = None,
                  app_type: pulumi.Input[Optional[_builtins.str]] = None,
                  auth_method_type: pulumi.Input[Optional[_builtins.str]] = None,
                  back_channel_logout_uri: pulumi.Input[Optional[_builtins.str]] = None,
@@ -36,6 +37,7 @@ class ApplicationOidcArgs:
                  dev_mode: pulumi.Input[Optional[_builtins.bool]] = None,
                  id_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  id_token_userinfo_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ios: pulumi.Input[Optional['ApplicationOidcIosArgs']] = None,
                  login_version: pulumi.Input[Optional['ApplicationOidcLoginVersionArgs']] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  post_logout_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -52,6 +54,7 @@ class ApplicationOidcArgs:
         :param pulumi.Input[_builtins.bool] access_token_role_assertion: Access token role assertion
         :param pulumi.Input[_builtins.str] access_token_type: Access token type, supported values: OIDC*TOKEN*TYPE*BEARER, OIDC*TOKEN*TYPE*JWT
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_origins: Additional origins
+        :param pulumi.Input['ApplicationOidcAndroidArgs'] android: Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
         :param pulumi.Input[_builtins.str] app_type: App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
         :param pulumi.Input[_builtins.str] auth_method_type: Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
         :param pulumi.Input[_builtins.str] back_channel_logout_uri: ZITADEL will use this URI to notify the application about terminated session according to the OIDC Back-Channel Logout
@@ -59,6 +62,7 @@ class ApplicationOidcArgs:
         :param pulumi.Input[_builtins.bool] dev_mode: Dev mode
         :param pulumi.Input[_builtins.bool] id_token_role_assertion: ID token role assertion
         :param pulumi.Input[_builtins.bool] id_token_userinfo_assertion: Token userinfo assertion
+        :param pulumi.Input['ApplicationOidcIosArgs'] ios: iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
         :param pulumi.Input['ApplicationOidcLoginVersionArgs'] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
         :param pulumi.Input[_builtins.str] org_id: ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] post_logout_redirect_uris: Post logout redirect URIs
@@ -76,6 +80,8 @@ class ApplicationOidcArgs:
             pulumi.set(__self__, "access_token_type", access_token_type)
         if additional_origins is not None:
             pulumi.set(__self__, "additional_origins", additional_origins)
+        if android is not None:
+            pulumi.set(__self__, "android", android)
         if app_type is not None:
             pulumi.set(__self__, "app_type", app_type)
         if auth_method_type is not None:
@@ -90,6 +96,8 @@ class ApplicationOidcArgs:
             pulumi.set(__self__, "id_token_role_assertion", id_token_role_assertion)
         if id_token_userinfo_assertion is not None:
             pulumi.set(__self__, "id_token_userinfo_assertion", id_token_userinfo_assertion)
+        if ios is not None:
+            pulumi.set(__self__, "ios", ios)
         if login_version is not None:
             pulumi.set(__self__, "login_version", login_version)
         if org_id is not None:
@@ -198,6 +206,18 @@ class ApplicationOidcArgs:
         pulumi.set(self, "additional_origins", value)
 
     @_builtins.property
+    @pulumi.getter
+    def android(self) -> pulumi.Input[Optional['ApplicationOidcAndroidArgs']]:
+        """
+        Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+        """
+        return pulumi.get(self, "android")
+
+    @android.setter
+    def android(self, value: pulumi.Input[Optional['ApplicationOidcAndroidArgs']]):
+        pulumi.set(self, "android", value)
+
+    @_builtins.property
     @pulumi.getter(name="appType")
     def app_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -282,6 +302,18 @@ class ApplicationOidcArgs:
         pulumi.set(self, "id_token_userinfo_assertion", value)
 
     @_builtins.property
+    @pulumi.getter
+    def ios(self) -> pulumi.Input[Optional['ApplicationOidcIosArgs']]:
+        """
+        iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+        """
+        return pulumi.get(self, "ios")
+
+    @ios.setter
+    def ios(self, value: pulumi.Input[Optional['ApplicationOidcIosArgs']]):
+        pulumi.set(self, "ios", value)
+
+    @_builtins.property
     @pulumi.getter(name="loginVersion")
     def login_version(self) -> pulumi.Input[Optional['ApplicationOidcLoginVersionArgs']]:
         """
@@ -348,6 +380,7 @@ class _ApplicationOidcState:
                  access_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  access_token_type: pulumi.Input[Optional[_builtins.str]] = None,
                  additional_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 android: pulumi.Input[Optional['ApplicationOidcAndroidArgs']] = None,
                  app_type: pulumi.Input[Optional[_builtins.str]] = None,
                  auth_method_type: pulumi.Input[Optional[_builtins.str]] = None,
                  back_channel_logout_uri: pulumi.Input[Optional[_builtins.str]] = None,
@@ -359,6 +392,7 @@ class _ApplicationOidcState:
                  grant_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  id_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  id_token_userinfo_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ios: pulumi.Input[Optional['ApplicationOidcIosArgs']] = None,
                  login_version: pulumi.Input[Optional['ApplicationOidcLoginVersionArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  none_compliant: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -375,6 +409,7 @@ class _ApplicationOidcState:
         :param pulumi.Input[_builtins.bool] access_token_role_assertion: Access token role assertion
         :param pulumi.Input[_builtins.str] access_token_type: Access token type, supported values: OIDC*TOKEN*TYPE*BEARER, OIDC*TOKEN*TYPE*JWT
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_origins: Additional origins
+        :param pulumi.Input['ApplicationOidcAndroidArgs'] android: Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
         :param pulumi.Input[_builtins.str] app_type: App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
         :param pulumi.Input[_builtins.str] auth_method_type: Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
         :param pulumi.Input[_builtins.str] back_channel_logout_uri: ZITADEL will use this URI to notify the application about terminated session according to the OIDC Back-Channel Logout
@@ -386,6 +421,7 @@ class _ApplicationOidcState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         :param pulumi.Input[_builtins.bool] id_token_role_assertion: ID token role assertion
         :param pulumi.Input[_builtins.bool] id_token_userinfo_assertion: Token userinfo assertion
+        :param pulumi.Input['ApplicationOidcIosArgs'] ios: iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
         :param pulumi.Input['ApplicationOidcLoginVersionArgs'] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
         :param pulumi.Input[_builtins.str] name: Name of the application
         :param pulumi.Input[_builtins.bool] none_compliant: specifies whether the config is OIDC compliant. A production configuration SHOULD be compliant
@@ -403,6 +439,8 @@ class _ApplicationOidcState:
             pulumi.set(__self__, "access_token_type", access_token_type)
         if additional_origins is not None:
             pulumi.set(__self__, "additional_origins", additional_origins)
+        if android is not None:
+            pulumi.set(__self__, "android", android)
         if app_type is not None:
             pulumi.set(__self__, "app_type", app_type)
         if auth_method_type is not None:
@@ -425,6 +463,8 @@ class _ApplicationOidcState:
             pulumi.set(__self__, "id_token_role_assertion", id_token_role_assertion)
         if id_token_userinfo_assertion is not None:
             pulumi.set(__self__, "id_token_userinfo_assertion", id_token_userinfo_assertion)
+        if ios is not None:
+            pulumi.set(__self__, "ios", ios)
         if login_version is not None:
             pulumi.set(__self__, "login_version", login_version)
         if name is not None:
@@ -481,6 +521,18 @@ class _ApplicationOidcState:
     @additional_origins.setter
     def additional_origins(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_origins", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def android(self) -> pulumi.Input[Optional['ApplicationOidcAndroidArgs']]:
+        """
+        Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+        """
+        return pulumi.get(self, "android")
+
+    @android.setter
+    def android(self, value: pulumi.Input[Optional['ApplicationOidcAndroidArgs']]):
+        pulumi.set(self, "android", value)
 
     @_builtins.property
     @pulumi.getter(name="appType")
@@ -615,6 +667,18 @@ class _ApplicationOidcState:
         pulumi.set(self, "id_token_userinfo_assertion", value)
 
     @_builtins.property
+    @pulumi.getter
+    def ios(self) -> pulumi.Input[Optional['ApplicationOidcIosArgs']]:
+        """
+        iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+        """
+        return pulumi.get(self, "ios")
+
+    @ios.setter
+    def ios(self, value: pulumi.Input[Optional['ApplicationOidcIosArgs']]):
+        pulumi.set(self, "ios", value)
+
+    @_builtins.property
     @pulumi.getter(name="loginVersion")
     def login_version(self) -> pulumi.Input[Optional['ApplicationOidcLoginVersionArgs']]:
         """
@@ -744,6 +808,7 @@ class ApplicationOidc(pulumi.CustomResource):
                  access_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  access_token_type: pulumi.Input[Optional[_builtins.str]] = None,
                  additional_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 android: pulumi.Input[Optional[Union['ApplicationOidcAndroidArgs', 'ApplicationOidcAndroidArgsDict', 'outputs.ApplicationOidcAndroid']]] = None,
                  app_type: pulumi.Input[Optional[_builtins.str]] = None,
                  auth_method_type: pulumi.Input[Optional[_builtins.str]] = None,
                  back_channel_logout_uri: pulumi.Input[Optional[_builtins.str]] = None,
@@ -752,7 +817,8 @@ class ApplicationOidc(pulumi.CustomResource):
                  grant_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  id_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  id_token_userinfo_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
-                 login_version: pulumi.Input[Optional[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict']]] = None,
+                 ios: pulumi.Input[Optional[Union['ApplicationOidcIosArgs', 'ApplicationOidcIosArgsDict', 'outputs.ApplicationOidcIos']]] = None,
+                 login_version: pulumi.Input[Optional[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict', 'outputs.ApplicationOidcLoginVersion']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  post_logout_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -806,6 +872,7 @@ class ApplicationOidc(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] access_token_role_assertion: Access token role assertion
         :param pulumi.Input[_builtins.str] access_token_type: Access token type, supported values: OIDC*TOKEN*TYPE*BEARER, OIDC*TOKEN*TYPE*JWT
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_origins: Additional origins
+        :param pulumi.Input[Union['ApplicationOidcAndroidArgs', 'ApplicationOidcAndroidArgsDict', 'outputs.ApplicationOidcAndroid']] android: Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
         :param pulumi.Input[_builtins.str] app_type: App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
         :param pulumi.Input[_builtins.str] auth_method_type: Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
         :param pulumi.Input[_builtins.str] back_channel_logout_uri: ZITADEL will use this URI to notify the application about terminated session according to the OIDC Back-Channel Logout
@@ -814,7 +881,8 @@ class ApplicationOidc(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         :param pulumi.Input[_builtins.bool] id_token_role_assertion: ID token role assertion
         :param pulumi.Input[_builtins.bool] id_token_userinfo_assertion: Token userinfo assertion
-        :param pulumi.Input[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict']] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
+        :param pulumi.Input[Union['ApplicationOidcIosArgs', 'ApplicationOidcIosArgsDict', 'outputs.ApplicationOidcIos']] ios: iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+        :param pulumi.Input[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict', 'outputs.ApplicationOidcLoginVersion']] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
         :param pulumi.Input[_builtins.str] name: Name of the application
         :param pulumi.Input[_builtins.str] org_id: ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] post_logout_redirect_uris: Post logout redirect URIs
@@ -887,6 +955,7 @@ class ApplicationOidc(pulumi.CustomResource):
                  access_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  access_token_type: pulumi.Input[Optional[_builtins.str]] = None,
                  additional_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 android: pulumi.Input[Optional[Union['ApplicationOidcAndroidArgs', 'ApplicationOidcAndroidArgsDict', 'outputs.ApplicationOidcAndroid']]] = None,
                  app_type: pulumi.Input[Optional[_builtins.str]] = None,
                  auth_method_type: pulumi.Input[Optional[_builtins.str]] = None,
                  back_channel_logout_uri: pulumi.Input[Optional[_builtins.str]] = None,
@@ -895,7 +964,8 @@ class ApplicationOidc(pulumi.CustomResource):
                  grant_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  id_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  id_token_userinfo_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
-                 login_version: pulumi.Input[Optional[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict']]] = None,
+                 ios: pulumi.Input[Optional[Union['ApplicationOidcIosArgs', 'ApplicationOidcIosArgsDict', 'outputs.ApplicationOidcIos']]] = None,
+                 login_version: pulumi.Input[Optional[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict', 'outputs.ApplicationOidcLoginVersion']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  post_logout_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -916,6 +986,7 @@ class ApplicationOidc(pulumi.CustomResource):
             __props__.__dict__["access_token_role_assertion"] = access_token_role_assertion
             __props__.__dict__["access_token_type"] = access_token_type
             __props__.__dict__["additional_origins"] = additional_origins
+            __props__.__dict__["android"] = android
             __props__.__dict__["app_type"] = app_type
             __props__.__dict__["auth_method_type"] = auth_method_type
             __props__.__dict__["back_channel_logout_uri"] = back_channel_logout_uri
@@ -926,6 +997,7 @@ class ApplicationOidc(pulumi.CustomResource):
             __props__.__dict__["grant_types"] = grant_types
             __props__.__dict__["id_token_role_assertion"] = id_token_role_assertion
             __props__.__dict__["id_token_userinfo_assertion"] = id_token_userinfo_assertion
+            __props__.__dict__["ios"] = ios
             __props__.__dict__["login_version"] = login_version
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
@@ -962,18 +1034,20 @@ class ApplicationOidc(pulumi.CustomResource):
             access_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
             access_token_type: pulumi.Input[Optional[_builtins.str]] = None,
             additional_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            android: pulumi.Input[Optional[Union['ApplicationOidcAndroidArgs', 'ApplicationOidcAndroidArgsDict', 'outputs.ApplicationOidcAndroid']]] = None,
             app_type: pulumi.Input[Optional[_builtins.str]] = None,
             auth_method_type: pulumi.Input[Optional[_builtins.str]] = None,
             back_channel_logout_uri: pulumi.Input[Optional[_builtins.str]] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_secret: pulumi.Input[Optional[_builtins.str]] = None,
             clock_skew: pulumi.Input[Optional[_builtins.str]] = None,
-            compliance_problems: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ApplicationOidcComplianceProblemArgs', 'ApplicationOidcComplianceProblemArgsDict']]]]] = None,
+            compliance_problems: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ApplicationOidcComplianceProblemArgs', 'ApplicationOidcComplianceProblemArgsDict', 'outputs.ApplicationOidcComplianceProblem']]]]] = None,
             dev_mode: pulumi.Input[Optional[_builtins.bool]] = None,
             grant_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             id_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
             id_token_userinfo_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
-            login_version: pulumi.Input[Optional[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict']]] = None,
+            ios: pulumi.Input[Optional[Union['ApplicationOidcIosArgs', 'ApplicationOidcIosArgsDict', 'outputs.ApplicationOidcIos']]] = None,
+            login_version: pulumi.Input[Optional[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict', 'outputs.ApplicationOidcLoginVersion']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             none_compliant: pulumi.Input[Optional[_builtins.bool]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -993,18 +1067,20 @@ class ApplicationOidc(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] access_token_role_assertion: Access token role assertion
         :param pulumi.Input[_builtins.str] access_token_type: Access token type, supported values: OIDC*TOKEN*TYPE*BEARER, OIDC*TOKEN*TYPE*JWT
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_origins: Additional origins
+        :param pulumi.Input[Union['ApplicationOidcAndroidArgs', 'ApplicationOidcAndroidArgsDict', 'outputs.ApplicationOidcAndroid']] android: Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
         :param pulumi.Input[_builtins.str] app_type: App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
         :param pulumi.Input[_builtins.str] auth_method_type: Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
         :param pulumi.Input[_builtins.str] back_channel_logout_uri: ZITADEL will use this URI to notify the application about terminated session according to the OIDC Back-Channel Logout
         :param pulumi.Input[_builtins.str] client_id: generated ID for this config
         :param pulumi.Input[_builtins.str] client_secret: generated secret for this config
         :param pulumi.Input[_builtins.str] clock_skew: Clockskew
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ApplicationOidcComplianceProblemArgs', 'ApplicationOidcComplianceProblemArgsDict']]]] compliance_problems: lists the problems for non-compliancy
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApplicationOidcComplianceProblemArgs', 'ApplicationOidcComplianceProblemArgsDict', 'outputs.ApplicationOidcComplianceProblem']]]] compliance_problems: lists the problems for non-compliancy
         :param pulumi.Input[_builtins.bool] dev_mode: Dev mode
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] grant_types: Grant types, supported values: OIDC*GRANT*TYPE*AUTHORIZATION*CODE, OIDC*GRANT*TYPE*IMPLICIT, OIDC*GRANT*TYPE*REFRESH*TOKEN, OIDC*GRANT*TYPE*DEVICE*CODE, OIDC*GRANT*TYPE*TOKEN_EXCHANGE
         :param pulumi.Input[_builtins.bool] id_token_role_assertion: ID token role assertion
         :param pulumi.Input[_builtins.bool] id_token_userinfo_assertion: Token userinfo assertion
-        :param pulumi.Input[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict']] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
+        :param pulumi.Input[Union['ApplicationOidcIosArgs', 'ApplicationOidcIosArgsDict', 'outputs.ApplicationOidcIos']] ios: iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+        :param pulumi.Input[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict', 'outputs.ApplicationOidcLoginVersion']] login_version: Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
         :param pulumi.Input[_builtins.str] name: Name of the application
         :param pulumi.Input[_builtins.bool] none_compliant: specifies whether the config is OIDC compliant. A production configuration SHOULD be compliant
         :param pulumi.Input[_builtins.str] org_id: ID of the organization. If not provided, the organization of the authenticated user/service account is used.
@@ -1022,6 +1098,7 @@ class ApplicationOidc(pulumi.CustomResource):
         __props__.__dict__["access_token_role_assertion"] = access_token_role_assertion
         __props__.__dict__["access_token_type"] = access_token_type
         __props__.__dict__["additional_origins"] = additional_origins
+        __props__.__dict__["android"] = android
         __props__.__dict__["app_type"] = app_type
         __props__.__dict__["auth_method_type"] = auth_method_type
         __props__.__dict__["back_channel_logout_uri"] = back_channel_logout_uri
@@ -1033,6 +1110,7 @@ class ApplicationOidc(pulumi.CustomResource):
         __props__.__dict__["grant_types"] = grant_types
         __props__.__dict__["id_token_role_assertion"] = id_token_role_assertion
         __props__.__dict__["id_token_userinfo_assertion"] = id_token_userinfo_assertion
+        __props__.__dict__["ios"] = ios
         __props__.__dict__["login_version"] = login_version
         __props__.__dict__["name"] = name
         __props__.__dict__["none_compliant"] = none_compliant
@@ -1068,6 +1146,14 @@ class ApplicationOidc(pulumi.CustomResource):
         Additional origins
         """
         return pulumi.get(self, "additional_origins")
+
+    @_builtins.property
+    @pulumi.getter
+    def android(self) -> pulumi.Output[Optional['outputs.ApplicationOidcAndroid']]:
+        """
+        Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+        """
+        return pulumi.get(self, "android")
 
     @_builtins.property
     @pulumi.getter(name="appType")
@@ -1156,6 +1242,14 @@ class ApplicationOidc(pulumi.CustomResource):
         Token userinfo assertion
         """
         return pulumi.get(self, "id_token_userinfo_assertion")
+
+    @_builtins.property
+    @pulumi.getter
+    def ios(self) -> pulumi.Output[Optional['outputs.ApplicationOidcIos']]:
+        """
+        iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+        """
+        return pulumi.get(self, "ios")
 
     @_builtins.property
     @pulumi.getter(name="loginVersion")

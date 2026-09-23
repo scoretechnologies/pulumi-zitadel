@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * The resource can be imported using the ID format `<id:has_secret[:org_id][:client_id][:client_secret]>`, e.g.
  *
  * ```sh
- * $ pulumi import zitadel:index/machineUser:MachineUser imported '123456789012345678:123456789012345678:true:my-machine-user:j76mh34CHVrGGoXPQOg80lch67FIxwc2qIXjBkZoB6oMbf31eGMkB6bvRyaPjR2t'
+ * $ pulumi import zitadel:index/machineUser:MachineUser imported '123456789012345678:true:123456789012345678:my-machine-user:j76mh34CHVrGGoXPQOg80lch67FIxwc2qIXjBkZoB6oMbf31eGMkB6bvRyaPjR2t'
  * ```
  */
 export class MachineUser extends pulumi.CustomResource {

@@ -58,7 +58,7 @@ export class NotificationPolicy extends pulumi.CustomResource {
     /**
      * ID of the organization. If not provided, the organization of the authenticated user/service account is used.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     /**
      * Send notification if a user changes his password
      */

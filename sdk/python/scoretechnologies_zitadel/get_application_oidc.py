@@ -27,7 +27,7 @@ class GetApplicationOidcResult:
     """
     A collection of values returned by getApplicationOidc.
     """
-    def __init__(__self__, access_token_role_assertion=None, access_token_type=None, additional_origins=None, app_id=None, app_type=None, auth_method_type=None, back_channel_logout_uri=None, client_id=None, clock_skew=None, compliance_problems=None, dev_mode=None, grant_types=None, id=None, id_token_role_assertion=None, id_token_userinfo_assertion=None, login_versions=None, name=None, none_compliant=None, org_id=None, post_logout_redirect_uris=None, project_id=None, redirect_uris=None, response_types=None, skip_native_app_success_page=None, version=None):
+    def __init__(__self__, access_token_role_assertion=None, access_token_type=None, additional_origins=None, androids=None, app_id=None, app_type=None, auth_method_type=None, back_channel_logout_uri=None, client_id=None, clock_skew=None, compliance_problems=None, dev_mode=None, grant_types=None, id=None, id_token_role_assertion=None, id_token_userinfo_assertion=None, ios=None, login_versions=None, name=None, none_compliant=None, org_id=None, post_logout_redirect_uris=None, project_id=None, redirect_uris=None, response_types=None, skip_native_app_success_page=None, version=None):
         if access_token_role_assertion and not isinstance(access_token_role_assertion, bool):
             raise TypeError("Expected argument 'access_token_role_assertion' to be a bool")
         pulumi.set(__self__, "access_token_role_assertion", access_token_role_assertion)
@@ -37,6 +37,9 @@ class GetApplicationOidcResult:
         if additional_origins and not isinstance(additional_origins, list):
             raise TypeError("Expected argument 'additional_origins' to be a list")
         pulumi.set(__self__, "additional_origins", additional_origins)
+        if androids and not isinstance(androids, list):
+            raise TypeError("Expected argument 'androids' to be a list")
+        pulumi.set(__self__, "androids", androids)
         if app_id and not isinstance(app_id, str):
             raise TypeError("Expected argument 'app_id' to be a str")
         pulumi.set(__self__, "app_id", app_id)
@@ -73,6 +76,9 @@ class GetApplicationOidcResult:
         if id_token_userinfo_assertion and not isinstance(id_token_userinfo_assertion, bool):
             raise TypeError("Expected argument 'id_token_userinfo_assertion' to be a bool")
         pulumi.set(__self__, "id_token_userinfo_assertion", id_token_userinfo_assertion)
+        if ios and not isinstance(ios, list):
+            raise TypeError("Expected argument 'ios' to be a list")
+        pulumi.set(__self__, "ios", ios)
         if login_versions and not isinstance(login_versions, list):
             raise TypeError("Expected argument 'login_versions' to be a list")
         pulumi.set(__self__, "login_versions", login_versions)
@@ -127,6 +133,14 @@ class GetApplicationOidcResult:
         Additional origins
         """
         return pulumi.get(self, "additional_origins")
+
+    @_builtins.property
+    @pulumi.getter
+    def androids(self) -> Sequence['outputs.GetApplicationOidcAndroidResult']:
+        """
+        Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds.
+        """
+        return pulumi.get(self, "androids")
 
     @_builtins.property
     @pulumi.getter(name="appId")
@@ -225,6 +239,14 @@ class GetApplicationOidcResult:
         return pulumi.get(self, "id_token_userinfo_assertion")
 
     @_builtins.property
+    @pulumi.getter
+    def ios(self) -> Sequence['outputs.GetApplicationOidcIoResult']:
+        """
+        iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}".
+        """
+        return pulumi.get(self, "ios")
+
+    @_builtins.property
     @pulumi.getter(name="loginVersions")
     def login_versions(self) -> Sequence['outputs.GetApplicationOidcLoginVersionResult']:
         """
@@ -314,6 +336,7 @@ class AwaitableGetApplicationOidcResult(GetApplicationOidcResult):
             access_token_role_assertion=self.access_token_role_assertion,
             access_token_type=self.access_token_type,
             additional_origins=self.additional_origins,
+            androids=self.androids,
             app_id=self.app_id,
             app_type=self.app_type,
             auth_method_type=self.auth_method_type,
@@ -326,6 +349,7 @@ class AwaitableGetApplicationOidcResult(GetApplicationOidcResult):
             id=self.id,
             id_token_role_assertion=self.id_token_role_assertion,
             id_token_userinfo_assertion=self.id_token_userinfo_assertion,
+            ios=self.ios,
             login_versions=self.login_versions,
             name=self.name,
             none_compliant=self.none_compliant,
@@ -372,6 +396,7 @@ def get_application_oidc(app_id: Optional[_builtins.str] = None,
         access_token_role_assertion=pulumi.get(__ret__, 'access_token_role_assertion'),
         access_token_type=pulumi.get(__ret__, 'access_token_type'),
         additional_origins=pulumi.get(__ret__, 'additional_origins'),
+        androids=pulumi.get(__ret__, 'androids'),
         app_id=pulumi.get(__ret__, 'app_id'),
         app_type=pulumi.get(__ret__, 'app_type'),
         auth_method_type=pulumi.get(__ret__, 'auth_method_type'),
@@ -384,6 +409,7 @@ def get_application_oidc(app_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         id_token_role_assertion=pulumi.get(__ret__, 'id_token_role_assertion'),
         id_token_userinfo_assertion=pulumi.get(__ret__, 'id_token_userinfo_assertion'),
+        ios=pulumi.get(__ret__, 'ios'),
         login_versions=pulumi.get(__ret__, 'login_versions'),
         name=pulumi.get(__ret__, 'name'),
         none_compliant=pulumi.get(__ret__, 'none_compliant'),
@@ -427,6 +453,7 @@ def get_application_oidc_output(app_id: pulumi.Input[Optional[_builtins.str]] = 
         access_token_role_assertion=pulumi.get(__response__, 'access_token_role_assertion'),
         access_token_type=pulumi.get(__response__, 'access_token_type'),
         additional_origins=pulumi.get(__response__, 'additional_origins'),
+        androids=pulumi.get(__response__, 'androids'),
         app_id=pulumi.get(__response__, 'app_id'),
         app_type=pulumi.get(__response__, 'app_type'),
         auth_method_type=pulumi.get(__response__, 'auth_method_type'),
@@ -439,6 +466,7 @@ def get_application_oidc_output(app_id: pulumi.Input[Optional[_builtins.str]] = 
         id=pulumi.get(__response__, 'id'),
         id_token_role_assertion=pulumi.get(__response__, 'id_token_role_assertion'),
         id_token_userinfo_assertion=pulumi.get(__response__, 'id_token_userinfo_assertion'),
+        ios=pulumi.get(__response__, 'ios'),
         login_versions=pulumi.get(__response__, 'login_versions'),
         name=pulumi.get(__response__, 'name'),
         none_compliant=pulumi.get(__response__, 'none_compliant'),

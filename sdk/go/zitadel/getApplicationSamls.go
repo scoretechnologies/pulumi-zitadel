@@ -53,12 +53,8 @@ type GetApplicationSamlsResult struct {
 }
 
 func GetApplicationSamlsOutput(ctx *pulumi.Context, args GetApplicationSamlsOutputArgs, opts ...pulumi.InvokeOption) GetApplicationSamlsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetApplicationSamlsResultOutput, error) {
-			args := v.(GetApplicationSamlsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getApplicationSamls:getApplicationSamls", args, GetApplicationSamlsResultOutput{}, options).(GetApplicationSamlsResultOutput), nil
-		}).(GetApplicationSamlsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getApplicationSamls:getApplicationSamls", args, GetApplicationSamlsResultOutput{}, options).(GetApplicationSamlsResultOutput)
 }
 
 // A collection of arguments for invoking getApplicationSamls.

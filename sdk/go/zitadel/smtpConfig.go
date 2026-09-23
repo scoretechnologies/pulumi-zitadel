@@ -71,8 +71,8 @@ type SmtpConfig struct {
 	SenderAddress pulumi.StringOutput `pulumi:"senderAddress"`
 	// Sender name used to send emails.
 	SenderName pulumi.StringOutput `pulumi:"senderName"`
-	// Set the SMTP configuration active after creating/updating.
-	SetActive pulumi.BoolPtrOutput `pulumi:"setActive"`
+	// Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
+	SetActive pulumi.BoolOutput `pulumi:"setActive"`
 	// TLS used to communicate with your SMTP server.
 	Tls pulumi.BoolPtrOutput `pulumi:"tls"`
 	// User used to communicate with your SMTP server.
@@ -141,7 +141,7 @@ type smtpConfigState struct {
 	SenderAddress *string `pulumi:"senderAddress"`
 	// Sender name used to send emails.
 	SenderName *string `pulumi:"senderName"`
-	// Set the SMTP configuration active after creating/updating.
+	// Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive *bool `pulumi:"setActive"`
 	// TLS used to communicate with your SMTP server.
 	Tls *bool `pulumi:"tls"`
@@ -165,7 +165,7 @@ type SmtpConfigState struct {
 	SenderAddress pulumi.StringPtrInput
 	// Sender name used to send emails.
 	SenderName pulumi.StringPtrInput
-	// Set the SMTP configuration active after creating/updating.
+	// Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive pulumi.BoolPtrInput
 	// TLS used to communicate with your SMTP server.
 	Tls pulumi.BoolPtrInput
@@ -191,7 +191,7 @@ type smtpConfigArgs struct {
 	SenderAddress string `pulumi:"senderAddress"`
 	// Sender name used to send emails.
 	SenderName string `pulumi:"senderName"`
-	// Set the SMTP configuration active after creating/updating.
+	// Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive *bool `pulumi:"setActive"`
 	// TLS used to communicate with your SMTP server.
 	Tls *bool `pulumi:"tls"`
@@ -214,7 +214,7 @@ type SmtpConfigArgs struct {
 	SenderAddress pulumi.StringInput
 	// Sender name used to send emails.
 	SenderName pulumi.StringInput
-	// Set the SMTP configuration active after creating/updating.
+	// Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive pulumi.BoolPtrInput
 	// TLS used to communicate with your SMTP server.
 	Tls pulumi.BoolPtrInput
@@ -345,9 +345,9 @@ func (o SmtpConfigOutput) SenderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SmtpConfig) pulumi.StringOutput { return v.SenderName }).(pulumi.StringOutput)
 }
 
-// Set the SMTP configuration active after creating/updating.
-func (o SmtpConfigOutput) SetActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *SmtpConfig) pulumi.BoolPtrOutput { return v.SetActive }).(pulumi.BoolPtrOutput)
+// Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
+func (o SmtpConfigOutput) SetActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SmtpConfig) pulumi.BoolOutput { return v.SetActive }).(pulumi.BoolOutput)
 }
 
 // TLS used to communicate with your SMTP server.

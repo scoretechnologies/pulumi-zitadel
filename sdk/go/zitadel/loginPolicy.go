@@ -106,8 +106,8 @@ type LoginPolicy struct {
 	// allowed multi factors
 	MultiFactors pulumi.StringArrayOutput `pulumi:"multiFactors"`
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-	OrgId                 pulumi.StringPtrOutput `pulumi:"orgId"`
-	PasswordCheckLifetime pulumi.StringOutput    `pulumi:"passwordCheckLifetime"`
+	OrgId                 pulumi.StringOutput `pulumi:"orgId"`
+	PasswordCheckLifetime pulumi.StringOutput `pulumi:"passwordCheckLifetime"`
 	// defines if passwordless is allowed for users
 	PasswordlessType          pulumi.StringOutput `pulumi:"passwordlessType"`
 	SecondFactorCheckLifetime pulumi.StringOutput `pulumi:"secondFactorCheckLifetime"`
@@ -513,8 +513,8 @@ func (o LoginPolicyOutput) MultiFactors() pulumi.StringArrayOutput {
 }
 
 // ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-func (o LoginPolicyOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LoginPolicy) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o LoginPolicyOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoginPolicy) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 func (o LoginPolicyOutput) PasswordCheckLifetime() pulumi.StringOutput {

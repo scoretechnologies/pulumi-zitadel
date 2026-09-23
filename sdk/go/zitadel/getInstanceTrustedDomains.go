@@ -64,12 +64,8 @@ type GetInstanceTrustedDomainsResult struct {
 }
 
 func GetInstanceTrustedDomainsOutput(ctx *pulumi.Context, args GetInstanceTrustedDomainsOutputArgs, opts ...pulumi.InvokeOption) GetInstanceTrustedDomainsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetInstanceTrustedDomainsResultOutput, error) {
-			args := v.(GetInstanceTrustedDomainsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getInstanceTrustedDomains:getInstanceTrustedDomains", args, GetInstanceTrustedDomainsResultOutput{}, options).(GetInstanceTrustedDomainsResultOutput), nil
-		}).(GetInstanceTrustedDomainsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getInstanceTrustedDomains:getInstanceTrustedDomains", args, GetInstanceTrustedDomainsResultOutput{}, options).(GetInstanceTrustedDomainsResultOutput)
 }
 
 // A collection of arguments for invoking getInstanceTrustedDomains.

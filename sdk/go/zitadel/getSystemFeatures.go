@@ -69,10 +69,8 @@ type LookupSystemFeaturesResult struct {
 }
 
 func LookupSystemFeaturesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) LookupSystemFeaturesResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (LookupSystemFeaturesResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("zitadel:index/getSystemFeatures:getSystemFeatures", nil, LookupSystemFeaturesResultOutput{}, options).(LookupSystemFeaturesResultOutput), nil
-	}).(LookupSystemFeaturesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getSystemFeatures:getSystemFeatures", nil, LookupSystemFeaturesResultOutput{}, options).(LookupSystemFeaturesResultOutput)
 }
 
 // A collection of values returned by getSystemFeatures.

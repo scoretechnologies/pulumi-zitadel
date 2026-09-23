@@ -33,7 +33,7 @@ class SmsProviderTwilioArgs:
         :param pulumi.Input[_builtins.str] token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Token used to communicate with Twilio. This value is write-only and is never stored in Terraform state; it cannot be read back.
         :param pulumi.Input[_builtins.str] description: Description of the SMS provider.
-        :param pulumi.Input[_builtins.bool] set_active: Set the SMS provider as active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.str] verify_service_sid: Twilio Verify Service SID used for phone verification.
         """
         pulumi.set(__self__, "sender_number", sender_number)
@@ -99,7 +99,7 @@ class SmsProviderTwilioArgs:
     @pulumi.getter(name="setActive")
     def set_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Set the SMS provider as active after creating/updating.
+        Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         return pulumi.get(self, "set_active")
 
@@ -135,7 +135,7 @@ class _SmsProviderTwilioState:
 
         :param pulumi.Input[_builtins.str] description: Description of the SMS provider.
         :param pulumi.Input[_builtins.str] sender_number: Sender number which is used to send the SMS.
-        :param pulumi.Input[_builtins.bool] set_active: Set the SMS provider as active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.str] sid: SID used to communicate with Twilio.
         :param pulumi.Input[_builtins.str] token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Token used to communicate with Twilio. This value is write-only and is never stored in Terraform state; it cannot be read back.
@@ -185,7 +185,7 @@ class _SmsProviderTwilioState:
     @pulumi.getter(name="setActive")
     def set_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Set the SMS provider as active after creating/updating.
+        Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         return pulumi.get(self, "set_active")
 
@@ -287,7 +287,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Description of the SMS provider.
         :param pulumi.Input[_builtins.str] sender_number: Sender number which is used to send the SMS.
-        :param pulumi.Input[_builtins.bool] set_active: Set the SMS provider as active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.str] sid: SID used to communicate with Twilio.
         :param pulumi.Input[_builtins.str] token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Token used to communicate with Twilio. This value is write-only and is never stored in Terraform state; it cannot be read back.
@@ -397,7 +397,7 @@ class SmsProviderTwilio(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Description of the SMS provider.
         :param pulumi.Input[_builtins.str] sender_number: Sender number which is used to send the SMS.
-        :param pulumi.Input[_builtins.bool] set_active: Set the SMS provider as active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.str] sid: SID used to communicate with Twilio.
         :param pulumi.Input[_builtins.str] token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Token used to communicate with Twilio. This value is write-only and is never stored in Terraform state; it cannot be read back.
@@ -435,9 +435,9 @@ class SmsProviderTwilio(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="setActive")
-    def set_active(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def set_active(self) -> pulumi.Output[_builtins.bool]:
         """
-        Set the SMS provider as active after creating/updating.
+        Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         return pulumi.get(self, "set_active")
 

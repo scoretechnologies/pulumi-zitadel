@@ -66,6 +66,10 @@ export interface GetApplicationOidcResult {
      */
     readonly additionalOrigins: string[];
     /**
+     * Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds.
+     */
+    readonly androids: outputs.GetApplicationOidcAndroid[];
+    /**
      * The ID of this resource.
      */
     readonly appId: string;
@@ -113,6 +117,10 @@ export interface GetApplicationOidcResult {
      * Token userinfo assertion
      */
     readonly idTokenUserinfoAssertion: boolean;
+    /**
+     * iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}".
+     */
+    readonly ios: outputs.GetApplicationOidcIo[];
     /**
      * Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
      */

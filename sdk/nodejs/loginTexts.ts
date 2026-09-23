@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Customizes the text displayed in the **legacy login UI (v1)** at `/ui/login`. These settings have **no effect on the new hosted login v2** (`/ui/v2/login`). For hosted login v2 translations, use the ZITADEL SettingsService v2beta `SetHostedLoginTranslation` API directly. Instance-level defaults are managed by `zitadel.DefaultLoginTexts`.
+ * Customizes the text displayed in the **legacy login UI (v1)** at `/ui/login`. These settings have **no effect on the new hosted login v2** (`/ui/v2/login`). Hosted login v2 translations are managed by `zitadel.HostedLoginTranslation`. Instance-level defaults are managed by `zitadel.DefaultLoginTexts`.
  *
  * ## Example Usage
  *

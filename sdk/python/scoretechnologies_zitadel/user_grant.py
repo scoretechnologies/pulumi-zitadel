@@ -223,11 +223,15 @@ class UserGrant(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<flow_type:trigger_type[:org_id]>`, e.g.
+        The resource can be imported using the ID format `<grant_id:user_id[:org_id]>`, e.g.
 
         ```sh
         $ pulumi import zitadel:index/userGrant:UserGrant imported '123456789012345678:123456789012345678:123456789012345678'
         ```
+
+        The grant ID is not shown in the ZITADEL console. It can be looked up per user with the Management API
+        ListUserGrants endpoint (https://zitadel.com/docs/apis/resources/mgmt/management-service-list-user-grants),
+        where each result carries its `id`.
 
 
         :param str resource_name: The name of the resource.
@@ -262,11 +266,15 @@ class UserGrant(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<flow_type:trigger_type[:org_id]>`, e.g.
+        The resource can be imported using the ID format `<grant_id:user_id[:org_id]>`, e.g.
 
         ```sh
         $ pulumi import zitadel:index/userGrant:UserGrant imported '123456789012345678:123456789012345678:123456789012345678'
         ```
+
+        The grant ID is not shown in the ZITADEL console. It can be looked up per user with the Management API
+        ListUserGrants endpoint (https://zitadel.com/docs/apis/resources/mgmt/management-service-list-user-grants),
+        where each result carries its `id`.
 
 
         :param str resource_name: The name of the resource.

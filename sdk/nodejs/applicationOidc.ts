@@ -86,6 +86,10 @@ export class ApplicationOidc extends pulumi.CustomResource {
      */
     declare public readonly additionalOrigins: pulumi.Output<string[] | undefined>;
     /**
+     * Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+     */
+    declare public readonly android: pulumi.Output<outputs.ApplicationOidcAndroid | undefined>;
+    /**
      * App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
      */
     declare public readonly appType: pulumi.Output<string | undefined>;
@@ -129,6 +133,10 @@ export class ApplicationOidc extends pulumi.CustomResource {
      * Token userinfo assertion
      */
     declare public readonly idTokenUserinfoAssertion: pulumi.Output<boolean | undefined>;
+    /**
+     * iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+     */
+    declare public readonly ios: pulumi.Output<outputs.ApplicationOidcIos | undefined>;
     /**
      * Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
      */
@@ -186,6 +194,7 @@ export class ApplicationOidc extends pulumi.CustomResource {
             resourceInputs["accessTokenRoleAssertion"] = state?.accessTokenRoleAssertion;
             resourceInputs["accessTokenType"] = state?.accessTokenType;
             resourceInputs["additionalOrigins"] = state?.additionalOrigins;
+            resourceInputs["android"] = state?.android;
             resourceInputs["appType"] = state?.appType;
             resourceInputs["authMethodType"] = state?.authMethodType;
             resourceInputs["backChannelLogoutUri"] = state?.backChannelLogoutUri;
@@ -197,6 +206,7 @@ export class ApplicationOidc extends pulumi.CustomResource {
             resourceInputs["grantTypes"] = state?.grantTypes;
             resourceInputs["idTokenRoleAssertion"] = state?.idTokenRoleAssertion;
             resourceInputs["idTokenUserinfoAssertion"] = state?.idTokenUserinfoAssertion;
+            resourceInputs["ios"] = state?.ios;
             resourceInputs["loginVersion"] = state?.loginVersion;
             resourceInputs["name"] = state?.name;
             resourceInputs["noneCompliant"] = state?.noneCompliant;
@@ -227,6 +237,7 @@ export class ApplicationOidc extends pulumi.CustomResource {
             resourceInputs["accessTokenRoleAssertion"] = args?.accessTokenRoleAssertion;
             resourceInputs["accessTokenType"] = args?.accessTokenType;
             resourceInputs["additionalOrigins"] = args?.additionalOrigins;
+            resourceInputs["android"] = args?.android;
             resourceInputs["appType"] = args?.appType;
             resourceInputs["authMethodType"] = args?.authMethodType;
             resourceInputs["backChannelLogoutUri"] = args?.backChannelLogoutUri;
@@ -235,6 +246,7 @@ export class ApplicationOidc extends pulumi.CustomResource {
             resourceInputs["grantTypes"] = args?.grantTypes;
             resourceInputs["idTokenRoleAssertion"] = args?.idTokenRoleAssertion;
             resourceInputs["idTokenUserinfoAssertion"] = args?.idTokenUserinfoAssertion;
+            resourceInputs["ios"] = args?.ios;
             resourceInputs["loginVersion"] = args?.loginVersion;
             resourceInputs["name"] = args?.name;
             resourceInputs["orgId"] = args?.orgId;
@@ -272,6 +284,10 @@ export interface ApplicationOidcState {
      * Additional origins
      */
     additionalOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+     */
+    android?: pulumi.Input<inputs.ApplicationOidcAndroid | undefined>;
     /**
      * App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
      */
@@ -316,6 +332,10 @@ export interface ApplicationOidcState {
      * Token userinfo assertion
      */
     idTokenUserinfoAssertion?: pulumi.Input<boolean | undefined>;
+    /**
+     * iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+     */
+    ios?: pulumi.Input<inputs.ApplicationOidcIos | undefined>;
     /**
      * Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
      */
@@ -375,6 +395,10 @@ export interface ApplicationOidcArgs {
      */
     additionalOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+     */
+    android?: pulumi.Input<inputs.ApplicationOidcAndroid | undefined>;
+    /**
      * App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
      */
     appType?: pulumi.Input<string | undefined>;
@@ -406,6 +430,10 @@ export interface ApplicationOidcArgs {
      * Token userinfo assertion
      */
     idTokenUserinfoAssertion?: pulumi.Input<boolean | undefined>;
+    /**
+     * iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+     */
+    ios?: pulumi.Input<inputs.ApplicationOidcIos | undefined>;
     /**
      * Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
      */

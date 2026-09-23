@@ -11,7 +11,7 @@ using Pulumi;
 namespace scoretechnologies.Zitadel
 {
     /// <summary>
-    /// Instance-level default text customizations for the **legacy login UI (v1)** at `/ui/login`. These settings have **no effect on the new hosted login v2** (`/ui/v2/login`). Org-level overrides are managed by `zitadel.LoginTexts`.
+    /// Instance-level default text customizations for the **legacy login UI (v1)** at `/ui/login`. These settings have **no effect on the new hosted login v2** (`/ui/v2/login`). Hosted login v2 translations are managed by `zitadel.DefaultHostedLoginTranslation`. Org-level overrides are managed by `zitadel.LoginTexts`.
     /// 
     /// ## Example Usage
     /// 

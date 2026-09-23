@@ -57,10 +57,8 @@ type LookupInstanceRestrictionsResult struct {
 }
 
 func LookupInstanceRestrictionsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) LookupInstanceRestrictionsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (LookupInstanceRestrictionsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("zitadel:index/getInstanceRestrictions:getInstanceRestrictions", nil, LookupInstanceRestrictionsResultOutput{}, options).(LookupInstanceRestrictionsResultOutput), nil
-	}).(LookupInstanceRestrictionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getInstanceRestrictions:getInstanceRestrictions", nil, LookupInstanceRestrictionsResultOutput{}, options).(LookupInstanceRestrictionsResultOutput)
 }
 
 // A collection of values returned by getInstanceRestrictions.

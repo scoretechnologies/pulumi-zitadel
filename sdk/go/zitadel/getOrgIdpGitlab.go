@@ -82,12 +82,8 @@ type LookupOrgIdpGitlabResult struct {
 }
 
 func LookupOrgIdpGitlabOutput(ctx *pulumi.Context, args LookupOrgIdpGitlabOutputArgs, opts ...pulumi.InvokeOption) LookupOrgIdpGitlabResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrgIdpGitlabResultOutput, error) {
-			args := v.(LookupOrgIdpGitlabArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrgIdpGitlab:getOrgIdpGitlab", args, LookupOrgIdpGitlabResultOutput{}, options).(LookupOrgIdpGitlabResultOutput), nil
-		}).(LookupOrgIdpGitlabResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrgIdpGitlab:getOrgIdpGitlab", args, LookupOrgIdpGitlabResultOutput{}, options).(LookupOrgIdpGitlabResultOutput)
 }
 
 // A collection of arguments for invoking getOrgIdpGitlab.
