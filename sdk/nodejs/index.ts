@@ -80,6 +80,11 @@ export type DefaultDomainPolicy = import("./defaultDomainPolicy").DefaultDomainP
 export const DefaultDomainPolicy: typeof import("./defaultDomainPolicy").DefaultDomainPolicy = null as any;
 utilities.lazyLoad(exports, ["DefaultDomainPolicy"], () => require("./defaultDomainPolicy"));
 
+export { DefaultHostedLoginTranslationArgs, DefaultHostedLoginTranslationState } from "./defaultHostedLoginTranslation";
+export type DefaultHostedLoginTranslation = import("./defaultHostedLoginTranslation").DefaultHostedLoginTranslation;
+export const DefaultHostedLoginTranslation: typeof import("./defaultHostedLoginTranslation").DefaultHostedLoginTranslation = null as any;
+utilities.lazyLoad(exports, ["DefaultHostedLoginTranslation"], () => require("./defaultHostedLoginTranslation"));
+
 export { DefaultInitMessageTextArgs, DefaultInitMessageTextState } from "./defaultInitMessageText";
 export type DefaultInitMessageText = import("./defaultInitMessageText").DefaultInitMessageText;
 export const DefaultInitMessageText: typeof import("./defaultInitMessageText").DefaultInitMessageText = null as any;
@@ -345,6 +350,11 @@ export const getIdpSaml: typeof import("./getIdpSaml").getIdpSaml = null as any;
 export const getIdpSamlOutput: typeof import("./getIdpSaml").getIdpSamlOutput = null as any;
 utilities.lazyLoad(exports, ["getIdpSaml","getIdpSamlOutput"], () => require("./getIdpSaml"));
 
+export { GetIdpsArgs, GetIdpsResult, GetIdpsOutputArgs } from "./getIdps";
+export const getIdps: typeof import("./getIdps").getIdps = null as any;
+export const getIdpsOutput: typeof import("./getIdps").getIdpsOutput = null as any;
+utilities.lazyLoad(exports, ["getIdps","getIdpsOutput"], () => require("./getIdps"));
+
 export { GetInstanceArgs, GetInstanceResult, GetInstanceOutputArgs } from "./getInstance";
 export const getInstance: typeof import("./getInstance").getInstance = null as any;
 export const getInstanceOutput: typeof import("./getInstance").getInstanceOutput = null as any;
@@ -450,6 +460,11 @@ export const getOrgIdpSaml: typeof import("./getOrgIdpSaml").getOrgIdpSaml = nul
 export const getOrgIdpSamlOutput: typeof import("./getOrgIdpSaml").getOrgIdpSamlOutput = null as any;
 utilities.lazyLoad(exports, ["getOrgIdpSaml","getOrgIdpSamlOutput"], () => require("./getOrgIdpSaml"));
 
+export { GetOrgIdpsArgs, GetOrgIdpsResult, GetOrgIdpsOutputArgs } from "./getOrgIdps";
+export const getOrgIdps: typeof import("./getOrgIdps").getOrgIdps = null as any;
+export const getOrgIdpsOutput: typeof import("./getOrgIdps").getOrgIdpsOutput = null as any;
+utilities.lazyLoad(exports, ["getOrgIdps","getOrgIdpsOutput"], () => require("./getOrgIdps"));
+
 export { GetOrgJwtIdpArgs, GetOrgJwtIdpResult, GetOrgJwtIdpOutputArgs } from "./getOrgJwtIdp";
 export const getOrgJwtIdp: typeof import("./getOrgJwtIdp").getOrgJwtIdp = null as any;
 export const getOrgJwtIdpOutput: typeof import("./getOrgJwtIdp").getOrgJwtIdpOutput = null as any;
@@ -535,6 +550,16 @@ export const getTriggerActions: typeof import("./getTriggerActions").getTriggerA
 export const getTriggerActionsOutput: typeof import("./getTriggerActions").getTriggerActionsOutput = null as any;
 utilities.lazyLoad(exports, ["getTriggerActions","getTriggerActionsOutput"], () => require("./getTriggerActions"));
 
+export { GetUserGrantArgs, GetUserGrantResult, GetUserGrantOutputArgs } from "./getUserGrant";
+export const getUserGrant: typeof import("./getUserGrant").getUserGrant = null as any;
+export const getUserGrantOutput: typeof import("./getUserGrant").getUserGrantOutput = null as any;
+utilities.lazyLoad(exports, ["getUserGrant","getUserGrantOutput"], () => require("./getUserGrant"));
+
+export { GetUserGrantsArgs, GetUserGrantsResult, GetUserGrantsOutputArgs } from "./getUserGrants";
+export const getUserGrants: typeof import("./getUserGrants").getUserGrants = null as any;
+export const getUserGrantsOutput: typeof import("./getUserGrants").getUserGrantsOutput = null as any;
+utilities.lazyLoad(exports, ["getUserGrants","getUserGrantsOutput"], () => require("./getUserGrants"));
+
 export { GetUserMetadataArgs, GetUserMetadataResult, GetUserMetadataOutputArgs } from "./getUserMetadata";
 export const getUserMetadata: typeof import("./getUserMetadata").getUserMetadata = null as any;
 export const getUserMetadataOutput: typeof import("./getUserMetadata").getUserMetadataOutput = null as any;
@@ -554,6 +579,11 @@ export { GetZitadelResult } from "./getZitadel";
 export const getZitadel: typeof import("./getZitadel").getZitadel = null as any;
 export const getZitadelOutput: typeof import("./getZitadel").getZitadelOutput = null as any;
 utilities.lazyLoad(exports, ["getZitadel","getZitadelOutput"], () => require("./getZitadel"));
+
+export { HostedLoginTranslationArgs, HostedLoginTranslationState } from "./hostedLoginTranslation";
+export type HostedLoginTranslation = import("./hostedLoginTranslation").HostedLoginTranslation;
+export const HostedLoginTranslation: typeof import("./hostedLoginTranslation").HostedLoginTranslation = null as any;
+utilities.lazyLoad(exports, ["HostedLoginTranslation"], () => require("./hostedLoginTranslation"));
 
 export { HumanUserArgs, HumanUserState } from "./humanUser";
 export type HumanUser = import("./humanUser").HumanUser;
@@ -947,6 +977,8 @@ const _module = {
                 return new DefaultDomainClaimedMessageText(name, <any>undefined, { urn })
             case "zitadel:index/defaultDomainPolicy:DefaultDomainPolicy":
                 return new DefaultDomainPolicy(name, <any>undefined, { urn })
+            case "zitadel:index/defaultHostedLoginTranslation:DefaultHostedLoginTranslation":
+                return new DefaultHostedLoginTranslation(name, <any>undefined, { urn })
             case "zitadel:index/defaultInitMessageText:DefaultInitMessageText":
                 return new DefaultInitMessageText(name, <any>undefined, { urn })
             case "zitadel:index/defaultInviteUserMessageText:DefaultInviteUserMessageText":
@@ -995,6 +1027,8 @@ const _module = {
                 return new EmailProviderHttp(name, <any>undefined, { urn })
             case "zitadel:index/emailProviderSmtp:EmailProviderSmtp":
                 return new EmailProviderSmtp(name, <any>undefined, { urn })
+            case "zitadel:index/hostedLoginTranslation:HostedLoginTranslation":
+                return new HostedLoginTranslation(name, <any>undefined, { urn })
             case "zitadel:index/humanUser:HumanUser":
                 return new HumanUser(name, <any>undefined, { urn })
             case "zitadel:index/idpApple:IdpApple":
@@ -1153,6 +1187,7 @@ pulumi.runtime.registerResourceModule("zitadel", "index/applicationSaml", _modul
 pulumi.runtime.registerResourceModule("zitadel", "index/applicationV2", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultDomainClaimedMessageText", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultDomainPolicy", _module)
+pulumi.runtime.registerResourceModule("zitadel", "index/defaultHostedLoginTranslation", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultInitMessageText", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultInviteUserMessageText", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/defaultLabelPolicy", _module)
@@ -1177,6 +1212,7 @@ pulumi.runtime.registerResourceModule("zitadel", "index/domainClaimedMessageText
 pulumi.runtime.registerResourceModule("zitadel", "index/domainPolicy", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/emailProviderHttp", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/emailProviderSmtp", _module)
+pulumi.runtime.registerResourceModule("zitadel", "index/hostedLoginTranslation", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/humanUser", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/idpApple", _module)
 pulumi.runtime.registerResourceModule("zitadel", "index/idpAzureAd", _module)

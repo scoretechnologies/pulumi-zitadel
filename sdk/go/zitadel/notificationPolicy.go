@@ -52,7 +52,7 @@ type NotificationPolicy struct {
 	pulumi.CustomResourceState
 
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// Send notification if a user changes his password
 	PasswordChange pulumi.BoolOutput `pulumi:"passwordChange"`
 }
@@ -210,8 +210,8 @@ func (o NotificationPolicyOutput) ToNotificationPolicyOutputWithContext(ctx cont
 }
 
 // ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-func (o NotificationPolicyOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o NotificationPolicyOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *NotificationPolicy) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // Send notification if a user changes his password

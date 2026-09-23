@@ -161,6 +161,10 @@ namespace scoretechnologies.Zitadel
         /// </summary>
         public readonly ImmutableArray<string> AdditionalOrigins;
         /// <summary>
+        /// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetApplicationOidcAndroidResult> Androids;
+        /// <summary>
         /// The ID of this resource.
         /// </summary>
         public readonly string AppId;
@@ -208,6 +212,10 @@ namespace scoretechnologies.Zitadel
         /// Token userinfo assertion
         /// </summary>
         public readonly bool IdTokenUserinfoAssertion;
+        /// <summary>
+        /// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}".
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetApplicationOidcIoResult> Ios;
         /// <summary>
         /// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
         /// </summary>
@@ -257,6 +265,8 @@ namespace scoretechnologies.Zitadel
 
             ImmutableArray<string> additionalOrigins,
 
+            ImmutableArray<Outputs.GetApplicationOidcAndroidResult> androids,
+
             string appId,
 
             string appType,
@@ -281,6 +291,8 @@ namespace scoretechnologies.Zitadel
 
             bool idTokenUserinfoAssertion,
 
+            ImmutableArray<Outputs.GetApplicationOidcIoResult> ios,
+
             ImmutableArray<Outputs.GetApplicationOidcLoginVersionResult> loginVersions,
 
             string name,
@@ -304,6 +316,7 @@ namespace scoretechnologies.Zitadel
             AccessTokenRoleAssertion = accessTokenRoleAssertion;
             AccessTokenType = accessTokenType;
             AdditionalOrigins = additionalOrigins;
+            Androids = androids;
             AppId = appId;
             AppType = appType;
             AuthMethodType = authMethodType;
@@ -316,6 +329,7 @@ namespace scoretechnologies.Zitadel
             Id = id;
             IdTokenRoleAssertion = idTokenRoleAssertion;
             IdTokenUserinfoAssertion = idTokenUserinfoAssertion;
+            Ios = ios;
             LoginVersions = loginVersions;
             Name = name;
             NoneCompliant = noneCompliant;

@@ -81,6 +81,8 @@ type ApplicationOidc struct {
 	AccessTokenType pulumi.StringPtrOutput `pulumi:"accessTokenType"`
 	// Additional origins
 	AdditionalOrigins pulumi.StringArrayOutput `pulumi:"additionalOrigins"`
+	// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+	Android ApplicationOidcAndroidPtrOutput `pulumi:"android"`
 	// App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
 	AppType pulumi.StringPtrOutput `pulumi:"appType"`
 	// Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
@@ -103,6 +105,8 @@ type ApplicationOidc struct {
 	IdTokenRoleAssertion pulumi.BoolPtrOutput `pulumi:"idTokenRoleAssertion"`
 	// Token userinfo assertion
 	IdTokenUserinfoAssertion pulumi.BoolPtrOutput `pulumi:"idTokenUserinfoAssertion"`
+	// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+	Ios ApplicationOidcIosPtrOutput `pulumi:"ios"`
 	// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
 	LoginVersion ApplicationOidcLoginVersionOutput `pulumi:"loginVersion"`
 	// Name of the application
@@ -181,6 +185,8 @@ type applicationOidcState struct {
 	AccessTokenType *string `pulumi:"accessTokenType"`
 	// Additional origins
 	AdditionalOrigins []string `pulumi:"additionalOrigins"`
+	// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+	Android *ApplicationOidcAndroid `pulumi:"android"`
 	// App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
 	AppType *string `pulumi:"appType"`
 	// Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
@@ -203,6 +209,8 @@ type applicationOidcState struct {
 	IdTokenRoleAssertion *bool `pulumi:"idTokenRoleAssertion"`
 	// Token userinfo assertion
 	IdTokenUserinfoAssertion *bool `pulumi:"idTokenUserinfoAssertion"`
+	// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+	Ios *ApplicationOidcIos `pulumi:"ios"`
 	// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
 	LoginVersion *ApplicationOidcLoginVersion `pulumi:"loginVersion"`
 	// Name of the application
@@ -232,6 +240,8 @@ type ApplicationOidcState struct {
 	AccessTokenType pulumi.StringPtrInput
 	// Additional origins
 	AdditionalOrigins pulumi.StringArrayInput
+	// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+	Android ApplicationOidcAndroidPtrInput
 	// App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
 	AppType pulumi.StringPtrInput
 	// Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
@@ -254,6 +264,8 @@ type ApplicationOidcState struct {
 	IdTokenRoleAssertion pulumi.BoolPtrInput
 	// Token userinfo assertion
 	IdTokenUserinfoAssertion pulumi.BoolPtrInput
+	// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+	Ios ApplicationOidcIosPtrInput
 	// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
 	LoginVersion ApplicationOidcLoginVersionPtrInput
 	// Name of the application
@@ -287,6 +299,8 @@ type applicationOidcArgs struct {
 	AccessTokenType *string `pulumi:"accessTokenType"`
 	// Additional origins
 	AdditionalOrigins []string `pulumi:"additionalOrigins"`
+	// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+	Android *ApplicationOidcAndroid `pulumi:"android"`
 	// App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
 	AppType *string `pulumi:"appType"`
 	// Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
@@ -303,6 +317,8 @@ type applicationOidcArgs struct {
 	IdTokenRoleAssertion *bool `pulumi:"idTokenRoleAssertion"`
 	// Token userinfo assertion
 	IdTokenUserinfoAssertion *bool `pulumi:"idTokenUserinfoAssertion"`
+	// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+	Ios *ApplicationOidcIos `pulumi:"ios"`
 	// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
 	LoginVersion *ApplicationOidcLoginVersion `pulumi:"loginVersion"`
 	// Name of the application
@@ -331,6 +347,8 @@ type ApplicationOidcArgs struct {
 	AccessTokenType pulumi.StringPtrInput
 	// Additional origins
 	AdditionalOrigins pulumi.StringArrayInput
+	// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+	Android ApplicationOidcAndroidPtrInput
 	// App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
 	AppType pulumi.StringPtrInput
 	// Auth method type, supported values: OIDC*AUTH*METHOD*TYPE*BASIC, OIDC*AUTH*METHOD*TYPE*POST, OIDC*AUTH*METHOD*TYPE*NONE, OIDC*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
@@ -347,6 +365,8 @@ type ApplicationOidcArgs struct {
 	IdTokenRoleAssertion pulumi.BoolPtrInput
 	// Token userinfo assertion
 	IdTokenUserinfoAssertion pulumi.BoolPtrInput
+	// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+	Ios ApplicationOidcIosPtrInput
 	// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
 	LoginVersion ApplicationOidcLoginVersionPtrInput
 	// Name of the application
@@ -469,6 +489,11 @@ func (o ApplicationOidcOutput) AdditionalOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ApplicationOidc) pulumi.StringArrayOutput { return v.AdditionalOrigins }).(pulumi.StringArrayOutput)
 }
 
+// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds. Remove the block to clear the configuration.
+func (o ApplicationOidcOutput) Android() ApplicationOidcAndroidPtrOutput {
+	return o.ApplyT(func(v *ApplicationOidc) ApplicationOidcAndroidPtrOutput { return v.Android }).(ApplicationOidcAndroidPtrOutput)
+}
+
 // App type, supported values: OIDC*APP*TYPE*WEB, OIDC*APP*TYPE*USER*AGENT, OIDC*APP*TYPE*NATIVE
 func (o ApplicationOidcOutput) AppType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ApplicationOidc) pulumi.StringPtrOutput { return v.AppType }).(pulumi.StringPtrOutput)
@@ -522,6 +547,11 @@ func (o ApplicationOidcOutput) IdTokenRoleAssertion() pulumi.BoolPtrOutput {
 // Token userinfo assertion
 func (o ApplicationOidcOutput) IdTokenUserinfoAssertion() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ApplicationOidc) pulumi.BoolPtrOutput { return v.IdTokenUserinfoAssertion }).(pulumi.BoolPtrOutput)
+}
+
+// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}". Remove the block to clear the configuration.
+func (o ApplicationOidcOutput) Ios() ApplicationOidcIosPtrOutput {
+	return o.ApplyT(func(v *ApplicationOidc) ApplicationOidcIosPtrOutput { return v.Ios }).(ApplicationOidcIosPtrOutput)
 }
 
 // Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.

@@ -5,6 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ApplicationOidcAndroid {
+    /**
+     * Android package name (applicationId) from the app manifest, e.g. com.example.app.
+     */
+    packageName: pulumi.Input<string>;
+    /**
+     * SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+     */
+    sha256CertFingerprints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
 export interface ApplicationOidcComplianceProblem {
     /**
      * Machine-readable identifier for the compliance problem
@@ -14,6 +25,17 @@ export interface ApplicationOidcComplianceProblem {
      * Human-readable localized message
      */
     message?: pulumi.Input<string | undefined>;
+}
+
+export interface ApplicationOidcIos {
+    /**
+     * iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+     */
+    bundleId: pulumi.Input<string>;
+    /**
+     * Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+     */
+    teamId: pulumi.Input<string>;
 }
 
 export interface ApplicationOidcLoginVersion {

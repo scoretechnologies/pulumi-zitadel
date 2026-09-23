@@ -49,12 +49,8 @@ type GetProjectsV2Result struct {
 }
 
 func GetProjectsV2Output(ctx *pulumi.Context, args GetProjectsV2OutputArgs, opts ...pulumi.InvokeOption) GetProjectsV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetProjectsV2ResultOutput, error) {
-			args := v.(GetProjectsV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getProjectsV2:getProjectsV2", args, GetProjectsV2ResultOutput{}, options).(GetProjectsV2ResultOutput), nil
-		}).(GetProjectsV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getProjectsV2:getProjectsV2", args, GetProjectsV2ResultOutput{}, options).(GetProjectsV2ResultOutput)
 }
 
 // A collection of arguments for invoking getProjectsV2.

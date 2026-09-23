@@ -54,8 +54,8 @@ type DomainPolicy struct {
 	pulumi.CustomResourceState
 
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-	OrgId                                  pulumi.StringPtrOutput `pulumi:"orgId"`
-	SmtpSenderAddressMatchesInstanceDomain pulumi.BoolOutput      `pulumi:"smtpSenderAddressMatchesInstanceDomain"`
+	OrgId                                  pulumi.StringOutput `pulumi:"orgId"`
+	SmtpSenderAddressMatchesInstanceDomain pulumi.BoolOutput   `pulumi:"smtpSenderAddressMatchesInstanceDomain"`
 	// User login must be domain
 	UserLoginMustBeDomain pulumi.BoolOutput `pulumi:"userLoginMustBeDomain"`
 	// Validate organization domains
@@ -233,8 +233,8 @@ func (o DomainPolicyOutput) ToDomainPolicyOutputWithContext(ctx context.Context)
 }
 
 // ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-func (o DomainPolicyOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DomainPolicy) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o DomainPolicyOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DomainPolicy) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 func (o DomainPolicyOutput) SmtpSenderAddressMatchesInstanceDomain() pulumi.BoolOutput {

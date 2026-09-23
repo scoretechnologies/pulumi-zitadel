@@ -134,7 +134,7 @@ export class LoginPolicy extends pulumi.CustomResource {
     /**
      * ID of the organization. If not provided, the organization of the authenticated user/service account is used.
      */
-    declare public readonly orgId: pulumi.Output<string | undefined>;
+    declare public readonly orgId: pulumi.Output<string>;
     declare public readonly passwordCheckLifetime: pulumi.Output<string>;
     /**
      * defines if passwordless is allowed for users

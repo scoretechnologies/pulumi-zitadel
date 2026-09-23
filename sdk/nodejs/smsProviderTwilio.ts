@@ -68,9 +68,9 @@ export class SmsProviderTwilio extends pulumi.CustomResource {
      */
     declare public readonly senderNumber: pulumi.Output<string>;
     /**
-     * Set the SMS provider as active after creating/updating.
+     * Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
-    declare public readonly setActive: pulumi.Output<boolean | undefined>;
+    declare public readonly setActive: pulumi.Output<boolean>;
     /**
      * SID used to communicate with Twilio.
      */
@@ -148,7 +148,7 @@ export interface SmsProviderTwilioState {
      */
     senderNumber?: pulumi.Input<string | undefined>;
     /**
-     * Set the SMS provider as active after creating/updating.
+     * Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
     setActive?: pulumi.Input<boolean | undefined>;
     /**
@@ -183,7 +183,7 @@ export interface SmsProviderTwilioArgs {
      */
     senderNumber: pulumi.Input<string>;
     /**
-     * Set the SMS provider as active after creating/updating.
+     * Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
     setActive?: pulumi.Input<boolean | undefined>;
     /**

@@ -77,12 +77,8 @@ type LookupIdpGithubResult struct {
 }
 
 func LookupIdpGithubOutput(ctx *pulumi.Context, args LookupIdpGithubOutputArgs, opts ...pulumi.InvokeOption) LookupIdpGithubResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIdpGithubResultOutput, error) {
-			args := v.(LookupIdpGithubArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getIdpGithub:getIdpGithub", args, LookupIdpGithubResultOutput{}, options).(LookupIdpGithubResultOutput), nil
-		}).(LookupIdpGithubResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getIdpGithub:getIdpGithub", args, LookupIdpGithubResultOutput{}, options).(LookupIdpGithubResultOutput)
 }
 
 // A collection of arguments for invoking getIdpGithub.

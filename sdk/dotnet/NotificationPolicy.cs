@@ -47,7 +47,7 @@ namespace scoretechnologies.Zitadel
         /// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         /// </summary>
         [Output("orgId")]
-        public Output<string?> OrgId { get; private set; } = null!;
+        public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
         /// Send notification if a user changes his password

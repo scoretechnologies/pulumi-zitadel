@@ -70,12 +70,8 @@ type LookupOrgResult struct {
 }
 
 func LookupOrgOutput(ctx *pulumi.Context, args LookupOrgOutputArgs, opts ...pulumi.InvokeOption) LookupOrgResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrgResultOutput, error) {
-			args := v.(LookupOrgArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrg:getOrg", args, LookupOrgResultOutput{}, options).(LookupOrgResultOutput), nil
-		}).(LookupOrgResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrg:getOrg", args, LookupOrgResultOutput{}, options).(LookupOrgResultOutput)
 }
 
 // A collection of arguments for invoking getOrg.

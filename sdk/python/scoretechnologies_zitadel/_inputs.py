@@ -15,8 +15,12 @@ else:
 from . import _utilities
 
 __all__ = [
+    'ApplicationOidcAndroidArgs',
+    'ApplicationOidcAndroidArgsDict',
     'ApplicationOidcComplianceProblemArgs',
     'ApplicationOidcComplianceProblemArgsDict',
+    'ApplicationOidcIosArgs',
+    'ApplicationOidcIosArgsDict',
     'ApplicationOidcLoginVersionArgs',
     'ApplicationOidcLoginVersionArgsDict',
     'ApplicationOidcLoginVersionLoginV2Args',
@@ -203,6 +207,54 @@ __all__ = [
     'WebkeyRsaArgsDict',
 ]
 
+class ApplicationOidcAndroidArgsDict(TypedDict):
+    package_name: pulumi.Input[_builtins.str]
+    """
+    Android package name (applicationId) from the app manifest, e.g. com.example.app.
+    """
+    sha256_cert_fingerprints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+    """
+
+@pulumi.input_type
+class ApplicationOidcAndroidArgs:
+    def __init__(__self__, *,
+                 package_name: pulumi.Input[_builtins.str],
+                 sha256_cert_fingerprints: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] package_name: Android package name (applicationId) from the app manifest, e.g. com.example.app.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sha256_cert_fingerprints: SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+        """
+        pulumi.set(__self__, "package_name", package_name)
+        if sha256_cert_fingerprints is not None:
+            pulumi.set(__self__, "sha256_cert_fingerprints", sha256_cert_fingerprints)
+
+    @_builtins.property
+    @pulumi.getter(name="packageName")
+    def package_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Android package name (applicationId) from the app manifest, e.g. com.example.app.
+        """
+        return pulumi.get(self, "package_name")
+
+    @package_name.setter
+    def package_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "package_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sha256CertFingerprints")
+    def sha256_cert_fingerprints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+        """
+        return pulumi.get(self, "sha256_cert_fingerprints")
+
+    @sha256_cert_fingerprints.setter
+    def sha256_cert_fingerprints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "sha256_cert_fingerprints", value)
+
+
 class ApplicationOidcComplianceProblemArgsDict(TypedDict):
     key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -250,6 +302,53 @@ class ApplicationOidcComplianceProblemArgs:
     @message.setter
     def message(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message", value)
+
+
+class ApplicationOidcIosArgsDict(TypedDict):
+    bundle_id: pulumi.Input[_builtins.str]
+    """
+    iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+    """
+    team_id: pulumi.Input[_builtins.str]
+    """
+    Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+    """
+
+@pulumi.input_type
+class ApplicationOidcIosArgs:
+    def __init__(__self__, *,
+                 bundle_id: pulumi.Input[_builtins.str],
+                 team_id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] bundle_id: iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+        :param pulumi.Input[_builtins.str] team_id: Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+        """
+        pulumi.set(__self__, "bundle_id", bundle_id)
+        pulumi.set(__self__, "team_id", team_id)
+
+    @_builtins.property
+    @pulumi.getter(name="bundleId")
+    def bundle_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+        """
+        return pulumi.get(self, "bundle_id")
+
+    @bundle_id.setter
+    def bundle_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "bundle_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="teamId")
+    def team_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+        """
+        return pulumi.get(self, "team_id")
+
+    @team_id.setter
+    def team_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "team_id", value)
 
 
 class ApplicationOidcLoginVersionArgsDict(TypedDict):

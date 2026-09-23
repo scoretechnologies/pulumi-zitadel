@@ -75,12 +75,8 @@ type LookupInstanceSecretGeneratorResult struct {
 }
 
 func LookupInstanceSecretGeneratorOutput(ctx *pulumi.Context, args LookupInstanceSecretGeneratorOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceSecretGeneratorResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupInstanceSecretGeneratorResultOutput, error) {
-			args := v.(LookupInstanceSecretGeneratorArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getInstanceSecretGenerator:getInstanceSecretGenerator", args, LookupInstanceSecretGeneratorResultOutput{}, options).(LookupInstanceSecretGeneratorResultOutput), nil
-		}).(LookupInstanceSecretGeneratorResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getInstanceSecretGenerator:getInstanceSecretGenerator", args, LookupInstanceSecretGeneratorResultOutput{}, options).(LookupInstanceSecretGeneratorResultOutput)
 }
 
 // A collection of arguments for invoking getInstanceSecretGenerator.

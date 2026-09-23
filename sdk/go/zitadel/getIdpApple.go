@@ -81,12 +81,8 @@ type LookupIdpAppleResult struct {
 }
 
 func LookupIdpAppleOutput(ctx *pulumi.Context, args LookupIdpAppleOutputArgs, opts ...pulumi.InvokeOption) LookupIdpAppleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIdpAppleResultOutput, error) {
-			args := v.(LookupIdpAppleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getIdpApple:getIdpApple", args, LookupIdpAppleResultOutput{}, options).(LookupIdpAppleResultOutput), nil
-		}).(LookupIdpAppleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getIdpApple:getIdpApple", args, LookupIdpAppleResultOutput{}, options).(LookupIdpAppleResultOutput)
 }
 
 // A collection of arguments for invoking getIdpApple.

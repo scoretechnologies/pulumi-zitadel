@@ -90,9 +90,9 @@ export class SmtpConfig extends pulumi.CustomResource {
      */
     declare public readonly senderName: pulumi.Output<string>;
     /**
-     * Set the SMTP configuration active after creating/updating.
+     * Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
-    declare public readonly setActive: pulumi.Output<boolean | undefined>;
+    declare public readonly setActive: pulumi.Output<boolean>;
     /**
      * TLS used to communicate with your SMTP server.
      */
@@ -188,7 +188,7 @@ export interface SmtpConfigState {
      */
     senderName?: pulumi.Input<string | undefined>;
     /**
-     * Set the SMTP configuration active after creating/updating.
+     * Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
     setActive?: pulumi.Input<boolean | undefined>;
     /**
@@ -231,7 +231,7 @@ export interface SmtpConfigArgs {
      */
     senderName: pulumi.Input<string>;
     /**
-     * Set the SMTP configuration active after creating/updating.
+     * Set the SMTP configuration as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
     setActive?: pulumi.Input<boolean | undefined>;
     /**

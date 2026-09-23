@@ -97,12 +97,8 @@ type GetHumanUsersResult struct {
 }
 
 func GetHumanUsersOutput(ctx *pulumi.Context, args GetHumanUsersOutputArgs, opts ...pulumi.InvokeOption) GetHumanUsersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetHumanUsersResultOutput, error) {
-			args := v.(GetHumanUsersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getHumanUsers:getHumanUsers", args, GetHumanUsersResultOutput{}, options).(GetHumanUsersResultOutput), nil
-		}).(GetHumanUsersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getHumanUsers:getHumanUsers", args, GetHumanUsersResultOutput{}, options).(GetHumanUsersResultOutput)
 }
 
 // A collection of arguments for invoking getHumanUsers.

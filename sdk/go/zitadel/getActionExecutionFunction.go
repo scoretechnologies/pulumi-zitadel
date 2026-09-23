@@ -65,12 +65,8 @@ type LookupActionExecutionFunctionResult struct {
 }
 
 func LookupActionExecutionFunctionOutput(ctx *pulumi.Context, args LookupActionExecutionFunctionOutputArgs, opts ...pulumi.InvokeOption) LookupActionExecutionFunctionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupActionExecutionFunctionResultOutput, error) {
-			args := v.(LookupActionExecutionFunctionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getActionExecutionFunction:getActionExecutionFunction", args, LookupActionExecutionFunctionResultOutput{}, options).(LookupActionExecutionFunctionResultOutput), nil
-		}).(LookupActionExecutionFunctionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getActionExecutionFunction:getActionExecutionFunction", args, LookupActionExecutionFunctionResultOutput{}, options).(LookupActionExecutionFunctionResultOutput)
 }
 
 // A collection of arguments for invoking getActionExecutionFunction.

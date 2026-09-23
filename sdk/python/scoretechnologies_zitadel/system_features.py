@@ -301,14 +301,14 @@ class SystemFeatures(pulumi.CustomResource):
                  enable_back_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
                  improved_performances: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  login_default_org: pulumi.Input[Optional[_builtins.bool]] = None,
-                 login_v2: pulumi.Input[Optional[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict']]] = None,
+                 login_v2: pulumi.Input[Optional[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict', 'outputs.SystemFeaturesLoginV2']]] = None,
                  oidc_single_v1_session_termination: pulumi.Input[Optional[_builtins.bool]] = None,
                  oidc_token_exchange: pulumi.Input[Optional[_builtins.bool]] = None,
                  permission_check_v2: pulumi.Input[Optional[_builtins.bool]] = None,
                  user_schema: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
-        Resource representing the feature flags configuration for the system.
+        Resource representing the feature flags configuration for the system. This resource requires system-level permissions. These cannot be granted to regular machine users or through instance/org memberships such as `IAM_OWNER`; they are only available to System API users defined in ZITADEL's runtime configuration (SystemAPIUsers). Configure the provider with the `system_api` block to authenticate as such a user. See https://zitadel.com/docs/guides/integrate/zitadel-apis/access-zitadel-system-api for details.
 
         ## Example Usage
 
@@ -347,7 +347,7 @@ class SystemFeatures(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enable_back_channel_logout: If the flag is enabled, you'll be able to use the OIDC Back-Channel Logout to be notified in your application about terminated user sessions.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] improved_performances: Improves performance of specified execution paths. Possible values: IMPROVED*PERFORMANCE*PROJECT*GRANT, IMPROVED*PERFORMANCE*PROJECT, IMPROVED*PERFORMANCE*USER*GRANT, IMPROVED*PERFORMANCE*ORG*DOMAIN*VERIFIED
         :param pulumi.Input[_builtins.bool] login_default_org: The login UI will use the settings of the default org (and not from the instance) if no organization context is set
-        :param pulumi.Input[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict']] login_v2: Specify the login UI for all users and applications regardless of their preference.
+        :param pulumi.Input[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict', 'outputs.SystemFeaturesLoginV2']] login_v2: Specify the login UI for all users and applications regardless of their preference.
         :param pulumi.Input[_builtins.bool] oidc_single_v1_session_termination: If the flag is enabled, you'll be able to terminate a single session from the login UI by providing an id*token with a `sid` claim as id*token*hint on the end*session endpoint. Note that currently all sessions from the same user agent (browser) are terminated in the login UI. Sessions managed through the Session API already allow the termination of single sessions.
         :param pulumi.Input[_builtins.bool] oidc_token_exchange: Enable the experimental `urn:ietf:params:oauth:grant-type:token-exchange` grant type for the OIDC token endpoint. Token exchange can be used to request tokens with a lesser scope or impersonate other users. See the security policy to allow impersonation on an instance.
         :param pulumi.Input[_builtins.bool] permission_check_v2: Enable a newer, more performant, permission check used for v2 and v3 resource based APIs.
@@ -360,7 +360,7 @@ class SystemFeatures(pulumi.CustomResource):
                  args: Optional[SystemFeaturesArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Resource representing the feature flags configuration for the system.
+        Resource representing the feature flags configuration for the system. This resource requires system-level permissions. These cannot be granted to regular machine users or through instance/org memberships such as `IAM_OWNER`; they are only available to System API users defined in ZITADEL's runtime configuration (SystemAPIUsers). Configure the provider with the `system_api` block to authenticate as such a user. See https://zitadel.com/docs/guides/integrate/zitadel-apis/access-zitadel-system-api for details.
 
         ## Example Usage
 
@@ -412,7 +412,7 @@ class SystemFeatures(pulumi.CustomResource):
                  enable_back_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
                  improved_performances: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  login_default_org: pulumi.Input[Optional[_builtins.bool]] = None,
-                 login_v2: pulumi.Input[Optional[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict']]] = None,
+                 login_v2: pulumi.Input[Optional[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict', 'outputs.SystemFeaturesLoginV2']]] = None,
                  oidc_single_v1_session_termination: pulumi.Input[Optional[_builtins.bool]] = None,
                  oidc_token_exchange: pulumi.Input[Optional[_builtins.bool]] = None,
                  permission_check_v2: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -447,7 +447,7 @@ class SystemFeatures(pulumi.CustomResource):
             enable_back_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
             improved_performances: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             login_default_org: pulumi.Input[Optional[_builtins.bool]] = None,
-            login_v2: pulumi.Input[Optional[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict']]] = None,
+            login_v2: pulumi.Input[Optional[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict', 'outputs.SystemFeaturesLoginV2']]] = None,
             oidc_single_v1_session_termination: pulumi.Input[Optional[_builtins.bool]] = None,
             oidc_token_exchange: pulumi.Input[Optional[_builtins.bool]] = None,
             permission_check_v2: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -462,7 +462,7 @@ class SystemFeatures(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enable_back_channel_logout: If the flag is enabled, you'll be able to use the OIDC Back-Channel Logout to be notified in your application about terminated user sessions.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] improved_performances: Improves performance of specified execution paths. Possible values: IMPROVED*PERFORMANCE*PROJECT*GRANT, IMPROVED*PERFORMANCE*PROJECT, IMPROVED*PERFORMANCE*USER*GRANT, IMPROVED*PERFORMANCE*ORG*DOMAIN*VERIFIED
         :param pulumi.Input[_builtins.bool] login_default_org: The login UI will use the settings of the default org (and not from the instance) if no organization context is set
-        :param pulumi.Input[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict']] login_v2: Specify the login UI for all users and applications regardless of their preference.
+        :param pulumi.Input[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict', 'outputs.SystemFeaturesLoginV2']] login_v2: Specify the login UI for all users and applications regardless of their preference.
         :param pulumi.Input[_builtins.bool] oidc_single_v1_session_termination: If the flag is enabled, you'll be able to terminate a single session from the login UI by providing an id*token with a `sid` claim as id*token*hint on the end*session endpoint. Note that currently all sessions from the same user agent (browser) are terminated in the login UI. Sessions managed through the Session API already allow the termination of single sessions.
         :param pulumi.Input[_builtins.bool] oidc_token_exchange: Enable the experimental `urn:ietf:params:oauth:grant-type:token-exchange` grant type for the OIDC token endpoint. Token exchange can be used to request tokens with a lesser scope or impersonate other users. See the security policy to allow impersonation on an instance.
         :param pulumi.Input[_builtins.bool] permission_check_v2: Enable a newer, more performant, permission check used for v2 and v3 resource based APIs.

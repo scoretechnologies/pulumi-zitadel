@@ -25,7 +25,7 @@ namespace scoretechnologies.Zitadel
     /// {
     ///     var @default = new Zitadel.EmailProviderHttp("default", new()
     ///     {
-    ///         Endpoint = "https://relay.example.com/provider",
+    ///         Endpoint = "https://example.com/provider",
     ///         Description = "provider description",
     ///         SetActive = false,
     ///     });
@@ -63,10 +63,10 @@ namespace scoretechnologies.Zitadel
         public Output<string?> ExpirationSigningKey { get; private set; } = null!;
 
         /// <summary>
-        /// Set the email provider as active after creating/updating.
+        /// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         /// </summary>
         [Output("setActive")]
-        public Output<bool?> SetActive { get; private set; } = null!;
+        public Output<bool> SetActive { get; private set; } = null!;
 
         /// <summary>
         /// Key used to sign and check payload sent to the HTTP provider.
@@ -144,7 +144,7 @@ namespace scoretechnologies.Zitadel
         public Input<string>? ExpirationSigningKey { get; set; }
 
         /// <summary>
-        /// Set the email provider as active after creating/updating.
+        /// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         /// </summary>
         [Input("setActive")]
         public Input<bool>? SetActive { get; set; }
@@ -176,7 +176,7 @@ namespace scoretechnologies.Zitadel
         public Input<string>? ExpirationSigningKey { get; set; }
 
         /// <summary>
-        /// Set the email provider as active after creating/updating.
+        /// Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         /// </summary>
         [Input("setActive")]
         public Input<bool>? SetActive { get; set; }

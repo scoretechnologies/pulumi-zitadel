@@ -225,7 +225,7 @@ class NotificationPolicy(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def org_id(self) -> pulumi.Output[_builtins.str]:
         """
         ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         """

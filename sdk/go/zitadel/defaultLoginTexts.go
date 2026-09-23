@@ -12,7 +12,7 @@ import (
 	"github.com/scoretechnologies/pulumi-zitadel/sdk/go/zitadel/internal"
 )
 
-// Instance-level default text customizations for the **legacy login UI (v1)** at `/ui/login`. These settings have **no effect on the new hosted login v2** (`/ui/v2/login`). Org-level overrides are managed by `LoginTexts`.
+// Instance-level default text customizations for the **legacy login UI (v1)** at `/ui/login`. These settings have **no effect on the new hosted login v2** (`/ui/v2/login`). Hosted login v2 translations are managed by `DefaultHostedLoginTranslation`. Org-level overrides are managed by `LoginTexts`.
 //
 // ## Example Usage
 //

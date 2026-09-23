@@ -53,12 +53,8 @@ type GetApplicationOidcsResult struct {
 }
 
 func GetApplicationOidcsOutput(ctx *pulumi.Context, args GetApplicationOidcsOutputArgs, opts ...pulumi.InvokeOption) GetApplicationOidcsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetApplicationOidcsResultOutput, error) {
-			args := v.(GetApplicationOidcsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getApplicationOidcs:getApplicationOidcs", args, GetApplicationOidcsResultOutput{}, options).(GetApplicationOidcsResultOutput), nil
-		}).(GetApplicationOidcsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getApplicationOidcs:getApplicationOidcs", args, GetApplicationOidcsResultOutput{}, options).(GetApplicationOidcsResultOutput)
 }
 
 // A collection of arguments for invoking getApplicationOidcs.

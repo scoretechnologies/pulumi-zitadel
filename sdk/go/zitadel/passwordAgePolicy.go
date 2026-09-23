@@ -57,7 +57,7 @@ type PasswordAgePolicy struct {
 	// amount of days after which a password will expire
 	MaxAgeDays pulumi.IntOutput `pulumi:"maxAgeDays"`
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 }
 
 // NewPasswordAgePolicy registers a new resource with the given unique name, arguments, and options.
@@ -234,8 +234,8 @@ func (o PasswordAgePolicyOutput) MaxAgeDays() pulumi.IntOutput {
 }
 
 // ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-func (o PasswordAgePolicyOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PasswordAgePolicy) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o PasswordAgePolicyOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PasswordAgePolicy) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 type PasswordAgePolicyArrayOutput struct{ *pulumi.OutputState }

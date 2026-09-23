@@ -710,14 +710,14 @@ class HumanUser(pulumi.CustomResource):
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  first_name: pulumi.Input[Optional[_builtins.str]] = None,
                  gender: pulumi.Input[Optional[_builtins.str]] = None,
-                 idp_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict']]]]] = None,
+                 idp_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict', 'outputs.HumanUserIdpLink']]]]] = None,
                  initial_hashed_password: pulumi.Input[Optional[_builtins.str]] = None,
                  initial_password: pulumi.Input[Optional[_builtins.str]] = None,
                  initial_skip_password_change: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_phone_verified: pulumi.Input[Optional[_builtins.bool]] = None,
                  last_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict']]]]] = None,
+                 metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict', 'outputs.HumanUserMetadata']]]]] = None,
                  nick_name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  phone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -754,7 +754,7 @@ class HumanUser(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `id[:org_id][:initial_password]>`, e.g.
+        The resource can be imported using the ID format `<id[:org_id][:initial_password]>`, e.g.
 
         ```sh
         $ pulumi import zitadel:index/humanUser:HumanUser imported '123456789012345678:123456789012345678:Password1!'
@@ -767,7 +767,7 @@ class HumanUser(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] email: Email of the user
         :param pulumi.Input[_builtins.str] first_name: First name of the user
         :param pulumi.Input[_builtins.str] gender: Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
-        :param pulumi.Input[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict']]]] idp_links: A list of identity provider links to add to the user during creation. Useful for migration scenarios.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict', 'outputs.HumanUserIdpLink']]]] idp_links: A list of identity provider links to add to the user during creation. Useful for migration scenarios.
         :param pulumi.Input[_builtins.str] initial_hashed_password: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios. This value is write-only and is never stored in Terraform state.
         :param pulumi.Input[_builtins.str] initial_password: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -776,7 +776,7 @@ class HumanUser(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_email_verified: Is the email verified of the user, can only be true if password of the user is set
         :param pulumi.Input[_builtins.bool] is_phone_verified: Is the phone verified of the user
         :param pulumi.Input[_builtins.str] last_name: Last name of the user
-        :param pulumi.Input[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict']]]] metadatas: A list of metadata key-value pairs to set on the user during creation.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict', 'outputs.HumanUserMetadata']]]] metadatas: A list of metadata key-value pairs to set on the user during creation.
         :param pulumi.Input[_builtins.str] nick_name: Nick name of the user
         :param pulumi.Input[_builtins.str] org_id: ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         :param pulumi.Input[_builtins.str] phone: Phone of the user
@@ -820,7 +820,7 @@ class HumanUser(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `id[:org_id][:initial_password]>`, e.g.
+        The resource can be imported using the ID format `<id[:org_id][:initial_password]>`, e.g.
 
         ```sh
         $ pulumi import zitadel:index/humanUser:HumanUser imported '123456789012345678:123456789012345678:Password1!'
@@ -846,14 +846,14 @@ class HumanUser(pulumi.CustomResource):
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  first_name: pulumi.Input[Optional[_builtins.str]] = None,
                  gender: pulumi.Input[Optional[_builtins.str]] = None,
-                 idp_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict']]]]] = None,
+                 idp_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict', 'outputs.HumanUserIdpLink']]]]] = None,
                  initial_hashed_password: pulumi.Input[Optional[_builtins.str]] = None,
                  initial_password: pulumi.Input[Optional[_builtins.str]] = None,
                  initial_skip_password_change: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_phone_verified: pulumi.Input[Optional[_builtins.bool]] = None,
                  last_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict']]]]] = None,
+                 metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict', 'outputs.HumanUserMetadata']]]]] = None,
                  nick_name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  phone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -916,7 +916,7 @@ class HumanUser(pulumi.CustomResource):
             email: pulumi.Input[Optional[_builtins.str]] = None,
             first_name: pulumi.Input[Optional[_builtins.str]] = None,
             gender: pulumi.Input[Optional[_builtins.str]] = None,
-            idp_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict']]]]] = None,
+            idp_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict', 'outputs.HumanUserIdpLink']]]]] = None,
             initial_hashed_password: pulumi.Input[Optional[_builtins.str]] = None,
             initial_password: pulumi.Input[Optional[_builtins.str]] = None,
             initial_skip_password_change: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -924,7 +924,7 @@ class HumanUser(pulumi.CustomResource):
             is_phone_verified: pulumi.Input[Optional[_builtins.bool]] = None,
             last_name: pulumi.Input[Optional[_builtins.str]] = None,
             login_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict']]]]] = None,
+            metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict', 'outputs.HumanUserMetadata']]]]] = None,
             nick_name: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             phone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -945,7 +945,7 @@ class HumanUser(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] email: Email of the user
         :param pulumi.Input[_builtins.str] first_name: First name of the user
         :param pulumi.Input[_builtins.str] gender: Gender of the user, supported values: GENDER*UNSPECIFIED, GENDER*FEMALE, GENDER*MALE, GENDER*DIVERSE
-        :param pulumi.Input[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict']]]] idp_links: A list of identity provider links to add to the user during creation. Useful for migration scenarios.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict', 'outputs.HumanUserIdpLink']]]] idp_links: A list of identity provider links to add to the user during creation. Useful for migration scenarios.
         :param pulumi.Input[_builtins.str] initial_hashed_password: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Initial hashed password for the user, not changeable after creation. Being able to pass an initial hashed password is useful in migration scenarios. This value is write-only and is never stored in Terraform state.
         :param pulumi.Input[_builtins.str] initial_password: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -955,7 +955,7 @@ class HumanUser(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_phone_verified: Is the phone verified of the user
         :param pulumi.Input[_builtins.str] last_name: Last name of the user
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] login_names: Loginnames
-        :param pulumi.Input[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict']]]] metadatas: A list of metadata key-value pairs to set on the user during creation.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict', 'outputs.HumanUserMetadata']]]] metadatas: A list of metadata key-value pairs to set on the user during creation.
         :param pulumi.Input[_builtins.str] nick_name: Nick name of the user
         :param pulumi.Input[_builtins.str] org_id: ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         :param pulumi.Input[_builtins.str] phone: Phone of the user

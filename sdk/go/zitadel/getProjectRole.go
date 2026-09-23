@@ -78,12 +78,8 @@ type LookupProjectRoleResult struct {
 }
 
 func LookupProjectRoleOutput(ctx *pulumi.Context, args LookupProjectRoleOutputArgs, opts ...pulumi.InvokeOption) LookupProjectRoleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupProjectRoleResultOutput, error) {
-			args := v.(LookupProjectRoleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getProjectRole:getProjectRole", args, LookupProjectRoleResultOutput{}, options).(LookupProjectRoleResultOutput), nil
-		}).(LookupProjectRoleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getProjectRole:getProjectRole", args, LookupProjectRoleResultOutput{}, options).(LookupProjectRoleResultOutput)
 }
 
 // A collection of arguments for invoking getProjectRole.

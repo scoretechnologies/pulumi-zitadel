@@ -248,12 +248,12 @@ class ApplicationV2(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api: pulumi.Input[Optional[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict']]] = None,
+                 api: pulumi.Input[Optional[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict', 'outputs.ApplicationV2Api']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 oidc: pulumi.Input[Optional[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict']]] = None,
+                 oidc: pulumi.Input[Optional[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict', 'outputs.ApplicationV2Oidc']]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 saml: pulumi.Input[Optional[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict']]] = None,
+                 saml: pulumi.Input[Optional[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict', 'outputs.ApplicationV2Saml']]] = None,
                  __props__=None):
         """
         Resource representing an application belonging to a project. Exposes the unified Zitadel Application v2 API; the application type is selected by populating exactly one of the oidc/saml/api configuration blocks.
@@ -308,12 +308,12 @@ class ApplicationV2(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict']] api: API configuration. Mutually exclusive with `oidc` and `saml`.
+        :param pulumi.Input[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict', 'outputs.ApplicationV2Api']] api: API configuration. Mutually exclusive with `oidc` and `saml`.
         :param pulumi.Input[_builtins.str] name: Name of the application.
-        :param pulumi.Input[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict']] oidc: OIDC configuration. Mutually exclusive with `saml` and `api`.
+        :param pulumi.Input[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict', 'outputs.ApplicationV2Oidc']] oidc: OIDC configuration. Mutually exclusive with `saml` and `api`.
         :param pulumi.Input[_builtins.str] org_id: ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         :param pulumi.Input[_builtins.str] project_id: ID of the project this application belongs to.
-        :param pulumi.Input[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict']] saml: SAML configuration. Mutually exclusive with `oidc` and `api`.
+        :param pulumi.Input[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict', 'outputs.ApplicationV2Saml']] saml: SAML configuration. Mutually exclusive with `oidc` and `api`.
         """
         ...
     @overload
@@ -387,12 +387,12 @@ class ApplicationV2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api: pulumi.Input[Optional[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict']]] = None,
+                 api: pulumi.Input[Optional[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict', 'outputs.ApplicationV2Api']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 oidc: pulumi.Input[Optional[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict']]] = None,
+                 oidc: pulumi.Input[Optional[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict', 'outputs.ApplicationV2Oidc']]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 saml: pulumi.Input[Optional[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict']]] = None,
+                 saml: pulumi.Input[Optional[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict', 'outputs.ApplicationV2Saml']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -423,12 +423,12 @@ class ApplicationV2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            api: pulumi.Input[Optional[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict']]] = None,
+            api: pulumi.Input[Optional[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict', 'outputs.ApplicationV2Api']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            oidc: pulumi.Input[Optional[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict']]] = None,
+            oidc: pulumi.Input[Optional[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict', 'outputs.ApplicationV2Oidc']]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            saml: pulumi.Input[Optional[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict']]] = None,
+            saml: pulumi.Input[Optional[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict', 'outputs.ApplicationV2Saml']]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None) -> 'ApplicationV2':
         """
         Get an existing ApplicationV2 resource's state with the given name, id, and optional extra
@@ -437,12 +437,12 @@ class ApplicationV2(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict']] api: API configuration. Mutually exclusive with `oidc` and `saml`.
+        :param pulumi.Input[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict', 'outputs.ApplicationV2Api']] api: API configuration. Mutually exclusive with `oidc` and `saml`.
         :param pulumi.Input[_builtins.str] name: Name of the application.
-        :param pulumi.Input[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict']] oidc: OIDC configuration. Mutually exclusive with `saml` and `api`.
+        :param pulumi.Input[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict', 'outputs.ApplicationV2Oidc']] oidc: OIDC configuration. Mutually exclusive with `saml` and `api`.
         :param pulumi.Input[_builtins.str] org_id: ID of the organization. If not provided, the organization of the authenticated user/service account is used.
         :param pulumi.Input[_builtins.str] project_id: ID of the project this application belongs to.
-        :param pulumi.Input[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict']] saml: SAML configuration. Mutually exclusive with `oidc` and `api`.
+        :param pulumi.Input[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict', 'outputs.ApplicationV2Saml']] saml: SAML configuration. Mutually exclusive with `oidc` and `api`.
         :param pulumi.Input[_builtins.str] state: State of the application.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

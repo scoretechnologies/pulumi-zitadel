@@ -16,7 +16,9 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'ApplicationOidcAndroid',
     'ApplicationOidcComplianceProblem',
+    'ApplicationOidcIos',
     'ApplicationOidcLoginVersion',
     'ApplicationOidcLoginVersionLoginV2',
     'ApplicationSamlLoginVersion',
@@ -108,7 +110,9 @@ __all__ = [
     'WebkeyEcdsa',
     'WebkeyEd25519',
     'WebkeyRsa',
+    'GetApplicationOidcAndroidResult',
     'GetApplicationOidcComplianceProblemResult',
+    'GetApplicationOidcIoResult',
     'GetApplicationOidcLoginVersionResult',
     'GetApplicationOidcLoginVersionLoginV2Result',
     'GetApplicationSamlLoginVersionResult',
@@ -128,6 +132,55 @@ __all__ = [
     'GetSystemFeaturesLoginV2Result',
     'GetUserMetadatasMetadataResult',
 ]
+
+@pulumi.output_type
+class ApplicationOidcAndroid(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "packageName":
+            suggest = "package_name"
+        elif key == "sha256CertFingerprints":
+            suggest = "sha256_cert_fingerprints"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationOidcAndroid. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationOidcAndroid.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationOidcAndroid.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 package_name: _builtins.str,
+                 sha256_cert_fingerprints: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str package_name: Android package name (applicationId) from the app manifest, e.g. com.example.app.
+        :param Sequence[_builtins.str] sha256_cert_fingerprints: SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+        """
+        pulumi.set(__self__, "package_name", package_name)
+        if sha256_cert_fingerprints is not None:
+            pulumi.set(__self__, "sha256_cert_fingerprints", sha256_cert_fingerprints)
+
+    @_builtins.property
+    @pulumi.getter(name="packageName")
+    def package_name(self) -> _builtins.str:
+        """
+        Android package name (applicationId) from the app manifest, e.g. com.example.app.
+        """
+        return pulumi.get(self, "package_name")
+
+    @_builtins.property
+    @pulumi.getter(name="sha256CertFingerprints")
+    def sha256_cert_fingerprints(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        SHA-256 signing certificate fingerprints (64 hex characters, optionally colon-separated). Include debug and release fingerprints as needed.
+        """
+        return pulumi.get(self, "sha256_cert_fingerprints")
+
 
 @pulumi.output_type
 class ApplicationOidcComplianceProblem(dict):
@@ -158,6 +211,54 @@ class ApplicationOidcComplianceProblem(dict):
         Human-readable localized message
         """
         return pulumi.get(self, "message")
+
+
+@pulumi.output_type
+class ApplicationOidcIos(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bundleId":
+            suggest = "bundle_id"
+        elif key == "teamId":
+            suggest = "team_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationOidcIos. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationOidcIos.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationOidcIos.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bundle_id: _builtins.str,
+                 team_id: _builtins.str):
+        """
+        :param _builtins.str bundle_id: iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+        :param _builtins.str team_id: Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+        """
+        pulumi.set(__self__, "bundle_id", bundle_id)
+        pulumi.set(__self__, "team_id", team_id)
+
+    @_builtins.property
+    @pulumi.getter(name="bundleId")
+    def bundle_id(self) -> _builtins.str:
+        """
+        iOS Bundle ID (CFBundleIdentifier), e.g. com.example.app. Do not include the Team ID prefix.
+        """
+        return pulumi.get(self, "bundle_id")
+
+    @_builtins.property
+    @pulumi.getter(name="teamId")
+    def team_id(self) -> _builtins.str:
+        """
+        Apple Team ID (App ID prefix), exactly 10 alphanumeric characters, e.g. ABCDE12345.
+        """
+        return pulumi.get(self, "team_id")
 
 
 @pulumi.output_type
@@ -6935,6 +7036,35 @@ class WebkeyRsa(dict):
 
 
 @pulumi.output_type
+class GetApplicationOidcAndroidResult(dict):
+    def __init__(__self__, *,
+                 package_name: _builtins.str,
+                 sha256_cert_fingerprints: Sequence[_builtins.str]):
+        """
+        :param _builtins.str package_name: Android package name (applicationId).
+        :param Sequence[_builtins.str] sha256_cert_fingerprints: SHA-256 signing certificate fingerprints.
+        """
+        pulumi.set(__self__, "package_name", package_name)
+        pulumi.set(__self__, "sha256_cert_fingerprints", sha256_cert_fingerprints)
+
+    @_builtins.property
+    @pulumi.getter(name="packageName")
+    def package_name(self) -> _builtins.str:
+        """
+        Android package name (applicationId).
+        """
+        return pulumi.get(self, "package_name")
+
+    @_builtins.property
+    @pulumi.getter(name="sha256CertFingerprints")
+    def sha256_cert_fingerprints(self) -> Sequence[_builtins.str]:
+        """
+        SHA-256 signing certificate fingerprints.
+        """
+        return pulumi.get(self, "sha256_cert_fingerprints")
+
+
+@pulumi.output_type
 class GetApplicationOidcComplianceProblemResult(dict):
     def __init__(__self__, *,
                  key: _builtins.str,
@@ -6961,6 +7091,35 @@ class GetApplicationOidcComplianceProblemResult(dict):
         Human-readable localized message
         """
         return pulumi.get(self, "message")
+
+
+@pulumi.output_type
+class GetApplicationOidcIoResult(dict):
+    def __init__(__self__, *,
+                 bundle_id: _builtins.str,
+                 team_id: _builtins.str):
+        """
+        :param _builtins.str bundle_id: iOS Bundle ID (CFBundleIdentifier).
+        :param _builtins.str team_id: Apple Team ID (App ID prefix).
+        """
+        pulumi.set(__self__, "bundle_id", bundle_id)
+        pulumi.set(__self__, "team_id", team_id)
+
+    @_builtins.property
+    @pulumi.getter(name="bundleId")
+    def bundle_id(self) -> _builtins.str:
+        """
+        iOS Bundle ID (CFBundleIdentifier).
+        """
+        return pulumi.get(self, "bundle_id")
+
+    @_builtins.property
+    @pulumi.getter(name="teamId")
+    def team_id(self) -> _builtins.str:
+        """
+        Apple Team ID (App ID prefix).
+        """
+        return pulumi.get(self, "team_id")
 
 
 @pulumi.output_type

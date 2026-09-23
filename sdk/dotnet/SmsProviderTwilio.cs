@@ -60,10 +60,10 @@ namespace scoretechnologies.Zitadel
         public Output<string> SenderNumber { get; private set; } = null!;
 
         /// <summary>
-        /// Set the SMS provider as active after creating/updating.
+        /// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         /// </summary>
         [Output("setActive")]
-        public Output<bool?> SetActive { get; private set; } = null!;
+        public Output<bool> SetActive { get; private set; } = null!;
 
         /// <summary>
         /// SID used to communicate with Twilio.
@@ -155,7 +155,7 @@ namespace scoretechnologies.Zitadel
         public Input<string> SenderNumber { get; set; } = null!;
 
         /// <summary>
-        /// Set the SMS provider as active after creating/updating.
+        /// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         /// </summary>
         [Input("setActive")]
         public Input<bool>? SetActive { get; set; }
@@ -210,7 +210,7 @@ namespace scoretechnologies.Zitadel
         public Input<string>? SenderNumber { get; set; }
 
         /// <summary>
-        /// Set the SMS provider as active after creating/updating.
+        /// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         /// </summary>
         [Input("setActive")]
         public Input<bool>? SetActive { get; set; }

@@ -73,10 +73,8 @@ type LookupInstanceFeaturesResult struct {
 }
 
 func LookupInstanceFeaturesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) LookupInstanceFeaturesResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (LookupInstanceFeaturesResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("zitadel:index/getInstanceFeatures:getInstanceFeatures", nil, LookupInstanceFeaturesResultOutput{}, options).(LookupInstanceFeaturesResultOutput), nil
-	}).(LookupInstanceFeaturesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getInstanceFeatures:getInstanceFeatures", nil, LookupInstanceFeaturesResultOutput{}, options).(LookupInstanceFeaturesResultOutput)
 }
 
 // A collection of values returned by getInstanceFeatures.

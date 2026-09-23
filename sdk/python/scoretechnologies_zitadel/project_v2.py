@@ -23,6 +23,7 @@ class ProjectV2Args:
                  org_id: pulumi.Input[_builtins.str],
                  has_project_check: pulumi.Input[Optional[_builtins.bool]] = None,
                  private_labeling_setting: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_role_check: pulumi.Input[Optional[_builtins.bool]] = None):
         """
@@ -32,6 +33,7 @@ class ProjectV2Args:
         :param pulumi.Input[_builtins.str] org_id: ID of the organization the project belongs to. Required because the v2 CreateProject API takes the organization as an explicit request field.
         :param pulumi.Input[_builtins.bool] has_project_check: Whether ZITADEL checks that the user's organization is granted access to this project before issuing a token.
         :param pulumi.Input[_builtins.str] private_labeling_setting: Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
+        :param pulumi.Input[_builtins.str] project_id: The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
         :param pulumi.Input[_builtins.bool] project_role_assertion: Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
         :param pulumi.Input[_builtins.bool] project_role_check: Whether ZITADEL checks that the authenticating user has at least one role granted on this project before issuing a token.
         """
@@ -41,6 +43,8 @@ class ProjectV2Args:
             pulumi.set(__self__, "has_project_check", has_project_check)
         if private_labeling_setting is not None:
             pulumi.set(__self__, "private_labeling_setting", private_labeling_setting)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if project_role_assertion is not None:
             pulumi.set(__self__, "project_role_assertion", project_role_assertion)
         if project_role_check is not None:
@@ -95,6 +99,18 @@ class ProjectV2Args:
         pulumi.set(self, "private_labeling_setting", value)
 
     @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="projectRoleAssertion")
     def project_role_assertion(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -126,6 +142,7 @@ class _ProjectV2State:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  private_labeling_setting: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_role_check: pulumi.Input[Optional[_builtins.bool]] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None):
@@ -136,6 +153,7 @@ class _ProjectV2State:
         :param pulumi.Input[_builtins.str] name: Name of the project
         :param pulumi.Input[_builtins.str] org_id: ID of the organization the project belongs to. Required because the v2 CreateProject API takes the organization as an explicit request field.
         :param pulumi.Input[_builtins.str] private_labeling_setting: Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
+        :param pulumi.Input[_builtins.str] project_id: The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
         :param pulumi.Input[_builtins.bool] project_role_assertion: Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
         :param pulumi.Input[_builtins.bool] project_role_check: Whether ZITADEL checks that the authenticating user has at least one role granted on this project before issuing a token.
         :param pulumi.Input[_builtins.str] state: State of the project
@@ -148,6 +166,8 @@ class _ProjectV2State:
             pulumi.set(__self__, "org_id", org_id)
         if private_labeling_setting is not None:
             pulumi.set(__self__, "private_labeling_setting", private_labeling_setting)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if project_role_assertion is not None:
             pulumi.set(__self__, "project_role_assertion", project_role_assertion)
         if project_role_check is not None:
@@ -204,6 +224,18 @@ class _ProjectV2State:
         pulumi.set(self, "private_labeling_setting", value)
 
     @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="projectRoleAssertion")
     def project_role_assertion(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -250,6 +282,7 @@ class ProjectV2(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  private_labeling_setting: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_role_check: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
@@ -286,6 +319,7 @@ class ProjectV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the project
         :param pulumi.Input[_builtins.str] org_id: ID of the organization the project belongs to. Required because the v2 CreateProject API takes the organization as an explicit request field.
         :param pulumi.Input[_builtins.str] private_labeling_setting: Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
+        :param pulumi.Input[_builtins.str] project_id: The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
         :param pulumi.Input[_builtins.bool] project_role_assertion: Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
         :param pulumi.Input[_builtins.bool] project_role_check: Whether ZITADEL checks that the authenticating user has at least one role granted on this project before issuing a token.
         """
@@ -341,6 +375,7 @@ class ProjectV2(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  private_labeling_setting: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_role_check: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
@@ -360,6 +395,7 @@ class ProjectV2(pulumi.CustomResource):
                 raise TypeError("Missing required property 'org_id'")
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["private_labeling_setting"] = private_labeling_setting
+            __props__.__dict__["project_id"] = project_id
             __props__.__dict__["project_role_assertion"] = project_role_assertion
             __props__.__dict__["project_role_check"] = project_role_check
             __props__.__dict__["state"] = None
@@ -377,6 +413,7 @@ class ProjectV2(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             private_labeling_setting: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
             project_role_check: pulumi.Input[Optional[_builtins.bool]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None) -> 'ProjectV2':
@@ -391,6 +428,7 @@ class ProjectV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the project
         :param pulumi.Input[_builtins.str] org_id: ID of the organization the project belongs to. Required because the v2 CreateProject API takes the organization as an explicit request field.
         :param pulumi.Input[_builtins.str] private_labeling_setting: Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
+        :param pulumi.Input[_builtins.str] project_id: The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
         :param pulumi.Input[_builtins.bool] project_role_assertion: Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
         :param pulumi.Input[_builtins.bool] project_role_check: Whether ZITADEL checks that the authenticating user has at least one role granted on this project before issuing a token.
         :param pulumi.Input[_builtins.str] state: State of the project
@@ -403,6 +441,7 @@ class ProjectV2(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["private_labeling_setting"] = private_labeling_setting
+        __props__.__dict__["project_id"] = project_id
         __props__.__dict__["project_role_assertion"] = project_role_assertion
         __props__.__dict__["project_role_check"] = project_role_check
         __props__.__dict__["state"] = state
@@ -439,6 +478,14 @@ class ProjectV2(pulumi.CustomResource):
         Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
         """
         return pulumi.get(self, "private_labeling_setting")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+        """
+        return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter(name="projectRoleAssertion")

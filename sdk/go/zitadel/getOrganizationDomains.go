@@ -77,12 +77,8 @@ type GetOrganizationDomainsResult struct {
 }
 
 func GetOrganizationDomainsOutput(ctx *pulumi.Context, args GetOrganizationDomainsOutputArgs, opts ...pulumi.InvokeOption) GetOrganizationDomainsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOrganizationDomainsResultOutput, error) {
-			args := v.(GetOrganizationDomainsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrganizationDomains:getOrganizationDomains", args, GetOrganizationDomainsResultOutput{}, options).(GetOrganizationDomainsResultOutput), nil
-		}).(GetOrganizationDomainsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrganizationDomains:getOrganizationDomains", args, GetOrganizationDomainsResultOutput{}, options).(GetOrganizationDomainsResultOutput)
 }
 
 // A collection of arguments for invoking getOrganizationDomains.

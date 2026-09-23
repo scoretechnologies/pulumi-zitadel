@@ -76,12 +76,8 @@ type LookupTriggerActionsResult struct {
 }
 
 func LookupTriggerActionsOutput(ctx *pulumi.Context, args LookupTriggerActionsOutputArgs, opts ...pulumi.InvokeOption) LookupTriggerActionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupTriggerActionsResultOutput, error) {
-			args := v.(LookupTriggerActionsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getTriggerActions:getTriggerActions", args, LookupTriggerActionsResultOutput{}, options).(LookupTriggerActionsResultOutput), nil
-		}).(LookupTriggerActionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getTriggerActions:getTriggerActions", args, LookupTriggerActionsResultOutput{}, options).(LookupTriggerActionsResultOutput)
 }
 
 // A collection of arguments for invoking getTriggerActions.

@@ -515,7 +515,7 @@ class OrgIdpGithubEs(pulumi.CustomResource):
         The resource can be imported using the ID format `<id[:org_id][:client_secret]>`, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/orgIdpGithubEs:OrgIdpGithubEs imported '123456789012345678:123456789012345678:123456789012345678:123456789012345678'
+        $ pulumi import zitadel:index/orgIdpGithubEs:OrgIdpGithubEs imported '123456789012345678:123456789012345678:1234567890123456781234567890123456787890'
         ```
 
 
@@ -576,7 +576,7 @@ class OrgIdpGithubEs(pulumi.CustomResource):
         The resource can be imported using the ID format `<id[:org_id][:client_secret]>`, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/orgIdpGithubEs:OrgIdpGithubEs imported '123456789012345678:123456789012345678:123456789012345678:123456789012345678'
+        $ pulumi import zitadel:index/orgIdpGithubEs:OrgIdpGithubEs imported '123456789012345678:123456789012345678:1234567890123456781234567890123456787890'
         ```
 
 

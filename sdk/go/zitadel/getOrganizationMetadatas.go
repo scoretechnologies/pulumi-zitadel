@@ -77,12 +77,8 @@ type GetOrganizationMetadatasResult struct {
 }
 
 func GetOrganizationMetadatasOutput(ctx *pulumi.Context, args GetOrganizationMetadatasOutputArgs, opts ...pulumi.InvokeOption) GetOrganizationMetadatasResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOrganizationMetadatasResultOutput, error) {
-			args := v.(GetOrganizationMetadatasArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrganizationMetadatas:getOrganizationMetadatas", args, GetOrganizationMetadatasResultOutput{}, options).(GetOrganizationMetadatasResultOutput), nil
-		}).(GetOrganizationMetadatasResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrganizationMetadatas:getOrganizationMetadatas", args, GetOrganizationMetadatasResultOutput{}, options).(GetOrganizationMetadatasResultOutput)
 }
 
 // A collection of arguments for invoking getOrganizationMetadatas.

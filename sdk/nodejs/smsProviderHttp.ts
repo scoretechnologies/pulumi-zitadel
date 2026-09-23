@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as zitadel from "@scoretechnologies/zitadel";
  *
  * const _default = new zitadel.SmsProviderHttp("default", {
- *     endpoint: "https://relay.example.com/provider",
+ *     endpoint: "https://example.com/provider",
  *     description: "provider description",
  *     setActive: false,
  * });
@@ -69,9 +69,9 @@ export class SmsProviderHttp extends pulumi.CustomResource {
      */
     declare public readonly expirationSigningKey: pulumi.Output<string | undefined>;
     /**
-     * Set the SMS provider as active after creating/updating.
+     * Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
-    declare public readonly setActive: pulumi.Output<boolean | undefined>;
+    declare public readonly setActive: pulumi.Output<boolean>;
     /**
      * Key used to sign and check payload sent to the HTTP provider
      */
@@ -130,7 +130,7 @@ export interface SmsProviderHttpState {
      */
     expirationSigningKey?: pulumi.Input<string | undefined>;
     /**
-     * Set the SMS provider as active after creating/updating.
+     * Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
     setActive?: pulumi.Input<boolean | undefined>;
     /**
@@ -156,7 +156,7 @@ export interface SmsProviderHttpArgs {
      */
     expirationSigningKey?: pulumi.Input<string | undefined>;
     /**
-     * Set the SMS provider as active after creating/updating.
+     * Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
      */
     setActive?: pulumi.Input<boolean | undefined>;
 }

@@ -72,12 +72,8 @@ type LookupWebkeyResult struct {
 }
 
 func LookupWebkeyOutput(ctx *pulumi.Context, args LookupWebkeyOutputArgs, opts ...pulumi.InvokeOption) LookupWebkeyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupWebkeyResultOutput, error) {
-			args := v.(LookupWebkeyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getWebkey:getWebkey", args, LookupWebkeyResultOutput{}, options).(LookupWebkeyResultOutput), nil
-		}).(LookupWebkeyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getWebkey:getWebkey", args, LookupWebkeyResultOutput{}, options).(LookupWebkeyResultOutput)
 }
 
 // A collection of arguments for invoking getWebkey.

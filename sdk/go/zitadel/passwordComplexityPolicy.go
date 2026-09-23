@@ -66,7 +66,7 @@ type PasswordComplexityPolicy struct {
 	// Minimal length for the password
 	MinLength pulumi.IntOutput `pulumi:"minLength"`
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 }
 
 // NewPasswordComplexityPolicy registers a new resource with the given unique name, arguments, and options.
@@ -291,8 +291,8 @@ func (o PasswordComplexityPolicyOutput) MinLength() pulumi.IntOutput {
 }
 
 // ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-func (o PasswordComplexityPolicyOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PasswordComplexityPolicy) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o PasswordComplexityPolicyOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PasswordComplexityPolicy) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 type PasswordComplexityPolicyArrayOutput struct{ *pulumi.OutputState }

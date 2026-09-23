@@ -62,7 +62,7 @@ type PrivacyPolicy struct {
 	// Link to the Help/Manual page.
 	HelpLink pulumi.StringPtrOutput `pulumi:"helpLink"`
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-	OrgId pulumi.StringPtrOutput `pulumi:"orgId"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// Link to the Privacy Policy.
 	PrivacyLink pulumi.StringPtrOutput `pulumi:"privacyLink"`
 	// Help / support email address.
@@ -289,8 +289,8 @@ func (o PrivacyPolicyOutput) HelpLink() pulumi.StringPtrOutput {
 }
 
 // ID of the organization. If not provided, the organization of the authenticated user/service account is used.
-func (o PrivacyPolicyOutput) OrgId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PrivacyPolicy) pulumi.StringPtrOutput { return v.OrgId }).(pulumi.StringPtrOutput)
+func (o PrivacyPolicyOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivacyPolicy) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
 // Link to the Privacy Policy.

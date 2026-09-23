@@ -68,6 +68,8 @@ type LookupApplicationOidcResult struct {
 	AccessTokenType string `pulumi:"accessTokenType"`
 	// Additional origins
 	AdditionalOrigins []string `pulumi:"additionalOrigins"`
+	// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds.
+	Androids []GetApplicationOidcAndroid `pulumi:"androids"`
 	// The ID of this resource.
 	AppId string `pulumi:"appId"`
 	// App type
@@ -92,6 +94,8 @@ type LookupApplicationOidcResult struct {
 	IdTokenRoleAssertion bool `pulumi:"idTokenRoleAssertion"`
 	// Token userinfo assertion
 	IdTokenUserinfoAssertion bool `pulumi:"idTokenUserinfoAssertion"`
+	// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}".
+	Ios []GetApplicationOidcIo `pulumi:"ios"`
 	// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
 	LoginVersions []GetApplicationOidcLoginVersion `pulumi:"loginVersions"`
 	// Name of the application
@@ -115,12 +119,8 @@ type LookupApplicationOidcResult struct {
 }
 
 func LookupApplicationOidcOutput(ctx *pulumi.Context, args LookupApplicationOidcOutputArgs, opts ...pulumi.InvokeOption) LookupApplicationOidcResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupApplicationOidcResultOutput, error) {
-			args := v.(LookupApplicationOidcArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getApplicationOidc:getApplicationOidc", args, LookupApplicationOidcResultOutput{}, options).(LookupApplicationOidcResultOutput), nil
-		}).(LookupApplicationOidcResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getApplicationOidc:getApplicationOidc", args, LookupApplicationOidcResultOutput{}, options).(LookupApplicationOidcResultOutput)
 }
 
 // A collection of arguments for invoking getApplicationOidc.
@@ -165,6 +165,11 @@ func (o LookupApplicationOidcResultOutput) AccessTokenType() pulumi.StringOutput
 // Additional origins
 func (o LookupApplicationOidcResultOutput) AdditionalOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupApplicationOidcResult) []string { return v.AdditionalOrigins }).(pulumi.StringArrayOutput)
+}
+
+// Android Digital Asset Links / passkey trust config. Served in /.well-known/assetlinks.json for delegate*permission/common.get*login_creds.
+func (o LookupApplicationOidcResultOutput) Androids() GetApplicationOidcAndroidArrayOutput {
+	return o.ApplyT(func(v LookupApplicationOidcResult) []GetApplicationOidcAndroid { return v.Androids }).(GetApplicationOidcAndroidArrayOutput)
 }
 
 // The ID of this resource.
@@ -225,6 +230,11 @@ func (o LookupApplicationOidcResultOutput) IdTokenRoleAssertion() pulumi.BoolOut
 // Token userinfo assertion
 func (o LookupApplicationOidcResultOutput) IdTokenUserinfoAssertion() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupApplicationOidcResult) bool { return v.IdTokenUserinfoAssertion }).(pulumi.BoolOutput)
+}
+
+// iOS Associated Domains / passkey trust config. Served in /.well-known/apple-app-site-association as webcredentials.apps entry "{team*id}.{bundle*id}".
+func (o LookupApplicationOidcResultOutput) Ios() GetApplicationOidcIoArrayOutput {
+	return o.ApplyT(func(v LookupApplicationOidcResult) []GetApplicationOidcIo { return v.Ios }).(GetApplicationOidcIoArrayOutput)
 }
 
 // Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.

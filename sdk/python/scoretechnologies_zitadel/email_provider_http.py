@@ -29,7 +29,7 @@ class EmailProviderHttpArgs:
         :param pulumi.Input[_builtins.str] endpoint: HTTP endpoint which is used to send the email.
         :param pulumi.Input[_builtins.str] description: Description of the email provider.
         :param pulumi.Input[_builtins.str] expiration_signing_key: Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
-        :param pulumi.Input[_builtins.bool] set_active: Set the email provider as active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         pulumi.set(__self__, "endpoint", endpoint)
         if description is not None:
@@ -79,7 +79,7 @@ class EmailProviderHttpArgs:
     @pulumi.getter(name="setActive")
     def set_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Set the email provider as active after creating/updating.
+        Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         return pulumi.get(self, "set_active")
 
@@ -102,7 +102,7 @@ class _EmailProviderHttpState:
         :param pulumi.Input[_builtins.str] description: Description of the email provider.
         :param pulumi.Input[_builtins.str] endpoint: HTTP endpoint which is used to send the email.
         :param pulumi.Input[_builtins.str] expiration_signing_key: Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
-        :param pulumi.Input[_builtins.bool] set_active: Set the email provider as active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.str] signing_key: Key used to sign and check payload sent to the HTTP provider.
         """
         if description is not None:
@@ -156,7 +156,7 @@ class _EmailProviderHttpState:
     @pulumi.getter(name="setActive")
     def set_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Set the email provider as active after creating/updating.
+        Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         return pulumi.get(self, "set_active")
 
@@ -198,7 +198,7 @@ class EmailProviderHttp(pulumi.CustomResource):
         import scoretechnologies_zitadel as zitadel
 
         default = zitadel.EmailProviderHttp("default",
-            endpoint="https://relay.example.com/provider",
+            endpoint="https://example.com/provider",
             description="provider description",
             set_active=False)
         ```
@@ -217,7 +217,7 @@ class EmailProviderHttp(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: Description of the email provider.
         :param pulumi.Input[_builtins.str] endpoint: HTTP endpoint which is used to send the email.
         :param pulumi.Input[_builtins.str] expiration_signing_key: Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
-        :param pulumi.Input[_builtins.bool] set_active: Set the email provider as active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         ...
     @overload
@@ -235,7 +235,7 @@ class EmailProviderHttp(pulumi.CustomResource):
         import scoretechnologies_zitadel as zitadel
 
         default = zitadel.EmailProviderHttp("default",
-            endpoint="https://relay.example.com/provider",
+            endpoint="https://example.com/provider",
             description="provider description",
             set_active=False)
         ```
@@ -311,7 +311,7 @@ class EmailProviderHttp(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: Description of the email provider.
         :param pulumi.Input[_builtins.str] endpoint: HTTP endpoint which is used to send the email.
         :param pulumi.Input[_builtins.str] expiration_signing_key: Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
-        :param pulumi.Input[_builtins.bool] set_active: Set the email provider as active after creating/updating.
+        :param pulumi.Input[_builtins.bool] set_active: Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         :param pulumi.Input[_builtins.str] signing_key: Key used to sign and check payload sent to the HTTP provider.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -351,9 +351,9 @@ class EmailProviderHttp(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="setActive")
-    def set_active(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def set_active(self) -> pulumi.Output[_builtins.bool]:
         """
-        Set the email provider as active after creating/updating.
+        Set the email provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
         """
         return pulumi.get(self, "set_active")
 

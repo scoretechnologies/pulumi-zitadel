@@ -51,6 +51,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DefaultDomainClaimedMessageText{}
 	case "zitadel:index/defaultDomainPolicy:DefaultDomainPolicy":
 		r = &DefaultDomainPolicy{}
+	case "zitadel:index/defaultHostedLoginTranslation:DefaultHostedLoginTranslation":
+		r = &DefaultHostedLoginTranslation{}
 	case "zitadel:index/defaultInitMessageText:DefaultInitMessageText":
 		r = &DefaultInitMessageText{}
 	case "zitadel:index/defaultInviteUserMessageText:DefaultInviteUserMessageText":
@@ -99,6 +101,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &EmailProviderHttp{}
 	case "zitadel:index/emailProviderSmtp:EmailProviderSmtp":
 		r = &EmailProviderSmtp{}
+	case "zitadel:index/hostedLoginTranslation:HostedLoginTranslation":
+		r = &HostedLoginTranslation{}
 	case "zitadel:index/humanUser:HumanUser":
 		r = &HumanUser{}
 	case "zitadel:index/idpApple:IdpApple":
@@ -345,6 +349,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"zitadel",
+		"index/defaultHostedLoginTranslation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"zitadel",
 		"index/defaultInitMessageText",
 		&module{version},
 	)
@@ -461,6 +470,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"zitadel",
 		"index/emailProviderSmtp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"zitadel",
+		"index/hostedLoginTranslation",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

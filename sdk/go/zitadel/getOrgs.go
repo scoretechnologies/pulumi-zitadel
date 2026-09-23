@@ -59,12 +59,8 @@ type GetOrgsResult struct {
 }
 
 func GetOrgsOutput(ctx *pulumi.Context, args GetOrgsOutputArgs, opts ...pulumi.InvokeOption) GetOrgsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOrgsResultOutput, error) {
-			args := v.(GetOrgsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("zitadel:index/getOrgs:getOrgs", args, GetOrgsResultOutput{}, options).(GetOrgsResultOutput), nil
-		}).(GetOrgsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("zitadel:index/getOrgs:getOrgs", args, GetOrgsResultOutput{}, options).(GetOrgsResultOutput)
 }
 
 // A collection of arguments for invoking getOrgs.

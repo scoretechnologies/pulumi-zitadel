@@ -16,9 +16,13 @@ import * as utilities from "./utilities";
  * const _default = new zitadel.OrganizationDomain("default", {
  *     organizationId: defaultZitadelOrganization.id,
  *     domain: "example.com",
+ * });
+ * const validated = new zitadel.OrganizationDomain("validated", {
+ *     organizationId: defaultZitadelOrganization.id,
+ *     domain: "validated.example.com",
  *     validationType: "DOMAIN_VALIDATION_TYPE_DNS",
  * });
- * export const dnsValidationToken = _default.validationToken;
+ * export const dnsValidationToken = validated.validationToken;
  * const verified = new zitadel.OrganizationDomain("verified", {
  *     organizationId: defaultZitadelOrganization.id,
  *     domain: "verified.example.com",
@@ -28,6 +32,8 @@ import * as utilities from "./utilities";
  * ```
  *
  * ## Import
+ *
+ * The resource can be imported using the ID format `<organization_id:domain>`, e.g.
  *
  * ```sh
  * $ pulumi import zitadel:index/organizationDomain:OrganizationDomain imported '123456789012345678:example.com'
@@ -82,9 +88,9 @@ export class OrganizationDomain extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly validationToken: pulumi.Output<string>;
     /**
-     * Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+     * Type of domain validation. Leave unset when the organization's domain policy has `validateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
      */
-    declare public readonly validationType: pulumi.Output<string>;
+    declare public readonly validationType: pulumi.Output<string | undefined>;
     /**
      * URL where validation file should be hosted for HTTP verification
      */
@@ -122,9 +128,6 @@ export class OrganizationDomain extends pulumi.CustomResource {
             }
             if (args?.organizationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'organizationId'");
-            }
-            if (args?.validationType === undefined && !opts.urn) {
-                throw new Error("Missing required property 'validationType'");
             }
             resourceInputs["domain"] = args?.domain;
             resourceInputs["organizationId"] = args?.organizationId;
@@ -167,7 +170,7 @@ export interface OrganizationDomainState {
      */
     validationToken?: pulumi.Input<string | undefined>;
     /**
-     * Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+     * Type of domain validation. Leave unset when the organization's domain policy has `validateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
      */
     validationType?: pulumi.Input<string | undefined>;
     /**
@@ -193,9 +196,9 @@ export interface OrganizationDomainArgs {
      */
     organizationId: pulumi.Input<string>;
     /**
-     * Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+     * Type of domain validation. Leave unset when the organization's domain policy has `validateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
      */
-    validationType: pulumi.Input<string>;
+    validationType?: pulumi.Input<string | undefined>;
     /**
      * Trigger domain verification. Set to true after adding DNS/HTTP validation.
      */

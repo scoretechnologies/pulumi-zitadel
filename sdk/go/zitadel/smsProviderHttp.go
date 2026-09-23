@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := zitadel.NewSmsProviderHttp(ctx, "default", &zitadel.SmsProviderHttpArgs{
-//				Endpoint:    pulumi.String("https://relay.example.com/provider"),
+//				Endpoint:    pulumi.String("https://example.com/provider"),
 //				Description: pulumi.String("provider description"),
 //				SetActive:   pulumi.Bool(false),
 //			})
@@ -58,8 +58,8 @@ type SmsProviderHttp struct {
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey pulumi.StringPtrOutput `pulumi:"expirationSigningKey"`
-	// Set the SMS provider as active after creating/updating.
-	SetActive pulumi.BoolPtrOutput `pulumi:"setActive"`
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
+	SetActive pulumi.BoolOutput `pulumi:"setActive"`
 	// Key used to sign and check payload sent to the HTTP provider
 	SigningKey pulumi.StringOutput `pulumi:"signingKey"`
 }
@@ -107,7 +107,7 @@ type smsProviderHttpState struct {
 	Endpoint *string `pulumi:"endpoint"`
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey *string `pulumi:"expirationSigningKey"`
-	// Set the SMS provider as active after creating/updating.
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive *bool `pulumi:"setActive"`
 	// Key used to sign and check payload sent to the HTTP provider
 	SigningKey *string `pulumi:"signingKey"`
@@ -120,7 +120,7 @@ type SmsProviderHttpState struct {
 	Endpoint pulumi.StringPtrInput
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey pulumi.StringPtrInput
-	// Set the SMS provider as active after creating/updating.
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive pulumi.BoolPtrInput
 	// Key used to sign and check payload sent to the HTTP provider
 	SigningKey pulumi.StringPtrInput
@@ -137,7 +137,7 @@ type smsProviderHttpArgs struct {
 	Endpoint string `pulumi:"endpoint"`
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey *string `pulumi:"expirationSigningKey"`
-	// Set the SMS provider as active after creating/updating.
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive *bool `pulumi:"setActive"`
 }
 
@@ -149,7 +149,7 @@ type SmsProviderHttpArgs struct {
 	Endpoint pulumi.StringInput
 	// Expiration duration for the signing key. When set during update, the old signing key will remain valid for the specified duration to allow for a graceful key rotation.
 	ExpirationSigningKey pulumi.StringPtrInput
-	// Set the SMS provider as active after creating/updating.
+	// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
 	SetActive pulumi.BoolPtrInput
 }
 
@@ -255,9 +255,9 @@ func (o SmsProviderHttpOutput) ExpirationSigningKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SmsProviderHttp) pulumi.StringPtrOutput { return v.ExpirationSigningKey }).(pulumi.StringPtrOutput)
 }
 
-// Set the SMS provider as active after creating/updating.
-func (o SmsProviderHttpOutput) SetActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *SmsProviderHttp) pulumi.BoolPtrOutput { return v.SetActive }).(pulumi.BoolPtrOutput)
+// Set the SMS provider as active after creating/updating. If not configured, the state in ZITADEL is kept.
+func (o SmsProviderHttpOutput) SetActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SmsProviderHttp) pulumi.BoolOutput { return v.SetActive }).(pulumi.BoolOutput)
 }
 
 // Key used to sign and check payload sent to the HTTP provider

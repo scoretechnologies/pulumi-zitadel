@@ -27,6 +27,12 @@ namespace scoretechnologies.Zitadel
     ///     {
     ///         OrganizationId = defaultZitadelOrganization.Id,
     ///         Domain = "example.com",
+    ///     });
+    /// 
+    ///     var validated = new Zitadel.OrganizationDomain("validated", new()
+    ///     {
+    ///         OrganizationId = defaultZitadelOrganization.Id,
+    ///         Domain = "validated.example.com",
     ///         ValidationType = "DOMAIN_VALIDATION_TYPE_DNS",
     ///     });
     /// 
@@ -40,12 +46,14 @@ namespace scoretechnologies.Zitadel
     /// 
     ///     return new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         ["dnsValidationToken"] = @default.ValidationToken,
+    ///         ["dnsValidationToken"] = validated.ValidationToken,
     ///     };
     /// });
     /// ```
     /// 
     /// ## Import
+    /// 
+    /// The resource can be imported using the ID format `&lt;organization_id:domain&gt;`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import zitadel:index/organizationDomain:OrganizationDomain imported '123456789012345678:example.com'
@@ -85,10 +93,10 @@ namespace scoretechnologies.Zitadel
         public Output<string> ValidationToken { get; private set; } = null!;
 
         /// <summary>
-        /// Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        /// Type of domain validation. Leave unset when the organization's domain policy has `ValidateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         /// </summary>
         [Output("validationType")]
-        public Output<string> ValidationType { get; private set; } = null!;
+        public Output<string?> ValidationType { get; private set; } = null!;
 
         /// <summary>
         /// URL where validation file should be hosted for HTTP verification
@@ -166,10 +174,10 @@ namespace scoretechnologies.Zitadel
         public Input<string> OrganizationId { get; set; } = null!;
 
         /// <summary>
-        /// Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        /// Type of domain validation. Leave unset when the organization's domain policy has `ValidateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         /// </summary>
-        [Input("validationType", required: true)]
-        public Input<string> ValidationType { get; set; } = null!;
+        [Input("validationType")]
+        public Input<string>? ValidationType { get; set; }
 
         /// <summary>
         /// Trigger domain verification. Set to true after adding DNS/HTTP validation.
@@ -226,7 +234,7 @@ namespace scoretechnologies.Zitadel
         }
 
         /// <summary>
-        /// Type of domain validation, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
+        /// Type of domain validation. Leave unset when the organization's domain policy has `ValidateOrgDomains` disabled (the default), as ZITADEL then verifies the domain while adding it and there is no challenge to generate, supported values: DOMAIN*VALIDATION*TYPE*UNSPECIFIED, DOMAIN*VALIDATION*TYPE*HTTP, DOMAIN*VALIDATION*TYPE_DNS
         /// </summary>
         [Input("validationType")]
         public Input<string>? ValidationType { get; set; }

@@ -63,6 +63,8 @@ type ProjectV2 struct {
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
 	PrivateLabelingSetting pulumi.StringPtrOutput `pulumi:"privateLabelingSetting"`
+	// The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
 	ProjectRoleAssertion pulumi.BoolPtrOutput `pulumi:"projectRoleAssertion"`
 	// Whether ZITADEL checks that the authenticating user has at least one role granted on this project before issuing a token.
@@ -115,6 +117,8 @@ type projectV2State struct {
 	OrgId *string `pulumi:"orgId"`
 	// Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
 	PrivateLabelingSetting *string `pulumi:"privateLabelingSetting"`
+	// The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+	ProjectId *string `pulumi:"projectId"`
 	// Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
 	ProjectRoleAssertion *bool `pulumi:"projectRoleAssertion"`
 	// Whether ZITADEL checks that the authenticating user has at least one role granted on this project before issuing a token.
@@ -132,6 +136,8 @@ type ProjectV2State struct {
 	OrgId pulumi.StringPtrInput
 	// Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
 	PrivateLabelingSetting pulumi.StringPtrInput
+	// The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+	ProjectId pulumi.StringPtrInput
 	// Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
 	ProjectRoleAssertion pulumi.BoolPtrInput
 	// Whether ZITADEL checks that the authenticating user has at least one role granted on this project before issuing a token.
@@ -153,6 +159,8 @@ type projectV2Args struct {
 	OrgId string `pulumi:"orgId"`
 	// Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
 	PrivateLabelingSetting *string `pulumi:"privateLabelingSetting"`
+	// The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+	ProjectId *string `pulumi:"projectId"`
 	// Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
 	ProjectRoleAssertion *bool `pulumi:"projectRoleAssertion"`
 	// Whether ZITADEL checks that the authenticating user has at least one role granted on this project before issuing a token.
@@ -169,6 +177,8 @@ type ProjectV2Args struct {
 	OrgId pulumi.StringInput
 	// Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
 	PrivateLabelingSetting pulumi.StringPtrInput
+	// The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+	ProjectId pulumi.StringPtrInput
 	// Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
 	ProjectRoleAssertion pulumi.BoolPtrInput
 	// Whether ZITADEL checks that the authenticating user has at least one role granted on this project before issuing a token.
@@ -280,6 +290,11 @@ func (o ProjectV2Output) OrgId() pulumi.StringOutput {
 // Defines from where the private labeling should be triggered, supported values: PRIVATE*LABELING*SETTING*UNSPECIFIED, PRIVATE*LABELING*SETTING*ENFORCE*PROJECT*RESOURCE*OWNER*POLICY, PRIVATE*LABELING*SETTING*ALLOW*LOGIN*USER*RESOURCE*OWNER*POLICY
 func (o ProjectV2Output) PrivateLabelingSetting() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProjectV2) pulumi.StringPtrOutput { return v.PrivateLabelingSetting }).(pulumi.StringPtrOutput)
+}
+
+// The ID of this resource. Optionally set a custom unique ID. If omitted, ZITADEL will generate one.
+func (o ProjectV2Output) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProjectV2) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // Whether the roles assigned to a user are asserted (added) in the access and ID tokens issued for this project.
