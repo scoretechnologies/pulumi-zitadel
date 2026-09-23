@@ -1,6 +1,10 @@
 name: Upgrade provider
 on:
   workflow_dispatch:
+    inputs:
+      target_version:
+        description: Upstream release to upgrade to, e.g. v3.8.6 (default latest)
+        required: false
 
   schedule:
     - cron: "0 5 * * *"
@@ -8,11 +12,9 @@ on:
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  # TODO: Switch to shared CI like here
-  # https://github.com/scoretechnologies/pulumi-vercel/blob/main/.github/workflows/upgrade-provider.yml
-  # after this issue is fixed
-  # https://github.com/pulumi/upgrade-provider/issues/179
-  # or when have time to fix failing go mod tidy in "all" mode.
+  # Not pulumi/upgrade-provider: upstream tags v3.x while its go.mod still
+  # declares the /v2 module path, which that tool cannot resolve. See
+  # scripts/upgrade-upstream.sh.
   upgrade_provider:
     name: upgrade-provider
     runs-on: ubuntu-latest
@@ -39,16 +41,32 @@ jobs:
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
         shell: bash
-      - name: Install upgrade-provider
-        run: go install github.com/pulumi/upgrade-provider@176a45cf2471d5fccd6235c385ba1ec17b74a37f
-        shell: bash
-      - name: "Set up git identity: name"
-        run: git config --global user.name 'eliobischof'
-        shell: bash
-      - name: Run upgrade-provider
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20.x
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+          version: 11
+      - name: Setup DotNet
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 6.0.300
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: "Set up git identity"
         run: |
-          upgrade-provider "$REPO" --kind="provider" --pr-reviewers="eliobischof"
+          git config --global user.name 'eliobischof'
+          git config --global user.email 'eliobischof@users.noreply.github.com'
+        shell: bash
+      - name: Upgrade upstream provider
+        run: ./scripts/upgrade-upstream.sh
         shell: bash
         env:
           GH_TOKEN: ${{ env.GH_TOKEN }}
-          REPO: ${{ github.repository }}
+          TARGET_VERSION: ${{ inputs.target_version }}
+          PR_REVIEWERS: eliobischof
