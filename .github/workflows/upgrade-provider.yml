@@ -67,6 +67,9 @@ jobs:
         run: ./scripts/upgrade-upstream.sh
         shell: bash
         env:
-          GH_TOKEN: ${{ env.GH_TOKEN }}
+          # Opening the PR needs "Allow GitHub Actions to create and approve pull
+          # requests" enabled for GITHUB_TOKEN, or an UPGRADE_PR_TOKEN secret (a PAT
+          # with pull request write access) where that setting is unavailable.
+          GH_TOKEN: ${{ secrets.UPGRADE_PR_TOKEN || env.GH_TOKEN }}
           TARGET_VERSION: ${{ inputs.target_version }}
           PR_REVIEWERS: eliobischof
