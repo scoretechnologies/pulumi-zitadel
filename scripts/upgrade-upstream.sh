@@ -38,8 +38,31 @@ if [[ "${sha:0:12}" == "${current##*-}" ]]; then
 fi
 
 branch="upgrade-terraform-provider-zitadel-to-$target"
+
+create_pr() {
+    local pr_args=(
+        --base main
+        --head "$branch"
+        --title "Upgrade terraform-provider-zitadel to $target"
+        --body "Upgrades the upstream provider to [$target](https://github.com/$UPSTREAM_REPO/releases/tag/$target) and regenerates the schema and SDKs.
+
+Upstream's go.mod still declares the /v2 module path, so the release commit is pinned as a /v2 pseudo-version (\`$UPSTREAM_MODULE@${sha:0:12}\`)."
+    )
+    if [[ -n "${PR_REVIEWERS:-}" ]]; then
+        pr_args+=(--reviewer "$PR_REVIEWERS")
+    fi
+    gh pr create "${pr_args[@]}"
+}
+
 if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
-    echo "Branch $branch already exists on origin, skipping."
+    # A previous run can push the branch and then fail to open the PR, so only
+    # skip when a PR for it already exists.
+    if [[ -n "$(gh pr list --head "$branch" --state all --json number --jq '.[].number')" ]]; then
+        echo "Branch $branch already has a pull request, skipping."
+        exit 0
+    fi
+    echo "Branch $branch already exists without a pull request, opening one."
+    create_pr
     exit 0
 fi
 
@@ -60,15 +83,4 @@ git add -A
 git commit -m "Upgrade terraform-provider-zitadel to $target"
 git push --set-upstream origin "$branch"
 
-pr_args=(
-    --base main
-    --head "$branch"
-    --title "Upgrade terraform-provider-zitadel to $target"
-    --body "Upgrades the upstream provider to [$target](https://github.com/$UPSTREAM_REPO/releases/tag/$target) and regenerates the schema and SDKs.
-
-Upstream's go.mod still declares the /v2 module path, so the release commit is pinned as a /v2 pseudo-version (\`$UPSTREAM_MODULE@${sha:0:12}\`)."
-)
-if [[ -n "${PR_REVIEWERS:-}" ]]; then
-    pr_args+=(--reviewer "$PR_REVIEWERS")
-fi
-gh pr create "${pr_args[@]}"
+create_pr
