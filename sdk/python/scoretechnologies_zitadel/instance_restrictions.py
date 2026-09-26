@@ -127,7 +127,7 @@ class InstanceRestrictions(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default ""
+        $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default 'default'
         ```
 
 
@@ -162,7 +162,7 @@ class InstanceRestrictions(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default ""
+        $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default 'default'
         ```
 
 

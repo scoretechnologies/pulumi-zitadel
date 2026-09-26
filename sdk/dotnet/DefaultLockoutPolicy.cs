@@ -33,10 +33,11 @@ namespace scoretechnologies.Zitadel
     /// 
     /// ## Import
     /// 
-    /// The resource can be imported using the ID format `&lt;&gt;`, e.g.
+    /// Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+    /// `Default`, which ZITADEL ignores, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported ''
+    /// $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported 'default'
     /// ```
     /// </summary>
     [ZitadelResourceType("zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy")]

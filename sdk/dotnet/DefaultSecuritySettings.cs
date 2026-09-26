@@ -34,7 +34,7 @@ namespace scoretechnologies.Zitadel
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default ""
+    /// $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default 'default'
     /// ```
     /// </summary>
     [ZitadelResourceType("zitadel:index/defaultSecuritySettings:DefaultSecuritySettings")]

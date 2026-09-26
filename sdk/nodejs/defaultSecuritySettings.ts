@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default ""
+ * $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default 'default'
  * ```
  */
 export class DefaultSecuritySettings extends pulumi.CustomResource {

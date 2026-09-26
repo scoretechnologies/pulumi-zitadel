@@ -154,7 +154,7 @@ class DefaultSecuritySettings(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default ""
+        $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default 'default'
         ```
 
 
@@ -185,7 +185,7 @@ class DefaultSecuritySettings(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default ""
+        $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default 'default'
         ```
 
 

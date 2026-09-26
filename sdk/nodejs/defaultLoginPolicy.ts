@@ -45,10 +45,11 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * The resource can be imported using the ID format `<>`, e.g.
+ * Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+ * `default`, which ZITADEL ignores, e.g.
  *
  * ```sh
- * $ pulumi import zitadel:index/defaultLoginPolicy:DefaultLoginPolicy imported ''
+ * $ pulumi import zitadel:index/defaultLoginPolicy:DefaultLoginPolicy imported 'default'
  * ```
  */
 export class DefaultLoginPolicy extends pulumi.CustomResource {

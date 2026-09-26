@@ -4075,8 +4075,8 @@ github.com/zitadel/oidc/v3 v3.49.2 h1:yKvB2Hx6rVWp0vOTk1pEyXAPxJusgIHNmr20AxOohm
 github.com/zitadel/oidc/v3 v3.49.2/go.mod h1:HwoguOGo0eem0RK5Gb+P6Q4aQLVinJ9LhomlVEA57ck=
 github.com/zitadel/schema v1.3.2 h1:gfJvt7dOMfTmxzhscZ9KkapKo3Nei3B6cAxjav+lyjI=
 github.com/zitadel/schema v1.3.2/go.mod h1:IZmdfF9Wu62Zu6tJJTH3UsArevs3Y4smfJIj3L8fzxw=
-github.com/zitadel/terraform-provider-zitadel/v2 v2.12.9-0.20260917082257-bd64f36628f4 h1:1R/zotxS5bfxWuHQkzJ/wnrr0S3BV3Qm9Tph7qIvc54=
-github.com/zitadel/terraform-provider-zitadel/v2 v2.12.9-0.20260917082257-bd64f36628f4/go.mod h1:BzTc2rP+iP++x0nHh/cJfn86Ppqpc3dqO09wTw49RJg=
+github.com/zitadel/terraform-provider-zitadel/v2 v2.12.9-0.20260925062750-06cf6db9972e h1:Zv6t4JdJKfCLhUneZsQuUWkI7coF6u4pp8AiLVc9Wcw=
+github.com/zitadel/terraform-provider-zitadel/v2 v2.12.9-0.20260925062750-06cf6db9972e/go.mod h1:BzTc2rP+iP++x0nHh/cJfn86Ppqpc3dqO09wTw49RJg=
 github.com/zitadel/zitadel-go/v3 v3.29.3 h1:+oK/RCP3YjOECYtkDRcjdl9oshZu+yymlDqECkVPeuE=
 github.com/zitadel/zitadel-go/v3 v3.29.3/go.mod h1:pTCgIm7LJ0S3zGt9n4d05BLNXhxioZYmp5JCs5xRWpU=
 go.einride.tech/aip v0.66.0/go.mod h1:qAhMsfT7plxBX+Oy7Huol6YUvZ0ZzdUz26yZsQwfl1M=

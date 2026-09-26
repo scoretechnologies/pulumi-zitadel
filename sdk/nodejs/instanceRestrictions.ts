@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default ""
+ * $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default 'default'
  * ```
  */
 export class InstanceRestrictions extends pulumi.CustomResource {

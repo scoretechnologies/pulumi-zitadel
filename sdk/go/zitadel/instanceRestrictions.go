@@ -46,7 +46,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default ""
+// $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default 'default'
 // ```
 type InstanceRestrictions struct {
 	pulumi.CustomResourceState

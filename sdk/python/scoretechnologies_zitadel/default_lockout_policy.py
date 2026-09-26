@@ -120,10 +120,11 @@ class DefaultLockoutPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported ''
+        $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported 'default'
         ```
 
 
@@ -152,10 +153,11 @@ class DefaultLockoutPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported ''
+        $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported 'default'
         ```
 
 

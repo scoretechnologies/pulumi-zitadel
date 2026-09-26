@@ -43,7 +43,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default ""
+// $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default 'default'
 // ```
 type DefaultSecuritySettings struct {
 	pulumi.CustomResourceState

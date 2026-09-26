@@ -7,10 +7,10 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.135.0
 	github.com/pulumi/pulumi/sdk/v3 v3.253.0 // indirect
-	// Upstream release v3.8.6. Its go.mod still declares the /v2 module path, so the
+	// Upstream release v3.8.7. Its go.mod still declares the /v2 module path, so the
 	// v3.x tags are not resolvable by name and the release commit has to be pinned
 	// as a /v2 pseudo-version instead.
-	github.com/zitadel/terraform-provider-zitadel/v2 v2.12.9-0.20260917082257-bd64f36628f4
+	github.com/zitadel/terraform-provider-zitadel/v2 v2.12.9-0.20260925062750-06cf6db9972e
 )
 
 require (
