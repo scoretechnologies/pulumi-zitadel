@@ -117,6 +117,12 @@ func (DefaultVerifyEmailMessageTextState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultVerifyEmailMessageTextState)(nil)).Elem()
 }
 
+// DefaultVerifyEmailMessageTextExists checks whether an existing DefaultVerifyEmailMessageText resource with the given ID exists.
+func DefaultVerifyEmailMessageTextExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultVerifyEmailMessageTextState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultVerifyEmailMessageText:DefaultVerifyEmailMessageText", id, state, "", opts...)
+}
+
 type defaultVerifyEmailMessageTextArgs struct {
 	ButtonText *string `pulumi:"buttonText"`
 	FooterText *string `pulumi:"footerText"`

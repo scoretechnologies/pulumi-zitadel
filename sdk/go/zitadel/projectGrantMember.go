@@ -139,6 +139,12 @@ func (ProjectGrantMemberState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectGrantMemberState)(nil)).Elem()
 }
 
+// ProjectGrantMemberExists checks whether an existing ProjectGrantMember resource with the given ID exists.
+func ProjectGrantMemberExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectGrantMemberState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/projectGrantMember:ProjectGrantMember", id, state, "", opts...)
+}
+
 type projectGrantMemberArgs struct {
 	// ID of the grant
 	GrantId string `pulumi:"grantId"`

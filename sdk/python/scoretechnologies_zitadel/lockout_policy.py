@@ -262,6 +262,18 @@ class LockoutPolicy(pulumi.CustomResource):
         __props__.__dict__["org_id"] = org_id
         return LockoutPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            max_otp_attempts: pulumi.Input[Optional[_builtins.int]] = None,
+            max_password_attempts: pulumi.Input[Optional[_builtins.int]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["maxOtpAttempts"] = max_otp_attempts
+        __props__["maxPasswordAttempts"] = max_password_attempts
+        __props__["orgId"] = org_id
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/lockoutPolicy:LockoutPolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="maxOtpAttempts")
     def max_otp_attempts(self) -> pulumi.Output[_builtins.int]:

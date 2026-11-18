@@ -122,6 +122,12 @@ func (DefaultHostedLoginTranslationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultHostedLoginTranslationState)(nil)).Elem()
 }
 
+// DefaultHostedLoginTranslationExists checks whether an existing DefaultHostedLoginTranslation resource with the given ID exists.
+func DefaultHostedLoginTranslationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultHostedLoginTranslationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultHostedLoginTranslation:DefaultHostedLoginTranslation", id, state, "", opts...)
+}
+
 type defaultHostedLoginTranslationArgs struct {
 	// BCP 47 language tag of the translations, e.g. `en`, `de` or `fr-CH`
 	Language string `pulumi:"language"`

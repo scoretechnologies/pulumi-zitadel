@@ -1360,6 +1360,72 @@ class IdpLdap(pulumi.CustomResource):
         __props__.__dict__["user_object_classes"] = user_object_classes
         return IdpLdap(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_linking: pulumi.Input[Optional[_builtins.str]] = None,
+            avatar_url_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            base_dn: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_password_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            email_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            email_verified_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            first_name_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            id_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            is_auto_creation: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_auto_update: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_creation_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_linking_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            last_name_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nick_name_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            phone_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            phone_verified_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            preferred_language_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            preferred_username_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            profile_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            root_ca: pulumi.Input[Optional[_builtins.str]] = None,
+            servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            start_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+            timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            user_base: pulumi.Input[Optional[_builtins.str]] = None,
+            user_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoLinking"] = auto_linking
+        __props__["avatarUrlAttribute"] = avatar_url_attribute
+        __props__["baseDn"] = base_dn
+        __props__["bindDn"] = bind_dn
+        __props__["bindPassword"] = bind_password
+        __props__["bindPasswordHash"] = bind_password_hash
+        __props__["displayNameAttribute"] = display_name_attribute
+        __props__["emailAttribute"] = email_attribute
+        __props__["emailVerifiedAttribute"] = email_verified_attribute
+        __props__["firstNameAttribute"] = first_name_attribute
+        __props__["idAttribute"] = id_attribute
+        __props__["isAutoCreation"] = is_auto_creation
+        __props__["isAutoUpdate"] = is_auto_update
+        __props__["isCreationAllowed"] = is_creation_allowed
+        __props__["isLinkingAllowed"] = is_linking_allowed
+        __props__["lastNameAttribute"] = last_name_attribute
+        __props__["name"] = name
+        __props__["nickNameAttribute"] = nick_name_attribute
+        __props__["phoneAttribute"] = phone_attribute
+        __props__["phoneVerifiedAttribute"] = phone_verified_attribute
+        __props__["preferredLanguageAttribute"] = preferred_language_attribute
+        __props__["preferredUsernameAttribute"] = preferred_username_attribute
+        __props__["profileAttribute"] = profile_attribute
+        __props__["rootCa"] = root_ca
+        __props__["servers"] = servers
+        __props__["startTls"] = start_tls
+        __props__["timeout"] = timeout
+        __props__["userBase"] = user_base
+        __props__["userFilters"] = user_filters
+        __props__["userObjectClasses"] = user_object_classes
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/idpLdap:IdpLdap', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoLinking")
     def auto_linking(self) -> pulumi.Output[Optional[_builtins.str]]:

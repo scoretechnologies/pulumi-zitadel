@@ -223,6 +223,16 @@ class NotificationPolicy(pulumi.CustomResource):
         __props__.__dict__["password_change"] = password_change
         return NotificationPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            password_change: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["orgId"] = org_id
+        __props__["passwordChange"] = password_change
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/notificationPolicy:NotificationPolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Output[_builtins.str]:

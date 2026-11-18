@@ -158,6 +158,12 @@ func (SmsProviderTwilioState) ElementType() reflect.Type {
 	return reflect.TypeOf((*smsProviderTwilioState)(nil)).Elem()
 }
 
+// SmsProviderTwilioExists checks whether an existing SmsProviderTwilio resource with the given ID exists.
+func SmsProviderTwilioExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SmsProviderTwilioState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/smsProviderTwilio:SmsProviderTwilio", id, state, "", opts...)
+}
+
 type smsProviderTwilioArgs struct {
 	// Description of the SMS provider.
 	Description *string `pulumi:"description"`

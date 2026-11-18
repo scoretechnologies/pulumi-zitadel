@@ -417,6 +417,26 @@ class SmsProviderTwilio(pulumi.CustomResource):
         __props__.__dict__["verify_service_sid"] = verify_service_sid
         return SmsProviderTwilio(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            sender_number: pulumi.Input[Optional[_builtins.str]] = None,
+            set_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            sid: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            token_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            verify_service_sid: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["description"] = description
+        __props__["senderNumber"] = sender_number
+        __props__["setActive"] = set_active
+        __props__["sid"] = sid
+        __props__["token"] = token
+        __props__["tokenHash"] = token_hash
+        __props__["verifyServiceSid"] = verify_service_sid
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/smsProviderTwilio:SmsProviderTwilio', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:

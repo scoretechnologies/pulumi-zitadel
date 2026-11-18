@@ -124,6 +124,12 @@ func (PersonalAccessTokenState) ElementType() reflect.Type {
 	return reflect.TypeOf((*personalAccessTokenState)(nil)).Elem()
 }
 
+// PersonalAccessTokenExists checks whether an existing PersonalAccessToken resource with the given ID exists.
+func PersonalAccessTokenExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PersonalAccessTokenState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/personalAccessToken:PersonalAccessToken", id, state, "", opts...)
+}
+
 type personalAccessTokenArgs struct {
 	// Expiration date of the token in the RFC3339 format
 	ExpirationDate *string `pulumi:"expirationDate"`

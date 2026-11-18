@@ -94,10 +94,11 @@ import (
 //
 // ## Import
 //
-// The resource can be imported using the ID format `<>`, e.g.
+// Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+// `default`, which ZITADEL ignores, e.g.
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultLabelPolicy:DefaultLabelPolicy imported ”
+// $ pulumi import zitadel:index/defaultLabelPolicy:DefaultLabelPolicy imported 'default'
 // ```
 type DefaultLabelPolicy struct {
 	pulumi.CustomResourceState
@@ -288,6 +289,12 @@ type DefaultLabelPolicyState struct {
 
 func (DefaultLabelPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultLabelPolicyState)(nil)).Elem()
+}
+
+// DefaultLabelPolicyExists checks whether an existing DefaultLabelPolicy resource with the given ID exists.
+func DefaultLabelPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultLabelPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultLabelPolicy:DefaultLabelPolicy", id, state, "", opts...)
 }
 
 type defaultLabelPolicyArgs struct {

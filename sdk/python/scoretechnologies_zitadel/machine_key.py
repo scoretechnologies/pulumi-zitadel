@@ -393,6 +393,24 @@ class MachineKey(pulumi.CustomResource):
         __props__.__dict__["user_id"] = user_id
         return MachineKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            expiration_date: pulumi.Input[Optional[_builtins.str]] = None,
+            key_details: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["expirationDate"] = expiration_date
+        __props__["keyDetails"] = key_details
+        __props__["keyType"] = key_type
+        __props__["orgId"] = org_id
+        __props__["publicKey"] = public_key
+        __props__["userId"] = user_id
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/machineKey:MachineKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="expirationDate")
     def expiration_date(self) -> pulumi.Output[_builtins.str]:

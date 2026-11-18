@@ -290,10 +290,11 @@ class DefaultPrivacyPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy imported ''
+        $ pulumi import zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy imported 'default'
         ```
 
 
@@ -331,10 +332,11 @@ class DefaultPrivacyPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy imported ''
+        $ pulumi import zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy imported 'default'
         ```
 
 
@@ -420,6 +422,26 @@ class DefaultPrivacyPolicy(pulumi.CustomResource):
         __props__.__dict__["support_email"] = support_email
         __props__.__dict__["tos_link"] = tos_link
         return DefaultPrivacyPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            custom_link: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_link_text: pulumi.Input[Optional[_builtins.str]] = None,
+            docs_link: pulumi.Input[Optional[_builtins.str]] = None,
+            help_link: pulumi.Input[Optional[_builtins.str]] = None,
+            privacy_link: pulumi.Input[Optional[_builtins.str]] = None,
+            support_email: pulumi.Input[Optional[_builtins.str]] = None,
+            tos_link: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["customLink"] = custom_link
+        __props__["customLinkText"] = custom_link_text
+        __props__["docsLink"] = docs_link
+        __props__["helpLink"] = help_link
+        __props__["privacyLink"] = privacy_link
+        __props__["supportEmail"] = support_email
+        __props__["tosLink"] = tos_link
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="customLink")

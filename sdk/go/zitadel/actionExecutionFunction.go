@@ -119,6 +119,12 @@ func (ActionExecutionFunctionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*actionExecutionFunctionState)(nil)).Elem()
 }
 
+// ActionExecutionFunctionExists checks whether an existing ActionExecutionFunction resource with the given ID exists.
+func ActionExecutionFunctionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ActionExecutionFunctionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/actionExecutionFunction:ActionExecutionFunction", id, state, "", opts...)
+}
+
 type actionExecutionFunctionArgs struct {
 	// The name of the function. Valid values: `preuserinfo`, `preaccesstoken`, `presamlresponse`
 	Name string `pulumi:"name"`

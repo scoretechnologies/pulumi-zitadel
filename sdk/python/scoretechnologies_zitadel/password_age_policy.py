@@ -265,6 +265,18 @@ class PasswordAgePolicy(pulumi.CustomResource):
         __props__.__dict__["org_id"] = org_id
         return PasswordAgePolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            expire_warn_days: pulumi.Input[Optional[_builtins.int]] = None,
+            max_age_days: pulumi.Input[Optional[_builtins.int]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["expireWarnDays"] = expire_warn_days
+        __props__["maxAgeDays"] = max_age_days
+        __props__["orgId"] = org_id
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/passwordAgePolicy:PasswordAgePolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="expireWarnDays")
     def expire_warn_days(self) -> pulumi.Output[_builtins.int]:

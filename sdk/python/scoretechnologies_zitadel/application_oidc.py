@@ -1123,6 +1123,64 @@ class ApplicationOidc(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         return ApplicationOidc(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_token_type: pulumi.Input[Optional[_builtins.str]] = None,
+            additional_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            android: pulumi.Input[Optional[Union['ApplicationOidcAndroidArgs', 'ApplicationOidcAndroidArgsDict', 'outputs.ApplicationOidcAndroid']]] = None,
+            app_type: pulumi.Input[Optional[_builtins.str]] = None,
+            auth_method_type: pulumi.Input[Optional[_builtins.str]] = None,
+            back_channel_logout_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            clock_skew: pulumi.Input[Optional[_builtins.str]] = None,
+            compliance_problems: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ApplicationOidcComplianceProblemArgs', 'ApplicationOidcComplianceProblemArgsDict', 'outputs.ApplicationOidcComplianceProblem']]]]] = None,
+            dev_mode: pulumi.Input[Optional[_builtins.bool]] = None,
+            grant_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            id_token_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
+            id_token_userinfo_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
+            ios: pulumi.Input[Optional[Union['ApplicationOidcIosArgs', 'ApplicationOidcIosArgsDict', 'outputs.ApplicationOidcIos']]] = None,
+            login_version: pulumi.Input[Optional[Union['ApplicationOidcLoginVersionArgs', 'ApplicationOidcLoginVersionArgsDict', 'outputs.ApplicationOidcLoginVersion']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            none_compliant: pulumi.Input[Optional[_builtins.bool]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            post_logout_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            response_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            skip_native_app_success_page: pulumi.Input[Optional[_builtins.bool]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessTokenRoleAssertion"] = access_token_role_assertion
+        __props__["accessTokenType"] = access_token_type
+        __props__["additionalOrigins"] = additional_origins
+        __props__["android"] = android
+        __props__["appType"] = app_type
+        __props__["authMethodType"] = auth_method_type
+        __props__["backChannelLogoutUri"] = back_channel_logout_uri
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["clockSkew"] = clock_skew
+        __props__["complianceProblems"] = compliance_problems
+        __props__["devMode"] = dev_mode
+        __props__["grantTypes"] = grant_types
+        __props__["idTokenRoleAssertion"] = id_token_role_assertion
+        __props__["idTokenUserinfoAssertion"] = id_token_userinfo_assertion
+        __props__["ios"] = ios
+        __props__["loginVersion"] = login_version
+        __props__["name"] = name
+        __props__["noneCompliant"] = none_compliant
+        __props__["orgId"] = org_id
+        __props__["postLogoutRedirectUris"] = post_logout_redirect_uris
+        __props__["projectId"] = project_id
+        __props__["redirectUris"] = redirect_uris
+        __props__["responseTypes"] = response_types
+        __props__["skipNativeAppSuccessPage"] = skip_native_app_success_page
+        __props__["version"] = version
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/applicationOidc:ApplicationOidc', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessTokenRoleAssertion")
     def access_token_role_assertion(self) -> pulumi.Output[Optional[_builtins.bool]]:

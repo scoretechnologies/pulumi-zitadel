@@ -154,7 +154,7 @@ class DefaultSecuritySettings(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default ""
+        $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default 'default'
         ```
 
 
@@ -185,7 +185,7 @@ class DefaultSecuritySettings(pulumi.CustomResource):
         ## Import
 
         ```sh
-        $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default ""
+        $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default 'default'
         ```
 
 
@@ -253,6 +253,18 @@ class DefaultSecuritySettings(pulumi.CustomResource):
         __props__.__dict__["embedded_iframe_enabled"] = embedded_iframe_enabled
         __props__.__dict__["enable_impersonation"] = enable_impersonation
         return DefaultSecuritySettings(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            embedded_iframe_allowed_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            embedded_iframe_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_impersonation: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["embeddedIframeAllowedOrigins"] = embedded_iframe_allowed_origins
+        __props__["embeddedIframeEnabled"] = embedded_iframe_enabled
+        __props__["enableImpersonation"] = enable_impersonation
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultSecuritySettings:DefaultSecuritySettings', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="embeddedIframeAllowedOrigins")

@@ -1743,6 +1743,84 @@ class DefaultLoginTexts(pulumi.CustomResource):
         __props__.__dict__["verify_mfa_u2f_text"] = verify_mfa_u2f_text
         return DefaultLoginTexts(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            email_verification_done_text: pulumi.Input[Optional[Union['DefaultLoginTextsEmailVerificationDoneTextArgs', 'DefaultLoginTextsEmailVerificationDoneTextArgsDict', 'outputs.DefaultLoginTextsEmailVerificationDoneText']]] = None,
+            email_verification_text: pulumi.Input[Optional[Union['DefaultLoginTextsEmailVerificationTextArgs', 'DefaultLoginTextsEmailVerificationTextArgsDict', 'outputs.DefaultLoginTextsEmailVerificationText']]] = None,
+            external_registration_user_overview_text: pulumi.Input[Optional[Union['DefaultLoginTextsExternalRegistrationUserOverviewTextArgs', 'DefaultLoginTextsExternalRegistrationUserOverviewTextArgsDict', 'outputs.DefaultLoginTextsExternalRegistrationUserOverviewText']]] = None,
+            external_user_not_found_text: pulumi.Input[Optional[Union['DefaultLoginTextsExternalUserNotFoundTextArgs', 'DefaultLoginTextsExternalUserNotFoundTextArgsDict', 'outputs.DefaultLoginTextsExternalUserNotFoundText']]] = None,
+            footer_text: pulumi.Input[Optional[Union['DefaultLoginTextsFooterTextArgs', 'DefaultLoginTextsFooterTextArgsDict', 'outputs.DefaultLoginTextsFooterText']]] = None,
+            init_mfa_done_text: pulumi.Input[Optional[Union['DefaultLoginTextsInitMfaDoneTextArgs', 'DefaultLoginTextsInitMfaDoneTextArgsDict', 'outputs.DefaultLoginTextsInitMfaDoneText']]] = None,
+            init_mfa_otp_text: pulumi.Input[Optional[Union['DefaultLoginTextsInitMfaOtpTextArgs', 'DefaultLoginTextsInitMfaOtpTextArgsDict', 'outputs.DefaultLoginTextsInitMfaOtpText']]] = None,
+            init_mfa_prompt_text: pulumi.Input[Optional[Union['DefaultLoginTextsInitMfaPromptTextArgs', 'DefaultLoginTextsInitMfaPromptTextArgsDict', 'outputs.DefaultLoginTextsInitMfaPromptText']]] = None,
+            init_mfa_u2f_text: pulumi.Input[Optional[Union['DefaultLoginTextsInitMfaU2fTextArgs', 'DefaultLoginTextsInitMfaU2fTextArgsDict', 'outputs.DefaultLoginTextsInitMfaU2fText']]] = None,
+            init_password_done_text: pulumi.Input[Optional[Union['DefaultLoginTextsInitPasswordDoneTextArgs', 'DefaultLoginTextsInitPasswordDoneTextArgsDict', 'outputs.DefaultLoginTextsInitPasswordDoneText']]] = None,
+            init_password_text: pulumi.Input[Optional[Union['DefaultLoginTextsInitPasswordTextArgs', 'DefaultLoginTextsInitPasswordTextArgsDict', 'outputs.DefaultLoginTextsInitPasswordText']]] = None,
+            initialize_done_text: pulumi.Input[Optional[Union['DefaultLoginTextsInitializeDoneTextArgs', 'DefaultLoginTextsInitializeDoneTextArgsDict', 'outputs.DefaultLoginTextsInitializeDoneText']]] = None,
+            initialize_user_text: pulumi.Input[Optional[Union['DefaultLoginTextsInitializeUserTextArgs', 'DefaultLoginTextsInitializeUserTextArgsDict', 'outputs.DefaultLoginTextsInitializeUserText']]] = None,
+            language: pulumi.Input[Optional[_builtins.str]] = None,
+            linking_user_done_text: pulumi.Input[Optional[Union['DefaultLoginTextsLinkingUserDoneTextArgs', 'DefaultLoginTextsLinkingUserDoneTextArgsDict', 'outputs.DefaultLoginTextsLinkingUserDoneText']]] = None,
+            linking_user_prompt_text: pulumi.Input[Optional[Union['DefaultLoginTextsLinkingUserPromptTextArgs', 'DefaultLoginTextsLinkingUserPromptTextArgsDict', 'outputs.DefaultLoginTextsLinkingUserPromptText']]] = None,
+            login_text: pulumi.Input[Optional[Union['DefaultLoginTextsLoginTextArgs', 'DefaultLoginTextsLoginTextArgsDict', 'outputs.DefaultLoginTextsLoginText']]] = None,
+            logout_text: pulumi.Input[Optional[Union['DefaultLoginTextsLogoutTextArgs', 'DefaultLoginTextsLogoutTextArgsDict', 'outputs.DefaultLoginTextsLogoutText']]] = None,
+            mfa_providers_text: pulumi.Input[Optional[Union['DefaultLoginTextsMfaProvidersTextArgs', 'DefaultLoginTextsMfaProvidersTextArgsDict', 'outputs.DefaultLoginTextsMfaProvidersText']]] = None,
+            password_change_done_text: pulumi.Input[Optional[Union['DefaultLoginTextsPasswordChangeDoneTextArgs', 'DefaultLoginTextsPasswordChangeDoneTextArgsDict', 'outputs.DefaultLoginTextsPasswordChangeDoneText']]] = None,
+            password_change_text: pulumi.Input[Optional[Union['DefaultLoginTextsPasswordChangeTextArgs', 'DefaultLoginTextsPasswordChangeTextArgsDict', 'outputs.DefaultLoginTextsPasswordChangeText']]] = None,
+            password_reset_done_text: pulumi.Input[Optional[Union['DefaultLoginTextsPasswordResetDoneTextArgs', 'DefaultLoginTextsPasswordResetDoneTextArgsDict', 'outputs.DefaultLoginTextsPasswordResetDoneText']]] = None,
+            password_text: pulumi.Input[Optional[Union['DefaultLoginTextsPasswordTextArgs', 'DefaultLoginTextsPasswordTextArgsDict', 'outputs.DefaultLoginTextsPasswordText']]] = None,
+            passwordless_prompt_text: pulumi.Input[Optional[Union['DefaultLoginTextsPasswordlessPromptTextArgs', 'DefaultLoginTextsPasswordlessPromptTextArgsDict', 'outputs.DefaultLoginTextsPasswordlessPromptText']]] = None,
+            passwordless_registration_done_text: pulumi.Input[Optional[Union['DefaultLoginTextsPasswordlessRegistrationDoneTextArgs', 'DefaultLoginTextsPasswordlessRegistrationDoneTextArgsDict', 'outputs.DefaultLoginTextsPasswordlessRegistrationDoneText']]] = None,
+            passwordless_registration_text: pulumi.Input[Optional[Union['DefaultLoginTextsPasswordlessRegistrationTextArgs', 'DefaultLoginTextsPasswordlessRegistrationTextArgsDict', 'outputs.DefaultLoginTextsPasswordlessRegistrationText']]] = None,
+            passwordless_text: pulumi.Input[Optional[Union['DefaultLoginTextsPasswordlessTextArgs', 'DefaultLoginTextsPasswordlessTextArgsDict', 'outputs.DefaultLoginTextsPasswordlessText']]] = None,
+            registration_option_text: pulumi.Input[Optional[Union['DefaultLoginTextsRegistrationOptionTextArgs', 'DefaultLoginTextsRegistrationOptionTextArgsDict', 'outputs.DefaultLoginTextsRegistrationOptionText']]] = None,
+            registration_org_text: pulumi.Input[Optional[Union['DefaultLoginTextsRegistrationOrgTextArgs', 'DefaultLoginTextsRegistrationOrgTextArgsDict', 'outputs.DefaultLoginTextsRegistrationOrgText']]] = None,
+            registration_user_text: pulumi.Input[Optional[Union['DefaultLoginTextsRegistrationUserTextArgs', 'DefaultLoginTextsRegistrationUserTextArgsDict', 'outputs.DefaultLoginTextsRegistrationUserText']]] = None,
+            select_account_text: pulumi.Input[Optional[Union['DefaultLoginTextsSelectAccountTextArgs', 'DefaultLoginTextsSelectAccountTextArgsDict', 'outputs.DefaultLoginTextsSelectAccountText']]] = None,
+            success_login_text: pulumi.Input[Optional[Union['DefaultLoginTextsSuccessLoginTextArgs', 'DefaultLoginTextsSuccessLoginTextArgsDict', 'outputs.DefaultLoginTextsSuccessLoginText']]] = None,
+            username_change_done_text: pulumi.Input[Optional[Union['DefaultLoginTextsUsernameChangeDoneTextArgs', 'DefaultLoginTextsUsernameChangeDoneTextArgsDict', 'outputs.DefaultLoginTextsUsernameChangeDoneText']]] = None,
+            username_change_text: pulumi.Input[Optional[Union['DefaultLoginTextsUsernameChangeTextArgs', 'DefaultLoginTextsUsernameChangeTextArgsDict', 'outputs.DefaultLoginTextsUsernameChangeText']]] = None,
+            verify_mfa_otp_text: pulumi.Input[Optional[Union['DefaultLoginTextsVerifyMfaOtpTextArgs', 'DefaultLoginTextsVerifyMfaOtpTextArgsDict', 'outputs.DefaultLoginTextsVerifyMfaOtpText']]] = None,
+            verify_mfa_u2f_text: pulumi.Input[Optional[Union['DefaultLoginTextsVerifyMfaU2fTextArgs', 'DefaultLoginTextsVerifyMfaU2fTextArgsDict', 'outputs.DefaultLoginTextsVerifyMfaU2fText']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["emailVerificationDoneText"] = email_verification_done_text
+        __props__["emailVerificationText"] = email_verification_text
+        __props__["externalRegistrationUserOverviewText"] = external_registration_user_overview_text
+        __props__["externalUserNotFoundText"] = external_user_not_found_text
+        __props__["footerText"] = footer_text
+        __props__["initMfaDoneText"] = init_mfa_done_text
+        __props__["initMfaOtpText"] = init_mfa_otp_text
+        __props__["initMfaPromptText"] = init_mfa_prompt_text
+        __props__["initMfaU2fText"] = init_mfa_u2f_text
+        __props__["initPasswordDoneText"] = init_password_done_text
+        __props__["initPasswordText"] = init_password_text
+        __props__["initializeDoneText"] = initialize_done_text
+        __props__["initializeUserText"] = initialize_user_text
+        __props__["language"] = language
+        __props__["linkingUserDoneText"] = linking_user_done_text
+        __props__["linkingUserPromptText"] = linking_user_prompt_text
+        __props__["loginText"] = login_text
+        __props__["logoutText"] = logout_text
+        __props__["mfaProvidersText"] = mfa_providers_text
+        __props__["passwordChangeDoneText"] = password_change_done_text
+        __props__["passwordChangeText"] = password_change_text
+        __props__["passwordResetDoneText"] = password_reset_done_text
+        __props__["passwordText"] = password_text
+        __props__["passwordlessPromptText"] = passwordless_prompt_text
+        __props__["passwordlessRegistrationDoneText"] = passwordless_registration_done_text
+        __props__["passwordlessRegistrationText"] = passwordless_registration_text
+        __props__["passwordlessText"] = passwordless_text
+        __props__["registrationOptionText"] = registration_option_text
+        __props__["registrationOrgText"] = registration_org_text
+        __props__["registrationUserText"] = registration_user_text
+        __props__["selectAccountText"] = select_account_text
+        __props__["successLoginText"] = success_login_text
+        __props__["usernameChangeDoneText"] = username_change_done_text
+        __props__["usernameChangeText"] = username_change_text
+        __props__["verifyMfaOtpText"] = verify_mfa_otp_text
+        __props__["verifyMfaU2fText"] = verify_mfa_u2f_text
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultLoginTexts:DefaultLoginTexts', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="emailVerificationDoneText")
     def email_verification_done_text(self) -> pulumi.Output[Optional['outputs.DefaultLoginTextsEmailVerificationDoneText']]:

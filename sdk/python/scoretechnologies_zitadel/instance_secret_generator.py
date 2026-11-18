@@ -424,6 +424,26 @@ class InstanceSecretGenerator(pulumi.CustomResource):
         __props__.__dict__["length"] = length
         return InstanceSecretGenerator(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            expiry: pulumi.Input[Optional[_builtins.str]] = None,
+            generator_type: pulumi.Input[Optional[_builtins.str]] = None,
+            include_digits: pulumi.Input[Optional[_builtins.bool]] = None,
+            include_lower_letters: pulumi.Input[Optional[_builtins.bool]] = None,
+            include_symbols: pulumi.Input[Optional[_builtins.bool]] = None,
+            include_upper_letters: pulumi.Input[Optional[_builtins.bool]] = None,
+            length: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["expiry"] = expiry
+        __props__["generatorType"] = generator_type
+        __props__["includeDigits"] = include_digits
+        __props__["includeLowerLetters"] = include_lower_letters
+        __props__["includeSymbols"] = include_symbols
+        __props__["includeUpperLetters"] = include_upper_letters
+        __props__["length"] = length
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/instanceSecretGenerator:InstanceSecretGenerator', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def expiry(self) -> pulumi.Output[_builtins.str]:

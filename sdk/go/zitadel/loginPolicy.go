@@ -272,6 +272,12 @@ func (LoginPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loginPolicyState)(nil)).Elem()
 }
 
+// LoginPolicyExists checks whether an existing LoginPolicy resource with the given ID exists.
+func LoginPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoginPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/loginPolicy:LoginPolicy", id, state, "", opts...)
+}
+
 type loginPolicyArgs struct {
 	// if set to true, the suffix (@domain.com) of an unknown username input on the login screen will be matched against the org domains and will redirect to the registration of that organisation on success.
 	AllowDomainDiscovery *bool `pulumi:"allowDomainDiscovery"`

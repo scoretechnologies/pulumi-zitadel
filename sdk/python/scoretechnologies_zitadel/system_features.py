@@ -482,6 +482,28 @@ class SystemFeatures(pulumi.CustomResource):
         __props__.__dict__["user_schema"] = user_schema
         return SystemFeatures(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            enable_back_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
+            improved_performances: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            login_default_org: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_v2: pulumi.Input[Optional[Union['SystemFeaturesLoginV2Args', 'SystemFeaturesLoginV2ArgsDict', 'outputs.SystemFeaturesLoginV2']]] = None,
+            oidc_single_v1_session_termination: pulumi.Input[Optional[_builtins.bool]] = None,
+            oidc_token_exchange: pulumi.Input[Optional[_builtins.bool]] = None,
+            permission_check_v2: pulumi.Input[Optional[_builtins.bool]] = None,
+            user_schema: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["enableBackChannelLogout"] = enable_back_channel_logout
+        __props__["improvedPerformances"] = improved_performances
+        __props__["loginDefaultOrg"] = login_default_org
+        __props__["loginV2"] = login_v2
+        __props__["oidcSingleV1SessionTermination"] = oidc_single_v1_session_termination
+        __props__["oidcTokenExchange"] = oidc_token_exchange
+        __props__["permissionCheckV2"] = permission_check_v2
+        __props__["userSchema"] = user_schema
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/systemFeatures:SystemFeatures', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="enableBackChannelLogout")
     def enable_back_channel_logout(self) -> pulumi.Output[_builtins.bool]:

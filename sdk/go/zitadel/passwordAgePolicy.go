@@ -117,6 +117,12 @@ func (PasswordAgePolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*passwordAgePolicyState)(nil)).Elem()
 }
 
+// PasswordAgePolicyExists checks whether an existing PasswordAgePolicy resource with the given ID exists.
+func PasswordAgePolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PasswordAgePolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/passwordAgePolicy:PasswordAgePolicy", id, state, "", opts...)
+}
+
 type passwordAgePolicyArgs struct {
 	// amount of days after which the user should be notified of the upcoming expiry
 	ExpireWarnDays int `pulumi:"expireWarnDays"`

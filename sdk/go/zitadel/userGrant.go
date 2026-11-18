@@ -133,6 +133,12 @@ func (UserGrantState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userGrantState)(nil)).Elem()
 }
 
+// UserGrantExists checks whether an existing UserGrant resource with the given ID exists.
+func UserGrantExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserGrantState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/userGrant:UserGrant", id, state, "", opts...)
+}
+
 type userGrantArgs struct {
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
 	OrgId *string `pulumi:"orgId"`

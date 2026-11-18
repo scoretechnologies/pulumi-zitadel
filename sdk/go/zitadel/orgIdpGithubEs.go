@@ -229,6 +229,12 @@ func (OrgIdpGithubEsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgIdpGithubEsState)(nil)).Elem()
 }
 
+// OrgIdpGithubEsExists checks whether an existing OrgIdpGithubEs resource with the given ID exists.
+func OrgIdpGithubEsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgIdpGithubEsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/orgIdpGithubEs:OrgIdpGithubEs", id, state, "", opts...)
+}
+
 type orgIdpGithubEsArgs struct {
 	// the providers authorization endpoint
 	AuthorizationEndpoint string `pulumi:"authorizationEndpoint"`

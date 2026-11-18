@@ -462,6 +462,28 @@ class PrivacyPolicy(pulumi.CustomResource):
         __props__.__dict__["tos_link"] = tos_link
         return PrivacyPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            custom_link: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_link_text: pulumi.Input[Optional[_builtins.str]] = None,
+            docs_link: pulumi.Input[Optional[_builtins.str]] = None,
+            help_link: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            privacy_link: pulumi.Input[Optional[_builtins.str]] = None,
+            support_email: pulumi.Input[Optional[_builtins.str]] = None,
+            tos_link: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["customLink"] = custom_link
+        __props__["customLinkText"] = custom_link_text
+        __props__["docsLink"] = docs_link
+        __props__["helpLink"] = help_link
+        __props__["orgId"] = org_id
+        __props__["privacyLink"] = privacy_link
+        __props__["supportEmail"] = support_email
+        __props__["tosLink"] = tos_link
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/privacyPolicy:PrivacyPolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="customLink")
     def custom_link(self) -> pulumi.Output[_builtins.str]:

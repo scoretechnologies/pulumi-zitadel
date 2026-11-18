@@ -24,10 +24,11 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * The resource can be imported using the ID format `<>`, e.g.
+ * Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+ * `default`, which ZITADEL ignores, e.g.
  *
  * ```sh
- * $ pulumi import zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy imported ''
+ * $ pulumi import zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy imported 'default'
  * ```
  */
 export class DefaultPasswordComplexityPolicy extends pulumi.CustomResource {
@@ -42,6 +43,17 @@ export class DefaultPasswordComplexityPolicy extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DefaultPasswordComplexityPolicyState, opts?: pulumi.CustomResourceOptions): DefaultPasswordComplexityPolicy {
         return new DefaultPasswordComplexityPolicy(name, <any>state, { ...opts, id: id });
+    }
+
+    /**
+     * Check whether an existing DefaultPasswordComplexityPolicy resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: DefaultPasswordComplexityPolicyState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy", id, <any>state || {}, { ...opts }, undefined);
     }
 
     /** @internal */

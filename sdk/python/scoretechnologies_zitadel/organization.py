@@ -314,6 +314,22 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         return Organization(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            admins: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrganizationAdminArgs', 'OrganizationAdminArgsDict', 'outputs.OrganizationAdmin']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            primary_domain: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["admins"] = admins
+        __props__["name"] = name
+        __props__["orgId"] = org_id
+        __props__["primaryDomain"] = primary_domain
+        __props__["state"] = state
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/organization:Organization', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def admins(self) -> pulumi.Output[Optional[Sequence['outputs.OrganizationAdmin']]]:

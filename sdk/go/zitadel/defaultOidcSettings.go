@@ -45,10 +45,11 @@ import (
 //
 // ## Import
 //
-// The resource can be imported using the ID format `<>`, e.g.
+// Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+// `default`, which ZITADEL ignores, e.g.
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultOidcSettings:DefaultOidcSettings imported ”
+// $ pulumi import zitadel:index/defaultOidcSettings:DefaultOidcSettings imported 'default'
 // ```
 type DefaultOidcSettings struct {
 	pulumi.CustomResourceState
@@ -128,6 +129,12 @@ type DefaultOidcSettingsState struct {
 
 func (DefaultOidcSettingsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultOidcSettingsState)(nil)).Elem()
+}
+
+// DefaultOidcSettingsExists checks whether an existing DefaultOidcSettings resource with the given ID exists.
+func DefaultOidcSettingsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultOidcSettingsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultOidcSettings:DefaultOidcSettings", id, state, "", opts...)
 }
 
 type defaultOidcSettingsArgs struct {

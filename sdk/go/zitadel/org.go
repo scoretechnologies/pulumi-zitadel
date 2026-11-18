@@ -130,6 +130,12 @@ func (OrgState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgState)(nil)).Elem()
 }
 
+// OrgExists checks whether an existing Org resource with the given ID exists.
+func OrgExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/org:Org", id, state, "", opts...)
+}
+
 type orgArgs struct {
 	// Admin users for the organization
 	Admins []OrgAdmin `pulumi:"admins"`

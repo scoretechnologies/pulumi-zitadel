@@ -475,6 +475,28 @@ class OrgIdpJwt(pulumi.CustomResource):
         __props__.__dict__["styling_type"] = styling_type
         return OrgIdpJwt(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_register: pulumi.Input[Optional[_builtins.bool]] = None,
+            header_name: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            jwt_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            keys_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            styling_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoRegister"] = auto_register
+        __props__["headerName"] = header_name
+        __props__["issuer"] = issuer
+        __props__["jwtEndpoint"] = jwt_endpoint
+        __props__["keysEndpoint"] = keys_endpoint
+        __props__["name"] = name
+        __props__["orgId"] = org_id
+        __props__["stylingType"] = styling_type
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/orgIdpJwt:OrgIdpJwt', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoRegister")
     def auto_register(self) -> pulumi.Output[_builtins.bool]:

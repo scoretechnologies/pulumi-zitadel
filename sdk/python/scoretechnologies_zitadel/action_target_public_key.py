@@ -364,6 +364,26 @@ class ActionTargetPublicKey(pulumi.CustomResource):
         __props__.__dict__["target_id"] = target_id
         return ActionTargetPublicKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            creation_date: pulumi.Input[Optional[_builtins.str]] = None,
+            expiration_date: pulumi.Input[Optional[_builtins.str]] = None,
+            fingerprint: pulumi.Input[Optional[_builtins.str]] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None,
+            target_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["creationDate"] = creation_date
+        __props__["expirationDate"] = expiration_date
+        __props__["fingerprint"] = fingerprint
+        __props__["keyId"] = key_id
+        __props__["publicKey"] = public_key
+        __props__["targetId"] = target_id
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/actionTargetPublicKey:ActionTargetPublicKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Output[_builtins.bool]:

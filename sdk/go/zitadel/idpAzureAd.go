@@ -216,6 +216,12 @@ func (IdpAzureAdState) ElementType() reflect.Type {
 	return reflect.TypeOf((*idpAzureAdState)(nil)).Elem()
 }
 
+// IdpAzureAdExists checks whether an existing IdpAzureAd resource with the given ID exists.
+func IdpAzureAdExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IdpAzureAdState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/idpAzureAd:IdpAzureAd", id, state, "", opts...)
+}
+
 type idpAzureAdArgs struct {
 	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
 	AutoLinking *string `pulumi:"autoLinking"`

@@ -43,10 +43,11 @@ import (
 //
 // ## Import
 //
-// The resource can be imported using the ID format `<>`, e.g.
+// Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+// `default`, which ZITADEL ignores, e.g.
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy imported ”
+// $ pulumi import zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy imported 'default'
 // ```
 type DefaultPasswordAgePolicy struct {
 	pulumi.CustomResourceState
@@ -108,6 +109,12 @@ type DefaultPasswordAgePolicyState struct {
 
 func (DefaultPasswordAgePolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultPasswordAgePolicyState)(nil)).Elem()
+}
+
+// DefaultPasswordAgePolicyExists checks whether an existing DefaultPasswordAgePolicy resource with the given ID exists.
+func DefaultPasswordAgePolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultPasswordAgePolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy", id, state, "", opts...)
 }
 
 type defaultPasswordAgePolicyArgs struct {

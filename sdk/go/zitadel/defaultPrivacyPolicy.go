@@ -44,10 +44,11 @@ import (
 //
 // ## Import
 //
-// The resource can be imported using the ID format `<>`, e.g.
+// Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+// `default`, which ZITADEL ignores, e.g.
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy imported ”
+// $ pulumi import zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy imported 'default'
 // ```
 type DefaultPrivacyPolicy struct {
 	pulumi.CustomResourceState
@@ -133,6 +134,12 @@ type DefaultPrivacyPolicyState struct {
 
 func (DefaultPrivacyPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultPrivacyPolicyState)(nil)).Elem()
+}
+
+// DefaultPrivacyPolicyExists checks whether an existing DefaultPrivacyPolicy resource with the given ID exists.
+func DefaultPrivacyPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultPrivacyPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultPrivacyPolicy:DefaultPrivacyPolicy", id, state, "", opts...)
 }
 
 type defaultPrivacyPolicyArgs struct {

@@ -123,6 +123,12 @@ func (WebkeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*webkeyState)(nil)).Elem()
 }
 
+// WebkeyExists checks whether an existing Webkey resource with the given ID exists.
+func WebkeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *WebkeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/webkey:Webkey", id, state, "", opts...)
+}
+
 type webkeyArgs struct {
 	Ecdsa *WebkeyEcdsa `pulumi:"ecdsa"`
 	// Create a ED25519 key pair.

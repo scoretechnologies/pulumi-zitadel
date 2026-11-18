@@ -371,6 +371,28 @@ class DefaultDomainClaimedMessageText(pulumi.CustomResource):
         __props__.__dict__["title"] = title
         return DefaultDomainClaimedMessageText(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            button_text: pulumi.Input[Optional[_builtins.str]] = None,
+            footer_text: pulumi.Input[Optional[_builtins.str]] = None,
+            greeting: pulumi.Input[Optional[_builtins.str]] = None,
+            language: pulumi.Input[Optional[_builtins.str]] = None,
+            pre_header: pulumi.Input[Optional[_builtins.str]] = None,
+            subject: pulumi.Input[Optional[_builtins.str]] = None,
+            text: pulumi.Input[Optional[_builtins.str]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["buttonText"] = button_text
+        __props__["footerText"] = footer_text
+        __props__["greeting"] = greeting
+        __props__["language"] = language
+        __props__["preHeader"] = pre_header
+        __props__["subject"] = subject
+        __props__["text"] = text
+        __props__["title"] = title
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultDomainClaimedMessageText:DefaultDomainClaimedMessageText', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="buttonText")
     def button_text(self) -> pulumi.Output[Optional[_builtins.str]]:

@@ -107,6 +107,12 @@ func (NotificationPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*notificationPolicyState)(nil)).Elem()
 }
 
+// NotificationPolicyExists checks whether an existing NotificationPolicy resource with the given ID exists.
+func NotificationPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NotificationPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/notificationPolicy:NotificationPolicy", id, state, "", opts...)
+}
+
 type notificationPolicyArgs struct {
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
 	OrgId *string `pulumi:"orgId"`

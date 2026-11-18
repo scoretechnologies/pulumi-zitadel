@@ -1070,6 +1070,68 @@ class LabelPolicy(pulumi.CustomResource):
         __props__.__dict__["warn_color_dark"] = warn_color_dark
         return LabelPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            background_color: pulumi.Input[Optional[_builtins.str]] = None,
+            background_color_dark: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_watermark: pulumi.Input[Optional[_builtins.bool]] = None,
+            font_color: pulumi.Input[Optional[_builtins.str]] = None,
+            font_color_dark: pulumi.Input[Optional[_builtins.str]] = None,
+            font_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            font_path: pulumi.Input[Optional[_builtins.str]] = None,
+            font_url: pulumi.Input[Optional[_builtins.str]] = None,
+            hide_login_name_suffix: pulumi.Input[Optional[_builtins.bool]] = None,
+            icon_dark_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            icon_dark_path: pulumi.Input[Optional[_builtins.str]] = None,
+            icon_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            icon_path: pulumi.Input[Optional[_builtins.str]] = None,
+            icon_url: pulumi.Input[Optional[_builtins.str]] = None,
+            icon_url_dark: pulumi.Input[Optional[_builtins.str]] = None,
+            logo_dark_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            logo_dark_path: pulumi.Input[Optional[_builtins.str]] = None,
+            logo_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            logo_path: pulumi.Input[Optional[_builtins.str]] = None,
+            logo_url: pulumi.Input[Optional[_builtins.str]] = None,
+            logo_url_dark: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            primary_color: pulumi.Input[Optional[_builtins.str]] = None,
+            primary_color_dark: pulumi.Input[Optional[_builtins.str]] = None,
+            set_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            theme_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            warn_color: pulumi.Input[Optional[_builtins.str]] = None,
+            warn_color_dark: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backgroundColor"] = background_color
+        __props__["backgroundColorDark"] = background_color_dark
+        __props__["disableWatermark"] = disable_watermark
+        __props__["fontColor"] = font_color
+        __props__["fontColorDark"] = font_color_dark
+        __props__["fontHash"] = font_hash
+        __props__["fontPath"] = font_path
+        __props__["fontUrl"] = font_url
+        __props__["hideLoginNameSuffix"] = hide_login_name_suffix
+        __props__["iconDarkHash"] = icon_dark_hash
+        __props__["iconDarkPath"] = icon_dark_path
+        __props__["iconHash"] = icon_hash
+        __props__["iconPath"] = icon_path
+        __props__["iconUrl"] = icon_url
+        __props__["iconUrlDark"] = icon_url_dark
+        __props__["logoDarkHash"] = logo_dark_hash
+        __props__["logoDarkPath"] = logo_dark_path
+        __props__["logoHash"] = logo_hash
+        __props__["logoPath"] = logo_path
+        __props__["logoUrl"] = logo_url
+        __props__["logoUrlDark"] = logo_url_dark
+        __props__["orgId"] = org_id
+        __props__["primaryColor"] = primary_color
+        __props__["primaryColorDark"] = primary_color_dark
+        __props__["setActive"] = set_active
+        __props__["themeMode"] = theme_mode
+        __props__["warnColor"] = warn_color
+        __props__["warnColorDark"] = warn_color_dark
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/labelPolicy:LabelPolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="backgroundColor")
     def background_color(self) -> pulumi.Output[_builtins.str]:

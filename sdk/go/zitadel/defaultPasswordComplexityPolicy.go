@@ -46,10 +46,11 @@ import (
 //
 // ## Import
 //
-// The resource can be imported using the ID format `<>`, e.g.
+// Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+// `default`, which ZITADEL ignores, e.g.
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy imported ”
+// $ pulumi import zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy imported 'default'
 // ```
 type DefaultPasswordComplexityPolicy struct {
 	pulumi.CustomResourceState
@@ -138,6 +139,12 @@ type DefaultPasswordComplexityPolicyState struct {
 
 func (DefaultPasswordComplexityPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultPasswordComplexityPolicyState)(nil)).Elem()
+}
+
+// DefaultPasswordComplexityPolicyExists checks whether an existing DefaultPasswordComplexityPolicy resource with the given ID exists.
+func DefaultPasswordComplexityPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultPasswordComplexityPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy", id, state, "", opts...)
 }
 
 type defaultPasswordComplexityPolicyArgs struct {

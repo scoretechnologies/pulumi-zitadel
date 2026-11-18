@@ -52,10 +52,11 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * The resource can be imported using the ID format `<>`, e.g.
+ * Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+ * `default`, which ZITADEL ignores, e.g.
  *
  * ```sh
- * $ pulumi import zitadel:index/defaultLabelPolicy:DefaultLabelPolicy imported ''
+ * $ pulumi import zitadel:index/defaultLabelPolicy:DefaultLabelPolicy imported 'default'
  * ```
  */
 export class DefaultLabelPolicy extends pulumi.CustomResource {
@@ -70,6 +71,17 @@ export class DefaultLabelPolicy extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DefaultLabelPolicyState, opts?: pulumi.CustomResourceOptions): DefaultLabelPolicy {
         return new DefaultLabelPolicy(name, <any>state, { ...opts, id: id });
+    }
+
+    /**
+     * Check whether an existing DefaultLabelPolicy resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: DefaultLabelPolicyState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("zitadel:index/defaultLabelPolicy:DefaultLabelPolicy", id, <any>state || {}, { ...opts }, undefined);
     }
 
     /** @internal */

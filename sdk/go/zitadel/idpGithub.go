@@ -192,6 +192,12 @@ func (IdpGithubState) ElementType() reflect.Type {
 	return reflect.TypeOf((*idpGithubState)(nil)).Elem()
 }
 
+// IdpGithubExists checks whether an existing IdpGithub resource with the given ID exists.
+func IdpGithubExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IdpGithubState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/idpGithub:IdpGithub", id, state, "", opts...)
+}
+
 type idpGithubArgs struct {
 	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
 	AutoLinking *string `pulumi:"autoLinking"`

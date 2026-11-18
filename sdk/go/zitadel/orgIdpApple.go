@@ -217,6 +217,12 @@ func (OrgIdpAppleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgIdpAppleState)(nil)).Elem()
 }
 
+// OrgIdpAppleExists checks whether an existing OrgIdpApple resource with the given ID exists.
+func OrgIdpAppleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgIdpAppleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/orgIdpApple:OrgIdpApple", id, state, "", opts...)
+}
+
 type orgIdpAppleArgs struct {
 	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
 	AutoLinking *string `pulumi:"autoLinking"`

@@ -151,6 +151,12 @@ func (SystemFeaturesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*systemFeaturesState)(nil)).Elem()
 }
 
+// SystemFeaturesExists checks whether an existing SystemFeatures resource with the given ID exists.
+func SystemFeaturesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SystemFeaturesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/systemFeatures:SystemFeatures", id, state, "", opts...)
+}
+
 type systemFeaturesArgs struct {
 	// If the flag is enabled, you'll be able to use the OIDC Back-Channel Logout to be notified in your application about terminated user sessions.
 	EnableBackChannelLogout *bool `pulumi:"enableBackChannelLogout"`

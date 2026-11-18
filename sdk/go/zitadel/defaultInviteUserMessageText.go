@@ -117,6 +117,12 @@ func (DefaultInviteUserMessageTextState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultInviteUserMessageTextState)(nil)).Elem()
 }
 
+// DefaultInviteUserMessageTextExists checks whether an existing DefaultInviteUserMessageText resource with the given ID exists.
+func DefaultInviteUserMessageTextExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultInviteUserMessageTextState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultInviteUserMessageText:DefaultInviteUserMessageText", id, state, "", opts...)
+}
+
 type defaultInviteUserMessageTextArgs struct {
 	ButtonText *string `pulumi:"buttonText"`
 	FooterText *string `pulumi:"footerText"`

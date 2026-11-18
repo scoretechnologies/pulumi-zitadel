@@ -458,6 +458,26 @@ class ApplicationV2(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         return ApplicationV2(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api: pulumi.Input[Optional[Union['ApplicationV2ApiArgs', 'ApplicationV2ApiArgsDict', 'outputs.ApplicationV2Api']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc: pulumi.Input[Optional[Union['ApplicationV2OidcArgs', 'ApplicationV2OidcArgsDict', 'outputs.ApplicationV2Oidc']]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            saml: pulumi.Input[Optional[Union['ApplicationV2SamlArgs', 'ApplicationV2SamlArgsDict', 'outputs.ApplicationV2Saml']]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["api"] = api
+        __props__["name"] = name
+        __props__["oidc"] = oidc
+        __props__["orgId"] = org_id
+        __props__["projectId"] = project_id
+        __props__["saml"] = saml
+        __props__["state"] = state
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/applicationV2:ApplicationV2', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def api(self) -> pulumi.Output[Optional['outputs.ApplicationV2Api']]:

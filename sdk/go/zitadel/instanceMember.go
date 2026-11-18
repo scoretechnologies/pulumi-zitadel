@@ -112,6 +112,12 @@ func (InstanceMemberState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceMemberState)(nil)).Elem()
 }
 
+// InstanceMemberExists checks whether an existing InstanceMember resource with the given ID exists.
+func InstanceMemberExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceMemberState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/instanceMember:InstanceMember", id, state, "", opts...)
+}
+
 type instanceMemberArgs struct {
 	// List of roles granted. Instance member roles must start with 'IAM*' (e.g., IAM*OWNER, IAM*OWNER*VIEWER). See https://zitadel.com/docs/guides/manage/console/administrators for available roles.
 	Roles []string `pulumi:"roles"`

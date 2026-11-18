@@ -220,10 +220,11 @@ class DefaultPasswordComplexityPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy imported ''
+        $ pulumi import zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy imported 'default'
         ```
 
 
@@ -260,10 +261,11 @@ class DefaultPasswordComplexityPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy imported ''
+        $ pulumi import zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy imported 'default'
         ```
 
 
@@ -349,6 +351,22 @@ class DefaultPasswordComplexityPolicy(pulumi.CustomResource):
         __props__.__dict__["has_uppercase"] = has_uppercase
         __props__.__dict__["min_length"] = min_length
         return DefaultPasswordComplexityPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            has_lowercase: pulumi.Input[Optional[_builtins.bool]] = None,
+            has_number: pulumi.Input[Optional[_builtins.bool]] = None,
+            has_symbol: pulumi.Input[Optional[_builtins.bool]] = None,
+            has_uppercase: pulumi.Input[Optional[_builtins.bool]] = None,
+            min_length: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["hasLowercase"] = has_lowercase
+        __props__["hasNumber"] = has_number
+        __props__["hasSymbol"] = has_symbol
+        __props__["hasUppercase"] = has_uppercase
+        __props__["minLength"] = min_length
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultPasswordComplexityPolicy:DefaultPasswordComplexityPolicy', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="hasLowercase")

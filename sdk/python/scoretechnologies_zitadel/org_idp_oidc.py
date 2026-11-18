@@ -715,6 +715,40 @@ class OrgIdpOidc(pulumi.CustomResource):
         __props__.__dict__["use_pkce"] = use_pkce
         return OrgIdpOidc(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_linking: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_hash: pulumi.Input[Optional[_builtins.str]] = None,
+            is_auto_creation: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_auto_update: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_creation_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_id_token_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_linking_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            use_pkce: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoLinking"] = auto_linking
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["clientSecretHash"] = client_secret_hash
+        __props__["isAutoCreation"] = is_auto_creation
+        __props__["isAutoUpdate"] = is_auto_update
+        __props__["isCreationAllowed"] = is_creation_allowed
+        __props__["isIdTokenMapping"] = is_id_token_mapping
+        __props__["isLinkingAllowed"] = is_linking_allowed
+        __props__["issuer"] = issuer
+        __props__["name"] = name
+        __props__["orgId"] = org_id
+        __props__["scopes"] = scopes
+        __props__["usePkce"] = use_pkce
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/orgIdpOidc:OrgIdpOidc', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoLinking")
     def auto_linking(self) -> pulumi.Output[Optional[_builtins.str]]:

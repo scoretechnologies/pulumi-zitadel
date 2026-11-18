@@ -87,10 +87,11 @@ class DefaultNotificationPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultNotificationPolicy:DefaultNotificationPolicy imported ''
+        $ pulumi import zitadel:index/defaultNotificationPolicy:DefaultNotificationPolicy imported 'default'
         ```
 
 
@@ -118,10 +119,11 @@ class DefaultNotificationPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultNotificationPolicy:DefaultNotificationPolicy imported ''
+        $ pulumi import zitadel:index/defaultNotificationPolicy:DefaultNotificationPolicy imported 'default'
         ```
 
 
@@ -179,6 +181,14 @@ class DefaultNotificationPolicy(pulumi.CustomResource):
 
         __props__.__dict__["password_change"] = password_change
         return DefaultNotificationPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            password_change: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["passwordChange"] = password_change
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultNotificationPolicy:DefaultNotificationPolicy', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="passwordChange")

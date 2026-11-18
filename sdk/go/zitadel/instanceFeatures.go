@@ -165,6 +165,12 @@ func (InstanceFeaturesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceFeaturesState)(nil)).Elem()
 }
 
+// InstanceFeaturesExists checks whether an existing InstanceFeatures resource with the given ID exists.
+func InstanceFeaturesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceFeaturesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/instanceFeatures:InstanceFeatures", id, state, "", opts...)
+}
+
 type instanceFeaturesArgs struct {
 	// If this is enabled the console web client will use the new User v2 API for certain calls
 	ConsoleUseV2UserApi *bool `pulumi:"consoleUseV2UserApi"`

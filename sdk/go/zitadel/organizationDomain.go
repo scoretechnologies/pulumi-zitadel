@@ -168,6 +168,12 @@ func (OrganizationDomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationDomainState)(nil)).Elem()
 }
 
+// OrganizationDomainExists checks whether an existing OrganizationDomain resource with the given ID exists.
+func OrganizationDomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrganizationDomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/organizationDomain:OrganizationDomain", id, state, "", opts...)
+}
+
 type organizationDomainArgs struct {
 	// Domain name to be added to the organization
 	Domain string `pulumi:"domain"`

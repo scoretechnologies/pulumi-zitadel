@@ -113,6 +113,12 @@ func (LockoutPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*lockoutPolicyState)(nil)).Elem()
 }
 
+// LockoutPolicyExists checks whether an existing LockoutPolicy resource with the given ID exists.
+func LockoutPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LockoutPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/lockoutPolicy:LockoutPolicy", id, state, "", opts...)
+}
+
 type lockoutPolicyArgs struct {
 	// Maximum OTP check attempts before the account gets locked. Attempts are reset as soon as the OTP is entered correct.
 	MaxOtpAttempts *int `pulumi:"maxOtpAttempts"`

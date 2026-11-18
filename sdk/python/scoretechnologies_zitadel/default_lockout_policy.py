@@ -120,10 +120,11 @@ class DefaultLockoutPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported ''
+        $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported 'default'
         ```
 
 
@@ -152,10 +153,11 @@ class DefaultLockoutPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported ''
+        $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported 'default'
         ```
 
 
@@ -218,6 +220,16 @@ class DefaultLockoutPolicy(pulumi.CustomResource):
         __props__.__dict__["max_otp_attempts"] = max_otp_attempts
         __props__.__dict__["max_password_attempts"] = max_password_attempts
         return DefaultLockoutPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            max_otp_attempts: pulumi.Input[Optional[_builtins.int]] = None,
+            max_password_attempts: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["maxOtpAttempts"] = max_otp_attempts
+        __props__["maxPasswordAttempts"] = max_password_attempts
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="maxOtpAttempts")

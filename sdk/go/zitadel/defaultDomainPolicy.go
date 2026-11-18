@@ -44,10 +44,11 @@ import (
 //
 // ## Import
 //
-// The resource can be imported using the ID format `<>`, e.g.
+// Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+// `default`, which ZITADEL ignores, e.g.
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultDomainPolicy:DefaultDomainPolicy imported ”
+// $ pulumi import zitadel:index/defaultDomainPolicy:DefaultDomainPolicy imported 'default'
 // ```
 type DefaultDomainPolicy struct {
 	pulumi.CustomResourceState
@@ -115,6 +116,12 @@ type DefaultDomainPolicyState struct {
 
 func (DefaultDomainPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultDomainPolicyState)(nil)).Elem()
+}
+
+// DefaultDomainPolicyExists checks whether an existing DefaultDomainPolicy resource with the given ID exists.
+func DefaultDomainPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultDomainPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultDomainPolicy:DefaultDomainPolicy", id, state, "", opts...)
 }
 
 type defaultDomainPolicyArgs struct {

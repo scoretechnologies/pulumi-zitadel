@@ -147,6 +147,12 @@ func (ActionTargetPublicKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*actionTargetPublicKeyState)(nil)).Elem()
 }
 
+// ActionTargetPublicKeyExists checks whether an existing ActionTargetPublicKey resource with the given ID exists.
+func ActionTargetPublicKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ActionTargetPublicKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/actionTargetPublicKey:ActionTargetPublicKey", id, state, "", opts...)
+}
+
 type actionTargetPublicKeyArgs struct {
 	// Whether the public key is active and used for payload encryption. If unset, the key is created in ZITADEL's default (inactive) state and the provider does not modify its activation state. Set to true to activate the key after creation, or to toggle activation on an existing key.
 	Active *bool `pulumi:"active"`

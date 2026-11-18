@@ -202,6 +202,12 @@ func (IdpGitlabSelfHostedState) ElementType() reflect.Type {
 	return reflect.TypeOf((*idpGitlabSelfHostedState)(nil)).Elem()
 }
 
+// IdpGitlabSelfHostedExists checks whether an existing IdpGitlabSelfHosted resource with the given ID exists.
+func IdpGitlabSelfHostedExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IdpGitlabSelfHostedState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/idpGitlabSelfHosted:IdpGitlabSelfHosted", id, state, "", opts...)
+}
+
 type idpGitlabSelfHostedArgs struct {
 	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
 	AutoLinking *string `pulumi:"autoLinking"`

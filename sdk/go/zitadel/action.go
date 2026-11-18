@@ -137,6 +137,12 @@ func (ActionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*actionState)(nil)).Elem()
 }
 
+// ActionExists checks whether an existing Action resource with the given ID exists.
+func ActionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ActionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/action:Action", id, state, "", opts...)
+}
+
 type actionArgs struct {
 	// when true, the next action will be called even if this action fails
 	AllowedToFail bool   `pulumi:"allowedToFail"`

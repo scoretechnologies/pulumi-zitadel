@@ -130,6 +130,12 @@ func (EmailProviderHttpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*emailProviderHttpState)(nil)).Elem()
 }
 
+// EmailProviderHttpExists checks whether an existing EmailProviderHttp resource with the given ID exists.
+func EmailProviderHttpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EmailProviderHttpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/emailProviderHttp:EmailProviderHttp", id, state, "", opts...)
+}
+
 type emailProviderHttpArgs struct {
 	// Description of the email provider.
 	Description *string `pulumi:"description"`

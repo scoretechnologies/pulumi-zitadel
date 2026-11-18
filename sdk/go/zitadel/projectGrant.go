@@ -126,6 +126,12 @@ func (ProjectGrantState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectGrantState)(nil)).Elem()
 }
 
+// ProjectGrantExists checks whether an existing ProjectGrant resource with the given ID exists.
+func ProjectGrantExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectGrantState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/projectGrant:ProjectGrant", id, state, "", opts...)
+}
+
 type projectGrantArgs struct {
 	// ID of the organization granted the project
 	GrantedOrgId string `pulumi:"grantedOrgId"`

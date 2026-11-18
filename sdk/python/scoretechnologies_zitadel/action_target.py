@@ -452,6 +452,28 @@ class ActionTarget(pulumi.CustomResource):
         __props__.__dict__["timeout"] = timeout
         return ActionTarget(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            expiration_signing_key: pulumi.Input[Optional[_builtins.str]] = None,
+            interrupt_on_error: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            payload_type: pulumi.Input[Optional[_builtins.str]] = None,
+            signing_key: pulumi.Input[Optional[_builtins.str]] = None,
+            target_type: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["endpoint"] = endpoint
+        __props__["expirationSigningKey"] = expiration_signing_key
+        __props__["interruptOnError"] = interrupt_on_error
+        __props__["name"] = name
+        __props__["payloadType"] = payload_type
+        __props__["signingKey"] = signing_key
+        __props__["targetType"] = target_type
+        __props__["timeout"] = timeout
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/actionTarget:ActionTarget', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[_builtins.str]:

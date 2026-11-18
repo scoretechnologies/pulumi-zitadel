@@ -110,6 +110,12 @@ func (InstanceCustomDomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceCustomDomainState)(nil)).Elem()
 }
 
+// InstanceCustomDomainExists checks whether an existing InstanceCustomDomain resource with the given ID exists.
+func InstanceCustomDomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceCustomDomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/instanceCustomDomain:InstanceCustomDomain", id, state, "", opts...)
+}
+
 type instanceCustomDomainArgs struct {
 	// Custom domain to add to the instance (max 253 characters)
 	Domain string `pulumi:"domain"`

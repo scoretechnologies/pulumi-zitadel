@@ -129,6 +129,12 @@ func (ActionExecutionResponseState) ElementType() reflect.Type {
 	return reflect.TypeOf((*actionExecutionResponseState)(nil)).Elem()
 }
 
+// ActionExecutionResponseExists checks whether an existing ActionExecutionResponse resource with the given ID exists.
+func ActionExecutionResponseExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ActionExecutionResponseState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/actionExecutionResponse:ActionExecutionResponse", id, state, "", opts...)
+}
+
 type actionExecutionResponseArgs struct {
 	// Trigger on all responses.
 	All *bool `pulumi:"all"`

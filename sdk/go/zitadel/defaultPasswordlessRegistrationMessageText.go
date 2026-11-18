@@ -117,6 +117,12 @@ func (DefaultPasswordlessRegistrationMessageTextState) ElementType() reflect.Typ
 	return reflect.TypeOf((*defaultPasswordlessRegistrationMessageTextState)(nil)).Elem()
 }
 
+// DefaultPasswordlessRegistrationMessageTextExists checks whether an existing DefaultPasswordlessRegistrationMessageText resource with the given ID exists.
+func DefaultPasswordlessRegistrationMessageTextExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultPasswordlessRegistrationMessageTextState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultPasswordlessRegistrationMessageText:DefaultPasswordlessRegistrationMessageText", id, state, "", opts...)
+}
+
 type defaultPasswordlessRegistrationMessageTextArgs struct {
 	ButtonText *string `pulumi:"buttonText"`
 	FooterText *string `pulumi:"footerText"`

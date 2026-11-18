@@ -124,6 +124,12 @@ func (PasswordResetMessageTextState) ElementType() reflect.Type {
 	return reflect.TypeOf((*passwordResetMessageTextState)(nil)).Elem()
 }
 
+// PasswordResetMessageTextExists checks whether an existing PasswordResetMessageText resource with the given ID exists.
+func PasswordResetMessageTextExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PasswordResetMessageTextState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/passwordResetMessageText:PasswordResetMessageText", id, state, "", opts...)
+}
+
 type passwordResetMessageTextArgs struct {
 	ButtonText *string `pulumi:"buttonText"`
 	FooterText *string `pulumi:"footerText"`

@@ -167,6 +167,12 @@ func (OrgIdpJwtState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgIdpJwtState)(nil)).Elem()
 }
 
+// OrgIdpJwtExists checks whether an existing OrgIdpJwt resource with the given ID exists.
+func OrgIdpJwtExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgIdpJwtState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/orgIdpJwt:OrgIdpJwt", id, state, "", opts...)
+}
+
 type orgIdpJwtArgs struct {
 	// auto register for users from this idp
 	AutoRegister bool `pulumi:"autoRegister"`

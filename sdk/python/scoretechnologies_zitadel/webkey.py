@@ -326,6 +326,24 @@ class Webkey(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         return Webkey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ecdsa: pulumi.Input[Optional[Union['WebkeyEcdsaArgs', 'WebkeyEcdsaArgsDict', 'outputs.WebkeyEcdsa']]] = None,
+            ed25519: pulumi.Input[Optional[Union['WebkeyEd25519Args', 'WebkeyEd25519ArgsDict', 'outputs.WebkeyEd25519']]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            rsa: pulumi.Input[Optional[Union['WebkeyRsaArgs', 'WebkeyRsaArgsDict', 'outputs.WebkeyRsa']]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["ecdsa"] = ecdsa
+        __props__["ed25519"] = ed25519
+        __props__["keyType"] = key_type
+        __props__["orgId"] = org_id
+        __props__["rsa"] = rsa
+        __props__["state"] = state
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/webkey:Webkey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def ecdsa(self) -> pulumi.Output[Optional['outputs.WebkeyEcdsa']]:

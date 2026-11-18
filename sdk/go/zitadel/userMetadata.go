@@ -127,6 +127,12 @@ func (UserMetadataState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userMetadataState)(nil)).Elem()
 }
 
+// UserMetadataExists checks whether an existing UserMetadata resource with the given ID exists.
+func UserMetadataExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserMetadataState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/userMetadata:UserMetadata", id, state, "", opts...)
+}
+
 type userMetadataArgs struct {
 	// The key of a metadata entry
 	Key string `pulumi:"key"`

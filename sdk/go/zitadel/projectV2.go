@@ -150,6 +150,12 @@ func (ProjectV2State) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectV2State)(nil)).Elem()
 }
 
+// ProjectV2Exists checks whether an existing ProjectV2 resource with the given ID exists.
+func ProjectV2Exists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectV2State, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/projectV2:ProjectV2", id, state, "", opts...)
+}
+
 type projectV2Args struct {
 	// Whether ZITADEL checks that the user's organization is granted access to this project before issuing a token.
 	HasProjectCheck *bool `pulumi:"hasProjectCheck"`

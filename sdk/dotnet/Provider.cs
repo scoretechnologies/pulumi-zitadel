@@ -59,6 +59,7 @@ namespace scoretechnologies.Zitadel
         /// Deprecated: Use 'access_token' for Personal Access Tokens or 'jwt_profile_file' for JWT Profile credentials instead. Path to the file containing a JWT Profile key to connect to ZITADEL.
         /// </summary>
         [Output("token")]
+        [Obsolete(@"Use JwtProfileFile instead. For Personal Access Tokens, use access_token.")]
         public Output<string?> Token { get; private set; } = null!;
 
 
@@ -168,6 +169,7 @@ namespace scoretechnologies.Zitadel
         /// Deprecated: Use 'access_token' for Personal Access Tokens or 'jwt_profile_file' for JWT Profile credentials instead. Path to the file containing a JWT Profile key to connect to ZITADEL.
         /// </summary>
         [Input("token")]
+        [Obsolete(@"Use JwtProfileFile instead. For Personal Access Tokens, use access_token.")]
         public Input<string>? Token { get; set; }
 
         [Input("transportHeaders", json: true)]

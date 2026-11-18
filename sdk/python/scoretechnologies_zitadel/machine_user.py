@@ -527,6 +527,36 @@ class MachineUser(pulumi.CustomResource):
         __props__.__dict__["with_secret"] = with_secret
         return MachineUser(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_token_type: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            login_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            preferred_login_name: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            with_secret: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessTokenType"] = access_token_type
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["description"] = description
+        __props__["loginNames"] = login_names
+        __props__["name"] = name
+        __props__["orgId"] = org_id
+        __props__["preferredLoginName"] = preferred_login_name
+        __props__["state"] = state
+        __props__["userId"] = user_id
+        __props__["userName"] = user_name
+        __props__["withSecret"] = with_secret
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/machineUser:MachineUser', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessTokenType")
     def access_token_type(self) -> pulumi.Output[Optional[_builtins.str]]:

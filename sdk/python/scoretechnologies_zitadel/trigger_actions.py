@@ -307,6 +307,20 @@ class TriggerActions(pulumi.CustomResource):
         __props__.__dict__["trigger_type"] = trigger_type
         return TriggerActions(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            action_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            flow_type: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            trigger_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["actionIds"] = action_ids
+        __props__["flowType"] = flow_type
+        __props__["orgId"] = org_id
+        __props__["triggerType"] = trigger_type
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/triggerActions:TriggerActions', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="actionIds")
     def action_ids(self) -> pulumi.Output[Sequence[_builtins.str]]:

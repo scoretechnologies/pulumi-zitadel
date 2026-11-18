@@ -146,10 +146,11 @@ class DefaultDomainPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultDomainPolicy:DefaultDomainPolicy imported ''
+        $ pulumi import zitadel:index/defaultDomainPolicy:DefaultDomainPolicy imported 'default'
         ```
 
 
@@ -181,10 +182,11 @@ class DefaultDomainPolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultDomainPolicy:DefaultDomainPolicy imported ''
+        $ pulumi import zitadel:index/defaultDomainPolicy:DefaultDomainPolicy imported 'default'
         ```
 
 
@@ -255,6 +257,18 @@ class DefaultDomainPolicy(pulumi.CustomResource):
         __props__.__dict__["user_login_must_be_domain"] = user_login_must_be_domain
         __props__.__dict__["validate_org_domains"] = validate_org_domains
         return DefaultDomainPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            smtp_sender_address_matches_instance_domain: pulumi.Input[Optional[_builtins.bool]] = None,
+            user_login_must_be_domain: pulumi.Input[Optional[_builtins.bool]] = None,
+            validate_org_domains: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["smtpSenderAddressMatchesInstanceDomain"] = smtp_sender_address_matches_instance_domain
+        __props__["userLoginMustBeDomain"] = user_login_must_be_domain
+        __props__["validateOrgDomains"] = validate_org_domains
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultDomainPolicy:DefaultDomainPolicy', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="smtpSenderAddressMatchesInstanceDomain")

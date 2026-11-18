@@ -277,6 +277,18 @@ class HostedLoginTranslation(pulumi.CustomResource):
         __props__.__dict__["translations"] = translations
         return HostedLoginTranslation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            language: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            translations: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["language"] = language
+        __props__["orgId"] = org_id
+        __props__["translations"] = translations
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/hostedLoginTranslation:HostedLoginTranslation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def language(self) -> pulumi.Output[_builtins.str]:

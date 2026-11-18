@@ -7,10 +7,10 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.135.0
 	github.com/pulumi/pulumi/sdk/v3 v3.253.0 // indirect
-	// Upstream release v3.8.6. Its go.mod still declares the /v2 module path, so the
+	// Upstream release v3.8.8. Its go.mod still declares the /v2 module path, so the
 	// v3.x tags are not resolvable by name and the release commit has to be pinned
 	// as a /v2 pseudo-version instead.
-	github.com/zitadel/terraform-provider-zitadel/v2 v2.12.9-0.20260917082257-bd64f36628f4
+	github.com/zitadel/terraform-provider-zitadel/v2 v2.12.9-0.20261117100343-87ddf4f86dcc
 )
 
 require (
@@ -203,7 +203,7 @@ require (
 	github.com/zclconf/go-cty v1.17.0 // indirect
 	github.com/zitadel/oidc/v3 v3.49.2 // indirect
 	github.com/zitadel/schema v1.3.2 // indirect
-	github.com/zitadel/zitadel-go/v3 v3.29.3 // indirect
+	github.com/zitadel/zitadel-go/v3 v3.30.1 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
 	go.opentelemetry.io/collector/featuregate v1.63.0 // indirect
 	go.opentelemetry.io/collector/pdata v1.63.0 // indirect
@@ -242,7 +242,7 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20260803160001-6ac0973c030d // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260803160001-6ac0973c030d // indirect
 	google.golang.org/grpc v1.83.2 // indirect
-	google.golang.org/protobuf v1.36.11 // indirect
+	google.golang.org/protobuf v1.36.12 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.5.1 // indirect
 )

@@ -292,6 +292,12 @@ func (ApplicationOidcState) ElementType() reflect.Type {
 	return reflect.TypeOf((*applicationOidcState)(nil)).Elem()
 }
 
+// ApplicationOidcExists checks whether an existing ApplicationOidc resource with the given ID exists.
+func ApplicationOidcExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ApplicationOidcState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/applicationOidc:ApplicationOidc", id, state, "", opts...)
+}
+
 type applicationOidcArgs struct {
 	// Access token role assertion
 	AccessTokenRoleAssertion *bool `pulumi:"accessTokenRoleAssertion"`

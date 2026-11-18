@@ -977,6 +977,54 @@ class LoginPolicy(pulumi.CustomResource):
         __props__.__dict__["user_login"] = user_login
         return LoginPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allow_domain_discovery: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_external_idp: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_register: pulumi.Input[Optional[_builtins.bool]] = None,
+            default_redirect_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_login_with_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_login_with_phone: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_login_check_lifetime: pulumi.Input[Optional[_builtins.str]] = None,
+            force_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
+            force_mfa_local_only: pulumi.Input[Optional[_builtins.bool]] = None,
+            hide_password_reset: pulumi.Input[Optional[_builtins.bool]] = None,
+            idps: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ignore_unknown_usernames: pulumi.Input[Optional[_builtins.bool]] = None,
+            mfa_init_skip_lifetime: pulumi.Input[Optional[_builtins.str]] = None,
+            multi_factor_check_lifetime: pulumi.Input[Optional[_builtins.str]] = None,
+            multi_factors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            password_check_lifetime: pulumi.Input[Optional[_builtins.str]] = None,
+            passwordless_type: pulumi.Input[Optional[_builtins.str]] = None,
+            second_factor_check_lifetime: pulumi.Input[Optional[_builtins.str]] = None,
+            second_factors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_login: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowDomainDiscovery"] = allow_domain_discovery
+        __props__["allowExternalIdp"] = allow_external_idp
+        __props__["allowRegister"] = allow_register
+        __props__["defaultRedirectUri"] = default_redirect_uri
+        __props__["disableLoginWithEmail"] = disable_login_with_email
+        __props__["disableLoginWithPhone"] = disable_login_with_phone
+        __props__["externalLoginCheckLifetime"] = external_login_check_lifetime
+        __props__["forceMfa"] = force_mfa
+        __props__["forceMfaLocalOnly"] = force_mfa_local_only
+        __props__["hidePasswordReset"] = hide_password_reset
+        __props__["idps"] = idps
+        __props__["ignoreUnknownUsernames"] = ignore_unknown_usernames
+        __props__["mfaInitSkipLifetime"] = mfa_init_skip_lifetime
+        __props__["multiFactorCheckLifetime"] = multi_factor_check_lifetime
+        __props__["multiFactors"] = multi_factors
+        __props__["orgId"] = org_id
+        __props__["passwordCheckLifetime"] = password_check_lifetime
+        __props__["passwordlessType"] = passwordless_type
+        __props__["secondFactorCheckLifetime"] = second_factor_check_lifetime
+        __props__["secondFactors"] = second_factors
+        __props__["userLogin"] = user_login
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/loginPolicy:LoginPolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowDomainDiscovery")
     def allow_domain_discovery(self) -> pulumi.Output[Optional[_builtins.bool]]:

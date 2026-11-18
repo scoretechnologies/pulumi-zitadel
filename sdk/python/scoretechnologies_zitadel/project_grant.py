@@ -306,6 +306,20 @@ class ProjectGrant(pulumi.CustomResource):
         __props__.__dict__["role_keys"] = role_keys
         return ProjectGrant(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            granted_org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["grantedOrgId"] = granted_org_id
+        __props__["orgId"] = org_id
+        __props__["projectId"] = project_id
+        __props__["roleKeys"] = role_keys
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/projectGrant:ProjectGrant', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="grantedOrgId")
     def granted_org_id(self) -> pulumi.Output[_builtins.str]:

@@ -199,6 +199,12 @@ func (OrgIdpGoogleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgIdpGoogleState)(nil)).Elem()
 }
 
+// OrgIdpGoogleExists checks whether an existing OrgIdpGoogle resource with the given ID exists.
+func OrgIdpGoogleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgIdpGoogleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/orgIdpGoogle:OrgIdpGoogle", id, state, "", opts...)
+}
+
 type orgIdpGoogleArgs struct {
 	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
 	AutoLinking *string `pulumi:"autoLinking"`

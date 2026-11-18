@@ -316,6 +316,20 @@ class ActionExecutionEvent(pulumi.CustomResource):
         __props__.__dict__["target_ids"] = target_ids
         return ActionExecutionEvent(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            all: pulumi.Input[Optional[_builtins.bool]] = None,
+            event: pulumi.Input[Optional[_builtins.str]] = None,
+            group: pulumi.Input[Optional[_builtins.str]] = None,
+            target_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["all"] = all
+        __props__["event"] = event
+        __props__["group"] = group
+        __props__["targetIds"] = target_ids
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/actionExecutionEvent:ActionExecutionEvent', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def all(self) -> pulumi.Output[Optional[_builtins.bool]]:

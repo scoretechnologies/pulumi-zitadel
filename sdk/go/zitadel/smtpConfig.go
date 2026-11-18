@@ -177,6 +177,12 @@ func (SmtpConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*smtpConfigState)(nil)).Elem()
 }
 
+// SmtpConfigExists checks whether an existing SmtpConfig resource with the given ID exists.
+func SmtpConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SmtpConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/smtpConfig:SmtpConfig", id, state, "", opts...)
+}
+
 type smtpConfigArgs struct {
 	// Description of the SMTP configuration.
 	Description *string `pulumi:"description"`

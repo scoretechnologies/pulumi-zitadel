@@ -412,6 +412,24 @@ class ApplicationSaml(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         return ApplicationSaml(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            login_version: pulumi.Input[Optional[Union['ApplicationSamlLoginVersionArgs', 'ApplicationSamlLoginVersionArgsDict', 'outputs.ApplicationSamlLoginVersion']]] = None,
+            metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata_xml: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["loginVersion"] = login_version
+        __props__["metadataUrl"] = metadata_url
+        __props__["metadataXml"] = metadata_xml
+        __props__["name"] = name
+        __props__["orgId"] = org_id
+        __props__["projectId"] = project_id
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/applicationSaml:ApplicationSaml', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="loginVersion")
     def login_version(self) -> pulumi.Output['outputs.ApplicationSamlLoginVersion']:

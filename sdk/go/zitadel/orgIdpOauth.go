@@ -246,6 +246,12 @@ func (OrgIdpOauthState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgIdpOauthState)(nil)).Elem()
 }
 
+// OrgIdpOauthExists checks whether an existing OrgIdpOauth resource with the given ID exists.
+func OrgIdpOauthExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgIdpOauthState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/orgIdpOauth:OrgIdpOauth", id, state, "", opts...)
+}
+
 type orgIdpOauthArgs struct {
 	// The authorization endpoint
 	AuthorizationEndpoint string `pulumi:"authorizationEndpoint"`

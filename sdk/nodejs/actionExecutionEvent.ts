@@ -50,6 +50,17 @@ export class ActionExecutionEvent extends pulumi.CustomResource {
         return new ActionExecutionEvent(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ActionExecutionEvent resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ActionExecutionEventState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("zitadel:index/actionExecutionEvent:ActionExecutionEvent", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'zitadel:index/actionExecutionEvent:ActionExecutionEvent';
 

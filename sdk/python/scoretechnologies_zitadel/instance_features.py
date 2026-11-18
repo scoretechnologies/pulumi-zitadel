@@ -564,6 +564,32 @@ class InstanceFeatures(pulumi.CustomResource):
         __props__.__dict__["user_schema"] = user_schema
         return InstanceFeatures(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            console_use_v2_user_api: pulumi.Input[Optional[_builtins.bool]] = None,
+            debug_oidc_parent_error: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_back_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
+            improved_performances: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            login_default_org: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_v2: pulumi.Input[Optional[Union['InstanceFeaturesLoginV2Args', 'InstanceFeaturesLoginV2ArgsDict', 'outputs.InstanceFeaturesLoginV2']]] = None,
+            oidc_single_v1_session_termination: pulumi.Input[Optional[_builtins.bool]] = None,
+            oidc_token_exchange: pulumi.Input[Optional[_builtins.bool]] = None,
+            permission_check_v2: pulumi.Input[Optional[_builtins.bool]] = None,
+            user_schema: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["consoleUseV2UserApi"] = console_use_v2_user_api
+        __props__["debugOidcParentError"] = debug_oidc_parent_error
+        __props__["enableBackChannelLogout"] = enable_back_channel_logout
+        __props__["improvedPerformances"] = improved_performances
+        __props__["loginDefaultOrg"] = login_default_org
+        __props__["loginV2"] = login_v2
+        __props__["oidcSingleV1SessionTermination"] = oidc_single_v1_session_termination
+        __props__["oidcTokenExchange"] = oidc_token_exchange
+        __props__["permissionCheckV2"] = permission_check_v2
+        __props__["userSchema"] = user_schema
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/instanceFeatures:InstanceFeatures', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="consoleUseV2UserApi")
     def console_use_v2_user_api(self) -> pulumi.Output[_builtins.bool]:

@@ -142,6 +142,12 @@ func (PrivacyPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privacyPolicyState)(nil)).Elem()
 }
 
+// PrivacyPolicyExists checks whether an existing PrivacyPolicy resource with the given ID exists.
+func PrivacyPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivacyPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/privacyPolicy:PrivacyPolicy", id, state, "", opts...)
+}
+
 type privacyPolicyArgs struct {
 	// Link to an external resource that will be available to users in the console.
 	CustomLink *string `pulumi:"customLink"`

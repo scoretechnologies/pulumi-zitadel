@@ -404,6 +404,28 @@ class OrganizationDomain(pulumi.CustomResource):
         __props__.__dict__["verify"] = verify
         return OrganizationDomain(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            is_primary: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_verified: pulumi.Input[Optional[_builtins.bool]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            validation_token: pulumi.Input[Optional[_builtins.str]] = None,
+            validation_type: pulumi.Input[Optional[_builtins.str]] = None,
+            validation_url: pulumi.Input[Optional[_builtins.str]] = None,
+            verify: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["domain"] = domain
+        __props__["isPrimary"] = is_primary
+        __props__["isVerified"] = is_verified
+        __props__["organizationId"] = organization_id
+        __props__["validationToken"] = validation_token
+        __props__["validationType"] = validation_type
+        __props__["validationUrl"] = validation_url
+        __props__["verify"] = verify
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/organizationDomain:OrganizationDomain', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def domain(self) -> pulumi.Output[_builtins.str]:

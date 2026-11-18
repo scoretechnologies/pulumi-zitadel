@@ -147,6 +147,12 @@ func (PasswordComplexityPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*passwordComplexityPolicyState)(nil)).Elem()
 }
 
+// PasswordComplexityPolicyExists checks whether an existing PasswordComplexityPolicy resource with the given ID exists.
+func PasswordComplexityPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PasswordComplexityPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/passwordComplexityPolicy:PasswordComplexityPolicy", id, state, "", opts...)
+}
+
 type passwordComplexityPolicyArgs struct {
 	// defines if the password MUST contain a lower case letter
 	HasLowercase bool `pulumi:"hasLowercase"`

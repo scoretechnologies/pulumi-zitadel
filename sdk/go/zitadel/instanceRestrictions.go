@@ -46,7 +46,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default ""
+// $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default 'default'
 // ```
 type InstanceRestrictions struct {
 	pulumi.CustomResourceState
@@ -102,6 +102,12 @@ type InstanceRestrictionsState struct {
 
 func (InstanceRestrictionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceRestrictionsState)(nil)).Elem()
+}
+
+// InstanceRestrictionsExists checks whether an existing InstanceRestrictions resource with the given ID exists.
+func InstanceRestrictionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceRestrictionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/instanceRestrictions:InstanceRestrictions", id, state, "", opts...)
 }
 
 type instanceRestrictionsArgs struct {

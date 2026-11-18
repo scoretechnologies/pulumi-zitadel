@@ -36,27 +36,33 @@ namespace scoretechnologies.Zitadel
     public partial class DefaultVerifySmsOtpMessageText : global::Pulumi.CustomResource
     {
         [Output("buttonText")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Output<string?> ButtonText { get; private set; } = null!;
 
         [Output("footerText")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Output<string?> FooterText { get; private set; } = null!;
 
         [Output("greeting")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Output<string?> Greeting { get; private set; } = null!;
 
         [Output("language")]
         public Output<string> Language { get; private set; } = null!;
 
         [Output("preHeader")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Output<string?> PreHeader { get; private set; } = null!;
 
         [Output("subject")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Output<string?> Subject { get; private set; } = null!;
 
         [Output("text")]
         public Output<string?> Text { get; private set; } = null!;
 
         [Output("title")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Output<string?> Title { get; private set; } = null!;
 
 
@@ -107,27 +113,33 @@ namespace scoretechnologies.Zitadel
     public sealed class DefaultVerifySmsOtpMessageTextArgs : global::Pulumi.ResourceArgs
     {
         [Input("buttonText")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? ButtonText { get; set; }
 
         [Input("footerText")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? FooterText { get; set; }
 
         [Input("greeting")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? Greeting { get; set; }
 
         [Input("language", required: true)]
         public Input<string> Language { get; set; } = null!;
 
         [Input("preHeader")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? PreHeader { get; set; }
 
         [Input("subject")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? Subject { get; set; }
 
         [Input("text")]
         public Input<string>? Text { get; set; }
 
         [Input("title")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? Title { get; set; }
 
         public DefaultVerifySmsOtpMessageTextArgs()
@@ -139,27 +151,33 @@ namespace scoretechnologies.Zitadel
     public sealed class DefaultVerifySmsOtpMessageTextState : global::Pulumi.ResourceArgs
     {
         [Input("buttonText")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? ButtonText { get; set; }
 
         [Input("footerText")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? FooterText { get; set; }
 
         [Input("greeting")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? Greeting { get; set; }
 
         [Input("language")]
         public Input<string>? Language { get; set; }
 
         [Input("preHeader")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? PreHeader { get; set; }
 
         [Input("subject")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? Subject { get; set; }
 
         [Input("text")]
         public Input<string>? Text { get; set; }
 
         [Input("title")]
+        [Obsolete(@"Not supported by the SMS OTP message: the ZITADEL API only stores `Text` for this message type, so this attribute has no effect. It will be removed in a future major version.")]
         public Input<string>? Title { get; set; }
 
         public DefaultVerifySmsOtpMessageTextState()

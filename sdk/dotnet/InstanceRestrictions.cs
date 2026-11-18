@@ -39,7 +39,7 @@ namespace scoretechnologies.Zitadel
     /// ## Import
     /// 
     /// ```sh
-    /// $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default ""
+    /// $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default 'default'
     /// ```
     /// </summary>
     [ZitadelResourceType("zitadel:index/instanceRestrictions:InstanceRestrictions")]

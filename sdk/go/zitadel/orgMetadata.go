@@ -117,6 +117,12 @@ func (OrgMetadataState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgMetadataState)(nil)).Elem()
 }
 
+// OrgMetadataExists checks whether an existing OrgMetadata resource with the given ID exists.
+func OrgMetadataExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgMetadataState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/orgMetadata:OrgMetadata", id, state, "", opts...)
+}
+
 type orgMetadataArgs struct {
 	// The key of a metadata entry
 	Key string `pulumi:"key"`

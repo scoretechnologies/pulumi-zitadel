@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default ""
+ * $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default 'default'
  * ```
  */
 export class DefaultSecuritySettings extends pulumi.CustomResource {
@@ -34,6 +34,17 @@ export class DefaultSecuritySettings extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DefaultSecuritySettingsState, opts?: pulumi.CustomResourceOptions): DefaultSecuritySettings {
         return new DefaultSecuritySettings(name, <any>state, { ...opts, id: id });
+    }
+
+    /**
+     * Check whether an existing DefaultSecuritySettings resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: DefaultSecuritySettingsState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("zitadel:index/defaultSecuritySettings:DefaultSecuritySettings", id, <any>state || {}, { ...opts }, undefined);
     }
 
     /** @internal */

@@ -129,6 +129,12 @@ func (TriggerActionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*triggerActionsState)(nil)).Elem()
 }
 
+// TriggerActionsExists checks whether an existing TriggerActions resource with the given ID exists.
+func TriggerActionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TriggerActionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/triggerActions:TriggerActions", id, state, "", opts...)
+}
+
 type triggerActionsArgs struct {
 	// IDs of the triggered actions
 	ActionIds []string `pulumi:"actionIds"`

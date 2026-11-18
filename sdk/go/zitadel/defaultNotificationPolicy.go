@@ -42,10 +42,11 @@ import (
 //
 // ## Import
 //
-// The resource can be imported using the ID format `<>`, e.g.
+// Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+// `default`, which ZITADEL ignores, e.g.
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultNotificationPolicy:DefaultNotificationPolicy imported ”
+// $ pulumi import zitadel:index/defaultNotificationPolicy:DefaultNotificationPolicy imported 'default'
 // ```
 type DefaultNotificationPolicy struct {
 	pulumi.CustomResourceState
@@ -98,6 +99,12 @@ type DefaultNotificationPolicyState struct {
 
 func (DefaultNotificationPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultNotificationPolicyState)(nil)).Elem()
+}
+
+// DefaultNotificationPolicyExists checks whether an existing DefaultNotificationPolicy resource with the given ID exists.
+func DefaultNotificationPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultNotificationPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultNotificationPolicy:DefaultNotificationPolicy", id, state, "", opts...)
 }
 
 type defaultNotificationPolicyArgs struct {

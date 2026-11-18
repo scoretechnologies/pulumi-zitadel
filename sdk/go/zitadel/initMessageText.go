@@ -124,6 +124,12 @@ func (InitMessageTextState) ElementType() reflect.Type {
 	return reflect.TypeOf((*initMessageTextState)(nil)).Elem()
 }
 
+// InitMessageTextExists checks whether an existing InitMessageText resource with the given ID exists.
+func InitMessageTextExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InitMessageTextState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/initMessageText:InitMessageText", id, state, "", opts...)
+}
+
 type initMessageTextArgs struct {
 	ButtonText *string `pulumi:"buttonText"`
 	FooterText *string `pulumi:"footerText"`

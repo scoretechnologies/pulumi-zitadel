@@ -124,6 +124,12 @@ func (DomainPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainPolicyState)(nil)).Elem()
 }
 
+// DomainPolicyExists checks whether an existing DomainPolicy resource with the given ID exists.
+func DomainPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DomainPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/domainPolicy:DomainPolicy", id, state, "", opts...)
+}
+
 type domainPolicyArgs struct {
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
 	OrgId                                  *string `pulumi:"orgId"`

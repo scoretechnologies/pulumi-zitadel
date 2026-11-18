@@ -147,6 +147,12 @@ func (ApplicationKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*applicationKeyState)(nil)).Elem()
 }
 
+// ApplicationKeyExists checks whether an existing ApplicationKey resource with the given ID exists.
+func ApplicationKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ApplicationKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/applicationKey:ApplicationKey", id, state, "", opts...)
+}
+
 type applicationKeyArgs struct {
 	// ID of the application
 	AppId string `pulumi:"appId"`

@@ -129,6 +129,12 @@ func (HostedLoginTranslationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*hostedLoginTranslationState)(nil)).Elem()
 }
 
+// HostedLoginTranslationExists checks whether an existing HostedLoginTranslation resource with the given ID exists.
+func HostedLoginTranslationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HostedLoginTranslationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/hostedLoginTranslation:HostedLoginTranslation", id, state, "", opts...)
+}
+
 type hostedLoginTranslationArgs struct {
 	// BCP 47 language tag of the translations, e.g. `en`, `de` or `fr-CH`
 	Language string `pulumi:"language"`

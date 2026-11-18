@@ -155,6 +155,12 @@ func (MachineKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineKeyState)(nil)).Elem()
 }
 
+// MachineKeyExists checks whether an existing MachineKey resource with the given ID exists.
+func MachineKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MachineKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/machineKey:MachineKey", id, state, "", opts...)
+}
+
 type machineKeyArgs struct {
 	// Expiration date of the machine key in the RFC3339 format
 	ExpirationDate *string `pulumi:"expirationDate"`

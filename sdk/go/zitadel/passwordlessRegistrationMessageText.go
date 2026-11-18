@@ -124,6 +124,12 @@ func (PasswordlessRegistrationMessageTextState) ElementType() reflect.Type {
 	return reflect.TypeOf((*passwordlessRegistrationMessageTextState)(nil)).Elem()
 }
 
+// PasswordlessRegistrationMessageTextExists checks whether an existing PasswordlessRegistrationMessageText resource with the given ID exists.
+func PasswordlessRegistrationMessageTextExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PasswordlessRegistrationMessageTextState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/passwordlessRegistrationMessageText:PasswordlessRegistrationMessageText", id, state, "", opts...)
+}
+
 type passwordlessRegistrationMessageTextArgs struct {
 	ButtonText *string `pulumi:"buttonText"`
 	FooterText *string `pulumi:"footerText"`

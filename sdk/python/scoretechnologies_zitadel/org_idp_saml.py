@@ -817,6 +817,42 @@ class OrgIdpSaml(pulumi.CustomResource):
         __props__.__dict__["with_signed_request"] = with_signed_request
         return OrgIdpSaml(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_linking: pulumi.Input[Optional[_builtins.str]] = None,
+            binding: pulumi.Input[Optional[_builtins.str]] = None,
+            federated_logout_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_auto_creation: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_auto_update: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_creation_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_linking_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata_xml: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            transient_mapping_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
+            with_signed_request: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoLinking"] = auto_linking
+        __props__["binding"] = binding
+        __props__["federatedLogoutEnabled"] = federated_logout_enabled
+        __props__["isAutoCreation"] = is_auto_creation
+        __props__["isAutoUpdate"] = is_auto_update
+        __props__["isCreationAllowed"] = is_creation_allowed
+        __props__["isLinkingAllowed"] = is_linking_allowed
+        __props__["metadataUrl"] = metadata_url
+        __props__["metadataXml"] = metadata_xml
+        __props__["name"] = name
+        __props__["nameIdFormat"] = name_id_format
+        __props__["orgId"] = org_id
+        __props__["signatureAlgorithm"] = signature_algorithm
+        __props__["transientMappingAttributeName"] = transient_mapping_attribute_name
+        __props__["withSignedRequest"] = with_signed_request
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/orgIdpSaml:OrgIdpSaml', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoLinking")
     def auto_linking(self) -> pulumi.Output[Optional[_builtins.str]]:

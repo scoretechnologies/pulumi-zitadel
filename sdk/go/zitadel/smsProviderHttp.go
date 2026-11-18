@@ -130,6 +130,12 @@ func (SmsProviderHttpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*smsProviderHttpState)(nil)).Elem()
 }
 
+// SmsProviderHttpExists checks whether an existing SmsProviderHttp resource with the given ID exists.
+func SmsProviderHttpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SmsProviderHttpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/smsProviderHttp:SmsProviderHttp", id, state, "", opts...)
+}
+
 type smsProviderHttpArgs struct {
 	// Description of the SMS provider.
 	Description *string `pulumi:"description"`

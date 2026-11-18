@@ -272,6 +272,12 @@ func (HumanUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*humanUserState)(nil)).Elem()
 }
 
+// HumanUserExists checks whether an existing HumanUser resource with the given ID exists.
+func HumanUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HumanUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/humanUser:HumanUser", id, state, "", opts...)
+}
+
 type humanUserArgs struct {
 	// Display name of the user
 	DisplayName *string `pulumi:"displayName"`

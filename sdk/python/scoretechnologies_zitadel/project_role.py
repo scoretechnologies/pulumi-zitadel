@@ -349,6 +349,22 @@ class ProjectRole(pulumi.CustomResource):
         __props__.__dict__["role_key"] = role_key
         return ProjectRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            group: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_key: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["displayName"] = display_name
+        __props__["group"] = group
+        __props__["orgId"] = org_id
+        __props__["projectId"] = project_id
+        __props__["roleKey"] = role_key
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/projectRole:ProjectRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[_builtins.str]:

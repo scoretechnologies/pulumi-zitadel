@@ -187,10 +187,11 @@ class DefaultOidcSettings(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultOidcSettings:DefaultOidcSettings imported ''
+        $ pulumi import zitadel:index/defaultOidcSettings:DefaultOidcSettings imported 'default'
         ```
 
 
@@ -225,10 +226,11 @@ class DefaultOidcSettings(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultOidcSettings:DefaultOidcSettings imported ''
+        $ pulumi import zitadel:index/defaultOidcSettings:DefaultOidcSettings imported 'default'
         ```
 
 
@@ -307,6 +309,20 @@ class DefaultOidcSettings(pulumi.CustomResource):
         __props__.__dict__["refresh_token_expiration"] = refresh_token_expiration
         __props__.__dict__["refresh_token_idle_expiration"] = refresh_token_idle_expiration
         return DefaultOidcSettings(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_token_lifetime: pulumi.Input[Optional[_builtins.str]] = None,
+            id_token_lifetime: pulumi.Input[Optional[_builtins.str]] = None,
+            refresh_token_expiration: pulumi.Input[Optional[_builtins.str]] = None,
+            refresh_token_idle_expiration: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessTokenLifetime"] = access_token_lifetime
+        __props__["idTokenLifetime"] = id_token_lifetime
+        __props__["refreshTokenExpiration"] = refresh_token_expiration
+        __props__["refreshTokenIdleExpiration"] = refresh_token_idle_expiration
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultOidcSettings:DefaultOidcSettings', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="accessTokenLifetime")

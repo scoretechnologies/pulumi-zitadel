@@ -111,6 +111,12 @@ func (DefaultVerifyPhoneMessageTextState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultVerifyPhoneMessageTextState)(nil)).Elem()
 }
 
+// DefaultVerifyPhoneMessageTextExists checks whether an existing DefaultVerifyPhoneMessageText resource with the given ID exists.
+func DefaultVerifyPhoneMessageTextExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultVerifyPhoneMessageTextState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultVerifyPhoneMessageText:DefaultVerifyPhoneMessageText", id, state, "", opts...)
+}
+
 type defaultVerifyPhoneMessageTextArgs struct {
 	ButtonText *string `pulumi:"buttonText"`
 	FooterText *string `pulumi:"footerText"`

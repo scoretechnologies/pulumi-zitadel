@@ -121,10 +121,11 @@ class DefaultPasswordAgePolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy imported ''
+        $ pulumi import zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy imported 'default'
         ```
 
 
@@ -155,10 +156,11 @@ class DefaultPasswordAgePolicy(pulumi.CustomResource):
 
         ## Import
 
-        The resource can be imported using the ID format `<>`, e.g.
+        Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+        `default`, which ZITADEL ignores, e.g.
 
         ```sh
-        $ pulumi import zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy imported ''
+        $ pulumi import zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy imported 'default'
         ```
 
 
@@ -223,6 +225,16 @@ class DefaultPasswordAgePolicy(pulumi.CustomResource):
         __props__.__dict__["expire_warn_days"] = expire_warn_days
         __props__.__dict__["max_age_days"] = max_age_days
         return DefaultPasswordAgePolicy(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            expire_warn_days: pulumi.Input[Optional[_builtins.int]] = None,
+            max_age_days: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["expireWarnDays"] = expire_warn_days
+        __props__["maxAgeDays"] = max_age_days
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/defaultPasswordAgePolicy:DefaultPasswordAgePolicy', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="expireWarnDays")

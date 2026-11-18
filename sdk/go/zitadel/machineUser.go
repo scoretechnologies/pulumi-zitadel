@@ -178,6 +178,12 @@ func (MachineUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*machineUserState)(nil)).Elem()
 }
 
+// MachineUserExists checks whether an existing MachineUser resource with the given ID exists.
+func MachineUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MachineUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/machineUser:MachineUser", id, state, "", opts...)
+}
+
 type machineUserArgs struct {
 	// Access token type, supported values: ACCESS*TOKEN*TYPE*BEARER, ACCESS*TOKEN*TYPE*JWT
 	AccessTokenType *string `pulumi:"accessTokenType"`

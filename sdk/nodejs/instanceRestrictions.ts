@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * ```sh
- * $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default ""
+ * $ pulumi import zitadel:index/instanceRestrictions:InstanceRestrictions default 'default'
  * ```
  */
 export class InstanceRestrictions extends pulumi.CustomResource {
@@ -40,6 +40,17 @@ export class InstanceRestrictions extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceRestrictionsState, opts?: pulumi.CustomResourceOptions): InstanceRestrictions {
         return new InstanceRestrictions(name, <any>state, { ...opts, id: id });
+    }
+
+    /**
+     * Check whether an existing InstanceRestrictions resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: InstanceRestrictionsState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("zitadel:index/instanceRestrictions:InstanceRestrictions", id, <any>state || {}, { ...opts }, undefined);
     }
 
     /** @internal */

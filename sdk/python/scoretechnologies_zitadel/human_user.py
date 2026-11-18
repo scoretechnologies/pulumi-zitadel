@@ -995,6 +995,56 @@ class HumanUser(pulumi.CustomResource):
         __props__.__dict__["user_name"] = user_name
         return HumanUser(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            first_name: pulumi.Input[Optional[_builtins.str]] = None,
+            gender: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserIdpLinkArgs', 'HumanUserIdpLinkArgsDict', 'outputs.HumanUserIdpLink']]]]] = None,
+            initial_hashed_password: pulumi.Input[Optional[_builtins.str]] = None,
+            initial_password: pulumi.Input[Optional[_builtins.str]] = None,
+            initial_skip_password_change: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_phone_verified: pulumi.Input[Optional[_builtins.bool]] = None,
+            last_name: pulumi.Input[Optional[_builtins.str]] = None,
+            login_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HumanUserMetadataArgs', 'HumanUserMetadataArgsDict', 'outputs.HumanUserMetadata']]]]] = None,
+            nick_name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            phone: pulumi.Input[Optional[_builtins.str]] = None,
+            preferred_language: pulumi.Input[Optional[_builtins.str]] = None,
+            preferred_login_name: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            totp_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["displayName"] = display_name
+        __props__["email"] = email
+        __props__["firstName"] = first_name
+        __props__["gender"] = gender
+        __props__["idpLinks"] = idp_links
+        __props__["initialHashedPassword"] = initial_hashed_password
+        __props__["initialPassword"] = initial_password
+        __props__["initialSkipPasswordChange"] = initial_skip_password_change
+        __props__["isEmailVerified"] = is_email_verified
+        __props__["isPhoneVerified"] = is_phone_verified
+        __props__["lastName"] = last_name
+        __props__["loginNames"] = login_names
+        __props__["metadatas"] = metadatas
+        __props__["nickName"] = nick_name
+        __props__["orgId"] = org_id
+        __props__["phone"] = phone
+        __props__["preferredLanguage"] = preferred_language
+        __props__["preferredLoginName"] = preferred_login_name
+        __props__["state"] = state
+        __props__["totpSecret"] = totp_secret
+        __props__["userId"] = user_id
+        __props__["userName"] = user_name
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/humanUser:HumanUser', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[_builtins.str]:

@@ -126,6 +126,7 @@ namespace scoretechnologies.Zitadel
         /// <summary>
         /// Deprecated: Use 'access_token' for Personal Access Tokens or 'jwt_profile_file' for JWT Profile credentials instead. Path to the file containing a JWT Profile key to connect to ZITADEL.
         /// </summary>
+        [Obsolete(@"Use JwtProfileFile instead. For Personal Access Tokens, use access_token.")]
         public static string? Token
         {
             get => _token.Get();

@@ -325,6 +325,22 @@ class EmailProviderHttp(pulumi.CustomResource):
         __props__.__dict__["signing_key"] = signing_key
         return EmailProviderHttp(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            expiration_signing_key: pulumi.Input[Optional[_builtins.str]] = None,
+            set_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            signing_key: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["description"] = description
+        __props__["endpoint"] = endpoint
+        __props__["expirationSigningKey"] = expiration_signing_key
+        __props__["setActive"] = set_active
+        __props__["signingKey"] = signing_key
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/emailProviderHttp:EmailProviderHttp', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:

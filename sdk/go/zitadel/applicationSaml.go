@@ -159,6 +159,12 @@ func (ApplicationSamlState) ElementType() reflect.Type {
 	return reflect.TypeOf((*applicationSamlState)(nil)).Elem()
 }
 
+// ApplicationSamlExists checks whether an existing ApplicationSaml resource with the given ID exists.
+func ApplicationSamlExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ApplicationSamlState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/applicationSaml:ApplicationSaml", id, state, "", opts...)
+}
+
 type applicationSamlArgs struct {
 	// Specify the preferred login UI, where the user is redirected to for authentication. If unset, the login UI is chosen by the instance default.
 	LoginVersion *ApplicationSamlLoginVersion `pulumi:"loginVersion"`

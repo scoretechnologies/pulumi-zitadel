@@ -176,6 +176,12 @@ func (ApplicationV2State) ElementType() reflect.Type {
 	return reflect.TypeOf((*applicationV2State)(nil)).Elem()
 }
 
+// ApplicationV2Exists checks whether an existing ApplicationV2 resource with the given ID exists.
+func ApplicationV2Exists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ApplicationV2State, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/applicationV2:ApplicationV2", id, state, "", opts...)
+}
+
 type applicationV2Args struct {
 	// API configuration. Mutually exclusive with `oidc` and `saml`.
 	Api *ApplicationV2Api `pulumi:"api"`

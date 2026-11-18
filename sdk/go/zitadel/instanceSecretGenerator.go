@@ -140,6 +140,12 @@ func (InstanceSecretGeneratorState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceSecretGeneratorState)(nil)).Elem()
 }
 
+// InstanceSecretGeneratorExists checks whether an existing InstanceSecretGenerator resource with the given ID exists.
+func InstanceSecretGeneratorExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceSecretGeneratorState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/instanceSecretGenerator:InstanceSecretGenerator", id, state, "", opts...)
+}
+
 type instanceSecretGeneratorArgs struct {
 	// Expiry duration of the generated secret, e.g. 1h, 15m, 24h
 	Expiry *string `pulumi:"expiry"`

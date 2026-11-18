@@ -137,6 +137,12 @@ func (ProjectRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectRoleState)(nil)).Elem()
 }
 
+// ProjectRoleExists checks whether an existing ProjectRole resource with the given ID exists.
+func ProjectRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/projectRole:ProjectRole", id, state, "", opts...)
+}
+
 type projectRoleArgs struct {
 	// Name used for project role
 	DisplayName string `pulumi:"displayName"`

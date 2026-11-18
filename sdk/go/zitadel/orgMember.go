@@ -119,6 +119,12 @@ func (OrgMemberState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgMemberState)(nil)).Elem()
 }
 
+// OrgMemberExists checks whether an existing OrgMember resource with the given ID exists.
+func OrgMemberExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgMemberState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/orgMember:OrgMember", id, state, "", opts...)
+}
+
 type orgMemberArgs struct {
 	// ID of the organization. If not provided, the organization of the authenticated user/service account is used.
 	OrgId *string `pulumi:"orgId"`

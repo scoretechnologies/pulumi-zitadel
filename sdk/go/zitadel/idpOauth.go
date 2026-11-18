@@ -239,6 +239,12 @@ func (IdpOauthState) ElementType() reflect.Type {
 	return reflect.TypeOf((*idpOauthState)(nil)).Elem()
 }
 
+// IdpOauthExists checks whether an existing IdpOauth resource with the given ID exists.
+func IdpOauthExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IdpOauthState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/idpOauth:IdpOauth", id, state, "", opts...)
+}
+
 type idpOauthArgs struct {
 	// The authorization endpoint
 	AuthorizationEndpoint string `pulumi:"authorizationEndpoint"`

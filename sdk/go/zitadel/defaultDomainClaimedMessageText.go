@@ -117,6 +117,12 @@ func (DefaultDomainClaimedMessageTextState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultDomainClaimedMessageTextState)(nil)).Elem()
 }
 
+// DefaultDomainClaimedMessageTextExists checks whether an existing DefaultDomainClaimedMessageText resource with the given ID exists.
+func DefaultDomainClaimedMessageTextExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultDomainClaimedMessageTextState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultDomainClaimedMessageText:DefaultDomainClaimedMessageText", id, state, "", opts...)
+}
+
 type defaultDomainClaimedMessageTextArgs struct {
 	ButtonText *string `pulumi:"buttonText"`
 	FooterText *string `pulumi:"footerText"`

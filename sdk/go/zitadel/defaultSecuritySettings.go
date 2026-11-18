@@ -43,7 +43,7 @@ import (
 // ## Import
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default ""
+// $ pulumi import zitadel:index/defaultSecuritySettings:DefaultSecuritySettings default 'default'
 // ```
 type DefaultSecuritySettings struct {
 	pulumi.CustomResourceState
@@ -108,6 +108,12 @@ type DefaultSecuritySettingsState struct {
 
 func (DefaultSecuritySettingsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultSecuritySettingsState)(nil)).Elem()
+}
+
+// DefaultSecuritySettingsExists checks whether an existing DefaultSecuritySettings resource with the given ID exists.
+func DefaultSecuritySettingsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultSecuritySettingsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultSecuritySettings:DefaultSecuritySettings", id, state, "", opts...)
 }
 
 type defaultSecuritySettingsArgs struct {

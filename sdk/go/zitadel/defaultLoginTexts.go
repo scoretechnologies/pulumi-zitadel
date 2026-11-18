@@ -480,6 +480,12 @@ func (DefaultLoginTextsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultLoginTextsState)(nil)).Elem()
 }
 
+// DefaultLoginTextsExists checks whether an existing DefaultLoginTexts resource with the given ID exists.
+func DefaultLoginTextsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultLoginTextsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultLoginTexts:DefaultLoginTexts", id, state, "", opts...)
+}
+
 type defaultLoginTextsArgs struct {
 	EmailVerificationDoneText            *DefaultLoginTextsEmailVerificationDoneText            `pulumi:"emailVerificationDoneText"`
 	EmailVerificationText                *DefaultLoginTextsEmailVerificationText                `pulumi:"emailVerificationText"`

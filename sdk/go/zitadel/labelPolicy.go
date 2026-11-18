@@ -297,6 +297,12 @@ func (LabelPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*labelPolicyState)(nil)).Elem()
 }
 
+// LabelPolicyExists checks whether an existing LabelPolicy resource with the given ID exists.
+func LabelPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LabelPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/labelPolicy:LabelPolicy", id, state, "", opts...)
+}
+
 type labelPolicyArgs struct {
 	// hex value for background color
 	BackgroundColor string `pulumi:"backgroundColor"`

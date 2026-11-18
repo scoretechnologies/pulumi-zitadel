@@ -136,6 +136,12 @@ func (VerifySmsOtpMessageTextState) ElementType() reflect.Type {
 	return reflect.TypeOf((*verifySmsOtpMessageTextState)(nil)).Elem()
 }
 
+// VerifySmsOtpMessageTextExists checks whether an existing VerifySmsOtpMessageText resource with the given ID exists.
+func VerifySmsOtpMessageTextExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VerifySmsOtpMessageTextState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/verifySmsOtpMessageText:VerifySmsOtpMessageText", id, state, "", opts...)
+}
+
 type verifySmsOtpMessageTextArgs struct {
 	// Deprecated: Not supported by the SMS OTP message: the ZITADEL API only stores `text` for this message type, so this attribute has no effect. It will be removed in a future major version.
 	ButtonText *string `pulumi:"buttonText"`

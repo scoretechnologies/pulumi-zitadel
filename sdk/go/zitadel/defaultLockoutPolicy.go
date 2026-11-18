@@ -42,10 +42,11 @@ import (
 //
 // ## Import
 //
-// The resource can be imported using the ID format `<>`, e.g.
+// Terraform rejects empty import IDs, so the resource is imported with the placeholder id
+// `default`, which ZITADEL ignores, e.g.
 //
 // ```sh
-// $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported ”
+// $ pulumi import zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy imported 'default'
 // ```
 type DefaultLockoutPolicy struct {
 	pulumi.CustomResourceState
@@ -104,6 +105,12 @@ type DefaultLockoutPolicyState struct {
 
 func (DefaultLockoutPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultLockoutPolicyState)(nil)).Elem()
+}
+
+// DefaultLockoutPolicyExists checks whether an existing DefaultLockoutPolicy resource with the given ID exists.
+func DefaultLockoutPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultLockoutPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/defaultLockoutPolicy:DefaultLockoutPolicy", id, state, "", opts...)
 }
 
 type defaultLockoutPolicyArgs struct {

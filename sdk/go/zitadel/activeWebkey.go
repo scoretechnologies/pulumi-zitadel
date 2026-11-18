@@ -121,6 +121,12 @@ func (ActiveWebkeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*activeWebkeyState)(nil)).Elem()
 }
 
+// ActiveWebkeyExists checks whether an existing ActiveWebkey resource with the given ID exists.
+func ActiveWebkeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ActiveWebkeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/activeWebkey:ActiveWebkey", id, state, "", opts...)
+}
+
 type activeWebkeyArgs struct {
 	// The ID of the webkey to be active.
 	KeyId string `pulumi:"keyId"`

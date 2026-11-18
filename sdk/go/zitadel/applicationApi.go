@@ -141,6 +141,12 @@ func (ApplicationApiState) ElementType() reflect.Type {
 	return reflect.TypeOf((*applicationApiState)(nil)).Elem()
 }
 
+// ApplicationApiExists checks whether an existing ApplicationApi resource with the given ID exists.
+func ApplicationApiExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ApplicationApiState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/applicationApi:ApplicationApi", id, state, "", opts...)
+}
+
 type applicationApiArgs struct {
 	// Auth method type, supported values: API*AUTH*METHOD*TYPE*BASIC, API*AUTH*METHOD*TYPE*PRIVATE*KEY*JWT
 	AuthMethodType *string `pulumi:"authMethodType"`

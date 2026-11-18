@@ -407,6 +407,26 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         return Project(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            has_project_check: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_labeling_setting: pulumi.Input[Optional[_builtins.str]] = None,
+            project_role_assertion: pulumi.Input[Optional[_builtins.bool]] = None,
+            project_role_check: pulumi.Input[Optional[_builtins.bool]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["hasProjectCheck"] = has_project_check
+        __props__["name"] = name
+        __props__["orgId"] = org_id
+        __props__["privateLabelingSetting"] = private_labeling_setting
+        __props__["projectRoleAssertion"] = project_role_assertion
+        __props__["projectRoleCheck"] = project_role_check
+        __props__["state"] = state
+        return pulumi.runtime.exists_resource(None, 'zitadel:index/project:Project', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="hasProjectCheck")
     def has_project_check(self) -> pulumi.Output[Optional[_builtins.bool]]:

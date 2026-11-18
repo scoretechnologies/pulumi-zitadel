@@ -346,6 +346,12 @@ func (IdpLdapState) ElementType() reflect.Type {
 	return reflect.TypeOf((*idpLdapState)(nil)).Elem()
 }
 
+// IdpLdapExists checks whether an existing IdpLdap resource with the given ID exists.
+func IdpLdapExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IdpLdapState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/idpLdap:IdpLdap", id, state, "", opts...)
+}
+
 type idpLdapArgs struct {
 	// Enable if users should get prompted to link an existing ZITADEL user to an external account if the selected attribute matches, supported values: AUTO*LINKING*OPTION*UNSPECIFIED, AUTO*LINKING*OPTION*USERNAME, AUTO*LINKING*OPTION_EMAIL
 	AutoLinking *string `pulumi:"autoLinking"`

@@ -110,6 +110,12 @@ func (InstanceTrustedDomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceTrustedDomainState)(nil)).Elem()
 }
 
+// InstanceTrustedDomainExists checks whether an existing InstanceTrustedDomain resource with the given ID exists.
+func InstanceTrustedDomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceTrustedDomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("zitadel:index/instanceTrustedDomain:InstanceTrustedDomain", id, state, "", opts...)
+}
+
 type instanceTrustedDomainArgs struct {
 	// Trusted domain to add to the instance (max 253 characters)
 	Domain string `pulumi:"domain"`
